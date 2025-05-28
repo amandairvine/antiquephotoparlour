@@ -1,0 +1,496 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Brygada 1918", serif;
+}
+
+html,
+body {
+  height: 100%;
+  overflow: hidden;
+  background-color: #460000;
+  color: white;
+  font-family: "Brygada 1918", serif;
+  font-weight: 700;
+}
+
+/* #region Fonts/Text */
+.montecarlo-regular {
+  font-family: "MonteCarlo", cursive;
+  font-weight: 400;
+  font-size: 1.5rem;
+  font-style: normal;
+  line-height: normal;
+}
+
+.brygada-regular {
+  font-family: "Brygada 1918", serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.brygada-medium {
+  font-family: "Brygada 1918", serif;
+  font-optical-sizing: auto;
+  font-weight: 500;
+  font-style: normal;
+}
+
+.brygada-semibold {
+  font-family: "Brygada 1918", serif;
+  font-optical-sizing: auto;
+  font-weight: 600;
+  font-style: normal;
+}
+
+.brygada-bold {
+  font-family: "Brygada 1918", serif;
+  font-optical-sizing: auto;
+  font-weight: 700;
+  font-style: normal;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* #endregion */
+
+.container {
+  max-width: 100%;
+  margin: 0 auto;
+}
+
+.flex-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* Homepage specific styles */
+.homepage {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* #region Header */
+header {
+  background-color: #480204;
+  color: #e0d4c4;
+  z-index: 100;
+  position: relative;
+}
+
+.header-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  height: 10rem;
+  overflow: visible;
+  z-index: 10;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25), 0px 10px 12px 0px #220001;
+}
+
+.header-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  height: 10rem;
+  overflow: visible;
+}
+
+/* #region Logo */
+.logo-container {
+  position: absolute;
+  left: 2.75rem;
+  top: 0;
+  overflow: visible;
+}
+
+.logo-container img {
+  width: 56rem;
+  height: auto;
+  filter: drop-shadow(0 6px 8px rgba(0, 0, 0, 0.4));
+  transition: transform 0.3s ease;
+}
+
+.logo-container img:hover {
+  transform: scale(102%);
+}
+
+/* #endregion */
+
+/* #region Primary Nav - View Your Photos Button, Social Media */
+.primary-nav {
+  color: white;
+  position: absolute;
+  right: 0;
+  height: 100%;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  padding: 0 2.75rem;
+}
+
+.primary-nav img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  transition: transform 0.3s ease;
+}
+
+.primary-nav img:hover {
+  transform: scale(101%);
+}
+
+.flex-container li:nth-child(2) a img:hover,
+.flex-container li:nth-child(3) a img:hover {
+  transform: scale(103%);
+}
+
+
+/* #endregion */
+
+/* #region Secondary Nav - Services, Pricing, Themes, Frames, FAQ, Contact */
+
+.secondary-nav {
+  color: white;
+  position: absolute;
+  right: 0;
+  height: 100%;
+  overflow: hidden;
+  z-index: 15;
+  display: flex;
+  align-items: center;
+  padding: 0 2.75rem;
+}
+
+.secondary-nav a {
+  color: white;
+  text-decoration: none;
+  font-size: 26px;
+  transition: color 0.3s, transform 0.3s ease;
+  padding: 20px;
+  display: inline-block;
+}
+
+.secondary-nav a:hover {
+  color: #ffe6c8;
+  transform: scale(102%);
+}
+
+.header-bottom-background {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 100%;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.parchment-border {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  opacity: 0.5;
+  background: #220001;
+  box-shadow: 0px 2px 6px 2px rgba(34, 0, 1, 0.37);
+  outline: 0.8px rgba(120, 94, 40, 0.7) solid;
+  filter: blur(2px);
+  z-index: 5;
+}
+
+nav a {
+  color: #e0d4c4;
+  text-decoration: none;
+  font-size: 26px;
+  transition: color 0.3s;
+  padding: 20px;
+  transition: transform 0.3s ease;
+}
+
+nav a:hover {
+  color: #ffe6c8;
+  transform: scale(102%);
+}
+
+/* #endregion */
+
+/* #endregion */
+
+/* #region Main content */
+.homepage-content {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  overflow: hidden;
+}
+
+/* Main slideshow area */
+.slideshow-container {
+  flex: 3;
+  position: relative;
+  overflow: hidden;
+}
+
+.slideshow {
+  height: 100%;
+  position: relative;
+  overflow-x: auto;
+}
+
+.slide {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 1s ease-in-out;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.slide.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.slide-content {
+  background-color: rgba(0, 0, 0, 0.6);
+  color: white;
+  padding: 15px;
+  max-width: 500px;
+  text-align: center;
+}
+
+.slide-content h2 {
+  font-size: 32px;
+  margin-bottom: 10px;
+}
+
+.slide-content p {
+  font-size: 16px;
+  margin-bottom: 15px;
+}
+
+.btn {
+  display: inline-block;
+  background-color: #c5aa8a;
+  color: #332d29;
+  padding: 10px 20px;
+  text-decoration: none;
+  font-weight: bold;
+  border-radius: 4px;
+  transition: background-color 0.3s;
+}
+
+.btn:hover {
+  background-color: #a2824a;
+  color: white;
+}
+
+/* #endregion */
+
+/* #region Footer */
+.info-panel {
+  flex: 1;
+  background-color: #a2824a;
+  display: flex;
+  overflow: hidden;
+  padding: 0rem 18rem;
+  max-height: 170px;
+}
+
+/* Hours section */
+.hours-container {
+  flex: 1;
+  padding: 15px 50px 0 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.hours-container h3 {
+  font-size: 18px;
+  margin-bottom: 10px;
+  color: white;
+  text-align: center;
+}
+
+.hours-grid {
+  display: grid;
+  gap: 5px;
+}
+
+.quick-hours {
+  display: flex;
+  justify-content: space-between;
+  font-size: 14px;
+  background-color: #f5f1e9;
+  padding: 5px 10px;
+  border-radius: 4px;
+}
+
+.hours-note {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 14px;
+  background-color: #f5f1e9;
+  padding: 5px 10px;
+  border-radius: 4px;
+}
+
+/* Location section */
+.location-container {
+  flex: 1;
+  background-color: #a2824a;
+  padding: 15px 50px 0 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.location-container h3 {
+  font-size: 18px;
+  margin-bottom: 10px;
+  color: white;
+  text-align: center;
+}
+
+.location-details {
+  background-color: #f5f1e9;
+  padding: 10px;
+  border-radius: 4px;
+  display: flex;
+}
+
+.location-text {
+  flex: 1;
+}
+
+.location-container p {
+  margin-bottom: 5px;
+  font-size: 14px;
+}
+
+.mini-map {
+  flex: 1;
+  background-color: #f0f0f0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #666;
+  border: 1px solid #ddd;
+  font-size: 12px;
+  border-radius: 4px;
+  margin-left: 10px;
+}
+
+/* Subpages */
+.subpage {
+  height: auto;
+  overflow-y: auto;
+}
+
+.subpage .services {
+  padding: 80px 0;
+  background-color: #fff;
+}
+
+.subpage .section-title {
+  text-align: center;
+  font-size: 32px;
+  margin-bottom: 40px;
+  color: #332d29;
+}
+
+.subpage .services-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+}
+
+.subpage .service-card {
+  background-color: #f5f1e9;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.subpage .service-img {
+  height: 200px;
+  background-size: cover;
+  background-position: center;
+}
+
+.subpage .service-content {
+  padding: 20px;
+}
+
+.subpage .service-content h3 {
+  font-size: 22px;
+  margin-bottom: 10px;
+}
+
+.subpage .service-content p {
+  margin-bottom: 15px;
+}
+
+/* Footer for subpages */
+.subpage footer {
+  background-color: #332d29;
+  color: #e0d4c4;
+}
+
+.subpage .footer-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.subpage .footer-col {
+  flex: 1;
+  margin-right: 20px;
+}
+
+.subpage .footer-col h4 {
+  font-size: 20px;
+}
+
+.subpage .footer-col p,
+.subpage .footer-col a {
+  display: block;
+  color: #e0d4c4;
+  text-decoration: none;
+}
+
+.subpage .footer-col a:hover {
+  color: #c5aa8a;
+}
+
+.subpage .copyright {
+  text-align: center;
+  margin-top: 40px;
+  padding-top: 100px;
+  border-top: 1px solid #5a534e;
+}
+
+/* #endregion */
