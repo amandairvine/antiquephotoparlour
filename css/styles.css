@@ -4,6 +4,7 @@
   box-sizing: border-box;
   /* font-family: "Brygada 1918", serif; */
 
+  /*
   --font-montecarlo: "MonteCarlo", cursive;
   --font-brygada: "Brygada 1918", serif;
 
@@ -11,6 +12,7 @@
   --weight-medium: 500;
   --weight-semibold: 600;
   --weight-bold: 700;
+*/
 }
 
 html,
@@ -58,7 +60,7 @@ body {
 
 /* Homepage specific styles */
 .homepage {
-  height: 100vh;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
 }
@@ -167,14 +169,14 @@ header {
   z-index: 15;
   display: flex;
   align-items: center;
-  padding: 0 2.75rem;
+  padding: 0 4.4rem;
 }
 
 .secondary-nav a {
   display: inline-block;
   text-decoration: none;
   font-size: 24px;
-  padding: 2.4rem;
+  padding: 2.8rem;
   color: #fff;
   font-family: var(--font-brygada);
   font-weight: var(--weight-bold);
@@ -247,6 +249,7 @@ header {
   flex-direction: column;
   flex: 1;
   overflow: hidden;
+  height: 50rem;
 }
 
 /* Main slideshow area */
@@ -254,12 +257,12 @@ header {
   flex: 3;
   position: relative;
   overflow: hidden;
+  width: 100%;
 }
 
 .slideshow {
   height: 100%;
   position: relative;
-  overflow-x: auto;
 }
 
 .slide {
@@ -322,7 +325,6 @@ header {
 /* #region Footer */
 .info-panel {
   flex: 1;
-  background-color: #a2824a;
   display: flex;
   overflow: hidden;
   padding: 0rem 18rem;
@@ -371,7 +373,6 @@ header {
 /* Location section */
 .location-container {
   flex: 1;
-  background-color: #a2824a;
   padding: 15px 50px 0 0;
   display: flex;
   flex-direction: column;
@@ -433,7 +434,7 @@ header {
 
 .subpage .services-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  /*  grid-template-columns: repeat(3, 1fr);*/
   gap: 30px;
 }
 
