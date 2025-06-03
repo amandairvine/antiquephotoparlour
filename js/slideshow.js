@@ -1,5 +1,5 @@
 // slideshow.js
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
   const slides = document.querySelectorAll('.slide');
   const slideshow = document.querySelector('.slideshow');
   let currentSlide = 0;
@@ -14,21 +14,42 @@ document.addEventListener('DOMContentLoaded', function() {
 
   console.log(`Slideshow initialized with ${slides.length} slides`);
 
+  // Function to go to previous slide
+  function prevSlide() {
+    if (isTransitioning) return;
+
+    stopSlideshow();
+    isTransitioning = true;
+
+    slides[currentSlide].classList.remove('active');
+    currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+    slides[currentSlide].classList.add('active');
+
+    setTimeout(() => {
+      isTransitioning = false;
+    }, 500);
+
+    startSlideshow();
+  }
+
+
   // Auto-advance slides
   function nextSlide() {
     if (isTransitioning) return;
-    
+
     isTransitioning = true;
-    
+
     // Remove active class from current slide
     slides[currentSlide].classList.remove('active');
-    
+
     // Move to next slide (loop back to 0 if at end)
     currentSlide = (currentSlide + 1) % slides.length;
-    
+
+    console.log('Slideshow slide moved to next slide');
+
     // Add active class to new slide
     slides[currentSlide].classList.add('active');
-    
+
     // Reset transition flag after animation completes
     setTimeout(() => {
       isTransitioning = false;
@@ -54,7 +75,7 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 
   // Handle visibility change (pause when tab is not active)
-  document.addEventListener('visibilitychange', function() {
+  document.addEventListener('visibilitychange', function () {
     if (document.hidden) {
       stopSlideshow();
     } else {
@@ -66,79 +87,116 @@ document.addEventListener('DOMContentLoaded', function() {
   startSlideshow();
 
   // Optional: Add keyboard navigation
-  document.addEventListener('keydown', function(e) {
+  document.addEventListener('keydown', function (e) {
     if (e.key === 'ArrowRight') {
       stopSlideshow();
       nextSlide();
       startSlideshow();
     } else if (e.key === 'ArrowLeft') {
       stopSlideshow();
-      
+
       if (isTransitioning) return;
       isTransitioning = true;
-      
+
       slides[currentSlide].classList.remove('active');
       currentSlide = (currentSlide - 1 + slides.length) % slides.length;
       slides[currentSlide].classList.add('active');
-      
+
       setTimeout(() => {
         isTransitioning = false;
       }, 500);
-      
+
       startSlideshow();
     }
   });
 
-  // Optional: Add navigation dots
-  function createNavigationDots() {
-    const dotsContainer = document.createElement('div');
-    dotsContainer.className = 'slideshow-dots';
-    
-    slides.forEach((_, index) => {
-      const dot = document.createElement('button');
-      dot.className = index === 0 ? 'dot active' : 'dot';
-      dot.setAttribute('aria-label', `Go to slide ${index + 1}`);
-      
-      dot.addEventListener('click', () => {
-        if (isTransitioning || index === currentSlide) return;
-        
-        stopSlideshow();
-        isTransitioning = true;
-        
-        // Update dots
-        document.querySelectorAll('.dot').forEach(d => d.classList.remove('active'));
-        dot.classList.add('active');
-        
-        // Update slides
-        slides[currentSlide].classList.remove('active');
-        currentSlide = index;
-        slides[currentSlide].classList.add('active');
-        
-        setTimeout(() => {
-          isTransitioning = false;
-        }, 500);
-        
-        startSlideshow();
-      });
-      
-      dotsContainer.appendChild(dot);
-    });
-    
-    // Insert dots after slideshow
-    if (slideshow && slideshow.parentNode) {
-      slideshow.parentNode.insertBefore(dotsContainer, slideshow.nextSibling);
-      
-      // Update dots when slide changes
-      const originalNextSlide = nextSlide;
-      nextSlide = function() {
-        originalNextSlide();
-        document.querySelectorAll('.dot').forEach((dot, index) => {
-          dot.classList.toggle('active', index === currentSlide);
-        });
-      };
-    }
+  // Navigation button functionality
+  const prevButton = document.querySelector('.slideshow-nav-prev');
+  const nextButton = document.querySelector('.slideshow-nav-next');
+  const leftHoverZone = document.querySelector('.slideshow-hover-left');
+  const rightHoverZone = document.querySelector('.slideshow-hover-right');
+
+  // Function to go to previous slide
+  function prevSlide() {
+    if (isTransitioning) return;
+
+    stopSlideshow();
+    isTransitioning = true;
+
+    slides[currentSlide].classList.remove('active');
+    currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+    slides[currentSlide].classList.add('active');
+
+    setTimeout(() => {
+      isTransitioning = false;
+    }, 500);
+
+    startSlideshow();
   }
 
-  // Uncomment the line below if you want navigation dots
-  // createNavigationDots();
+  // Function to go to next slide manually
+  function manualNextSlide() {
+    if (isTransitioning) return;
+
+    stopSlideshow();
+    nextSlide();
+    startSlideshow();
+  }
+
+  // Add click effect helper function
+  function addClickEffect(button) {
+    button.classList.add('clicking');
+    setTimeout(() => {
+      button.classList.remove('clicking');
+    }, 150);
+  }
+
+  // Add click handlers for navigation buttons with click effects
+  if (prevButton) {
+    prevButton.addEventListener('click', (e) => {
+      addClickEffect(prevButton);
+      prevSlide();
+    });
+
+    prevButton.addEventListener('mousedown', () => {
+      addClickEffect(prevButton);
+    });
+  }
+
+  if (nextButton) {
+    nextButton.addEventListener('click', (e) => {
+      addClickEffect(nextButton);
+      manualNextSlide();
+    });
+
+    nextButton.addEventListener('mousedown', () => {
+      addClickEffect(nextButton);
+    });
+  }
+
+  // Add hover effects for showing/hiding buttons
+  if (leftHoverZone && prevButton) {
+    leftHoverZone.addEventListener('mouseenter', () => {
+      prevButton.style.opacity = '1';
+      prevButton.style.pointerEvents = 'auto';
+    });
+
+    leftHoverZone.addEventListener('mouseleave', () => {
+      prevButton.style.opacity = '0';
+      prevButton.style.pointerEvents = 'none';
+    });
+  }
+
+  if (rightHoverZone && nextButton) {
+    rightHoverZone.addEventListener('mouseenter', () => {
+      nextButton.style.opacity = '1';
+      nextButton.style.pointerEvents = 'auto';
+    });
+
+    rightHoverZone.addEventListener('mouseleave', () => {
+      nextButton.style.opacity = '0';
+      nextButton.style.pointerEvents = 'none';
+    });
+  }
+
 });
