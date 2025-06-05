@@ -1,4 +1,3 @@
-// slideshow.js
 document.addEventListener('DOMContentLoaded', function () {
   const slides = document.querySelectorAll('.slide');
   const slideshow = document.querySelector('.slideshow');
@@ -44,8 +43,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Move to next slide (loop back to 0 if at end)
     currentSlide = (currentSlide + 1) % slides.length;
-
-    console.log('Slideshow slide moved to next slide');
 
     // Add active class to new slide
     slides[currentSlide].classList.add('active');

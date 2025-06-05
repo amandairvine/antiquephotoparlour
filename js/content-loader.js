@@ -1,12 +1,14 @@
+// content-loader.js
+
 document.addEventListener('DOMContentLoaded', function () {
   console.log('Content loader started');
 
-  // Load header
+  // Load Header (Dropdown part was redundant, consolidated to one fetch for header)
   fetch('../../header/header.html')
     .then(response => {
       console.log('Header response status:', response.status);
       if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
+        throw new Error('Network response was not ok ' + response.statusText);
       }
       return response.text();
     })
@@ -14,14 +16,31 @@ document.addEventListener('DOMContentLoaded', function () {
       const headerContainer = document.getElementById('header-container');
       if (headerContainer) {
         headerContainer.innerHTML = html;
-        console.log('Header loaded successfully');
+        console.log("Header content loaded into #header-container.");
+
+        // *** CRITICAL: Initialize navbar-dropdown.js related functions HERE ***
+        // 1. Call adaptNavItems to place items correctly based on initial screen size
+        if (typeof adaptNavItems === 'function') {
+          adaptNavItems();
+          console.log("adaptNavItems called after header content loaded (initial item placement).");
+        } else {
+          console.error("Error: adaptNavItems function not found.");
+        }
+
+        // 2. Call setupNavbarListeners to attach click events to the new DOM elements
+        if (typeof setupNavbarListeners === 'function') {
+          setupNavbarListeners();
+          console.log("setupNavbarListeners called to attach click events.");
+        } else {
+          console.error("Error: setupNavbarListeners function not found.");
+        }
+
       } else {
-        console.error('Header container not found');
+        console.warn("#header-container not found in the DOM.");
       }
     })
-    .catch(error => {
-      console.error('Error loading header:', error);
-    });
+    .catch(error => console.error('Error loading header content:', error));
+
 
   // Load slideshow
   fetch('../home/slideshow/slideshow.html')
@@ -39,16 +58,8 @@ document.addEventListener('DOMContentLoaded', function () {
         slideshowContainer.innerHTML = html;
         console.log('Slideshow content inserted');
 
-        // Wait for DOM to update, then initialize directly
         setTimeout(() => {
-          const slides = document.querySelectorAll('.slide');
-          console.log('Found slides:', slides.length);
-
-          if (slides.length > 0) {
-            initializeSlideshowDirectly();
-          } else {
-            console.error('No slides found after loading content');
-          }
+          initializeSlideshowDirectly(); // Ensure this is called once slideshow is ready
         }, 100);
 
       } else {
@@ -59,6 +70,29 @@ document.addEventListener('DOMContentLoaded', function () {
       console.error('Error loading slideshow:', error);
     });
 
+  // Load footer (includes info-panel and copyright)
+  fetch('../../footer/footer.html')
+    .then(response => {
+      console.log('Footer response status:', response.status);
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+      return response.text();
+    })
+    .then(html => {
+      const footerContainer = document.getElementById('footer-container');
+      if (footerContainer) {
+        footerContainer.innerHTML = html;
+        console.log('Footer loaded successfully');
+      } else {
+        console.error('Footer container not found');
+      }
+    })
+    .catch(error => {
+      console.error('Error loading footer:', error);
+    });
+
+  // --- Slideshow Initialization (Keep these functions as they are in content-loader.js) ---
   function initializeSlideshowDirectly() {
     const slides = document.querySelectorAll('.slide');
     const slideshow = document.querySelector('.slideshow');
@@ -84,7 +118,6 @@ document.addEventListener('DOMContentLoaded', function () {
       slides[currentSlide].classList.remove('active');
       currentSlide = (currentSlide + 1) % slides.length;
       slides[currentSlide].classList.add('active');
-      console.log('Moved to slide:', currentSlide);
       setTimeout(() => { isTransitioning = false; }, 500);
     }
 
@@ -94,7 +127,6 @@ document.addEventListener('DOMContentLoaded', function () {
       slides[currentSlide].classList.remove('active');
       currentSlide = (currentSlide - 1 + slides.length) % slides.length;
       slides[currentSlide].classList.add('active');
-      console.log('Moved to slide:', currentSlide);
       setTimeout(() => { isTransitioning = false; }, 500);
     }
 
@@ -109,16 +141,13 @@ document.addEventListener('DOMContentLoaded', function () {
       }
     }
 
-    // --- MODIFICATIONS START HERE ---
-
-    // Control arrow visibility based on hovering over the *entire* slideshow
     if (slideshow && prevButton && nextButton) {
       slideshow.addEventListener('mouseenter', () => {
         prevButton.style.opacity = '1';
         prevButton.style.pointerEvents = 'auto';
         nextButton.style.opacity = '1';
         nextButton.style.pointerEvents = 'auto';
-        stopSlideshow(); // Stop slideshow on hover
+        stopSlideshow();
       });
 
       slideshow.addEventListener('mouseleave', () => {
@@ -126,11 +155,10 @@ document.addEventListener('DOMContentLoaded', function () {
         prevButton.style.pointerEvents = 'none';
         nextButton.style.opacity = '0';
         nextButton.style.pointerEvents = 'none';
-        startSlideshow(); // Resume slideshow when mouse leaves
+        startSlideshow();
       });
     }
 
-    // Left side click events (hover zone only for click now)
     if (leftHoverZone) {
       leftHoverZone.addEventListener('click', () => {
         stopSlideshow();
@@ -139,7 +167,6 @@ document.addEventListener('DOMContentLoaded', function () {
       });
     }
 
-    // Right side click events (hover zone only for click now)
     if (rightHoverZone) {
       rightHoverZone.addEventListener('click', () => {
         stopSlideshow();
@@ -148,7 +175,6 @@ document.addEventListener('DOMContentLoaded', function () {
       });
     }
 
-    // Button click events (these will still work when buttons are visible)
     if (prevButton) {
       prevButton.addEventListener('click', (e) => {
         e.stopPropagation();
@@ -167,7 +193,6 @@ document.addEventListener('DOMContentLoaded', function () {
       });
     }
 
-    // Handle visibility change
     document.addEventListener('visibilitychange', function () {
       if (document.hidden) {
         stopSlideshow();
@@ -176,7 +201,6 @@ document.addEventListener('DOMContentLoaded', function () {
       }
     });
 
-    // Keyboard navigation
     document.addEventListener('keydown', function (e) {
       if (e.key === 'ArrowRight') {
         stopSlideshow();
@@ -189,85 +213,6 @@ document.addEventListener('DOMContentLoaded', function () {
       }
     });
 
-    // Start the slideshow initially
     startSlideshow();
   }
-
-  // Updated slideshow loading with direct initialization
-  function loadSlideshowWithDirectInit() {
-    fetch('../home/slideshow/slideshow.html')
-      .then(response => {
-        console.log('Slideshow response status:', response.status);
-        if (!response.ok) {
-          throw new Error(`HTTP error! status: ${response.status}`);
-        }
-        return response.text();
-      })
-      .then(html => {
-        console.log('Slideshow HTML loaded, length:', html.length);
-        const slideshowContainer = document.getElementById('slideshow-container');
-        if (slideshowContainer) {
-          slideshowContainer.innerHTML = html;
-          console.log('Slideshow content inserted');
-
-          // Wait for DOM to update, then initialize directly
-          setTimeout(() => {
-            initializeSlideshowDirectly();
-          }, 100);
-
-        } else {
-          console.error('Slideshow container not found');
-        }
-      })
-      .catch(error => {
-        console.error('Error loading slideshow:', error);
-      });
-  }
-
-  // Load footer (includes info-panel and copyright)
-  fetch('../../footer/footer.html')
-    .then(response => {
-      console.log('Footer response status:', response.status);
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
-      }
-      return response.text();
-    })
-    .then(html => {
-      const footerContainer = document.getElementById('footer-container');
-      if (footerContainer) {
-        footerContainer.innerHTML = html;
-        console.log('Footer loaded successfully');
-      } else {
-        console.error('Footer container not found');
-      }
-    })
-    .catch(error => {
-      console.error('Error loading footer:', error);
-    });
-});
-
-// Initialize slideshow after DOM and content is loaded
-document.addEventListener('DOMContentLoaded', function () {
-  console.log('DOM loaded, waiting for slideshow content...');
-
-  function checkAndInitialize() {
-    const slides = document.querySelectorAll('.slide');
-    const slideshowContainer = document.getElementById('slideshow-container');
-
-    if (slides.length > 0) {
-      console.log('Slides found, initializing slideshow...');
-      initializeSlideshowDirectly();
-    } else if (slideshowContainer && slideshowContainer.innerHTML.trim() === '') {
-      // Slideshow container exists but is empty, wait a bit more
-      console.log('Slideshow container empty, waiting...');
-      setTimeout(checkAndInitialize, 200);
-    } else if (slideshowContainer) {
-      // Container has content but no slides found yet, wait a bit more
-      console.log('Slideshow container has content, checking for slides...');
-      setTimeout(checkAndInitialize, 200);
-    }
-  }
-
-  checkAndInitialize();
 });
