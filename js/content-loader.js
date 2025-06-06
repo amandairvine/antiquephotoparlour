@@ -92,7 +92,7 @@ document.addEventListener('DOMContentLoaded', function () {
       console.error('Error loading footer:', error);
     });
 
-  // --- Slideshow Initialization (Keep these functions as they are in content-loader.js) ---
+  // --- Slideshow Initialization ---
   function initializeSlideshowDirectly() {
     const slides = document.querySelectorAll('.slide');
     const slideshow = document.querySelector('.slideshow');
@@ -130,10 +130,10 @@ document.addEventListener('DOMContentLoaded', function () {
       setTimeout(() => { isTransitioning = false; }, 500);
     }
 
-    function startSlideshow() {
-      stopSlideshow();
-      slideInterval = setInterval(nextSlide, 4000);
-    }
+    // function startSlideshow() {
+    //   stopSlideshow();
+    //   slideInterval = setInterval(nextSlide, 4000);
+    // }
 
     function stopSlideshow() {
       if (slideInterval) {
@@ -213,6 +213,7 @@ document.addEventListener('DOMContentLoaded', function () {
       }
     });
 
-    startSlideshow();
+    // *** UNCOMMENT THIS *************************
+    // startSlideshow();
   }
 });

@@ -11,8 +11,8 @@ function setupNavbarListeners() {
   }
 
   const moreDropdown = container.querySelector(".more-dropdown");
-  const moreLink = moreDropdown.querySelector(".more-link");
-  const dropdownMenu = moreDropdown.querySelector(".dropdown-menu");
+ const moreLink = moreDropdown ? moreDropdown.querySelector(".more-link") : null;
+  const dropdownMenu = moreDropdown ? moreDropdown.querySelector(".dropdown-menu") : null;
 
   if (moreLink && dropdownMenu && moreDropdown) {
     console.log("Attaching click listeners for 'More' link and document.");
@@ -102,5 +102,11 @@ function adaptNavItems() {
     console.log("No breakpoint crossed. No DOM manipulation needed.");
   }
 }
+
+document.addEventListener("DOMContentLoaded", function() {
+  console.log("DOM loaded. Initializing navbar...");
+  adaptNavItems(); 
+  setupNavbarListeners(); 
+});
 
 window.addEventListener("resize", adaptNavItems);
