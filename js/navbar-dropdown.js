@@ -1,5 +1,5 @@
 let isMobileView = false;
-const breakpoint = 768;
+const breakpoint = 1024;
 
 // Function to attach event listeners
 function setupNavbarListeners() {

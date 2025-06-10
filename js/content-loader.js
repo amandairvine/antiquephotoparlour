@@ -18,7 +18,6 @@ document.addEventListener('DOMContentLoaded', function () {
         headerContainer.innerHTML = html;
         console.log("Header content loaded into #header-container.");
 
-        // *** CRITICAL: Initialize navbar-dropdown.js related functions HERE ***
         // 1. Call adaptNavItems to place items correctly based on initial screen size
         if (typeof adaptNavItems === 'function') {
           adaptNavItems();
@@ -111,6 +110,36 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     console.log(`Slideshow initialized with ${slides.length} slides`);
+
+    // Convert inline background-image styles and detect orientation
+    slides.forEach(slide => {
+      const computedStyle = window.getComputedStyle(slide);
+      const backgroundImage = computedStyle.backgroundImage;
+      if (backgroundImage && backgroundImage !== 'none') {
+        slide.style.setProperty('--slide-bg-image', backgroundImage);
+        slide.style.backgroundImage = '';
+
+        // Create a temporary image to detect orientation
+        const img = new Image();
+        img.onload = function () {
+          if (this.width > this.height) {
+            slide.classList.add('landscape');
+            console.log('Added landscape class to slide');
+          } else {
+            slide.classList.add('portrait');
+            console.log('Added portrait class to slide');
+          }
+        };
+
+        // Extract URL from the background-image string
+        const urlMatch = backgroundImage.match(/url\(['"]?(.*?)['"]?\)/);
+        if (urlMatch) {
+          img.src = urlMatch[1];
+        }
+
+        console.log(`Set --slide-bg-image for slide:`, backgroundImage);
+      }
+    });
 
     function nextSlide() {
       if (isTransitioning) return;

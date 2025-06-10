@@ -1,8 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Antique Photo Parlour</title>
+    <link rel="stylesheet" href="../css/style.css" />
+</head>
 
 <body>
     <header>
+        <!-- Header Top Background -->
+        <div class="header-top-background"></div>
+
+        <!-- Header Top Content -->
         <div class="container header-top">
             <div class="logo-container">
                 <a href="../pages/home/index.html">
@@ -14,7 +24,6 @@
             <nav class="primary-nav">
                 <ul class="flex-container">
                     <li>
-                        <!-- *** CHANGE THIS TO LINK TO MORE PHOTOS ********************** -->
                         <a href="#">
                             <div class="header-background-bar">
                                 <div class="header-bar">
@@ -29,11 +38,7 @@
                     <li>
                         <div class="facebook-icon">
                             <a href="https://www.facebook.com/AntiquePhotoParlour" target="_blank" rel="noopener">
-                                <picture>
-                                    <source srcset="../../img/buttons/mobile-facebook-logo-button.png"
-                                        media="(max-width: 768px)">
-                                    <img src="../../img/buttons/facebook-logo-button.png" alt="Facebook" />
-                                </picture>
+                                <img src="../../img/buttons/mobile-facebook-logo-button.png" alt="Facebook" />
                                 <h1 class="sr-only">Facebook</h1>
                             </a>
                         </div>
@@ -41,11 +46,7 @@
                     <li>
                         <div class="instagram-icon">
                             <a href="https://www.instagram.com/antiquephotoparlour/" target="_blank" rel="noopener">
-                                <picture>
-                                    <source srcset="../../img/buttons/mobile-instagram-logo-button.png"
-                                        media="(max-width: 768px)">
-                                    <img src="../../img/buttons/instagram-logo-button.png" alt="Instagram" />
-                                </picture>
+                                <img src="../../img/buttons/mobile-instagram-logo-button.png" alt="Instagram" />
                                 <h1 class="sr-only">Instagram</h1>
                             </a>
                         </div>
@@ -54,14 +55,16 @@
             </nav>
         </div>
 
-        <div class="container header-bottom">
-            <div class="header-bottom-background">
-                <div class="parchment-background">
-                    <img src="../../img/background/parchment-background.jpg" alt="Gold background parchment texture" />
-                    <div class="parchment-border"></div>
-                </div>
+        <!-- Header Bottom Background -->
+        <div class="header-bottom-background">
+            <div class="parchment-background">
+                <img src="../../img/background/parchment-background.jpg" alt="Gold background parchment texture" />
+                <div class="parchment-border"></div>
             </div>
+        </div>
 
+        <!-- Header Bottom Content -->
+        <div class="container header-bottom">
             <div class="header-nav">
                 <nav class="secondary-nav">
                     <ul class="flex-container">
@@ -71,24 +74,20 @@
                         <li class="move-to-dropdown"><a href="../pages/frames/frames.html">Frames</a></li>
                         <li><a href="../pages/frequently-asked-questions/frequently-asked-questions.html">FAQ</a></li>
                         <li><a href="../pages/contact/contact.html">Contact</a></li>
-
                         <li class="more-dropdown">
                             <a href="#" class="more-link">More ▾</a>
                             <ul class="dropdown-menu"></ul>
                         </li>
                     </ul>
                 </nav>
-                
+
                 <div class="nav-background-bar">
                     <div class="nav-bar"></div>
                 </div>
             </div>
         </div>
-
     </header>
 
     <script src="../js/navbar-dropdown.js"></script>
-
 </body>
-
 </html>
