@@ -27,15 +27,14 @@
 }
 
 html,
-body,
-header,
-footer {
+body {
   width: 100%;
   height: 100%;
   margin: 0;
   padding: 0;
-  color: white;
   overflow: hidden;
+  color: white;
+  transition: none;
 }
 
 /* Screen reader only content */
@@ -63,13 +62,14 @@ footer {
 header {
   position: relative;
   width: 100vw;
-  overflow-x: hidden;
   box-shadow: 0px 2px 6px 2px rgba(34, 0, 1, 0.633);
+  transition: none;
 }
 
 #header-container {
   position: relative;
   z-index: 100;
+  transition: none;
 }
 
 /* Header Top Section */
@@ -92,6 +92,7 @@ header {
   width: 100%;
   height: 100%;
   z-index: 0;
+  transition: none;
 }
 
 .header-top,
@@ -105,17 +106,17 @@ header {
   z-index: 2;
   max-width: 1140px;
   margin: 0 auto;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
   padding: 0 2rem;
-  height: 16.8rem;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  transition: none;
 }
 
 .logo-container {
   flex: 1;
   display: flex;
-  justify-content: flex-start;
+  justify-content: center;
   align-items: center;
   transition: transform 0.3s ease;
 }
@@ -124,7 +125,7 @@ header {
   max-height: 12rem;
   width: auto;
   filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.5));
-  transition: max-height 0.5s cubic-bezier(0, 1, 0, 1);
+  transition: max-height 0.8s cubic-bezier(0, 1, 0, 1), width 0.8s ease-in-out;
 }
 
 .logo-container:hover {
@@ -153,16 +154,19 @@ header {
 .header-background-bar {
   position: relative;
   width: 100%;
-  max-width: 36rem;
-  padding: 0.4rem 6.8rem;
+  min-width: 35rem;
+  max-width: 45rem;
+  padding: 0.4rem;
   margin-bottom: 0.2rem;
-  border: 2px solid #e8c775;
-  border-radius: 1.2rem;
+  border: 2.8px solid #e8c775;
+  border-radius: 1rem;
   background: linear-gradient(90deg, #480204 0%, #800407 50%, #480204 100%);
   box-shadow: 0px 6px 4px rgba(34, 0, 1, 0.8);
   z-index: 0;
   overflow: hidden;
-  transition: transform 0.3s ease;
+  box-sizing: border-box;
+  transition: transform 0.2s ease, min-width 0.5s ease-in-out,
+    height 0.5s ease-in-out;
 }
 
 .header-background-bar:hover {
@@ -180,7 +184,7 @@ header {
   max-height: 2.4rem;
   width: auto;
   margin-top: 0.2rem;
-  transition: max-height 0.5s cubic-bezier(0, 1, 0, 1);
+  transition: max-height 0.5s cubic-bezier(0, 1, 0, 1), width 0.5s ease-in-out;
 }
 
 .primary-nav li {
@@ -208,7 +212,8 @@ header {
 .flex-container .instagram-icon a img {
   width: 4.2rem;
   height: 4rem;
-  transition: width 0.3s ease-in-out;
+  transition: transform 0.2s ease, width 0.3s ease-in-out,
+    height 0.3s ease-in-out;
 }
 
 .flex-container li:nth-child(2) a img:hover,
@@ -227,6 +232,7 @@ header {
   display: flex;
   align-items: center;
   justify-content: flex-end;
+  transition: none;
 }
 
 .header-nav {
@@ -286,12 +292,14 @@ header {
   align-items: center;
   position: relative;
   width: 100%;
-  z-index: 6;
+  z-index: 1000;
 }
 
 .secondary-nav ul.flex-container {
   width: 100%;
   justify-content: center;
+  flex-wrap: nowrap;
+  gap: 1.6rem;
 }
 
 .more-dropdown {
@@ -300,7 +308,18 @@ header {
 }
 
 .more-dropdown .more-link {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  text-decoration: none;
   z-index: 1001;
+}
+
+.more-dropdown svg {
+  display: block;
+  height: 1.4em;
+  width: auto;
+  overflow: visible;
 }
 
 .dropdown-menu {
@@ -316,12 +335,11 @@ header {
   border-top-right-radius: 0;
   border-bottom-left-radius: 1.2rem;
   border-bottom-right-radius: 1.2rem;
-  z-index: 2;
-  width: 9.1rem;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   opacity: 0;
   visibility: hidden;
   transition: transform 0.4s ease, opacity 0.2s ease, visibility 0.2s ease;
+  z-index: 2000;
 }
 
 .dropdown-menu::before {
@@ -370,18 +388,28 @@ header {
   transform: scale(106%);
 }
 
+.dropdown-arrow {
+  display: block;
+  transition: transform 0.3s ease;
+  transform-origin: center;
+}
+
+.more-dropdown.open .dropdown-arrow {
+  transform: rotate(180deg);
+}
+
 .secondary-nav a {
   display: inline-block;
   text-decoration: none;
   font-size: 24px;
-  padding: 2.2rem;
+  padding: 2rem;
   color: #fff;
   font-family: var(--font-brygada);
   font-weight: var(--weight-bold);
   font-style: normal;
   text-shadow: -1px -1px 0 #a20003, 1px -1px 0 #a20003, -1px 1px 0 #a20003,
     1px 1px 0 #a20003;
-  transition: transform 0.3s ease;
+  transition: transform 0.3s ease, font-size 0.5s ease-in-out;
 }
 
 .secondary-nav a:hover {
@@ -392,37 +420,39 @@ header {
   position: absolute;
   top: 50%;
   left: 50%;
-  width: 90%;
+  width: 100%;
   max-width: 45rem;
   height: 4.2rem;
   transform: translate(-50%, -50%);
   z-index: 1;
-  transition: max-width 0.5s cubic-bezier(0, 1, 0, 1);
+  transition: max-width 0.5s ease-in-out, height 0.5s ease-in-out;
 }
 
 .nav-bar {
   width: 100%;
   height: 100%;
-  border-radius: 1.2rem;
+  border-radius: 1rem;
   border: 2px solid #e8c775;
   background: linear-gradient(90deg, #480204 0%, #800407 50%, #480204 100%);
   box-shadow: 0px 6px 4px rgba(34, 0, 1, 0.8);
+  transition: none;
 }
 
 /* #endregion */
 
 /* #region Slideshow Content */
 .homepage {
-  position: relative;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  transition: none;
 }
 
 .homepage-content {
   flex: 1;
   position: relative;
-  overflow: hidden;
+  overflow: visible;
+  z-index: 1;
 }
 
 /* Main slideshow area */
@@ -434,11 +464,13 @@ header {
   height: 100%;
   z-index: 1;
   object-fit: cover;
+  transition: none;
 }
 
 .slideshow {
   height: 100%;
   position: relative;
+  transition: none;
 }
 
 .slide {
@@ -487,10 +519,10 @@ header {
   background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
-  z-index: 2;
+  z-index: 1;
   width: 100%;
   height: 100%;
-  max-width: 1075px;
+  /* max-width: 1075px; */
 }
 
 /* For portrait images */
@@ -498,12 +530,12 @@ header {
   width: 100%;
   height: 100%;
   padding: 0;
+  transition: transform 0.3s ease, min-height 0.5s ease;
 }
 
 /* For landscape images */
 .slide.landscape::after {
-  width: 100%;
-  height: 100%;
+  min-width: 575px;
 }
 
 .slide-caption {
@@ -526,6 +558,7 @@ header {
   left: 50%;
   transform: translateX(-50%);
   z-index: 4;
+  transition: gap 0.5s ease-in-out, height 0.5s ease-in-out;
 }
 
 .slide.native .slide-text {
@@ -547,6 +580,7 @@ header {
   gap: 0.4rem;
 }
 
+.slide.kids .slide-text,
 .slide.victorian .slide-text,
 .slide.historical-pet-portraits .slide-text {
   gap: 0.2rem;
@@ -555,6 +589,7 @@ header {
 .slide-text {
   display: flex;
   flex-direction: column;
+  transition: gap 0.5s ease-in-out;
 }
 
 .slide-caption p {
@@ -584,6 +619,7 @@ header {
   max-width: 45rem;
   height: 5rem;
   object-fit: contain;
+  transition: height 0.2s ease-in-out;
 }
 
 .slide.native img,
@@ -602,6 +638,7 @@ header {
   height: 3.6rem;
 }
 
+.slide.kids img,
 .slide.victorian img,
 .slide.historical-pet-portraits img {
   height: 3.8rem;
@@ -711,7 +748,8 @@ header {
   font-style: normal;
   text-shadow: -1px -1px 0 #a20003, 1px -1px 0 #a20003, -1px 1px 0 #a20003,
     1px 1px 0 #a20003;
-  transition: transform 0.3s ease;
+  transition: transform 0.3s ease, width 0.5s ease-in-out,
+    height 0.5s ease-in-out;
 }
 
 .btn:hover {
@@ -725,12 +763,14 @@ header {
 footer {
   z-index: 2;
   box-shadow: 0px -2px 6px 2px rgba(34, 0, 1, 0.633);
+  transition: none;
 }
 
 #footer-container {
   width: 100%;
   max-height: 30rem;
   z-index: 100;
+  transition: none;
 }
 
 .info-panel {
@@ -741,6 +781,7 @@ footer {
   width: 100%;
   box-sizing: border-box;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  transition: none;
 }
 
 .footer-containers {
@@ -768,6 +809,9 @@ footer {
   height: 8.8rem;
   max-width: 45rem;
   width: 100%;
+  pointer-events: none;
+  transition: max-width 0.5s ease-in-out, height 0.5s ease-in-out,
+    border 0.5s ease-in-out;
 }
 
 .header-text {
@@ -784,6 +828,7 @@ footer {
   display: flex;
   justify-content: space-between;
   padding: 0.4rem 2.2rem 0rem;
+  transition: padding 0.5s ease-in-out;
 }
 
 .hours-info .header-text img {
@@ -854,6 +899,7 @@ footer {
   text-shadow: -1px -1px 0 #a20003, 1px -1px 0 #a20003, -1px 1px 0 #a20003,
     1px 1px 0 #a20003;
   padding: 0.1rem 2.2rem 0.1rem 0rem;
+  transition: padding 0.5s ease-in-out;
 }
 
 .location-container {
@@ -872,6 +918,7 @@ footer {
     1px 1px 0 #a20003;
   margin-bottom: 0rem;
   padding: 0.4rem 2.2rem;
+  transition: padding 0.5s ease-in-out;
 }
 
 .header-text {
@@ -921,6 +968,7 @@ footer {
   display: flex;
   justify-content: flex-end;
   padding-top: 0.6rem;
+  transition: padding 0.3s ease-in-out;
 }
 
 .map-text {
@@ -946,7 +994,7 @@ footer {
   font-style: normal;
   text-shadow: -1px -1px 0 #a20003, 1px -1px 0 #a20003, -1px 1px 0 #a20003,
     1px 1px 0 #a20003;
-  transition: transform 0.3s ease;
+  transition: transform 0.3s ease, font-size 0.5s ease-in-out;
   margin-bottom: 1rem;
   cursor: pointer;
   order: 0;
@@ -971,19 +1019,14 @@ footer {
 
 /* #endregion */
 
-/* Responsive Design */
 @media (max-width: 480px) {
-  .flex-container {
-    gap: 10px;
-  }
-
   .secondary-nav .flex-container {
-    gap: 15px;
+    gap: 1.5rem;
   }
 
   .secondary-nav a {
     font-size: 14px;
-    padding: 6px 10px;
+    padding: 0.6rem 1rem;
   }
 
   .logo-container img {
@@ -991,8 +1034,8 @@ footer {
   }
 
   .primary-nav img {
-    height: 35px;
-    width: 35px;
+    height: 3.5rem;
+    width: 3.5rem;
   }
 }
 
@@ -1030,6 +1073,14 @@ footer {
     font-size: 22px;
   }
 
+  .secondary-nav .dropdown-menu {
+    width: 10.3rem;
+  }
+
+  .secondary-nav ul.flex-container {
+    gap: 4.8rem;
+  }
+
   /* #endregion */
 
   /* #endregion */
@@ -1057,7 +1108,12 @@ footer {
 
   .secondary-nav .flex-container {
     flex-wrap: wrap;
-    gap: 1rem;
+    gap: 5.2rem;
+  }
+
+  .dropdown-menu {
+    width: 10.2rem;
+    left: -1rem;
   }
 
   .dropdown-menu li {
@@ -1066,7 +1122,7 @@ footer {
   }
 
   .dropdown-menu li a {
-    padding: 1rem;
+    padding: 1rem 1.6rem;
     display: block;
     white-space: nowrap;
     font-size: 16px;
@@ -1088,11 +1144,11 @@ footer {
   }
 
   .more-dropdown {
-    display: block !important;
+    display: block;
   }
 
   .more-dropdown.show {
-    display: block !important;
+    display: block;
   }
 
   /* #endregion */
@@ -1182,7 +1238,7 @@ footer {
 
   .header-top {
     padding: 0rem 2rem;
-    max-height: 8rem;
+    min-height: 8rem;
   }
 
   .header-top-background {
@@ -1243,13 +1299,13 @@ footer {
   }
 
   .secondary-nav a {
-    font-size: 20px;
-    padding: 1.2rem;
+    font-size: 16px;
+    padding: 1.4rem 1.2rem 1.2rem;
   }
 
   .secondary-nav ul.flex-container {
-    gap: 0;
-    justify-content: flex-end;
+    gap: 1.4rem;
+    justify-content: center;
   }
 
   /* #endregion */
@@ -1258,8 +1314,9 @@ footer {
 
   /* #region Slideshow */
 
-  .slide::after {
-    max-width: 1100px;
+  .slide.portrait::after {
+    width: 120%;
+    height: 120%;
   }
 
   .slideshow-nav img {
@@ -1286,11 +1343,12 @@ footer {
     display: flex;
     flex-direction: row;
     justify-content: center;
+    gap: 2rem;
   }
 
   .hours-container,
   .location-container {
-    max-width: 60rem;
+    max-width: 66rem;
     height: 8.8rem;
   }
 
@@ -1301,6 +1359,10 @@ footer {
 
   .days {
     font-size: 16px;
+  }
+
+  .hours-note {
+    padding-top: 0.2rem;
   }
 
   .holiday-hours,
@@ -1341,8 +1403,8 @@ footer {
     bottom: 1.6rem;
     grid-column: 2 / 3;
     grid-row: 2 / 3;
-    width: 26rem;
-    height: 5rem;
+    width: 24rem;
+    height: 4.6rem;
     text-align: right;
     background: white;
     color: black;
@@ -1356,8 +1418,9 @@ footer {
     grid-column: 2 / 3;
     grid-row: 1 / 2;
     text-align: left;
-    font-size: 16px;
+    font-size: 14px;
     font-style: normal;
+    justify-content: flex-start;
   }
 
   .map-text {
@@ -1376,7 +1439,7 @@ footer {
   /* #region Slideshow*/
 
   .slide::after {
-    max-width: 2000px;
+    /* max-width: 2000px; */
   }
 
   /* #endregion */
@@ -1526,6 +1589,7 @@ footer {
     height: 4rem;
   }
 
+  .slide.kids img,
   .slide.victorian img {
     height: 4.8rem;
   }
@@ -1552,6 +1616,7 @@ footer {
 
   .footer-containers {
     gap: 1.2rem;
+    transition: gap 0.5s ease-in-out;
   }
 
   .location-container {
@@ -1563,6 +1628,9 @@ footer {
     min-width: 60rem;
     height: 10.8rem;
     border: 4px solid #e8c775;
+    overflow: hidden;
+    transition: min-width 0.5s ease-in-out, height 0.5s ease-in-out,
+      border 0.5s ease-in-out;
   }
 
   .hours-grid {
@@ -1570,9 +1638,15 @@ footer {
     padding-top: 0.6rem;
   }
 
+  .hours-note {
+    padding-top: 0;
+    line-height: 2.3rem;
+  }
+
   .hours-info .header-text img,
   .location-container .header-text img {
     max-width: none;
+    transition: max-width 0.5s ease-in-out;
   }
 
   .days,
@@ -1600,6 +1674,7 @@ footer {
     height: 5.2rem;
     display: flex;
     justify-self: flex-end;
+    transition: width 0.5s ease-in-out, height 0.5s ease-in-out;
   }
 
   .copyright {

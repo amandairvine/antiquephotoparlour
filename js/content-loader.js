@@ -3,7 +3,7 @@
 document.addEventListener('DOMContentLoaded', function () {
   console.log('Content loader started');
 
-  // Load Header (Dropdown part was redundant, consolidated to one fetch for header)
+  // Load Header
   fetch('../../header/header.html')
     .then(response => {
       console.log('Header response status:', response.status);
@@ -58,7 +58,7 @@ document.addEventListener('DOMContentLoaded', function () {
         console.log('Slideshow content inserted');
 
         setTimeout(() => {
-          initializeSlideshowDirectly(); // Ensure this is called once slideshow is ready
+          initializeSlideshowDirectly();
         }, 100);
 
       } else {
@@ -69,7 +69,7 @@ document.addEventListener('DOMContentLoaded', function () {
       console.error('Error loading slideshow:', error);
     });
 
-  // Load footer (includes info-panel and copyright)
+  // Load footer
   fetch('../../footer/footer.html')
     .then(response => {
       console.log('Footer response status:', response.status);
@@ -103,6 +103,8 @@ document.addEventListener('DOMContentLoaded', function () {
     let currentSlide = 0;
     let slideInterval;
     let isTransitioning = false;
+    let touchStartX = 0;
+    let touchEndX = 0;
 
     if (!slides.length) {
       console.log('No slides found, slideshow not initialized');
@@ -139,6 +141,30 @@ document.addEventListener('DOMContentLoaded', function () {
 
         console.log(`Set --slide-bg-image for slide:`, backgroundImage);
       }
+
+      slideshow.addEventListener('touchstart', (e) => {
+        touchStartX = e.changedTouches[0].screenX;
+      });
+
+      slideshow.addEventListener('touchend', (e) => {
+        touchEndX = e.changedTouches[0].screenX;
+        handleGesture();
+      });
+
+      function handleGesture() {
+        const swipeThreshold = 50; 
+        const deltaX = touchEndX - touchStartX;
+
+        if (Math.abs(deltaX) > swipeThreshold) {
+          stopSlideshow();
+          if (deltaX > 0) {
+            prevSlide(); // Swipe right
+          } else {
+            nextSlide(); // Swipe left
+          }
+          startSlideshow();
+        }
+      }
     });
 
     function nextSlide() {
@@ -147,7 +173,7 @@ document.addEventListener('DOMContentLoaded', function () {
       slides[currentSlide].classList.remove('active');
       currentSlide = (currentSlide + 1) % slides.length;
       slides[currentSlide].classList.add('active');
-      setTimeout(() => { isTransitioning = false; }, 500);
+      setTimeout(() => { isTransitioning = false; }, 2000);
     }
 
     function prevSlide() {
@@ -242,7 +268,6 @@ document.addEventListener('DOMContentLoaded', function () {
       }
     });
 
-    // *** UNCOMMENT THIS *************************
-    // startSlideshow();
+    startSlideshow();
   }
 });

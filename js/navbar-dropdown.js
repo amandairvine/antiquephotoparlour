@@ -11,17 +11,17 @@ function setupNavbarListeners() {
   }
 
   const moreDropdown = container.querySelector(".more-dropdown");
- const moreLink = moreDropdown ? moreDropdown.querySelector(".more-link") : null;
+  const moreLink = moreDropdown ? moreDropdown.querySelector(".more-link") : null;
   const dropdownMenu = moreDropdown ? moreDropdown.querySelector(".dropdown-menu") : null;
 
   if (moreLink && dropdownMenu && moreDropdown) {
     console.log("Attaching click listeners for 'More' link and document.");
 
     // Click listener for the "More" link to toggle dropdown visibility
-    moreLink.removeEventListener("click", toggleDropdown); 
+    moreLink.removeEventListener("click", toggleDropdown);
     moreLink.addEventListener("click", toggleDropdown);
 
-    document.removeEventListener("click", closeDropdownOnClickOutside); 
+    document.removeEventListener("click", closeDropdownOnClickOutside);
     document.addEventListener("click", closeDropdownOnClickOutside);
 
   } else {
@@ -31,7 +31,7 @@ function setupNavbarListeners() {
 
 // Helper functions for event listeners 
 function toggleDropdown(event) {
-  const moreDropdown = this.closest('.more-dropdown'); 
+  const moreDropdown = this.closest('.more-dropdown');
   const dropdownMenu = moreDropdown.querySelector(".dropdown-menu");
 
   console.log("More link clicked! Inside toggleDropdown.");
@@ -39,6 +39,7 @@ function toggleDropdown(event) {
 
   if (window.getComputedStyle(moreDropdown).display !== 'none') {
     dropdownMenu.classList.toggle("show");
+    moreDropdown.classList.toggle("open");
     console.log("Dropdown menu 'show' class toggled. Current state:", dropdownMenu.classList.contains("show") ? "visible" : "hidden");
   } else {
     console.log("More dropdown is not visible (CSS display: none), so not toggling.");
@@ -46,7 +47,7 @@ function toggleDropdown(event) {
 }
 
 function closeDropdownOnClickOutside(event) {
-  const moreDropdown = document.querySelector(".more-dropdown"); 
+  const moreDropdown = document.querySelector(".more-dropdown");
   const dropdownMenu = moreDropdown.querySelector(".dropdown-menu");
 
   if (
@@ -55,6 +56,7 @@ function closeDropdownOnClickOutside(event) {
     dropdownMenu.classList.contains("show")
   ) {
     dropdownMenu.classList.remove("show");
+    moreDropdown.classList.remove("open");
     console.log("Clicked outside 'More' dropdown. Dropdown menu closed.");
   }
 }
@@ -103,10 +105,10 @@ function adaptNavItems() {
   }
 }
 
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", function () {
   console.log("DOM loaded. Initializing navbar...");
-  adaptNavItems(); 
-  setupNavbarListeners(); 
+  adaptNavItems();
+  setupNavbarListeners();
 });
 
 window.addEventListener("resize", adaptNavItems);
