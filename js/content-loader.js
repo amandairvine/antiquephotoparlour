@@ -3,6 +3,20 @@
 document.addEventListener('DOMContentLoaded', function () {
   console.log('Content loader started');
 
+  // Navigation state
+  let currentPage = 'home';
+  let originalHomContent = null;
+
+  // Page routes configuration
+  const routes = {
+    'services': '/pages/services/services.html',
+    'pricing': '/pages/pricing/pricing.html',
+    'themes': '/pages/themes/themes.html',
+    'frames': '/pages/frames/frames.html',
+    'faq': '/pages/frequently-asked-questions/frequently-asked-questions.html',
+    'contact': '/pages/contact/contact.html'
+  };
+
   // Load Header
   fetch('../../header/header.html')
     .then(response => {
@@ -18,7 +32,6 @@ document.addEventListener('DOMContentLoaded', function () {
         headerContainer.innerHTML = html;
         console.log("Header content loaded into #header-container.");
 
-        // 1. Call adaptNavItems to place items correctly based on initial screen size
         if (typeof adaptNavItems === 'function') {
           adaptNavItems();
           console.log("adaptNavItems called after header content loaded (initial item placement).");
@@ -26,7 +39,6 @@ document.addEventListener('DOMContentLoaded', function () {
           console.error("Error: adaptNavItems function not found.");
         }
 
-        // 2. Call setupNavbarListeners to attach click events to the new DOM elements
         if (typeof setupNavbarListeners === 'function') {
           setupNavbarListeners();
           console.log("setupNavbarListeners called to attach click events.");
@@ -34,40 +46,22 @@ document.addEventListener('DOMContentLoaded', function () {
           console.error("Error: setupNavbarListeners function not found.");
         }
 
+        setupPageNavigation();
+
+        const initialHash = window.location.hash.substring(1);
+        if (initialHash && routes[initialHash]) {
+          console.log(`Loading page from initial hash: ${initialHash}`);
+          loadPage(initialHash, false); 
+        } else {
+          console.log('No specific hash, loading home page.');
+          loadHomePage();
+        }
+
       } else {
         console.warn("#header-container not found in the DOM.");
       }
     })
     .catch(error => console.error('Error loading header content:', error));
-
-
-  // Load slideshow
-  fetch('../home/slideshow/slideshow.html')
-    .then(response => {
-      console.log('Slideshow response status:', response.status);
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
-      }
-      return response.text();
-    })
-    .then(html => {
-      console.log('Slideshow HTML loaded, length:', html.length);
-      const slideshowContainer = document.getElementById('slideshow-container');
-      if (slideshowContainer) {
-        slideshowContainer.innerHTML = html;
-        console.log('Slideshow content inserted');
-
-        setTimeout(() => {
-          initializeSlideshowDirectly();
-        }, 100);
-
-      } else {
-        console.error('Slideshow container not found');
-      }
-    })
-    .catch(error => {
-      console.error('Error loading slideshow:', error);
-    });
 
   // Load footer
   fetch('../../footer/footer.html')
@@ -91,7 +85,236 @@ document.addEventListener('DOMContentLoaded', function () {
       console.error('Error loading footer:', error);
     });
 
-  // --- Slideshow Initialization ---
+  // Function to load home page content
+  function loadHomePage() {
+    fetch('../home/slideshow/slideshow.html')
+      .then(response => {
+        console.log('Slideshow response status:', response.status);
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        return response.text();
+      })
+      .then(html => {
+        console.log('Slideshow HTML loaded, length:', html.length);
+        const contentContainer = document.querySelector('.homepage-content');
+        if (contentContainer) {
+          contentContainer.innerHTML = html;
+          console.log('Slideshow content inserted');
+
+          // Store original home content for navigation back
+          originalHomContent = html;
+          currentPage = 'home';
+
+          setTimeout(() => {
+            initializeSlideshowDirectly();
+          }, 100);
+
+        } else {
+          console.error('Content container not found');
+        }
+      })
+      .catch(error => {
+        console.error('Error loading slideshow:', error);
+      });
+  }
+
+  // Function to setup page navigation
+  function setupPageNavigation() {
+    console.log('Setting up page navigation');
+
+    // Add click listeners to navigation links
+    document.addEventListener('click', function (e) {
+      const link = e.target.closest('a[href]');
+      if (!link) return;
+
+      const href = link.getAttribute('href');
+
+      // Check if this is an internal navigation link
+      if (href && href.startsWith('../') && !href.includes('facebook') && !href.includes('instagram')) {
+        e.preventDefault();
+        console.log('Navigation clicked:', href);
+
+        const pageName = extractPageName(href);
+        if (pageName) {
+          loadPage(pageName);
+        }
+      }
+    });
+
+    // Handle browser back/forward
+    window.addEventListener('popstate', function (e) {
+      if (e.state && e.state.page) {
+        loadPage(e.state.page, false);
+      } else {
+        loadPage('home', false);
+      }
+    });
+  }
+
+  // Function to extract page name from href
+  function extractPageName(href) {
+    if (href.includes('services')) return 'services';
+    if (href.includes('pricing')) return 'pricing';
+    if (href.includes('themes')) return 'themes';
+    if (href.includes('frames')) return 'frames';
+    if (href.includes('frequently-asked-questions')) return 'faq';
+    if (href.includes('contact')) return 'contact';
+    if (href.includes('home')) return 'home';
+    return null;
+  }
+
+  // Function to load page-specific CSS
+  function loadPageCSS(pageName) {
+    // Remove existing page-specific CSS
+    const existingPageCSS = document.querySelector('link[id^="page-css-"]');
+    if (existingPageCSS) {
+      existingPageCSS.remove();
+    }
+
+    // Load new page-specific CSS if it exists
+    if (pageName !== 'home') {
+      const cssPath = `../../css/pages/${pageName}.css`;
+      const link = document.createElement('link');
+      link.rel = 'stylesheet';
+      link.href = cssPath;
+      link.id = `page-css-${pageName}`;
+
+      // Add error handling for missing CSS files
+      link.onerror = () => {
+        console.log(`No specific CSS file found for ${pageName} page (${cssPath})`);
+      };
+
+      document.head.appendChild(link);
+      console.log(`Loading CSS for ${pageName} page: ${cssPath}`);
+    }
+  }
+
+  // Function to load a specific page
+  async function loadPage(pageName, updateHistory = true) {
+    console.log('Loading page:', pageName);
+
+    const contentContainer = document.querySelector('.homepage-content');
+    if (!contentContainer) {
+      console.error('Content container not found');
+      return;
+    }
+
+    loadPageCSS(pageName);
+
+    // Handle home page
+    if (pageName === 'home') {
+      if (originalHomContent) {
+        contentContainer.innerHTML = originalHomContent;
+        currentPage = 'home';
+        setTimeout(() => {
+          initializeSlideshowDirectly();
+        }, 100);
+      } else {
+        loadHomePage();
+      }
+
+      if (updateHistory) {
+        history.pushState({ page: 'home' }, 'Home - Antique Photo Parlour', '/');
+      }
+      return;
+    }
+
+    const route = routes[pageName];
+    if (!route) {
+      console.error('Route not found for page:', pageName);
+      return;
+    }
+
+    try {
+      contentContainer.innerHTML = '<div class="loading">Loading...</div>';
+
+      const response = await fetch(route);
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+
+      const html = await response.text();
+
+      const parser = new DOMParser();
+      const doc = parser.parseFromString(html, 'text/html');
+
+      let pageContentToInject = doc.querySelector('.services-container'); 
+
+      if (pageContentToInject) {
+        contentContainer.innerHTML = pageContentToInject.outerHTML;
+        currentPage = pageName;
+        console.log(`Page ${pageName} loaded successfully`);
+
+        if (updateHistory) {
+          const pageTitle = getPageTitle(pageName);
+
+          history.pushState({ page: pageName }, pageTitle, `#${pageName}`); 
+          document.title = pageTitle;
+        }
+
+        // *** CRITICAL ADDITION HERE ***
+        // Check if the loaded page is 'services' and then load/re-initialize its script
+        if (pageName === 'services') {
+          // Remove any old services.js script if it was appended previously
+          const oldScript = document.getElementById('services-script');
+          if (oldScript) {
+            oldScript.remove();
+          }
+
+          const script = document.createElement('script');
+          script.src = '../../js/services.js';
+          script.id = 'services-script'; // Give it an ID to easily remove later
+          script.onload = () => {
+            console.log('services.js loaded dynamically. Calling initializeServicesPage...');
+            // This is where you call the function defined in services.js
+            if (typeof initializeServicesPage === 'function') {
+              initializeServicesPage();
+            } else {
+              console.error("Error: initializeServicesPage function not found after script load.");
+            }
+          };
+          document.body.appendChild(script);
+        }
+        // If you have other pages with specific JS, add similar blocks here:
+        // else if (pageName === 'someOtherPage') { /* ... load someOtherPage.js and call its init function ... */ }
+
+      } else {
+        console.error('No identifiable content container (.services-container) found in loaded page for injection.');
+        if (doc.body) {
+          contentContainer.innerHTML = doc.body.innerHTML;
+          console.warn('Injected body content as a fallback, may not be ideal.');
+        } else {
+          throw new Error('No content found in loaded page to inject.');
+        }
+      }
+
+    } catch (error) {
+      console.error(`Error loading page ${pageName}:`, error);
+      contentContainer.innerHTML = `
+      <div class="error-message">
+        <h2>Sorry, we couldn't load this page.</h2>
+        <p>Please try again or <a href="#" onclick="location.reload()">refresh the page</a>.</p>
+      </div>
+    `;
+    }
+  }
+
+  // Function to get page title
+  function getPageTitle(pageName) {
+    const titles = {
+      'home': 'Antique Photo Parlour',
+      'services': 'Services - Antique Photo Parlour',
+      'pricing': 'Pricing - Antique Photo Parlour',
+      'themes': 'Themes - Antique Photo Parlour',
+      'frames': 'Frames - Antique Photo Parlour',
+      'faq': 'FAQ - Antique Photo Parlour',
+      'contact': 'Contact - Antique Photo Parlour'
+    };
+    return titles[pageName] || 'Antique Photo Parlour';
+  }
+
+  // --- Slideshow Initialization (unchanged) ---
   function initializeSlideshowDirectly() {
     const slides = document.querySelectorAll('.slide');
     const slideshow = document.querySelector('.slideshow');
@@ -152,7 +375,7 @@ document.addEventListener('DOMContentLoaded', function () {
       });
 
       function handleGesture() {
-        const swipeThreshold = 50; 
+        const swipeThreshold = 50;
         const deltaX = touchEndX - touchStartX;
 
         if (Math.abs(deltaX) > swipeThreshold) {
@@ -185,10 +408,10 @@ document.addEventListener('DOMContentLoaded', function () {
       setTimeout(() => { isTransitioning = false; }, 500);
     }
 
-    // function startSlideshow() {
-    //   stopSlideshow();
-    //   slideInterval = setInterval(nextSlide, 4000);
-    // }
+    function startSlideshow() {
+      stopSlideshow();
+      slideInterval = setInterval(nextSlide, 4000);
+    }
 
     function stopSlideshow() {
       if (slideInterval) {
@@ -270,4 +493,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     startSlideshow();
   }
+
+  // Expose loadPage function globally for potential external use
+  window.loadPage = loadPage;
 });

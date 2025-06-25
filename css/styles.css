@@ -50,7 +50,6 @@ body {
   border: 0;
 }
 
-/* Container */
 .container {
   margin: 0 auto;
   width: 100%;
@@ -1019,6 +1018,8 @@ footer {
 
 /* #endregion */
 
+/* #region Media Queries */
+
 @media (max-width: 480px) {
   .secondary-nav .flex-container {
     gap: 1.5rem;
@@ -1435,16 +1436,6 @@ footer {
   /* #endregion */
 }
 
-@media (min-height: 1080px) {
-  /* #region Slideshow*/
-
-  .slide::after {
-    /* max-width: 2000px; */
-  }
-
-  /* #endregion */
-}
-
 @media (min-width: 1250px) {
   /* #region Footer */
 
@@ -1519,8 +1510,6 @@ footer {
     bottom: 1.6rem;
     max-height: 22rem;
   }
-
-  /* #endregion */
 
   /* #endregion */
 
@@ -1892,3 +1881,5 @@ footer {
 
   /* #endregion */
 }
+
+/* #endregion */
