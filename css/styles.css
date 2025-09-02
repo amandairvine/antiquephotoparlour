@@ -441,17 +441,23 @@ header {
 
 /* #region Slideshow Content */
 .homepage {
-  min-height: 100vh;
+  height: 100%;
   display: flex;
   flex-direction: column;
   transition: none;
 }
 
-.homepage-content {
+.content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   flex: 1;
   position: relative;
-  overflow: visible;
+  overflow: hidden;
   z-index: 1;
+  width: 100%;
+  /* height: 100%; */
+  box-sizing: border-box;
 }
 
 /* Main slideshow area */

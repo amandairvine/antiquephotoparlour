@@ -51,7 +51,7 @@ document.addEventListener('DOMContentLoaded', function () {
         const initialHash = window.location.hash.substring(1);
         if (initialHash && routes[initialHash]) {
           console.log(`Loading page from initial hash: ${initialHash}`);
-          loadPage(initialHash, false); 
+          loadPage(initialHash, false);
         } else {
           console.log('No specific hash, loading home page.');
           loadHomePage();
@@ -97,7 +97,7 @@ document.addEventListener('DOMContentLoaded', function () {
       })
       .then(html => {
         console.log('Slideshow HTML loaded, length:', html.length);
-        const contentContainer = document.querySelector('.homepage-content');
+        const contentContainer = document.querySelector('.content');
         if (contentContainer) {
           contentContainer.innerHTML = html;
           console.log('Slideshow content inserted');
@@ -194,7 +194,7 @@ document.addEventListener('DOMContentLoaded', function () {
   async function loadPage(pageName, updateHistory = true) {
     console.log('Loading page:', pageName);
 
-    const contentContainer = document.querySelector('.homepage-content');
+    const contentContainer = document.querySelector('.content');
     if (!contentContainer) {
       console.error('Content container not found');
       return;
@@ -235,11 +235,12 @@ document.addEventListener('DOMContentLoaded', function () {
       }
 
       const html = await response.text();
-
       const parser = new DOMParser();
       const doc = parser.parseFromString(html, 'text/html');
 
-      let pageContentToInject = doc.querySelector('.services-container'); 
+      // Dynamic query for the content container
+      const contentClassName = `${pageName}-container`;
+      let pageContentToInject = doc.querySelector(`.${contentClassName}`);
 
       if (pageContentToInject) {
         contentContainer.innerHTML = pageContentToInject.outerHTML;
@@ -248,26 +249,19 @@ document.addEventListener('DOMContentLoaded', function () {
 
         if (updateHistory) {
           const pageTitle = getPageTitle(pageName);
-
-          history.pushState({ page: pageName }, pageTitle, `#${pageName}`); 
+          history.pushState({ page: pageName }, pageTitle, `#${pageName}`);
           document.title = pageTitle;
         }
 
-        // *** CRITICAL ADDITION HERE ***
-        // Check if the loaded page is 'services' and then load/re-initialize its script
+        // Load specific scripts for each page
         if (pageName === 'services') {
-          // Remove any old services.js script if it was appended previously
           const oldScript = document.getElementById('services-script');
-          if (oldScript) {
-            oldScript.remove();
-          }
-
+          if (oldScript) oldScript.remove();
           const script = document.createElement('script');
           script.src = '../../js/services.js';
-          script.id = 'services-script'; // Give it an ID to easily remove later
+          script.id = 'services-script';
           script.onload = () => {
             console.log('services.js loaded dynamically. Calling initializeServicesPage...');
-            // This is where you call the function defined in services.js
             if (typeof initializeServicesPage === 'function') {
               initializeServicesPage();
             } else {
@@ -276,11 +270,8 @@ document.addEventListener('DOMContentLoaded', function () {
           };
           document.body.appendChild(script);
         }
-        // If you have other pages with specific JS, add similar blocks here:
-        // else if (pageName === 'someOtherPage') { /* ... load someOtherPage.js and call its init function ... */ }
-
       } else {
-        console.error('No identifiable content container (.services-container) found in loaded page for injection.');
+        console.error(`No identifiable content container (${contentClassName}) found in loaded page for injection.`);
         if (doc.body) {
           contentContainer.innerHTML = doc.body.innerHTML;
           console.warn('Injected body content as a fallback, may not be ideal.');
@@ -288,7 +279,6 @@ document.addEventListener('DOMContentLoaded', function () {
           throw new Error('No content found in loaded page to inject.');
         }
       }
-
     } catch (error) {
       console.error(`Error loading page ${pageName}:`, error);
       contentContainer.innerHTML = `
@@ -314,7 +304,7 @@ document.addEventListener('DOMContentLoaded', function () {
     return titles[pageName] || 'Antique Photo Parlour';
   }
 
-  // --- Slideshow Initialization (unchanged) ---
+  // --- Slideshow Initialization ---
   function initializeSlideshowDirectly() {
     const slides = document.querySelectorAll('.slide');
     const slideshow = document.querySelector('.slideshow');
