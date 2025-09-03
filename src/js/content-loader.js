@@ -165,7 +165,6 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   // Function to load page-specific CSS
-  // Function to load page-specific CSS
   function loadPageCSS(pageName) {
     // Remove any old page-specific CSS
     const existingPageCSS = document.querySelector('link[id^="page-css-"]');
