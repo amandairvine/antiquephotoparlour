@@ -165,29 +165,34 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   // Function to load page-specific CSS
+  // Function to load page-specific CSS
   function loadPageCSS(pageName) {
-    // Remove existing page-specific CSS
+    // Remove any old page-specific CSS
     const existingPageCSS = document.querySelector('link[id^="page-css-"]');
     if (existingPageCSS) {
       existingPageCSS.remove();
     }
 
-    // Load new page-specific CSS if it exists
-    if (pageName !== 'home') {
-      const cssPath = `/css/pages/${pageName}.css`;
-      const link = document.createElement('link');
-      link.rel = 'stylesheet';
-      link.href = cssPath;
-      link.id = `page-css-${pageName}`;
+    const cssPath = `/css/pages/${pageName}.css`;
 
-      // Add error handling for missing CSS files
-      link.onerror = () => {
-        console.log(`No specific CSS file found for ${pageName} page (${cssPath})`);
-      };
-
-      document.head.appendChild(link);
-      console.log(`Loading CSS for ${pageName} page: ${cssPath}`);
+    if (pageName === 'home') {
+      console.log('Home page - no page-specific CSS loaded.');
+      return;
     }
+
+    // Create link element
+    const link = document.createElement('link');
+    link.rel = 'stylesheet';
+    link.href = cssPath;
+    link.id = `page-css-${pageName}`;
+
+    // Handle errors
+    link.onerror = () => {
+      console.warn(`⚠️ No CSS file found for ${pageName} page (${cssPath})`);
+    };
+
+    document.head.appendChild(link);
+    console.log(`✅ Loading CSS for ${pageName} page: ${cssPath}`);
   }
 
   // Function to load a specific page
