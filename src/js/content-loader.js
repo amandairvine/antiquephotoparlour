@@ -87,7 +87,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
   // Function to load home page content
   function loadHomePage() {
-    fetch('/pages/home/slideshow/slideshow.html')
+    fetch('/pages/slideshow/slideshow.html')
       .then(response => {
         console.log('Slideshow response status:', response.status);
         if (!response.ok) {
