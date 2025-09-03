@@ -174,7 +174,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Load new page-specific CSS if it exists
     if (pageName !== 'home') {
-      const cssPath = `../../css/pages/${pageName}.css`;
+      const cssPath = `/css/pages/${pageName}.css`;
       const link = document.createElement('link');
       link.rel = 'stylesheet';
       link.href = cssPath;
