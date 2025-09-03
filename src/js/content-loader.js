@@ -490,4 +490,22 @@ document.addEventListener('DOMContentLoaded', function () {
 
   // Expose loadPage function globally for potential external use
   window.loadPage = loadPage;
+
+  // Handle initial page load based on hash
+  if (location.hash) {
+    const pageName = location.hash.substring(1);
+    if (routes[pageName]) {
+      loadPage(pageName, false);
+    }
+  } else {
+    loadPage('home', false);
+  }
+
+  // Listen for hash changes (when clicking nav links)
+  window.addEventListener('hashchange', () => {
+    const pageName = location.hash.substring(1);
+    if (routes[pageName]) {
+      loadPage(pageName);
+    }
+  });
 });
