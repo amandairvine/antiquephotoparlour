@@ -18,7 +18,7 @@ document.addEventListener('DOMContentLoaded', function () {
   };
 
   // Load Header
-  fetch('../../header/header.html')
+  fetch('/header/header.html')
     .then(response => {
       console.log('Header response status:', response.status);
       if (!response.ok) {
@@ -64,7 +64,7 @@ document.addEventListener('DOMContentLoaded', function () {
     .catch(error => console.error('Error loading header content:', error));
 
   // Load footer
-  fetch('../../footer/footer.html')
+  fetch('/footer/footer.html')
     .then(response => {
       console.log('Footer response status:', response.status);
       if (!response.ok) {
@@ -87,7 +87,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
   // Function to load home page content
   function loadHomePage() {
-    fetch('../home/slideshow/slideshow.html')
+    fetch('/pages/home/slideshow/slideshow.html')
       .then(response => {
         console.log('Slideshow response status:', response.status);
         if (!response.ok) {

@@ -1,0 +1,24 @@
+{
+  "name": "antiquephotoparlour",
+  "version": "1.0.0",
+  "description": "Antique Photo Parlour Website",
+  "main": ".eslintrc.js",
+  "scripts": {
+    "start": "vite --open",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/amandairvine/antiquephotoparlour.git"
+  },
+  "author": "Amanda Irvine",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/amandairvine/antiquephotoparlour/issues"
+  },
+  "homepage": "https://github.com/amandairvine/antiquephotoparlour#readme",
+  "devDependencies": {
+    "vite": "^7.1.4"
+  }
+}
