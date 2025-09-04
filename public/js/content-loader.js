@@ -1,5 +1,9 @@
 // content-loader.js
 
+import("./modal-gallery.js").then(() => {
+  console.log("✅ modal-gallery.js attached");
+});
+
 document.addEventListener('DOMContentLoaded', function () {
   console.log('Content loader started');
 
