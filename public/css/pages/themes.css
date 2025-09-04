@@ -101,6 +101,15 @@ body {
   transform: scale(102%);
 }
 
+/* .themes-grid-item * {
+  cursor: pointer !important;
+  pointer-events: none;
+}
+
+.themes-grid-item {
+  pointer-events: auto;
+} */
+
 .photo-wrapper {
   border-bottom: 4px solid #e8c775;
   overflow: hidden;

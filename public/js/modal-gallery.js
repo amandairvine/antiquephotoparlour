@@ -188,8 +188,8 @@ document.addEventListener("click", e => {
     // gallery mapping
     const galleries = {
       victorian: [
-        "../../img/themes/victorian.jpg",
-        "../../img/themes/victorian.jpg",
+        "../../img/themes/victorian/victorian-main.jpg",
+        "../../img/themes/victorian/153628_001.jpg",
       ]
       // *** add more themes
     };
@@ -245,3 +245,4 @@ document.addEventListener("click", e => {
     modal.style.display = "none";
   }
 });
+
