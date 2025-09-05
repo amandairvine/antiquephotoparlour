@@ -99,16 +99,8 @@ body {
 
 .themes-grid-item:hover {
   transform: scale(102%);
+  cursor: pointer;
 }
-
-/* .themes-grid-item * {
-  cursor: pointer !important;
-  pointer-events: none;
-}
-
-.themes-grid-item {
-  pointer-events: auto;
-} */
 
 .photo-wrapper {
   border-bottom: 4px solid #e8c775;
@@ -215,27 +207,32 @@ body {
 }
 
 /* WebKit browsers: Chrome, Safari, Edge */
-.themes-list::-webkit-scrollbar {
+.themes-list::-webkit-scrollbar,
+.modal::-webkit-scrollbar {
   width: 16px;
 }
 
-.themes-list::-webkit-scrollbar-track {
+.themes-list::-webkit-scrollbar-track,
+.modal::-webkit-scrollbar-track {
   background: #480204;
   border-radius: 6px;
 }
 
-.themes-list::-webkit-scrollbar-thumb {
+.themes-list::-webkit-scrollbar-thumb,
+.modal::-webkit-scrollbar-thumb {
   background-color: #e8c775;
   border-radius: 6px;
   border: 3px solid #480204;
 }
 
-.themes-list::-webkit-scrollbar-thumb:hover {
+.themes-list::-webkit-scrollbar-thumb:hover,
+.modal::-webkit-scrollbar-thumb:hover {
   background-color: #d4a550;
 }
 
 /* Firefox */
-.themes-list {
+.themes-list,
+.modal {
   scrollbar-width: auto;
   scrollbar-color: #e8c775 #480204;
 }
@@ -250,13 +247,13 @@ body {
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.9);
+  background: rgba(60, 4, 4, 0.826);
   overflow: auto;
 }
 
 .modal-content {
   background: none;
-  margin: 5% auto;
+  margin: 2% auto;
   padding: 20px;
   max-width: 90%;
   border-radius: 10px;
@@ -284,6 +281,76 @@ body {
   display: flex;
   flex-wrap: wrap;
   gap: 2rem;
-  padding: 12rem 0 8rem;
   justify-content: center;
+}
+
+.gallery-arrow-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 100000;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  opacity: 0.8;
+  transition: opacity 0.2s ease;
+}
+
+#prevArrow {
+  left: 20px;
+}
+
+#nextArrow {
+  right: 20px;
+}
+
+.gallery-arrow {
+  width: 8rem;
+  height: auto;
+  transition: transform 0.3s ease, filter 0.2s ease;
+}
+
+.gallery-arrow-prev {
+  transform: scaleX(-1);
+}
+
+.gallery-arrow-btn:hover {
+  opacity: 1;
+}
+
+.gallery-arrow-btn:hover .gallery-arrow-prev {
+  transform: scaleX(-1) scale(1.1);
+  filter: brightness(1.2);
+}
+
+.gallery-arrow-btn:hover .gallery-arrow-next {
+  transform: scale(1.1);
+  filter: brightness(1.2);
+}
+
+/* Active/Click Effects */
+.gallery-arrow-btn:active .gallery-arrow-prev {
+  transform: scaleX(-1) scale(0.95);
+  filter: brightness(0.8);
+  transition: transform 0.1s ease, filter 0.1s ease;
+}
+
+.gallery-arrow-btn:active .gallery-arrow-next {
+  transform: scale(0.95);
+  filter: brightness(0.8);
+  transition: transform 0.1s ease, filter 0.1s ease;
+}
+
+#enlargedImageOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(60, 4, 4, 0.91);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999999;
 }

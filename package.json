@@ -6,7 +6,8 @@
   "scripts": {
     "start": "vite --open",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "gallery": "node ./public/js/generate-gallery-data.js"
   },
   "repository": {
     "type": "git",
