@@ -196,31 +196,25 @@ function enlargeImage(imageSrc) {
     document.addEventListener("keydown", handleKeydown);
 }
 
-// Main click handler using event delegation
-document.addEventListener("click", async e => {
-    const modal = document.getElementById("themeModal");
+// Handle opening the modal based on the URL hash
+async function handleUrlHash() {
+    const hash = window.location.hash;
+    if (hash.startsWith("#themes/")) {
+        const theme = hash.replace("#themes/", "");
+        console.log("Opening theme from hash:", theme);
 
-    // Handle theme grid item clicks - open gallery
-    const item = e.target.closest(".themes-grid-item");
-    if (item) {
-        const theme = item.dataset.theme;
-        console.log("Clicked theme:", theme);
-
+        const modal = document.getElementById("themeModal");
         const modalGallery = document.getElementById("modalGallery");
-        modalGallery.innerHTML = ""; // Clear any existing images
+        modalGallery.innerHTML = "";
 
         try {
-            // Fetch the image data from the JSON file
             const response = await fetch("../data/images.json");
             if (!response.ok) {
                 throw new Error("Failed to fetch image data.");
             }
             const galleryData = await response.json();
-
-            // Find the array of image paths for the clicked theme
             const imageUrls = galleryData[theme];
 
-            // If images are found, create and append them to the gallery
             if (imageUrls && imageUrls.length > 0) {
                 imageUrls.forEach((src) => {
                     const img = document.createElement("img");
@@ -235,17 +229,34 @@ document.addEventListener("click", async e => {
             console.error("Error loading gallery images:", error);
             modalGallery.innerHTML = `<p>Error loading gallery. Please try again.</p>`;
         }
-
-        // Move modal to body and show it
+        
         document.body.appendChild(modal);
         modal.style.display = "block";
         modal.style.zIndex = "99999";
+    }
+}
+
+// Main click handler using event delegation
+document.addEventListener("click", async e => {
+    const modal = document.getElementById("themeModal");
+
+    // Handle theme grid item clicks - open gallery
+    const item = e.target.closest(".themes-grid-item");
+    if (item) {
+        const theme = item.dataset.theme;
+        console.log("Clicked theme:", theme);
+        history.pushState(null, '', `#themes/${theme}`);
+        // No need to manually open the modal here,
+        // as the hashchange event listener will take care of it.
+        // We will call the function directly as the event listener isn't triggered on pushState
+        handleUrlHash();
         return;
     }
 
     // Handle close button clicks
     if (e.target.matches(".close")) {
         modal.style.display = "none";
+        history.pushState(null, '', '#themes');
         return;
     }
 
@@ -279,6 +290,12 @@ document.addEventListener("click", async e => {
         // Close the modal
         console.log("Closing modal - clicked on:", e.target, "closest modal-content:", e.target.closest(".modal-content"));
         modal.style.display = "none";
+        history.pushState(null, '', '#themes');
     }
 });
 
+// Listen for the page to load and check the URL hash
+window.addEventListener('DOMContentLoaded', handleUrlHash);
+
+// Listen for hash changes (e.g., when the back/forward buttons are used)
+window.addEventListener('hashchange', handleUrlHash);

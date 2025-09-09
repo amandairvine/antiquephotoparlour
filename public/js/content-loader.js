@@ -257,7 +257,16 @@ document.addEventListener('DOMContentLoaded', function () {
 
         if (updateHistory) {
           const pageTitle = getPageTitle(pageName);
-          history.pushState({ page: pageName }, pageTitle, `#${pageName}`);
+
+          // Keep any sub-hash (e.g. #themes/victorian)
+          const currentHash = window.location.hash.substring(1);
+          const [currentPage, themeName] = currentHash.split("/");
+
+          const newHash = themeName && currentPage === pageName
+            ? `${pageName}/${themeName}`
+            : pageName;
+
+          history.pushState({ page: pageName }, pageTitle, `#${newHash}`);
           document.title = pageTitle;
         }
 
@@ -514,19 +523,40 @@ document.addEventListener('DOMContentLoaded', function () {
 
   // Handle initial page load based on hash
   if (location.hash) {
-    const pageName = location.hash.substring(1);
+    const hash = location.hash.substring(1); // e.g. "themes/victorian"
+    const [pageName, themeName] = hash.split("/");
+
     if (routes[pageName]) {
-      loadPage(pageName, false);
+      loadPage(pageName, false).then(() => {
+        if (themeName) {
+          highlightTheme(themeName);
+        }
+      });
     }
   } else {
-    loadPage('home', false);
+    loadPage("home", false);
   }
 
   // Listen for hash changes (when clicking nav links)
-  window.addEventListener('hashchange', () => {
-    const pageName = location.hash.substring(1);
+  window.addEventListener("hashchange", () => {
+    const hash = location.hash.substring(1);
+    const [pageName, themeName] = hash.split("/");
+
     if (routes[pageName]) {
-      loadPage(pageName);
+      loadPage(pageName).then(() => {
+        if (themeName) {
+          highlightTheme(themeName);
+        }
+      });
     }
   });
+
+  function highlightTheme(themeName) {
+    const themeEl = document.querySelector(`.themes-grid-item[data-theme="${themeName}"]`);
+    if (themeEl) {
+      themeEl.scrollIntoView({ behavior: "smooth", block: "center" });
+      themeEl.classList.add("highlight");
+      setTimeout(() => themeEl.classList.remove("highlight"), 2000); // optional flash
+    }
+  }
 });

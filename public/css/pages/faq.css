@@ -61,7 +61,7 @@ body {
 }
 
 .nav-item {
-  padding: 1.8rem 2rem;
+  padding: 1.2rem 2rem;
   cursor: pointer;
   border-left: 4px solid transparent;
   color: #fff;
@@ -135,12 +135,13 @@ body {
   max-width: 72rem;
 }
 
-#hair-makeup .faq-content-header img {
-  max-width: 60rem;
+#people .faq-content-header img,
+#appointments .faq-content-header img {
+  max-width: 70rem;
 }
 
-#appointments .faq-content-header img {
-  max-width: 36rem;
+#hair-makeup .faq-content-header img {
+  max-width: 60rem;
 }
 
 #sitting-time .faq-content-header img,
@@ -316,6 +317,10 @@ p:nth-child(18) > span {
   transform: scale(1.05);
 }
 
+#appointments .btn-primary {
+  width: 20rem;
+}
+
 #sitting-time .btn-primary {
   width: 44rem;
 }
@@ -354,6 +359,64 @@ p:nth-child(18) > span {
 #own-outfits p:nth-child(4) span {
   font-size: 20px;
   font-style: italic;
+}
+
+#appointments .item-note {
+  padding: 1rem 4rem;
+}
+
+#appointments > div.item-note > p {
+  padding: 0;
+  font-size: 18px;
+  line-height: 1.4;
+}
+
+.people-number {
+  display: flex;
+  justify-content: center;
+  align-items: stretch;
+  margin: 1rem 2rem 0;
+  padding: 2rem 0 1rem;
+  gap: 2rem;
+}
+
+.up-to-7,
+.over-8 {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  border-radius: clamp(0.6rem, 1.5vw, 1.2rem);
+  border: 2px solid #e8c775;
+}
+
+.people-number h2 {
+  margin-bottom: 0.6rem;
+}
+
+.people-number .up-to-7 p:first-of-type {
+  padding: 0 0 0.29rem;
+}
+
+.people-number .up-to-7 h2,
+.people-number .over-8 h2,
+.people-number .over-8 p {
+  padding: 0;
+}
+
+#appointments > p {
+  text-align: center;
+}
+
+#babies ul li p {
+  font-size: 20px;
+}
+
+#babies .buttons {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
 }
 
 @keyframes fadeIn {
