@@ -1046,6 +1046,15 @@ footer {
   }
 }
 
+@media (min-width: 500px) {
+  /* #region Footer */
+  .last-group {
+    font-size: 13px;
+  }
+
+  /* #endregion */
+}
+
 @media (min-width: 660px) {
   /* #region Header */
 
@@ -1097,6 +1106,10 @@ footer {
   .hours-container,
   .location-container {
     max-width: 58rem;
+  }
+
+  .last-group {
+    font-size: 14px;
   }
 
   /* #endregion */

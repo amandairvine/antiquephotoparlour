@@ -4,22 +4,6 @@ import("./modal-gallery.js").then(() => {
   console.log("✅ modal-gallery.js attached");
 });
 
-// Event delegation for FAQ items
-document.addEventListener('click', function (e) {
-  // Check if clicked element is an FAQ header
-  if (e.target.tagName === 'H1' && e.target.closest('.item')) {
-    const item = e.target.closest('.item');
-    item.classList.toggle('active');
-
-    // Close other items (uncomment if desired)
-    document.querySelectorAll('.item').forEach(otherItem => {
-        if (otherItem !== item) {
-            otherItem.classList.remove('active');
-        }
-    });
-  }
-});
-
 document.addEventListener('DOMContentLoaded', function () {
   console.log('Content loader started');
 
@@ -290,6 +274,23 @@ document.addEventListener('DOMContentLoaded', function () {
               initializeServicesPage();
             } else {
               console.error("Error: initializeServicesPage function not found after script load.");
+            }
+          };
+          document.body.appendChild(script);
+        }
+
+        if (pageName === 'faq') {
+          const oldScript = document.getElementById('faq-script');
+          if (oldScript) oldScript.remove();
+          const script = document.createElement('script');
+          script.src = '../../js/faq.js';
+          script.id = 'faq-script';
+          script.onload = () => {
+            console.log('faq.js loaded dynamically. Calling initializeFaqPage...');
+            if (typeof initializeFaqPage === 'function') {
+              initializeFaqPage();
+            } else {
+              console.error("Error: initializeFaqPage function not found after script load.");
             }
           };
           document.body.appendChild(script);
