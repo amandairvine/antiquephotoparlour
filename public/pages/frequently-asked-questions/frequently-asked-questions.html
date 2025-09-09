@@ -1,5 +1,122 @@
 <!DOCTYPE html>
 
 <div class="faq-container">
+    <main class="content-area">
+        <div class="faq-header">
+            <img src="../../img/headers/faq-headers/FAQ.png" alt="Frequently Asked Questions" />
+            <h1 class="sr-only">Frequently Asked Questions</h1>
+        </div>
 
+        <div class="faq">
+            <div class="grid-container">
+                <div class="item" data-item="1">
+                    <div class="faq-section-header">
+                        <h1>What does a sitting look like?</h1>
+                    </div>
+                    <div class="item-content">
+                        <p>Once you've chosen a theme and we bring you into our studio's dressing area, your sitting
+                            begins!</p>
+
+                        <h2>1. Clothing Selection</h2>
+
+                        <p>We will show you options for your outfits based off of the theme that you chose.</p>
+                        <p>Depending on the outfit you choose and the clothing that you are wearing when you visit us,
+                            we may require you to change using one of our two curtained-off changing rooms.</p>
+                        <p class="note">Note: Although not required, we recommend wearing similar attire to the
+                            following for the smoothest experience:<br><br>
+                            Ladies: Black or White Tank Top under easily removable layers with Shorts or Leggings.<br><br>
+                            Gentlemen: T-Shirt or Tank Top under easily removable layers with Black Trousers (either
+                            jeans or dress pants - if there are logos/designs/side pockets or differently coloured,
+                            we will provide black pants for you)
+                        </p>
+                        <p>Once you’ve checked out your outfit and everyone in your group is happy with how they look,
+                            we’ll bring you to our set for your photos!</p>
+                        <p>Note: We provide bins for you to transport your things in, such as bags, purses, jackets,
+                            sweaters, shoes, etc. Those bins stay with your group for your whole sitting!</p>
+                    </div>
+                </div>
+
+                <div class="item" data-item="2">
+                    <h1>How long does a sitting take?</h1>
+                    <div class="item-content">
+                        <p>A typical photo sitting takes between 1-2 hours, depending on the number of outfit changes
+                            and the complexity of the theme you've chosen.</p>
+                    </div>
+                </div>
+
+                <div class="item" data-item="3">
+                    <h1>Can we wear our own outfits?</h1>
+                    <div class="item-content">
+                        <p>Absolutely! You're welcome to bring your own outfits. We also have a wide selection of themed
+                            costumes and accessories available in our studio.</p>
+                    </div>
+                </div>
+
+                <div class="item" data-item="4">
+                    <h1>Do we have to make an appointment?<br> How many people can we bring in?</h1>
+                    <div class="item-content">
+                        <p>Yes, appointments are required to ensure we can give you our full attention. We can
+                            accommodate groups of up to 6 people for most sessions.</p>
+                    </div>
+                </div>
+
+                <div class="item" data-item="5">
+                    <h1>What sizes do we carry?</h1>
+                    <div class="item-content">
+                        <p>We carry a full range of sizes from XS to 3XL in most of our costume selections. We want
+                            everyone to feel comfortable and confident during their sitting.</p>
+                    </div>
+                </div>
+
+                <div class="item" data-item="6">
+                    <h1>Do you do hair or makeup?</h1>
+                    <div class="item-content">
+                        <p>We offer basic styling and touch-ups. For more elaborate looks, we can recommend professional
+                            hair and makeup artists who work with our studio.</p>
+                    </div>
+                </div>
+
+                <div class="item" data-item="7">
+                    <h1>Do you allow pets?</h1>
+                    <div class="item-content">
+                        <p>We love including furry family members! Pets are welcome with advance notice so we can
+                            prepare the studio appropriately for a safe and comfortable experience.</p>
+                    </div>
+                </div>
+
+                <div class="item" data-item="8">
+                    <h1>Can you edit our photos?</h1>
+                    <div class="item-content">
+                        <p>Yes! Basic editing and retouching are included with all packages. We can discuss additional
+                            editing services if you have specific requests.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
 </div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+
+        console.log("faq content loaded");
+
+        const items = document.querySelectorAll('.item');
+
+        items.forEach(item => {
+            const header = item.querySelector('h1');
+
+            header.addEventListener('click', function () {
+                // Toggle the active class on the clicked item
+                item.classList.toggle('active');
+
+                // Close other items when one is opened (uncomment if desired)
+                items.forEach(otherItem => {
+                    if (otherItem !== item) {
+                        otherItem.classList.remove('active');
+                    }
+                });
+            });
+        });
+    });
+</script>
