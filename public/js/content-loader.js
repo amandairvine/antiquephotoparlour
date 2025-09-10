@@ -197,12 +197,11 @@ document.addEventListener('DOMContentLoaded', function () {
     document.head.appendChild(link);
     console.log(`✅ Loading CSS for ${pageName} page: ${cssPath}`);
   }
-
   // Function to load a specific page
   async function loadPage(pageName, updateHistory = true) {
     console.log('Loading page:', pageName);
-
     const contentContainer = document.querySelector('.content');
+
     if (!contentContainer) {
       console.error('Content container not found');
       return;
@@ -257,15 +256,11 @@ document.addEventListener('DOMContentLoaded', function () {
 
         if (updateHistory) {
           const pageTitle = getPageTitle(pageName);
-
-          // Keep any sub-hash (e.g. #themes/victorian)
           const currentHash = window.location.hash.substring(1);
           const [currentPage, themeName] = currentHash.split("/");
-
-          const newHash = themeName && currentPage === pageName
-            ? `${pageName}/${themeName}`
-            : pageName;
-
+          const newHash = themeName && currentPage === pageName ?
+            `${pageName}/${themeName}` :
+            pageName;
           history.pushState({ page: pageName }, pageTitle, `#${newHash}`);
           document.title = pageTitle;
         }
@@ -286,9 +281,7 @@ document.addEventListener('DOMContentLoaded', function () {
             }
           };
           document.body.appendChild(script);
-        }
-
-        if (pageName === 'faq') {
+        } else if (pageName === 'faq') {
           const oldScript = document.getElementById('faq-script');
           if (oldScript) oldScript.remove();
           const script = document.createElement('script');
@@ -300,6 +293,21 @@ document.addEventListener('DOMContentLoaded', function () {
               initializeFaqPage();
             } else {
               console.error("Error: initializeFaqPage function not found after script load.");
+            }
+          };
+          document.body.appendChild(script);
+        } else if (pageName === 'themes') {
+          const oldScript = document.getElementById('themes-script');
+          if (oldScript) oldScript.remove();
+          const script = document.createElement('script');
+          script.src = '../../js/modal-gallery.js';
+          script.id = 'themes-script';
+          script.onload = () => {
+            console.log('modal-gallery.js loaded dynamically. Checking URL hash for themes...');
+            if (typeof handleUrlHash === 'function') {
+              handleUrlHash();
+            } else {
+              console.error("Error: handleUrlHash function not found after script load.");
             }
           };
           document.body.appendChild(script);
@@ -316,11 +324,11 @@ document.addEventListener('DOMContentLoaded', function () {
     } catch (error) {
       console.error(`Error loading page ${pageName}:`, error);
       contentContainer.innerHTML = `
-      <div class="error-message">
-        <h2>Sorry, we couldn't load this page.</h2>
-        <p>Please try again or <a href="#" onclick="location.reload()">refresh the page</a>.</p>
-      </div>
-    `;
+            <div class="error-message">
+                <h2>Sorry, we couldn't load this page.</h2>
+                <p>Please try again or <a href="#" onclick="location.reload()">refresh the page</a>.</p>
+            </div>
+        `;
     }
   }
 

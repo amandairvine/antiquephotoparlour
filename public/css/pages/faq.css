@@ -61,7 +61,7 @@ body {
 }
 
 .nav-item {
-  padding: 1.2rem 2rem;
+  padding: 1rem 2rem;
   cursor: pointer;
   border-left: 4px solid transparent;
   color: #fff;
@@ -352,6 +352,35 @@ p:nth-child(18) > span {
   width: 40%;
 }
 
+#accessibility .wheelchair {
+  display: flex;
+  flex-direction: row;
+  gap: 4rem;
+  padding: 1rem 0 0;
+}
+
+#accessibility .wheelchair img {
+  width: 20rem;
+  border-radius: clamp(0.6rem, 1.5vw, 1.2rem);
+  border: 2px solid #e8c775;
+}
+
+#accessibility .wheelchair-photo .photo-caption {
+  font-size: 16px;
+  padding: 0;
+  line-height: 1.2;
+  text-align: center;
+  width: 20rem;
+}
+
+#accessibility h1 {
+  padding: 0;
+}
+
+#accessibility .accessibility-section p {
+  padding: 0.4rem;
+}
+
 #own-outfits p:nth-child(4) {
   text-align: center;
 }
@@ -369,6 +398,7 @@ p:nth-child(18) > span {
   padding: 0;
   font-size: 18px;
   line-height: 1.4;
+  text-align: center;
 }
 
 .people-number {
