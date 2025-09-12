@@ -136,11 +136,9 @@ document.addEventListener('DOMContentLoaded', function () {
       // If we have stored the original home content, restore it
       if (originalHomeContent) {
         contentContainer.innerHTML = originalHomeContent;
-        console.log('✅ Restored original home content');
       } else {
         // First time loading home - store the original content
         originalHomeContent = contentContainer.innerHTML;
-        console.log('✅ Stored original home content for future use');
       }
 
       console.log('Fetching slideshow HTML...');
@@ -210,7 +208,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
         if (updateHistory) {
           const pageTitle = getPageTitle(pageName);
-
           history.pushState({ page: pageName }, pageTitle, `#${pageName}`);
           document.title = pageTitle;
         }
@@ -225,10 +222,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
           const script = document.createElement('script');
           script.src = '../../js/services.js';
-          script.id = 'services-script'; // Give it an ID to easily remove later
+          script.id = 'services-script';
           script.onload = () => {
-            console.log('services.js loaded dynamically. Calling initializeServicesPage...');
-            // This is where you call the function defined in services.js
             if (typeof initializeServicesPage === 'function') {
               initializeServicesPage();
             } else {
@@ -237,9 +232,31 @@ document.addEventListener('DOMContentLoaded', function () {
           };
           document.body.appendChild(script);
         }
-      } else if (pageName === 'faq') {
-        initializeFaqPage();
+
+        // Initialize FAQ page functionality after content is loaded
+        if (pageName === 'faq') {
+          // Remove any old faq.js script if it was appended previously
+          const oldScript = document.getElementById('faq-script');
+          if (oldScript) {
+            oldScript.remove();
+          }
+
+          const script = document.createElement('script');
+          script.src = '../../js/faq.js';
+          script.id = 'faq-script';
+          script.onload = () => {
+            console.log('faq.js loaded dynamically. Calling initializeFaqPage...');
+            if (typeof initializeFaqPage === 'function') {
+              initializeFaqPage();
+            } else {
+              console.error("Error: initializeFaqPage function not found after script load.");
+            }
+          };
+          document.body.appendChild(script);
+        }
+
       } else if (pageName === 'themes') {
+        // themes handling code stays the same
         if (window.location.hash.startsWith("#themes/")) {
           const hash = window.location.hash.substring(1);
           const [_, themeName] = hash.split("/");
