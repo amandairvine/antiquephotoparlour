@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', function () {
   console.log('Content loader started');
 
   let currentPage = 'home';
-  let originalHomContent = null;
+  let originalHomeContent = null;
 
   const routes = {
     'services': '/pages/services/services.html',
@@ -36,20 +36,6 @@ document.addEventListener('DOMContentLoaded', function () {
         console.log("Header content loaded into #header-container.");
 
         setupPageNavigation();
-
-        if (typeof adaptNavItems === 'function') {
-          adaptNavItems();
-          console.log("adaptNavItems called after header content loaded (initial item placement).");
-        } else {
-          console.error("Error: adaptNavItems function not found.");
-        }
-
-        if (typeof setupNavbarListeners === 'function') {
-          setupNavbarListeners();
-          console.log("setupNavbarListeners called to attach click events.");
-        } else {
-          console.error("Error: setupNavbarListeners function not found.");
-        }
 
       } else {
         console.warn("#header-container not found in the DOM.");
@@ -143,22 +129,55 @@ document.addEventListener('DOMContentLoaded', function () {
 
     loadPageCSS(pageName);
 
+
     if (pageName === 'home') {
-      console.log('Fetching slideshow HTML for the home page...');
+      console.log('Loading home page...');
+
+      // If we have stored the original home content, restore it
+      if (originalHomeContent) {
+        contentContainer.innerHTML = originalHomeContent;
+        console.log('✅ Restored original home content');
+      } else {
+        // First time loading home - store the original content
+        originalHomeContent = contentContainer.innerHTML;
+        console.log('✅ Stored original home content for future use');
+      }
+
+      console.log('Fetching slideshow HTML...');
       const slideshowResponse = await fetch('/pages/slideshow/slideshow.html');
+
+      if (!slideshowResponse.ok) {
+        console.error('Failed to fetch slideshow HTML:', slideshowResponse.statusText);
+        return;
+      }
+
       const slideshowHtml = await slideshowResponse.text();
+
+      // Try to find slideshow container, with fallback search
+      let slideshowContainer = document.getElementById('slideshow-container');
+
+      if (!slideshowContainer) {
+        // Force a small delay and try again - sometimes DOM needs time after innerHTML change
+        await new Promise(resolve => setTimeout(resolve, 10));
+        slideshowContainer = document.getElementById('slideshow-container');
+      }
 
       if (slideshowContainer) {
         slideshowContainer.innerHTML = slideshowHtml;
-        console.log('✅ Slideshow HTML injected into container.');
 
-        // Now that the slideshow HTML is in the DOM, call the initializer
+        // Give the DOM time to update before initializing
         setTimeout(() => {
-          console.log('Attempting to initialize slideshow...');
-          initializeSlideshowDirectly();
+          const slides = document.querySelectorAll('.slide');
+
+          if (slides.length > 0) {
+            initializeSlideshowDirectly();
+          } else {
+            console.warn('No slides found - slideshow cannot be initialized');
+          }
         }, 100);
       } else {
-        console.error('Slideshow container (#slideshow-container) not found in index.html');
+        // If still not found, it might be a structural issue, but don't error
+        console.warn('Slideshow container not found - skipping slideshow initialization');
       }
 
       currentPage = 'home';
@@ -196,7 +215,6 @@ document.addEventListener('DOMContentLoaded', function () {
           document.title = pageTitle;
         }
 
-        // *** CRITICAL ADDITION HERE ***
         // Check if the loaded page is 'services' and then load/re-initialize its script
         if (pageName === 'services') {
           // Remove any old services.js script if it was appended previously
@@ -274,6 +292,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
   // --- Slideshow Initialization ---
   function initializeSlideshowDirectly() {
+
     const slides = document.querySelectorAll('.slide');
     const slideshow = document.querySelector('.slideshow');
     const prevButton = document.querySelector('.slideshow-nav-prev');
@@ -288,20 +307,23 @@ document.addEventListener('DOMContentLoaded', function () {
     let touchEndX = 0;
 
     if (!slides.length) {
-      console.log('No slides found, slideshow not initialized');
+      console.log('❌ No slides found, slideshow not initialized');
+
       return;
     }
 
-    slideshow.addEventListener('touchstart', (e) => {
-      touchStartX = e.changedTouches[0].screenX;
-    });
+    if (slideshow) {
+      slideshow.addEventListener('touchstart', (e) => {
+        touchStartX = e.changedTouches[0].screenX;
+      });
 
-    slideshow.addEventListener('touchend', (e) => {
-      touchEndX = e.changedTouches[0].screenX;
-      handleGesture();
-    });
+      slideshow.addEventListener('touchend', (e) => {
+        touchEndX = e.changedTouches[0].screenX;
+        handleGesture();
+      });
+    }
 
-    console.log(`Slideshow initialized with ${slides.length} slides`);
+    console.log(`🎬 Slideshow initialized with ${slides.length} slides`);
 
     // Convert inline background-image styles and detect orientation
     slides.forEach(slide => {
@@ -328,8 +350,6 @@ document.addEventListener('DOMContentLoaded', function () {
         if (urlMatch) {
           img.src = urlMatch[1];
         }
-
-        console.log(`Set --slide-bg-image for slide:`, backgroundImage);
       }
 
       function handleGesture() {
