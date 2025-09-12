@@ -61,7 +61,7 @@ body {
 }
 
 .nav-item {
-  padding: 1rem 2rem;
+  padding: 1.5rem 2rem;
   cursor: pointer;
   border-left: 4px solid transparent;
   color: #fff;
@@ -147,10 +147,6 @@ body {
 #sitting-time .faq-content-header img,
 #appointments .faq-content-header:nth-child(3) img {
   max-width: 30rem;
-}
-
-#photo-editing .faq-content-header img {
-  max-width: 22rem;
 }
 
 #sizes .faq-content-header img {
@@ -317,16 +313,20 @@ p:nth-child(18) > span {
   transform: scale(1.05);
 }
 
-#appointments .btn-primary {
+#appointments .btn-primary,
+#people .btn-primary,
+#faq-content .btn-primary,
+#sizes .btn-primary {
   width: 20rem;
 }
 
-#sitting-time .btn-primary {
+#sitting-time .btn-primary,
+#hair-makeup .btn-primary {
   width: 44rem;
 }
 
 #own-outfits .btn-primary {
-  width: 60rem;
+  width: 62rem;
 }
 
 #own-outfits .no-theme img {
@@ -439,6 +439,10 @@ p:nth-child(18) > span {
   text-align: center;
 }
 
+#babies h1 {
+  padding-top: 1rem;
+}
+
 #babies ul li p {
   font-size: 20px;
 }
@@ -447,6 +451,24 @@ p:nth-child(18) > span {
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
+}
+
+#babies .content-section > p {
+  text-align: center;
+  line-height: 1.2;
+  padding-bottom: 0;
+}
+
+#pets h1 {
+  padding: 2rem 0 1rem;
+}
+
+#hair-makeup h1 {
+  padding: 1rem 12rem;
+}
+
+#hair-makeup p:nth-child(3) {
+  padding-top: 2rem;
 }
 
 @keyframes fadeIn {
