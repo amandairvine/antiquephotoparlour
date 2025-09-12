@@ -113,31 +113,36 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   async function loadPage(pageName, updateHistory = true) {
-    console.log('Loading page:', pageName);
+    console.log(`Loading page: ${pageName}`);
     const contentContainer = document.querySelector('.content');
+    const slideshowContainer = document.getElementById('slideshow-container');
 
     if (!contentContainer) {
       console.error('Content container not found');
       return;
     }
-    
-    // Clear any existing scripts from the body before loading new ones
-    const oldScripts = document.querySelectorAll('script[id$="-script"]');
-    oldScripts.forEach(script => script.remove());
 
     loadPageCSS(pageName);
 
     if (pageName === 'home') {
-      if (originalHomContent) {
-        contentContainer.innerHTML = originalHomContent;
-        currentPage = 'home';
+      console.log('Fetching slideshow HTML for the home page...');
+      const slideshowResponse = await fetch('/pages/slideshow/slideshow.html');
+      const slideshowHtml = await slideshowResponse.text();
+
+      if (slideshowContainer) {
+        slideshowContainer.innerHTML = slideshowHtml;
+        console.log('✅ Slideshow HTML injected into container.');
+
+        // Now that the slideshow HTML is in the DOM, call the initializer
         setTimeout(() => {
+          console.log('Attempting to initialize slideshow...');
           initializeSlideshowDirectly();
         }, 100);
       } else {
-        loadHomePage();
+        console.error('Slideshow container (#slideshow-container) not found in index.html');
       }
 
+      currentPage = 'home';
       if (updateHistory) {
         history.pushState({ page: 'home' }, 'Home - Antique Photo Parlour', '/');
       }
@@ -165,6 +170,21 @@ document.addEventListener('DOMContentLoaded', function () {
         currentPage = pageName;
         console.log(`Page ${pageName} loaded successfully`);
 
+        // Other page initialization calls (services, faq, themes)
+        if (pageName === 'services') {
+          initializeServicesPage();
+        } else if (pageName === 'faq') {
+          initializeFaqPage();
+        } else if (pageName === 'themes') {
+          if (window.location.hash.startsWith("#themes/")) {
+            const hash = window.location.hash.substring(1);
+            const [_, themeName] = hash.split("/");
+            if (themeName) {
+              handleUrlHash();
+            }
+          }
+        }
+
         if (updateHistory) {
           const pageTitle = getPageTitle(pageName);
           const currentHash = window.location.hash.substring(1);
@@ -174,22 +194,6 @@ document.addEventListener('DOMContentLoaded', function () {
             pageName;
           history.pushState({ page: pageName }, pageTitle, `#${newHash}`);
           document.title = pageTitle;
-        }
-
-        // Call functions based on pageName
-        if (pageName === 'services') {
-          initializeServicesPage();
-        } else if (pageName === 'faq') {
-          initializeFaqPage();
-        } else if (pageName === 'themes') {
-          // This ensures handleUrlHash() is called AFTER the themes content is injected
-          if (window.location.hash.startsWith("#themes/")) {
-            const hash = window.location.hash.substring(1);
-            const [_, themeName] = hash.split("/");
-            if (themeName) {
-              handleUrlHash();
-            }
-          }
         }
       } else {
         console.error(`No identifiable content container (${contentClassName}) found...`);
@@ -202,11 +206,11 @@ document.addEventListener('DOMContentLoaded', function () {
     } catch (error) {
       console.error(`Error loading page ${pageName}:`, error);
       contentContainer.innerHTML = `
-        <div class="error-message">
-          <h2>Sorry, we couldn't load this page.</h2>
-          <p>Please try again or <a href="#" onclick="location.reload()">refresh the page</a>.</p>
-        </div>
-      `;
+      <div class="error-message">
+        <h2>Sorry, we couldn't load this page.</h2>
+        <p>Please try again or <a href="#" onclick="location.reload()">refresh the page</a>.</p>
+      </div>
+    `;
     }
   }
 
@@ -225,7 +229,197 @@ document.addEventListener('DOMContentLoaded', function () {
 
   // --- Slideshow Initialization ---
   function initializeSlideshowDirectly() {
-    // ... (rest of the slideshow functions remain the same)
+    const slides = document.querySelectorAll('.slide');
+    const slideshow = document.querySelector('.slideshow');
+    const prevButton = document.querySelector('.slideshow-nav-prev');
+    const nextButton = document.querySelector('.slideshow-nav-next');
+    const leftHoverZone = document.querySelector('.slideshow-hover-left');
+    const rightHoverZone = document.querySelector('.slideshow-hover-right');
+
+    let currentSlide = 0;
+    let slideInterval;
+    let isTransitioning = false;
+    let touchStartX = 0;
+    let touchEndX = 0;
+
+    if (!slides.length) {
+      console.log('No slides found, slideshow not initialized');
+      return;
+    }
+
+    slideshow.addEventListener('touchstart', (e) => {
+      touchStartX = e.changedTouches[0].screenX;
+    });
+
+    slideshow.addEventListener('touchend', (e) => {
+      touchEndX = e.changedTouches[0].screenX;
+      handleGesture();
+    });
+
+    console.log(`Slideshow initialized with ${slides.length} slides`);
+
+    // Convert inline background-image styles and detect orientation
+    slides.forEach(slide => {
+      const computedStyle = window.getComputedStyle(slide);
+      const backgroundImage = computedStyle.backgroundImage;
+      if (backgroundImage && backgroundImage !== 'none') {
+        slide.style.setProperty('--slide-bg-image', backgroundImage);
+        slide.style.backgroundImage = '';
+
+        // Create a temporary image to detect orientation
+        const img = new Image();
+        img.onload = function () {
+          if (this.width > this.height) {
+            slide.classList.add('landscape');
+            console.log('Added landscape class to slide');
+          } else {
+            slide.classList.add('portrait');
+            console.log('Added portrait class to slide');
+          }
+        };
+
+        // Extract URL from the background-image string
+        const urlMatch = backgroundImage.match(/url\(['"]?(.*?)['"]?\)/);
+        if (urlMatch) {
+          img.src = urlMatch[1];
+        }
+
+        console.log(`Set --slide-bg-image for slide:`, backgroundImage);
+      }
+
+      function handleGesture() {
+        const swipeThreshold = 50;
+        const deltaX = touchEndX - touchStartX;
+
+        if (Math.abs(deltaX) > swipeThreshold) {
+          stopSlideshow();
+          if (deltaX > 0) {
+            prevSlide(); // Swipe right
+          } else {
+            nextSlide(); // Swipe left
+          }
+          startSlideshow();
+        }
+      }
+    });
+
+    function nextSlide() {
+      if (isTransitioning) return;
+      isTransitioning = true;
+      slides[currentSlide].classList.remove('active');
+      currentSlide = (currentSlide + 1) % slides.length;
+      slides[currentSlide].classList.add('active');
+      setTimeout(() => { isTransitioning = false; }, 2000);
+    }
+
+    function prevSlide() {
+      if (isTransitioning) return;
+      isTransitioning = true;
+      slides[currentSlide].classList.remove('active');
+      currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+      slides[currentSlide].classList.add('active');
+      setTimeout(() => { isTransitioning = false; }, 2000);
+    }
+
+    function handleGesture() {
+      const swipeThreshold = 50;
+      const deltaX = touchEndX - touchStartX;
+
+      if (Math.abs(deltaX) > swipeThreshold) {
+        stopSlideshow();
+        if (deltaX > 0) {
+          prevSlide();
+        } else {
+          nextSlide();
+        }
+        startSlideshow();
+      }
+    }
+
+    function startSlideshow() {
+      stopSlideshow();
+      slideInterval = setInterval(nextSlide, 4000);
+    }
+
+    function stopSlideshow() {
+      if (slideInterval) {
+        clearInterval(slideInterval);
+      }
+    }
+
+    if (slideshow && prevButton && nextButton) {
+      slideshow.addEventListener('mouseenter', () => {
+        prevButton.style.opacity = '1';
+        prevButton.style.pointerEvents = 'auto';
+        nextButton.style.opacity = '1';
+        nextButton.style.pointerEvents = 'auto';
+        stopSlideshow();
+      });
+
+      slideshow.addEventListener('mouseleave', () => {
+        prevButton.style.opacity = '0';
+        prevButton.style.pointerEvents = 'none';
+        nextButton.style.opacity = '0';
+        nextButton.style.pointerEvents = 'none';
+        startSlideshow();
+      });
+    }
+
+    if (leftHoverZone) {
+      leftHoverZone.addEventListener('click', () => {
+        stopSlideshow();
+        prevSlide();
+        startSlideshow();
+      });
+    }
+
+    if (rightHoverZone) {
+      rightHoverZone.addEventListener('click', () => {
+        stopSlideshow();
+        nextSlide();
+        startSlideshow();
+      });
+    }
+
+    if (prevButton) {
+      prevButton.addEventListener('click', (e) => {
+        e.stopPropagation();
+        stopSlideshow();
+        prevSlide();
+        startSlideshow();
+      });
+    }
+
+    if (nextButton) {
+      nextButton.addEventListener('click', (e) => {
+        e.stopPropagation();
+        stopSlideshow();
+        nextSlide();
+        startSlideshow();
+      });
+    }
+
+    document.addEventListener('visibilitychange', function () {
+      if (document.hidden) {
+        stopSlideshow();
+      } else {
+        startSlideshow();
+      }
+    });
+
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'ArrowRight') {
+        stopSlideshow();
+        nextSlide();
+        startSlideshow();
+      } else if (e.key === 'ArrowLeft') {
+        stopSlideshow();
+        prevSlide();
+        startSlideshow();
+      }
+    });
+
+    startSlideshow();
   }
 
   window.loadPage = loadPage;
