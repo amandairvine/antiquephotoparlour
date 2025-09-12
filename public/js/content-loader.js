@@ -21,42 +21,61 @@ document.addEventListener('DOMContentLoaded', function () {
     'contact': '/pages/contact/contact.html'
   };
 
-  fetch('/header/header.html')
-    .then(response => response.text())
+  fetch('../../header/header.html')
+    .then(response => {
+      console.log('Header response status:', response.status);
+      if (!response.ok) {
+        throw new Error('Network response was not ok ' + response.statusText);
+      }
+      return response.text();
+    })
     .then(html => {
       const headerContainer = document.getElementById('header-container');
       if (headerContainer) {
         headerContainer.innerHTML = html;
-        console.log("Header content loaded.");
+        console.log("Header content loaded into #header-container.");
 
         setupPageNavigation();
 
-        const initialHash = window.location.hash.substring(1);
-        if (initialHash && routes[initialHash.split('/')[0]]) {
-          console.log(`Loading page from initial hash: ${initialHash}`);
-          loadPage(initialHash.split('/')[0], false);
+        if (typeof adaptNavItems === 'function') {
+          adaptNavItems();
+          console.log("adaptNavItems called after header content loaded (initial item placement).");
         } else {
-          console.log('No specific hash, loading home page.');
-          loadHomePage();
+          console.error("Error: adaptNavItems function not found.");
         }
+
+        if (typeof setupNavbarListeners === 'function') {
+          setupNavbarListeners();
+          console.log("setupNavbarListeners called to attach click events.");
+        } else {
+          console.error("Error: setupNavbarListeners function not found.");
+        }
+
+      } else {
+        console.warn("#header-container not found in the DOM.");
       }
     })
-    .catch(error => console.error('Error loading header content:', error));
 
-  fetch('/footer/footer.html')
-    .then(response => response.text())
+  fetch('../../footer/footer.html')
+    .then(response => {
+      console.log('Footer response status:', response.status);
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+      return response.text();
+    })
     .then(html => {
       const footerContainer = document.getElementById('footer-container');
       if (footerContainer) {
         footerContainer.innerHTML = html;
         console.log('Footer loaded successfully');
+      } else {
+        console.error('Footer container not found');
       }
     })
-    .catch(error => console.error('Error loading footer:', error));
-
-  function loadHomePage() {
-    // ... (rest of the loadHomePage function remains the same)
-  }
+    .catch(error => {
+      console.error('Error loading footer:', error);
+    });
 
   function setupPageNavigation() {
     document.addEventListener('click', function (e) {
@@ -170,18 +189,44 @@ document.addEventListener('DOMContentLoaded', function () {
         currentPage = pageName;
         console.log(`Page ${pageName} loaded successfully`);
 
-        // Other page initialization calls (services, faq, themes)
+        if (updateHistory) {
+          const pageTitle = getPageTitle(pageName);
+
+          history.pushState({ page: pageName }, pageTitle, `#${pageName}`);
+          document.title = pageTitle;
+        }
+
+        // *** CRITICAL ADDITION HERE ***
+        // Check if the loaded page is 'services' and then load/re-initialize its script
         if (pageName === 'services') {
-          initializeServicesPage();
-        } else if (pageName === 'faq') {
-          initializeFaqPage();
-        } else if (pageName === 'themes') {
-          if (window.location.hash.startsWith("#themes/")) {
-            const hash = window.location.hash.substring(1);
-            const [_, themeName] = hash.split("/");
-            if (themeName) {
-              handleUrlHash();
+          // Remove any old services.js script if it was appended previously
+          const oldScript = document.getElementById('services-script');
+          if (oldScript) {
+            oldScript.remove();
+          }
+
+          const script = document.createElement('script');
+          script.src = '../../js/services.js';
+          script.id = 'services-script'; // Give it an ID to easily remove later
+          script.onload = () => {
+            console.log('services.js loaded dynamically. Calling initializeServicesPage...');
+            // This is where you call the function defined in services.js
+            if (typeof initializeServicesPage === 'function') {
+              initializeServicesPage();
+            } else {
+              console.error("Error: initializeServicesPage function not found after script load.");
             }
+          };
+          document.body.appendChild(script);
+        }
+      } else if (pageName === 'faq') {
+        initializeFaqPage();
+      } else if (pageName === 'themes') {
+        if (window.location.hash.startsWith("#themes/")) {
+          const hash = window.location.hash.substring(1);
+          const [_, themeName] = hash.split("/");
+          if (themeName) {
+            handleUrlHash();
           }
         }
 
