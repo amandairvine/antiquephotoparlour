@@ -6,6 +6,24 @@ import("./modal-gallery.js").then(({ handleUrlHash }) => {
   }
 });
 
+async function preloadImages(imageUrls) {
+  const promises = imageUrls.map(url => {
+    return new Promise((resolve) => {
+      const img = new Image();
+      img.src = url;
+      img.onload = () => {
+        console.log(`✅ Preloaded: ${url}`);
+        resolve();
+      };
+      img.onerror = () => {
+        console.error(`❌ Failed to preload: ${url}`);
+        resolve();
+      };
+    });
+  });
+  return Promise.all(promises);
+}
+
 document.addEventListener('DOMContentLoaded', function () {
   console.log('Content loader started');
 
@@ -193,6 +211,28 @@ document.addEventListener('DOMContentLoaded', function () {
 
     try {
       contentContainer.innerHTML = '<div class="loading">Loading...</div>';
+
+      if (pageName === 'themes') {
+        console.log('Preloading theme images...');
+        const themeImages = [
+          '../img/themes/victorian/victorian-main.jpg',
+          '../img/themes/dressy-western/dressy-western-main.jpg',
+          '../img/themes/cowboys-and-cowgirls/cowboys-and-cowgirls-main.jpg',
+          '../img/themes/showgirls-and-outlaws/showgirls-and-outlaws-main.jpg',
+          '../img/themes/roaring-20s/roaring-20s-main.jpg',
+          '../img/themes/pirates/pirates-main.jpg',
+          '../img/themes/wedding/wedding-main.jpg',
+          '../img/themes/civil-war/civil-war-main.jpg',
+          '../img/themes/native-american/native-american-main.jpg',
+          '../img/themes/mounties/mounties-main.jpg',
+          '../img/themes/steampunk/steampunk-main.jpg',
+          '../img/themes/mix-and-match/mix-and-match-main.jpg',
+          '../img/themes/kids/kids-main.jpg',
+          '../img/themes/pets/pets-main.jpg',
+          '../img/themes/winter-wonderland/winter-wonderland-main.jpg'
+        ];
+        await preloadImages(themeImages);
+      }
 
       const response = await fetch(route);
       const html = await response.text();

@@ -26,7 +26,7 @@ function normalizeThemeName(name) {
   return name.toLowerCase().replace(/[\s\.\,\'\"]/g, '-').replace(/-+/g, '-').replace(/^-+|-+$/g, '');
 }
 
-// Step 1: Standardize "main" image file names
+// Step 1: Standardize "main" image file names and convert to .jpg
 console.log('🔄 Standardizing main image filenames...');
 const themeFolders = fs.readdirSync(themesDir, { withFileTypes: true })
   .filter(dirent => dirent.isDirectory())
@@ -38,10 +38,13 @@ themeFolders.forEach(theme => {
   const normalizedThemeName = normalizeThemeName(theme);
 
   themeFiles.forEach(file => {
-    const isImage = ['.jpg', '.jpeg', '.png', '.gif'].includes(path.extname(file).toLowerCase());
-    if (isImage && file.toLowerCase().includes('main')) {
-      const fileExt = path.extname(file).toLowerCase();
-      const newFileName = `${normalizedThemeName}-main${fileExt}`;
+    const fileExt = path.extname(file).toLowerCase();
+    const isImage = ['.jpg', '.jpeg', '.png', '.gif'].includes(fileExt);
+
+    if (isImage) {
+      // Create the new file name with a .jpg extension
+      const baseName = path.basename(file, fileExt);
+      const newFileName = `${baseName}.jpg`;
       const newFilePath = path.join(themePath, newFileName);
 
       // Only rename if the name is different
@@ -49,7 +52,7 @@ themeFolders.forEach(theme => {
         const oldFilePath = path.join(themePath, file);
         try {
           fs.renameSync(oldFilePath, newFilePath);
-          console.log(`✅ Renamed ${file} to ${newFileName} in theme ${theme}`);
+          console.log(`✅ Renamed and converted ${file} to ${newFileName} in theme ${theme}`);
         } catch (error) {
           console.error(`❌ Failed to rename ${oldFilePath}: ${error.message}`);
         }
@@ -57,7 +60,7 @@ themeFolders.forEach(theme => {
     }
   });
 });
-console.log('✅ Main images standardized.');
+console.log('✅ All image files converted');
 
 // Step 2: Clean up existing galleryData by removing missing images
 console.log('🧹 Cleaning up existing gallery data...');
@@ -104,7 +107,7 @@ themeFolders.forEach(theme => {
   }
 
   // Sort the other images for consistent order
-  otherImages.sort(); 
+  otherImages.sort();
   orderedImages = orderedImages.concat(otherImages);
 
   if (!galleryData[theme]) {
