@@ -63,7 +63,7 @@ async function getThemeImages() {
 function getHeaderImages() {
     const headerFileNames = [
         '../img/logo/logo',
-        '../img/buttons/view-your-photos-text',
+        '../img/assets/view-your-photos-text',
         '../img/headers/services-headers/services',
         '../img/headers/services-headers/award-winning',
         '../img/headers/services-headers/choose-a-theme',

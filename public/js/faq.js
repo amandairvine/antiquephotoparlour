@@ -1,4 +1,4 @@
-function initializeFaqPage() {
+export function initializeFaqPage() {
     console.log('Initializing faq page functionality...');
 
     const navItems = document.querySelectorAll('.nav-item');

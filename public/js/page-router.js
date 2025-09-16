@@ -135,12 +135,11 @@ export async function loadPage(pageName, updateHistory = true) {
                 document.body.appendChild(script);
             }
             if (pageName === 'faq') {
-                const oldScript = document.getElementById('faq-script');
-                if (oldScript) oldScript.remove();
-                const script = document.createElement('script');
-                script.src = '../../js/faq.js';
-                script.id = 'faq-script';
-                document.body.appendChild(script);
+                import('./faq.js').then(({ initializeFaqPage }) => {
+                    initializeFaqPage();
+                }).catch(error => {
+                    console.error('Failed to load faq.js:', error);
+                });
             }
         } else {
             console.error(`No identifiable content container (${pageName}-container) found...`);
