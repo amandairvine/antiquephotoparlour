@@ -9,13 +9,52 @@ import("./modal-gallery.js").then(({ handleUrlHash }) => {
 document.addEventListener('DOMContentLoaded', function () {
   console.log('Main script loaded');
 
-  // Load header and footer as before
+  // Load header and footer
   fetch('../../header/header.html').then(response => response.text()).then(html => {
     const headerContainer = document.getElementById('header-container');
     if (headerContainer) {
       headerContainer.innerHTML = html;
       console.log("Header content loaded.");
-      setupPageNavigation(); // Set up navigation after header is in the DOM
+      setupPageNavigation();
+
+      const hamburgerMenu = document.querySelector('.hamburger-menu');
+      const mobileMenu = document.querySelector('.mobile-menu');
+      const closeBtn = document.querySelector('.close-btn');
+
+      console.log('Hamburger Menu Element:', hamburgerMenu);
+      console.log('Mobile Menu Element:', mobileMenu);
+      console.log('Close Button Element:', closeBtn);
+
+      if (hamburgerMenu && mobileMenu && closeBtn) {
+        hamburgerMenu.addEventListener('click', function () {
+          console.log('Hamburger menu clicked!');
+          mobileMenu.classList.toggle('show');
+          document.body.classList.toggle('menu-open');
+        });
+
+        closeBtn.addEventListener('click', function () {
+          console.log('Close button clicked!');
+          mobileMenu.classList.remove('show');
+          document.body.classList.remove('menu-open');
+        });
+      }
+
+      function setActiveMobileLink() {
+        const mobileLinks = document.querySelectorAll('.mobile-nav-link');
+        const currentHash = window.location.hash || '#home';
+
+        mobileLinks.forEach(link => {
+          if (link.getAttribute('href') === currentHash) {
+            link.classList.add('active');
+          } else {
+            link.classList.remove('active');
+          }
+        });
+      }
+
+      // Call the function on initial page load
+      setActiveMobileLink();
+
     }
   });
 
@@ -41,5 +80,9 @@ document.addEventListener('DOMContentLoaded', function () {
     const hash = location.hash.substring(1);
     const [pageName] = hash.split("/");
     loadPage(pageName);
+    // Call the function again to update the active link
+    const mobileLinks = document.querySelectorAll('.mobile-nav-link');
+    mobileLinks.forEach(link => link.classList.remove('active'));
+    document.querySelector(`.mobile-nav-link[href="#${pageName}"]`).classList.add('active');
   });
 });
