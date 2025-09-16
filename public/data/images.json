@@ -47,6 +47,7 @@
   ],
   "kids": [
     "../img/themes/kids/kids-main.jpg",
+    "../img/themes/kids/104111_056.JPG",
     "../img/themes/kids/111627_003.JPG",
     "../img/themes/kids/122408_026.JPG",
     "../img/themes/kids/125934_015.JPG",
@@ -59,13 +60,13 @@
     "../img/themes/kids/175220_018.JPG",
     "../img/themes/kids/191653_018.JPG",
     "../img/themes/kids/192751_016.JPG",
-    "../img/themes/kids/august-2-2025 (1).jpg",
     "../img/themes/kids/baby.jpg"
   ],
   "mix-and-match": [
+    "../img/themes/mix-and-match/mix-and-match-main.JPG",
+    "../img/themes/mix-and-match/201611_004.JPG",
     "../img/themes/mix-and-match/mix-and-match-main.jpg",
     "../img/themes/mix-and-match/111400_015.JPG",
-    "../img/themes/mix-and-match/114720_007.JPG",
     "../img/themes/mix-and-match/122605_005.JPG",
     "../img/themes/mix-and-match/145717_007.JPG",
     "../img/themes/mix-and-match/150153_085.JPG",
@@ -81,6 +82,7 @@
   ],
   "mounties": [
     "../img/themes/mounties/mountie-main.png",
+    "../img/themes/mounties/P6111519.JPG",
     "../img/themes/mounties/122411_015.JPG",
     "../img/themes/mounties/135325_004.JPG",
     "../img/themes/mounties/141039_006.JPG",
@@ -93,11 +95,10 @@
     "../img/themes/mounties/134442_004.JPG",
     "../img/themes/mounties/154339_001.JPG",
     "../img/themes/mounties/185709_004.JPG",
-    "../img/themes/mounties/august-4-2025.jpg",
-    "../img/themes/mounties/june-11-2023.jpg"
+    "../img/themes/mounties/august-4-2025.jpg"
   ],
   "native-american": [
-    "../img/themes/native-american/native-main.png",
+    "../img/themes/native-american/native-main.JPG",
     "../img/themes/native-american/120602_005.JPG",
     "../img/themes/native-american/121335_005.JPG",
     "../img/themes/native-american/183720_014fx.jpg",
@@ -118,8 +119,10 @@
     "../img/themes/no-theme/192914_007glare fix.jpg"
   ],
   "pets": [
-    "../img/themes/pets/pets-main.png",
-    "../img/themes/pets/august-22-2025.jpg",
+    "../img/themes/pets/pets-main.JPG",
+    "../img/themes/pets/191238_042.JPG",
+    "../img/themes/pets/P5199979.JPG",
+    "../img/themes/pets/P6295169.JPG",
     "../img/themes/pets/125914_012.JPG",
     "../img/themes/pets/130857_004.JPG",
     "../img/themes/pets/131125_013.JPG",
@@ -129,8 +132,6 @@
     "../img/themes/pets/2-dogs-western.JPG",
     "../img/themes/pets/201819_004.JPG",
     "../img/themes/pets/Dog.JPG",
-    "../img/themes/pets/june-29-2023.jpg",
-    "../img/themes/pets/P5199979ACV.JPG",
     "../img/themes/pets/P6081276.JPG",
     "../img/themes/pets/P6091489.JPG"
   ],
@@ -182,11 +183,11 @@
     "../img/themes/showgirls-and-outlaws/173122_002.JPG",
     "../img/themes/showgirls-and-outlaws/175515_004.JPG",
     "../img/themes/showgirls-and-outlaws/2-women.JPG",
-    "../img/themes/showgirls-and-outlaws/couple.JPG",
-    "../img/themes/showgirls-and-outlaws/september-1-2025.jpg"
+    "../img/themes/showgirls-and-outlaws/couple.JPG"
   ],
   "steampunk": [
     "../img/themes/steampunk/steampunk-main.jpg",
+    "../img/themes/steampunk/131035_010.JPG",
     "../img/themes/steampunk/115603_016.JPG",
     "../img/themes/steampunk/120500_004.JPG",
     "../img/themes/steampunk/144900_015.JPG",
@@ -197,7 +198,6 @@
     "../img/themes/steampunk/162212_023.JPG",
     "../img/themes/steampunk/170750_031.JPG",
     "../img/themes/steampunk/191146_005.JPG",
-    "../img/themes/steampunk/august-1-2025 (2).jpg",
     "../img/themes/steampunk/december-1-2024.jpg",
     "../img/themes/steampunk/steampunk-family.png",
     "../img/themes/steampunk/steampunk-solo.png"
