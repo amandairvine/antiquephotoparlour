@@ -26,8 +26,8 @@ function normalizeThemeName(name) {
   return name.toLowerCase().replace(/[\s\.\,\'\"]/g, '-').replace(/-+/g, '-').replace(/^-+|-+$/g, '');
 }
 
-// Step 1: Standardize "main" image file names and convert to .jpg
-console.log('🔄 Standardizing main image filenames...');
+// Step 1: Standardize all image file names and convert to .jpg
+console.log('🔄 Standardizing image filenames and converting to .jpg...');
 const themeFolders = fs.readdirSync(themesDir, { withFileTypes: true })
   .filter(dirent => dirent.isDirectory())
   .map(dirent => dirent.name);
@@ -35,32 +35,50 @@ const themeFolders = fs.readdirSync(themesDir, { withFileTypes: true })
 themeFolders.forEach(theme => {
   const themePath = path.join(themesDir, theme);
   const themeFiles = fs.readdirSync(themePath);
-  const normalizedThemeName = normalizeThemeName(theme);
 
   themeFiles.forEach(file => {
-    const fileExt = path.extname(file).toLowerCase();
-    const isImage = ['.jpg', '.jpeg', '.png', '.gif'].includes(fileExt);
+    const oldFilePath = path.join(themePath, file);
+    const fileLower = file.toLowerCase();
 
-    if (isImage) {
-      // Create the new file name with a .jpg extension
-      const baseName = path.basename(file, fileExt);
-      const newFileName = `${baseName}.jpg`;
+    // Special case to correct .jpg.jpg files
+    if (fileLower.endsWith('.jpg.jpg')) {
+      const newFileName = file.substring(0, file.length - 4);
       const newFilePath = path.join(themePath, newFileName);
 
-      // Only rename if the name is different
-      if (file !== newFileName) {
-        const oldFilePath = path.join(themePath, file);
-        try {
-          fs.renameSync(oldFilePath, newFilePath);
-          console.log(`✅ Renamed and converted ${file} to ${newFileName} in theme ${theme}`);
-        } catch (error) {
-          console.error(`❌ Failed to rename ${oldFilePath}: ${error.message}`);
-        }
+      try {
+        fs.renameSync(oldFilePath, newFilePath);
+        console.log(`✅ Corrected double extension: ${file} to ${newFileName} in theme ${theme}`);
+      } catch (error) {
+        console.error(`❌ Failed to rename ${oldFilePath}: ${error.message}`);
+      }
+    }
+    // Handle non-.jpg images (e.g., .png, .jpeg, .gif)
+    else if (fileLower.endsWith('.jpeg') || fileLower.endsWith('.png') || fileLower.endsWith('.gif')) {
+      const newFileName = file.substring(0, file.lastIndexOf('.')) + '.jpg';
+      const newFilePath = path.join(themePath, newFileName);
+
+      try {
+        fs.renameSync(oldFilePath, newFilePath);
+        console.log(`✅ Converted ${file} to ${newFileName} in theme ${theme}`);
+      } catch (error) {
+        console.error(`❌ Failed to rename ${oldFilePath}: ${error.message}`);
+      }
+    }
+    // Handle .jpg images with incorrect case (e.g., .JPG)
+    else if (fileLower.endsWith('.jpg') && file !== fileLower) {
+      const newFileName = fileLower;
+      const newFilePath = path.join(themePath, newFileName);
+
+      try {
+        fs.renameSync(oldFilePath, newFilePath);
+        console.log(`✅ Standardized filename to lowercase: ${newFileName} in theme ${theme}`);
+      } catch (error) {
+        console.error(`❌ Failed to rename ${oldFilePath}: ${error.message}`);
       }
     }
   });
 });
-console.log('✅ All image files converted');
+console.log('✅ All images standardized.');
 
 // Step 2: Clean up existing galleryData by removing missing images
 console.log('🧹 Cleaning up existing gallery data...');
@@ -85,12 +103,15 @@ themeFolders.forEach(theme => {
   const normalizedThemeName = normalizeThemeName(theme);
 
   themeFiles.forEach(file => {
-    const isImage = ['.jpg', '.jpeg', '.png', '.gif'].includes(path.extname(file).toLowerCase());
-    if (isImage) {
+    // Only process files that have a .jpg extension
+    const fileLower = file.toLowerCase();
+    if (fileLower.endsWith('.jpg')) {
       const filePath = path.join(themePath, file);
       if (fs.existsSync(filePath)) {
         const relativePath = path.join('..', 'img', 'themes', theme, file).replace(/\\/g, '/');
-        if (file.toLowerCase() === `${normalizedThemeName}-main${path.extname(file).toLowerCase()}`) {
+
+        // Check if the filename matches the standardized 'main' image name
+        if (file === `${normalizedThemeName}-main.jpg`) {
           mainImagePath = relativePath;
         } else {
           otherImages.push(relativePath);
@@ -114,11 +135,14 @@ themeFolders.forEach(theme => {
     galleryData[theme] = [];
   }
 
-  // Filter out duplicates and preserve the new order
-  const existingImages = new Set(galleryData[theme]);
-  const newImages = orderedImages.filter(image => !existingImages.has(image));
-  galleryData[theme] = [...new Set(orderedImages.concat(galleryData[theme]))];
+  // Replace the old list with the newly generated, clean list
+  galleryData[theme] = orderedImages;
 });
+
+// Step 4: Write the finalized data to the file
+fs.writeFileSync(outputFilePath, JSON.stringify(galleryData, null, 2), 'utf-8');
+
+console.log('✅ Gallery data generated and updated successfully!');
 
 // Step 4: Write the finalized data to the file
 fs.writeFileSync(outputFilePath, JSON.stringify(galleryData, null, 2), 'utf-8');
