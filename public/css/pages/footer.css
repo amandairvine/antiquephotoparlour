@@ -79,7 +79,7 @@ footer {
   display: grid;
   grid-template-columns: 1fr;
   gap: 0.2rem;
-  font-size: 16px;
+  font-size: 14px;
 }
 
 .quick-hours {
@@ -94,24 +94,17 @@ footer {
   flex-direction: column;
   justify-content: space-between;
   text-align: right;
-}
-
-.holiday-hours {
-  font-size: 13px;
-}
-
-.days,
-.times {
-  font-size: 14px;
+  font-size: 12px;
 }
 
 .hours-note {
   text-align: right;
-  font-size: 14px;
+  font-size: 12px;
   font-style: italic;
 }
 
 .holiday-hours {
+  font-size: 10px;
   padding-top: 0.2rem;
 }
 
@@ -120,7 +113,7 @@ footer {
   flex-direction: column;
   text-align: end;
   color: #fff;
-  font-size: 13px;
+  font-size: 12px;
   font-family: var(--font-brygada);
   font-weight: var(--weight-bold);
   font-style: italic;
@@ -162,7 +155,7 @@ footer {
 .location-text {
   grid-area: address;
   text-align: right;
-  font-size: 14px;
+  font-size: 12px;
   padding-top: 0.5rem;
 }
 
@@ -175,7 +168,7 @@ footer {
   justify-content: flex-end;
   text-align: center;
   gap: 2rem;
-  font-size: 14px;
+  font-size: 12px;
 }
 
 .location-description {
@@ -183,8 +176,9 @@ footer {
   text-align: right;
   display: flex;
   justify-content: flex-end;
-  font-size: 12px;
+  font-size: 10px;
   font-style: italic;
+  padding-top: 0.2rem;
 }
 
 .map-text {
@@ -200,8 +194,8 @@ footer {
   border: 2px solid #e8c775;
   background: linear-gradient(90deg, #480204 0%, #800407 50%, #480204 100%);
   box-shadow: 0px 6px 4px rgba(34, 0, 1, 0.8);
-  font-size: 16px;
-  padding: clamp(0.4rem, 1vw, 0.8rem);
+  font-size: 12px;
+  padding: clamp(0.2rem, 1vw, 0.4rem);
   color: #fff;
   font-family: var(--font-brygada);
   font-weight: var(--weight-bold);
