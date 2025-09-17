@@ -21,7 +21,7 @@ header {
   height: 4rem;
   background-color: #480204;
   box-shadow: 0 4px 10px 4px #220001;
-  z-index: 2;
+  z-index: 1;
 }
 
 .header-bottom-background {
@@ -30,19 +30,20 @@ header {
   height: 100%;
   z-index: 0;
   pointer-events: none;
-  z-index: 1;
+  z-index: 0;
 }
 
 .parchment-background {
   position: absolute;
   inset: 0;
-  z-index: 1;
+  z-index: -1;
 }
 
 .parchment-background img {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  z-index: -1;
 }
 
 .parchment-border {
@@ -93,6 +94,7 @@ header {
   flex: 1;
   display: flex;
   transition: transform 0.3s ease;
+  z-index: 1000;
 }
 
 .logo-container img {
@@ -279,19 +281,181 @@ header {
 }
 
 @media (min-width: 660px) {
+  .hours-container .hours-info,
+  .last-group {
+    padding: 0;
+  }
+
+  .hours-container {
+    padding: 1rem;
+  }
+
+  .header-top {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    max-width: 40rem;
+  }
+
+  .header-nav-top {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+  }
+
+  .header-top-background {
+    height: 6rem;
+  }
+
+  .logo-container img {
+    max-height: 6rem;
+  }
+
+  .hamburger-menu {
+    display: none;
+  }
+
+  .primary-nav {
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  .primary-nav .flex-container {
+    margin: 0;
+    padding-top: 0.4rem;
+  }
+
   .header-background-bar {
-    min-width: 48rem;
-    padding: 0.4rem 0rem;
+    border: 2px solid #e8c775;
+    border-radius: 0.6rem;
   }
 
   .header-bar .view-your-photos-text img {
-    max-height: 2.6rem;
+    max-height: 1.8rem;
   }
 
   .flex-container .facebook-icon a img,
   .flex-container .instagram-icon a img {
-    width: 4.2rem;
-    height: 4.2rem;
+    width: 2.8rem;
+    height: 2.8rem;
+  }
+
+  /* Header Bottom Section */
+  .header-bottom {
+    position: relative;
+    z-index: 2;
+    max-width: 1140px;
+    margin: 0 auto;
+    padding: 0;
+    min-height: 5rem;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    transition: none;
+  }
+
+  .header-nav {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 2rem;
+    width: 100%;
+    z-index: 0;
+  }
+
+  .header-bottom-background {
+    position: absolute;
+    top: 4rem;
+    left: 0;
+    right: 0;
+    width: 100vw;
+    height: 7.4rem;
+    z-index: 0;
+    pointer-events: none;
+  }
+
+  .parchment-background {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    height: 100%;
+  }
+
+  .parchment-background img {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 500;
+  }
+
+  .parchment-border {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    opacity: 0.5;
+    background: #220001;
+    box-shadow: 0px 2px 6px 2px rgba(34, 0, 1, 0.37);
+    outline: 0.8px rgba(120, 94, 40, 0.7) solid;
+    filter: blur(2px);
+    z-index: 6;
+  }
+
+  /* Secondary Navigation */
+  .secondary-nav {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    width: 100%;
+    z-index: 1000;
+  }
+
+  .secondary-nav ul.flex-container {
+    display: flex;
+    gap: 2.6rem;
+  }
+
+  .secondary-nav a {
+    text-decoration: none;
+    font-size: 18px;
+    color: #fff;
+    font-family: var(--font-brygada);
+    font-weight: var(--weight-bold);
+    font-style: normal;
+    text-shadow: -1px -1px 0 #a20003, 1px -1px 0 #a20003, -1px 1px 0 #a20003,
+      1px 1px 0 #a20003;
+    transition: transform 0.3s ease, font-size 0.5s ease-in-out;
+  }
+
+  .secondary-nav a:hover {
+    transform: scale(106%);
+  }
+
+  .nav-background-bar {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    max-width: 40rem;
+    height: 3rem;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+    transition: max-width 0.5s ease-in-out, height 0.5s ease-in-out;
+  }
+
+  .nav-bar {
+    width: 100%;
+    height: 100%;
+    border-radius: 1rem;
+    border: 2px solid #e8c775;
+    background: linear-gradient(90deg, #480204 0%, #800407 50%, #480204 100%);
+    box-shadow: 0px 6px 4px rgba(34, 0, 1, 0.8);
+    transition: none;
   }
 }
 
@@ -300,59 +464,177 @@ header {
 ==================================================*/
 @media (min-width: 1024px) {
   .header-top {
-    flex-direction: row; /* Return to horizontal layout */
-    justify-content: flex-end; /* Align to the right */
-    min-height: 8rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+
+  .header-nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+  }
+
+  .header-nav-top {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .primary-nav .flex-container {
+    gap: 3.2rem;
+  }
+
+  .buttons {
+    gap: 1.8rem;
   }
 
   .header-top-background {
     height: 8rem;
   }
 
-  .logo-container {
-    position: absolute; /* Take the logo out of the flow to position it on the left */
-    top: 0;
-    left: 0;
-  }
-
   .logo-container img {
-    max-height: 15rem; /* Larger logo on desktop */
-  }
-
-  .primary-nav {
-    justify-content: flex-end;
+    max-height: 8rem;
   }
 
   .header-background-bar {
-    min-width: 42.8rem;
+    border: 4px solid #e8c775;
+    border-radius: 0.8rem;
+    padding: 0.5rem 1rem;
   }
 
   .header-bar .view-your-photos-text img {
-    max-height: 2.8rem;
+    max-height: 2.4rem;
+  }
+
+  .flex-container .facebook-icon a img,
+  .flex-container .instagram-icon a img {
+    width: 4rem;
+    height: 4rem;
+  }
+
+  .header-bottom {
+    max-width: 1440px;
+  }
+
+  .header-bottom-background {
+    top: 7rem;
+  }
+
+  .parchment-border {
+    bottom: -0.4rem;
+    height: 10px;
+  }
+
+  .nav-background-bar {
+    max-width: 1440px;
+    height: 4rem;
+    padding: 0 2rem;
+    margin-top: 0.4rem;
+  }
+
+  .nav-bar {
+    border-radius: 1rem;
+    border: 4px solid #e8c775;
+  }
+
+  .secondary-nav ul.flex-container {
+    margin-top: 0.8rem;
+    gap: 4rem;
+  }
+
+  .secondary-nav a {
+    font-size: 24px;
+  }
+}
+
+@media (min-width: 1440px) {
+  .header-top {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    padding: 0;
+  }
+
+  .logo-container img {
+    max-height: 12rem;
+    margin-top: 1rem;
+  }
+
+  .primary-nav {
+    top: -2rem;
   }
 
   .primary-nav .flex-container {
     gap: 2rem;
   }
 
-  .flex-container .facebook-icon a img,
-  .flex-container .instagram-icon a img {
-    width: 4.6rem;
-    height: 4.4rem;
+  .header-bar .view-your-photos-text img {
+    max-height: 3rem;
   }
 
-  /* Secondary Nav */
+  .header-background-bar {
+    border: 5px solid #e8c775;
+    border-radius: 1rem;
+    padding: 0.8rem 6.2rem;
+  }
+
+  .flex-container .facebook-icon a img,
+  .flex-container .instagram-icon a img {
+    width: 5.4rem;
+    height: 5.4rem;
+  }
+
   .header-bottom {
-    display: flex; /* Show secondary nav on desktop */
+    min-height: auto;
+    top: -2.8rem;
+  }
+
+  .header-bottom-background {
+    top: 7rem;
+    height: 8rem;
+  }
+
+  .nav-background-bar {
+    height: 5rem;
+    margin-top: 1.1rem;
+    padding: 0;
+    top: 0;
+  }
+
+  .nav-bar {
+    border: 5px solid #e8c775;
+    border-radius: 1rem;
+  }
+
+  .header-nav {
+    max-width: 50rem;
     justify-content: flex-end;
-    min-height: 8rem;
+    align-items: flex-end;
+  }
+
+  .secondary-nav ul.flex-container {
+    position: relative;
+    gap: 2rem;
+    margin: 0;
+  }
+
+  .secondary-nav a {
+    font-size: 28px;
   }
 }
 
 /*==================================================
   Large Desktops (1920px and up)
 ==================================================*/
-@media (min-width: 1920px) {
+/* @media (min-width: 1920px) {
   .header-top {
     min-height: 12rem;
   }
@@ -391,7 +673,7 @@ header {
     max-width: 70rem;
     min-height: 6rem;
   }
-}
+} */
 
 /*==================================================
   Extra Large Desktops (2560px and up)
