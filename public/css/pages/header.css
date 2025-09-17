@@ -261,21 +261,21 @@ header {
 }
 
 .menu-header img {
-  height: 3.6rem;
+  height: 1.8rem;
 }
 
 .close-btn {
   position: absolute;
-  top: 1rem;
-  right: 4.6rem;
+  top: 0.8rem;
+  right: 0.6rem;
   background: transparent;
   border: none;
   cursor: pointer;
 }
 
 .close-btn img {
-  width: 3rem;
-  height: 3rem;
+  width: 2.4rem;
+  height: 2.4rem;
 }
 
 @media (min-width: 660px) {

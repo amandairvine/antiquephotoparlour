@@ -76,7 +76,7 @@ export function initializeSlideshowDirectly() {
     slides[currentSlide].classList.add('active');
     setTimeout(() => {
       isTransitioning = false;
-    }, 2000);
+    }, 1000);
   }
 
   function prevSlide() {
@@ -87,7 +87,7 @@ export function initializeSlideshowDirectly() {
     slides[currentSlide].classList.add('active');
     setTimeout(() => {
       isTransitioning = false;
-    }, 2000);
+    }, 1000);
   }
 
   function startSlideshow() {

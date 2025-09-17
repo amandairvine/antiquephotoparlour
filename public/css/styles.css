@@ -282,10 +282,14 @@ body {
 
 .slideshow-nav-prev {
   left: 0;
+  outline: none;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .slideshow-nav-next {
   right: 0;
+  outline: none;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .slideshow-hover-zone {
@@ -300,7 +304,9 @@ body {
 }
 
 .slideshow-hover-zone:focus,
-.slideshow-hover-zone:active {
+.slideshow-hover-zone:active,
+.slideshow-nav-prev:hover,
+.slideshow-nav-next:hover {
   outline: none;
 }
 
