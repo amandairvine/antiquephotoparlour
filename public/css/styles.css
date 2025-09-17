@@ -295,6 +295,13 @@ body {
   width: 40%;
   z-index: 5;
   cursor: pointer;
+  outline: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.slideshow-hover-zone:focus,
+.slideshow-hover-zone:active {
+  outline: none;
 }
 
 .slideshow-hover-left {
