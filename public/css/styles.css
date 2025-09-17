@@ -3,15 +3,12 @@
   padding: 0;
   box-sizing: border-box;
   font-family: "Brygada 1918", serif;
-
   --font-montecarlo: "MonteCarlo", cursive;
   --font-brygada: "Brygada 1918", serif;
-
   --weight-regular: 400;
   --weight-medium: 500;
   --weight-semibold: 600;
   --weight-bold: 700;
-
   --Light-Shine: linear-gradient(
     180deg,
     #e8c775 0%,
@@ -37,7 +34,6 @@ body {
   transition: none;
 }
 
-/* Screen reader only content */
 .sr-only {
   position: absolute;
   width: 1px;
@@ -73,11 +69,9 @@ body {
   overflow: hidden;
   z-index: 1;
   width: 100%;
-  /* height: 100%; */
   box-sizing: border-box;
 }
 
-/* Main slideshow area */
 .slideshow-container {
   position: absolute;
   top: 0;
@@ -114,7 +108,6 @@ body {
   pointer-events: auto;
 }
 
-/* Blurred Background Image */
 .slide::before {
   content: "";
   position: absolute;
@@ -130,7 +123,6 @@ body {
   z-index: 1;
 }
 
-/* Foreground Image */
 .slide::after {
   content: "";
   position: absolute;
@@ -144,10 +136,8 @@ body {
   z-index: 1;
   width: 100%;
   height: 100%;
-  /* max-width: 1075px; */
 }
 
-/* For portrait images */
 .slide.portrait::after {
   width: 100%;
   height: 100%;
@@ -155,7 +145,6 @@ body {
   transition: transform 0.3s ease, min-height 0.5s ease;
 }
 
-/* For landscape images */
 .slide.landscape::after {
   min-width: 575px;
 }
@@ -165,11 +154,12 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 0.6rem;
-  padding: 1rem;
+  gap: 0.4rem;
+  padding: 0.6rem 1rem;
   text-align: center;
-  width: 28rem;
-  height: 12rem;
+  /* width: 28rem;
+  height: 12rem; */
+  min-width: 24rem;
   flex-shrink: 0;
   border-radius: 1rem;
   border: 2px solid #e8c775;
@@ -183,7 +173,7 @@ body {
   transition: gap 0.5s ease-in-out, height 0.5s ease-in-out;
 }
 
-.slide.native .slide-text {
+/* .slide.native .slide-text {
   gap: 0.8rem;
 }
 
@@ -206,7 +196,7 @@ body {
 .slide.victorian .slide-text,
 .slide.historical-pet-portraits .slide-text {
   gap: 0.2rem;
-}
+} */
 
 .slide-text {
   display: flex;
@@ -224,7 +214,7 @@ body {
   text-align: center;
   text-shadow: 0px 4px 8px rgba(34, 0, 1, 0.8);
   font-family: "Brygada 1918";
-  font-size: 16px;
+  font-size: 12px;
   font-style: italic;
   font-weight: 600;
   line-height: normal;
@@ -232,19 +222,19 @@ body {
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+  padding-bottom: 0.1rem;
 }
 
 /* #region Slide Caption Images */
-
 .slide-caption img {
   width: 100%;
-  max-width: 45rem;
-  height: 5rem;
+  /* max-width: 20rem; */
+  height: 2rem;
   object-fit: contain;
   transition: height 0.2s ease-in-out;
 }
 
-.slide.native img,
+/* .slide.native img,
 .slide.civil-war img {
   height: 3.2rem;
 }
@@ -273,7 +263,7 @@ body {
 .slide.wedding img,
 .slide.dressy-western img {
   height: 4rem;
-}
+} */
 
 /* #endregion */
 
@@ -283,7 +273,7 @@ body {
   transform: translateY(-50%);
   background: none;
   border: none;
-  padding: 1rem 1.5rem;
+  padding: 1rem 0.6rem;
   cursor: pointer;
   border-radius: 50%;
   opacity: 0;
@@ -293,14 +283,13 @@ body {
 }
 
 .slideshow-nav-prev {
-  left: 2rem;
+  left: 0;
 }
 
 .slideshow-nav-next {
-  right: 2rem;
+  right: 0;
 }
 
-/* Hover zones for triggering arrow button visibility */
 .slideshow-hover-zone {
   position: absolute;
   top: 0;
@@ -319,7 +308,7 @@ body {
 }
 
 .slideshow-nav img {
-  width: 6rem;
+  width: 2rem;
   height: 100%;
   transition: transform 0.3s ease, filter 0.2s ease;
 }
@@ -328,7 +317,6 @@ body {
   transform: scaleX(-1);
 }
 
-/* Hover effects */
 .slideshow-nav-prev:hover img {
   transform: scaleX(-1) scale(1.1);
   filter: brightness(1.2);
@@ -339,7 +327,6 @@ body {
   filter: brightness(1.2);
 }
 
-/* Click effects */
 .slideshow-nav-prev:active img,
 .slideshow-nav-prev.clicking img {
   transform: scaleX(-1) scale(0.95);
@@ -355,15 +342,15 @@ body {
 }
 
 .btn {
-  width: 16rem;
-  height: 4rem;
+  width: 12rem;
+  height: 3.4rem;
   border-radius: clamp(0.6rem, 1.5vw, 1.2rem);
   border: 2px solid #e8c775;
   background: linear-gradient(90deg, #480204 0%, #800407 50%, #480204 100%);
   box-shadow: 0px 6px 4px rgba(34, 0, 1, 0.8);
   z-index: 1;
-  font-size: 16px;
-  padding: 0.8rem 2rem;
+  font-size: 14px;
+  padding: 0.8rem 1rem;
   color: #fff;
   font-family: var(--font-brygada);
   font-weight: var(--weight-bold);
@@ -380,11 +367,9 @@ body {
 
 /* #endregion */
 
-/* #region Media Queries */
+/* #region Media Queries (min-width) */
 
 @media (min-width: 1024px) {
-  /* #region Slideshow */
-
   .slide.portrait::after {
     width: 120%;
     height: 120%;
@@ -401,13 +386,9 @@ body {
   .slideshow-nav-next {
     right: 0rem;
   }
-
-  /* #endregion */
 }
 
 @media (min-width: 1920px) {
-  /* #region Slideshow */
-
   .slide-caption {
     width: 38rem;
     height: 18rem;
@@ -444,19 +425,12 @@ body {
     gap: 0.2rem;
   }
 
-  .slide-text {
-    display: flex;
-    flex-direction: column;
-  }
-
   .btn {
     width: 20rem;
     height: 5rem;
     font-size: 20px;
     padding: 1.2rem 2rem;
   }
-
-  /* #region Slide Caption Images */
 
   .slide.civil-war img {
     height: 3.4rem;
@@ -486,18 +460,12 @@ body {
     height: 5rem;
   }
 
-  /* #endregion */
-
   .slideshow-nav img {
     width: 8rem;
   }
-
-  /* #endregion */
 }
 
 @media (min-width: 2560px) {
-  /* #region Slideshow */
-
   .slide-caption {
     width: 44rem;
     height: 20rem;
@@ -534,19 +502,12 @@ body {
     gap: 0.2rem;
   }
 
-  .slide-text {
-    display: flex;
-    flex-direction: column;
-  }
-
   .btn {
     width: 30rem;
     height: 6rem;
     font-size: 26px;
     padding: 1.6rem 2rem;
   }
-
-  /* #region Slide Caption Images */
 
   .slide-caption img {
     max-width: 60rem;
@@ -588,10 +549,6 @@ body {
   .slide.dressy-western img {
     height: 6rem;
   }
-
-  /* #endregion */
-
-  /* #endregion */
 }
 
 /* #endregion */

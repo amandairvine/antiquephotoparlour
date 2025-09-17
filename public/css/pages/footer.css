@@ -12,7 +12,7 @@ footer {
   display: flex;
   flex-direction: column;
   background: #480204;
-  padding: 1.6rem 1.6rem 0rem;
+  padding: 0.6rem 1rem 0rem;
   width: 100%;
   box-sizing: border-box;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
@@ -23,7 +23,7 @@ footer {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 1.2rem;
+  gap: 0.4rem;
 }
 
 .hours-container,
@@ -38,10 +38,9 @@ footer {
   text-shadow: -1px -1px 0 #a20003, 1px -1px 0 #a20003, -1px 1px 0 #a20003,
     1px 1px 0 #a20003;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-  height: 8.8rem;
+  height: 8rem;
   max-width: 45rem;
   width: 100%;
-  pointer-events: none;
   transition: all 0.5s ease-in-out;
 }
 
@@ -57,7 +56,7 @@ footer {
 .hours-info {
   display: flex;
   justify-content: space-between;
-  padding: 0.4rem 0.8rem 0rem;
+  padding: 0.8rem 0.8rem 0rem;
 }
 
 .hours-info .header-text img {
@@ -113,7 +112,7 @@ footer {
   flex-direction: column;
   text-align: end;
   color: #fff;
-  font-size: 12px;
+  font-size: 10px;
   font-family: var(--font-brygada);
   font-weight: var(--weight-bold);
   font-style: italic;
@@ -124,10 +123,11 @@ footer {
 
 .location-container {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: max-content 1fr;
+  grid-template-rows: auto auto;
   grid-template-areas:
     "header map"
-    "info info";
+    "description map";
   color: #fff;
   font-family: var(--font-brygada);
   font-weight: var(--weight-bold);
@@ -144,49 +144,33 @@ footer {
   padding-top: 0.4rem;
 }
 
-.location-info {
-  grid-area: info;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  text-align: right;
-}
-
-.location-text {
-  grid-area: address;
-  text-align: right;
-  font-size: 12px;
-  padding-top: 0.5rem;
-}
-
-.location-text p {
-  padding: 0.1rem 0;
-}
-
-.city-postal {
-  display: flex;
-  justify-content: flex-end;
-  text-align: center;
-  gap: 2rem;
-  font-size: 12px;
-}
-
 .location-description {
   grid-area: description;
-  text-align: right;
   display: flex;
-  justify-content: flex-end;
+  flex-direction: column;
+  justify-content: flex-start;
   font-size: 10px;
   font-style: italic;
   padding-top: 0.2rem;
 }
 
-.map-text {
-  visibility: visible;
-  font-size: 1em;
+.address {
+  font-size: 12px;
+  padding-bottom: 0.2rem;
 }
 
-.mini-map {
+.map-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+}
+
+.mini-map-button {
+  position: relative;
+  z-index: 100;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -194,8 +178,13 @@ footer {
   border: 2px solid #e8c775;
   background: linear-gradient(90deg, #480204 0%, #800407 50%, #480204 100%);
   box-shadow: 0px 6px 4px rgba(34, 0, 1, 0.8);
+  padding: clamp(0.5rem, 4vw, 1rem) clamp(1rem, 6vw, 4rem);
+  transition: transform 0.3s ease, width 0.5s ease-in-out,
+    height 0.5s ease-in-out;
+}
+
+.mini-map-button a {
   font-size: 12px;
-  padding: clamp(0.2rem, 1vw, 0.4rem);
   color: #fff;
   font-family: var(--font-brygada);
   font-weight: var(--weight-bold);
@@ -203,13 +192,15 @@ footer {
   text-shadow: -1px -1px 0 #a20003, 1px -1px 0 #a20003, -1px 1px 0 #a20003,
     1px 1px 0 #a20003;
   cursor: pointer;
-  order: 0;
-  text-align: left;
-  grid-area: map;
+  text-align: center;
 }
 
-.mini-map:hover {
-  transform: scale(103%);
+.mini-map-iframe {
+  display: none;
+}
+
+.mini-map-button:hover {
+  transform: scale(1.05);
 }
 
 .copyright {
@@ -218,15 +209,12 @@ footer {
   font-style: normal;
   color: white;
   text-align: center;
-  margin: 1rem 0;
-  font-size: 0.9em;
+  margin: 0.4rem 0;
+  font-size: 8px;
 }
 
-/*==================================================
-  Media Queries for Larger Screens
-==================================================*/
+/* Media Queries */
 
-/* Tablet and Small Desktop (500px - 1023px) */
 @media (min-width: 500px) {
   .last-group {
     font-size: 13px;
@@ -241,6 +229,32 @@ footer {
 
   .last-group {
     font-size: 14px;
+  }
+
+  /* Map */
+
+  .mini-map-button {
+    display: none;
+  }
+
+  .mini-map-iframe {
+    display: block;
+    height: 100%;
+    width: 100%;
+  }
+
+  .map-wrapper {
+    height: 7rem;
+    width: 100%;
+    padding-left: 2rem;
+  }
+
+  .location-container {
+    grid-template-columns: max-content 1fr;
+    grid-template-areas:
+      "header map"
+      "description map";
+    padding: 0.4rem 0.8rem;
   }
 }
 
