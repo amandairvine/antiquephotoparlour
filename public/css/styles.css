@@ -32,6 +32,7 @@ body {
   overflow: hidden;
   color: white;
   transition: none;
+  font-size: 100%;
 }
 
 .sr-only {
@@ -155,18 +156,16 @@ body {
   justify-content: center;
   align-items: center;
   gap: 0.4rem;
-  padding: 0.6rem 1rem;
+  padding: 0.4rem 0.6rem;
   text-align: center;
-  /* width: 28rem;
-  height: 12rem; */
-  min-width: 24rem;
+  min-width: 14rem;
   flex-shrink: 0;
   border-radius: 1rem;
   border: 2px solid #e8c775;
   background: rgba(0, 0, 0, 0.8);
   box-shadow: 0px 6px 4px 0px rgba(34, 0, 1, 0.8);
   position: absolute;
-  bottom: 2rem;
+  bottom: 0.4rem;
   left: 50%;
   transform: translateX(-50%);
   z-index: 4;
@@ -228,8 +227,7 @@ body {
 /* #region Slide Caption Images */
 .slide-caption img {
   width: 100%;
-  /* max-width: 20rem; */
-  height: 2rem;
+  height: 1.6rem;
   object-fit: contain;
   transition: height 0.2s ease-in-out;
 }
@@ -342,15 +340,17 @@ body {
 }
 
 .btn {
-  width: 12rem;
-  height: 3.4rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 8rem;
+  height: 2.2rem;
   border-radius: clamp(0.6rem, 1.5vw, 1.2rem);
   border: 2px solid #e8c775;
   background: linear-gradient(90deg, #480204 0%, #800407 50%, #480204 100%);
   box-shadow: 0px 6px 4px rgba(34, 0, 1, 0.8);
   z-index: 1;
-  font-size: 14px;
-  padding: 0.8rem 1rem;
+  font-size: 12px;
   color: #fff;
   font-family: var(--font-brygada);
   font-weight: var(--weight-bold);

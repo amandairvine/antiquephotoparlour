@@ -11,8 +11,9 @@ footer {
 .info-panel {
   display: flex;
   flex-direction: column;
+  align-items: center;
   background: #480204;
-  padding: 0.6rem 1rem 0rem;
+  padding: 0.6rem 0 0.4rem;
   width: 100%;
   box-sizing: border-box;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
@@ -38,7 +39,7 @@ footer {
   text-shadow: -1px -1px 0 #a20003, 1px -1px 0 #a20003, -1px 1px 0 #a20003,
     1px 1px 0 #a20003;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-  height: 8rem;
+  /* height: 6rem; */
   max-width: 45rem;
   width: 100%;
   transition: all 0.5s ease-in-out;
@@ -56,11 +57,11 @@ footer {
 .hours-info {
   display: flex;
   justify-content: space-between;
-  padding: 0.8rem 0.8rem 0rem;
+  padding: 0.4rem 0.6rem 0rem;
 }
 
 .hours-info .header-text img {
-  max-width: 6rem;
+  max-width: 4rem;
   height: auto;
   padding-top: 0.2rem;
 }
@@ -70,7 +71,7 @@ footer {
 }
 
 .location-container .header-text img {
-  max-width: 8rem;
+  max-width: 5rem;
   height: auto;
 }
 
@@ -78,7 +79,6 @@ footer {
   display: grid;
   grid-template-columns: 1fr;
   gap: 0.2rem;
-  font-size: 14px;
 }
 
 .quick-hours {
@@ -93,7 +93,7 @@ footer {
   flex-direction: column;
   justify-content: space-between;
   text-align: right;
-  font-size: 12px;
+  font-size: 10px;
 }
 
 .hours-note {
@@ -118,7 +118,7 @@ footer {
   font-style: italic;
   text-shadow: -1px -1px 0 #a20003, 1px -1px 0 #a20003, -1px 1px 0 #a20003,
     1px 1px 0 #a20003;
-  padding: 0.3rem 1rem 0.1rem 0rem;
+  padding: 0.3rem 0.6rem 0.4rem 0rem;
 }
 
 .location-container {
@@ -135,13 +135,12 @@ footer {
   text-shadow: -1px -1px 0 #a20003, 1px -1px 0 #a20003, -1px 1px 0 #a20003,
     1px 1px 0 #a20003;
   margin-bottom: 0rem;
-  padding: 0.4rem 0.8rem;
+  padding: 0.4rem 0.6rem;
 }
 
 .header-text {
   grid-area: header;
   text-align: left;
-  padding-top: 0.4rem;
 }
 
 .location-description {
@@ -178,7 +177,7 @@ footer {
   border: 2px solid #e8c775;
   background: linear-gradient(90deg, #480204 0%, #800407 50%, #480204 100%);
   box-shadow: 0px 6px 4px rgba(34, 0, 1, 0.8);
-  padding: clamp(0.5rem, 4vw, 1rem) clamp(1rem, 6vw, 4rem);
+  padding: clamp(0.5rem, 4vw, 0.6rem) clamp(1rem, 6vw, 4rem);
   transition: transform 0.3s ease, width 0.5s ease-in-out,
     height 0.5s ease-in-out;
 }
@@ -209,7 +208,7 @@ footer {
   font-style: normal;
   color: white;
   text-align: center;
-  margin: 0.4rem 0;
+  margin: 0.4rem 0 0;
   font-size: 8px;
 }
 
