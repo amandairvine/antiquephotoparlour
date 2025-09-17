@@ -90,10 +90,10 @@ export function initializeSlideshowDirectly() {
     }, 2000);
   }
 
-  // function startSlideshow() {
-  //   stopSlideshow();
-  //   slideInterval = setInterval(nextSlide, 4000);
-  // }
+  function startSlideshow() {
+    stopSlideshow();
+    slideInterval = setInterval(nextSlide, 4000);
+  }
 
   function stopSlideshow() {
     if (slideInterval) {
