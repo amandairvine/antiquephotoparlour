@@ -24,7 +24,6 @@ function initializeServicesPage() {
         }
     }
 
-
     navItems.forEach(item => {
         item.addEventListener('click', function () {
             const serviceName = this.getAttribute('data-service');
@@ -50,3 +49,72 @@ function initializeServicesPage() {
 
     console.log('Services page functionality initialized.');
 }
+
+let isDropdownOpen = false;
+
+function toggleDropdown() {
+    const menu = document.getElementById('navMenu');
+    const arrow = document.querySelector('.dropdown-arrow');
+    const header = document.querySelector('.dropdown-header');
+
+    isDropdownOpen = !isDropdownOpen;
+
+    if (isDropdownOpen) {
+        menu.classList.add('open');
+        arrow.classList.add('open');
+        header.classList.add('open');
+    } else {
+        menu.classList.remove('open');
+        arrow.classList.remove('open');
+        header.classList.remove('open');
+    }
+}
+
+function showService(serviceId) {
+    // Hide all service content
+    const allContent = document.querySelectorAll('.service-content');
+    allContent.forEach(content => content.classList.remove('active'));
+
+    // Remove active class from all nav items
+    const allNavItems = document.querySelectorAll('.nav-item');
+    allNavItems.forEach(item => item.classList.remove('active'));
+
+    // Show selected service content
+    document.getElementById(serviceId).classList.add('active');
+
+    // Add active class to selected nav item
+    document.querySelector(`[data-service="${serviceId}"]`).classList.add('active');
+
+    // Close dropdown on small screens after selection
+    if (window.innerWidth < 600) {
+        const menu = document.getElementById('navMenu');
+        const arrow = document.querySelector('.dropdown-arrow');
+        const header = document.querySelector('.dropdown-header');
+        menu.classList.remove('open');
+        arrow.classList.remove('open');
+        header.classList.remove('open');
+        isDropdownOpen = false;
+    }
+}
+
+// Close dropdown when clicking outside
+document.addEventListener('click', function (event) {
+    const sidebar = document.querySelector('.sidebar');
+    if (!sidebar.contains(event.target) && isDropdownOpen) {
+        toggleDropdown();
+    }
+});
+
+// Handle window resize
+window.addEventListener('resize', function () {
+    if (window.innerWidth >= 600) {
+        // Reset dropdown state for larger screens
+        const menu = document.getElementById('navMenu');
+        const arrow = document.querySelector('.dropdown-arrow');
+        const header = document.querySelector('.dropdown-header');
+        menu.classList.remove('open');
+        arrow.classList.remove('open');
+        header.classList.remove('open');
+        isDropdownOpen = false;
+    }
+});

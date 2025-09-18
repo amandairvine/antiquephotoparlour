@@ -71,6 +71,7 @@ body {
   z-index: 1;
   width: 100%;
   box-sizing: border-box;
+  background: linear-gradient(90deg, #480204 0%, #800407 50%, #480204 100%);
 }
 
 .slideshow-container {
