@@ -257,7 +257,11 @@ body {
 
 .slide.pirates img,
 .slide.civil-war img,
-.slide.native img {
+.slide.native img,
+.slide.mountie img ,
+.slide.mix-and-match img,
+.slide.pets img,
+.slide.frames img {
   height: 1.4rem;
   margin-bottom: 0.2rem;
 }
