@@ -246,15 +246,23 @@ body {
 
 .slide.pirates img {
   height: 3.6rem;
-}
+} */
 
 .slide.kids img,
 .slide.victorian img,
-.slide.historical-pet-portraits img {
-  height: 3.8rem;
+.slide.historical-pet-portraits img,
+.slide.roaring-20s img {
+  height: 1.6rem;
 }
 
-.slide.steampunk img,
+.slide.pirates img,
+.slide.civil-war img,
+.slide.native img {
+  height: 1.4rem;
+  margin-bottom: 0.2rem;
+}
+
+/* .slide.steampunk img,
 .slide.cowboys-and-cowgirls img,
 .slide.showgirls-and-outlaws img,
 .slide.slide.roaring-20s img,
@@ -411,7 +419,7 @@ body {
   }
 
   .slide-caption p {
-    font-size: 24px;
+    font-size: 2px;
   }
 
   .slide.civil-war .slide-text {
