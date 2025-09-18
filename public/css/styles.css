@@ -403,15 +403,15 @@ body {
 
 @media (min-width: 1920px) {
   .slide-caption {
-    width: 38rem;
-    height: 18rem;
-    bottom: 2rem;
+    width: 30rem;
+    height: 14rem;
+    bottom: 1rem;
     left: 50%;
-    gap: 1rem;
+    gap: 0.8rem;
   }
 
   .slide-caption p {
-    font-size: 22px;
+    font-size: 24px;
   }
 
   .slide.civil-war .slide-text {

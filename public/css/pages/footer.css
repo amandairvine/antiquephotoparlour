@@ -280,8 +280,116 @@ footer {
   }
 }
 
-/* Desktop and Larger (1024px and up) */
 @media (min-width: 1024px) {
+  .info-panel {
+    align-items: center;
+    padding: 0 2rem;
+  }
+
+  .footer-containers {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 0.4rem;
+    width: 100%;
+    padding: 0.4rem 0 0;
+    max-width: 900px;
+  }
+
+  .hours-container,
+  .location-container {
+    display: flex;
+    justify-content: space-around;
+    max-width: 66rem;
+    height: 6rem;
+    padding: 0 1rem 0rem;
+    border-radius: 1rem;
+    border: 4px solid #e8c775;
+  }
+
+  .hours-container {
+    padding: 0.4rem 1rem;
+  }
+
+  .hours-grid {
+    gap: 0;
+  }
+
+  .hours-info {
+    padding: 0;
+  }
+
+  .hours-info .header-text img {
+    max-width: 5rem;
+  }
+
+  .days,
+  .times {
+    font-size: 16px;
+  }
+
+  .hours-note {
+    padding-top: 0.2rem;
+    font-size: 16px;
+  }
+
+  .hours-note .holiday-hours {
+    font-size: 14px;
+  }
+
+  .last-group {
+    font-size: 14px;
+    padding: 0;
+  }
+
+  .location-container {
+    display: grid;
+    grid-template-columns: max-content 2fr;
+    grid-template-rows: auto auto;
+    gap: 0px;
+    margin: 0 auto;
+    padding: 0.4rem 1rem;
+  }
+
+  .location-container .header-text img {
+    max-width: 6.6rem;
+  }
+
+  .header-text {
+    grid-column: 1 / 2;
+    grid-row: 1 / 2;
+    text-align: left;
+  }
+
+  .address {
+    font-size: 14px;
+    padding: 0.2rem 0 0;
+  }
+
+  .map-wrapper {
+    height: 4.8rem;
+    padding-left: 0.4rem;
+  }
+
+  .location-description {
+    text-align: left;
+    font-size: 12px;
+    font-style: normal;
+    justify-content: flex-start;
+    padding: 0;
+  }
+
+  .map-text {
+    visibility: visible;
+  }
+
+  .city-postal {
+    display: flex;
+    gap: 4px;
+  }
+}
+
+@media (min-width: 1440px) {
   .info-panel {
     align-items: center;
     padding: 0 2rem;
@@ -293,16 +401,16 @@ footer {
     justify-content: center;
     gap: 0.8rem;
     width: 100%;
-    padding: 1rem 0 0;
+    padding: 1rem 2rem 0;
     max-width: 1440px;
   }
 
   .hours-container,
   .location-container {
     display: flex;
-    justify-content: space-around;
+    justify-content: space-evenly;
     max-width: 66rem;
-    height: 8.8rem;
+    height: 8rem;
     padding: 0.4rem 1rem 0rem;
   }
 
@@ -314,14 +422,16 @@ footer {
     max-width: 6rem;
   }
 
-  .days,
+  .days {
+    font-size: 22px;
+  }
+
   .times {
-    font-size: 18px;
+    font-size: 20px;
   }
 
   .hours-note {
-    padding-top: 0.2rem;
-    font-size: 16px;
+    padding-top: 0.4rem;
   }
 
   .hours-note .holiday-hours {
@@ -329,8 +439,12 @@ footer {
   }
 
   .last-group {
-    font-size: 18px;
+    font-size: 20px;
     padding: 0;
+  }
+
+  .last-group br {
+    display: none;
   }
 
   .location-container {
@@ -339,7 +453,7 @@ footer {
     grid-template-rows: auto auto;
     gap: 0px;
     margin: 0 auto;
-    padding: 1rem 1.2rem;
+    padding: 0.6rem 1.2rem;
   }
 
   .location-container .header-text img {
@@ -351,23 +465,20 @@ footer {
     grid-row: 1 / 2;
     text-align: left;
   }
-  
-  .address {
-    font-size: 18px;
-  }
 
-  .location-description {
-    font-size: 16px;
+  .address {
+    font-size: 20px;
+    padding-top: 0.2rem;
   }
 
   .map-wrapper {
-    height: 7rem;
+    height: 6.6rem;
     padding-left: 1rem;
   }
 
   .location-description {
     text-align: left;
-    font-size: 16px;
+    font-size: 18px;
     font-style: normal;
     justify-content: flex-start;
   }
@@ -382,89 +493,30 @@ footer {
   }
 }
 
-
-
-/* Large Desktop (1920px and up) */
 @media (min-width: 1920px) {
   .footer-containers {
-    gap: 1.2rem;
+    max-width: 1920px;
   }
 
-  .location-container {
-    grid-template-columns: 1fr 1fr;
-  }
-
-  .hours-container,
-  .location-container {
-    min-width: 60rem;
-    height: 10.8rem;
-    border: 4px solid #e8c775;
-    overflow: hidden;
-  }
-
-  .hours-grid {
-    gap: 0rem;
-    padding-top: 0.6rem;
-  }
-
-  .hours-note {
-    padding-top: 0;
-    line-height: 2.3rem;
-  }
-
-  .hours-info .header-text img,
-  .location-container .header-text img {
-    max-width: none;
-  }
-
-  .days,
-  .times {
-    font-size: 20px;
-    gap: 0.2rem;
-  }
-
-  .holiday-hours,
-  .last-group {
-    font-size: 18px;
-  }
-
-  .location-text {
-    font-size: 20px;
-  }
-
-  .location-description {
-    font-size: 18px;
-    justify-content: left;
-  }
-
-  .mini-map {
-    width: 28rem;
-    height: 5.2rem;
-    display: flex;
-    justify-self: flex-end;
-  }
-
-  .copyright {
-    font-size: 12px;
-  }
-}
-
-/* Extra Large Desktop (2560px and up) */
-@media (min-width: 2560px) {
-  .footer-containers {
-    gap: 4.4rem;
-    height: 12rem;
+  .hours-container {
+    justify-content: space-evenly;
   }
 
   .hours-container,
   .location-container {
-    min-width: 68rem;
-    height: 12rem;
+    height: 8.8rem;
   }
 
-  .hours-info .header-text img,
-  .location-container .header-text img {
-    max-width: none;
+  .hours-info .header-text img {
+    max-width: 8rem;
+  }
+
+  .quick-hours {
+    padding-top: 0.2rem
+  }
+
+  .days {
+    padding-right: 0.8rem;
   }
 
   .days,
@@ -472,30 +524,34 @@ footer {
     font-size: 24px;
   }
 
-  .holiday-hours,
+  /* .hours-note .holiday-hours {
+    padding-top: 0.2rem;
+  } */
+
+  .hours-note .holiday-hours,
   .last-group {
-    font-size: 20px;
+    font-size: 22px;
   }
 
   .location-container {
-    grid-template-columns: 1fr 1fr;
+    padding-top: 0.8rem;
   }
 
-  .location-text {
-    font-size: 24px;
+  .location-container .header-text img {
+    max-width: 10.6rem;
   }
 
   .location-description {
     font-size: 20px;
-    justify-content: center;
   }
 
-  .mini-map {
-    width: 34rem;
-    height: 6.4rem;
+  .address {
+    font-size: 24px;
+    padding: 0;
   }
 
-  .copyright {
-    font-size: 16px;
+  .map-wrapper {
+    padding-left: 1.8rem;
+    height: 6.8rem;
   }
 }
