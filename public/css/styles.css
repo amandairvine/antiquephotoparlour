@@ -173,31 +173,6 @@ body {
   transition: gap 0.5s ease-in-out, height 0.5s ease-in-out;
 }
 
-/* .slide.native .slide-text {
-  gap: 0.8rem;
-}
-
-.slide.civil-war .slide-text {
-  gap: 0.8rem;
-}
-
-.slide.frames .slide-text,
-.slide.pets .slide-text,
-.slide.mix-and-match .slide-text,
-.slide.mountie .slide-text {
-  gap: 0.6rem;
-}
-
-.slide.pirates .slide-text {
-  gap: 0.4rem;
-}
-
-.slide.kids .slide-text,
-.slide.victorian .slide-text,
-.slide.historical-pet-portraits .slide-text {
-  gap: 0.2rem;
-} */
-
 .slide-text {
   display: flex;
   flex-direction: column;

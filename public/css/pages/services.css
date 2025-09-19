@@ -199,7 +199,7 @@
   justify-content: center;
   gap: 0.5rem;
   flex: 1;
-  max-height: 40vh;
+  min-height: 2rem;
   overflow-y: auto;
 }
 
@@ -207,7 +207,6 @@
   position: relative;
   border-radius: 3px;
   overflow: hidden;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
   transition: transform 0.3s ease;
 }
 
@@ -268,125 +267,38 @@
   transform: scale(1.02);
 }
 
-/* Larger screens - Switch back to sidebar */
-@media (min-width: 600px) {
-  .dropdown-header {
-    display: none;
-  }
-
-  .dropdown-menu {
-    position: static;
-    max-height: none;
-    overflow: visible;
-    background: transparent;
-    border: none;
-    border-radius: 0;
-    box-shadow: none;
-  }
-
-  .dropdown-menu.open {
-    box-shadow: none;
-  }
-
-  .sidebar {
-    padding: 0.5rem 0;
-    border: 2px solid #e8c775;
-  }
-
-  .sidebar-header {
+@media (min-height: 600px) {
+  .service-gallery {
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    flex-wrap: wrap;
+    overflow-y: auto;
+    gap: 0.2rem;
+  }
+
+  .gallery-item {
+    height:30rem; 
     width: 100%;
-    margin-bottom: 0.5rem;
-  }
-
-  .sidebar-header img {
-    max-width: 4rem;
-    height: auto;
-  }
-
-  .nav-item {
-    padding: 0.6rem 0.75rem;
-    font-size: 14px;
-    text-align: center;
-    border-bottom: none;
-    border-left: 4px solid transparent;
-  }
-
-  .nav-item:hover {
-    transform: translateX(5px);
-  }
-
-  .content-area {
-    padding: 1.5rem 1rem;
-    border: 2px solid #e8c775;
-  }
-
-  .service-header img {
-    max-width: 16rem;
-  }
-
-  .service-description {
-    font-size: 16px;
     padding: 0 2rem;
   }
 
+  .gallery-item img {
+    height: 100%;
+    width: 100%;
+    object-fit: contain;
+  }
+}
+
+@media (min-width: 600px) {
   .service-gallery {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     gap: 1rem;
-    max-height: none;
-    overflow-y: visible;
+    min-height: auto;
   }
 
   .gallery-item {
-    height: 12rem;
-  }
-
-  .btn-primary {
-    font-size: 16px;
-    min-height: 3rem;
-    max-width: 30rem;
-  }
-}
-
-/* Desktop styles */
-@media (min-width: 1024px) {
-  .services {
-    margin: 1rem;
-  }
-
-  .sidebar-header img {
-    max-width: 5.4rem;
-  }
-
-  .nav-item {
-    font-size: 16px;
-    padding: 0.8rem 1rem;
-  }
-
-  .service-header img {
-    max-width: 26rem;
-  }
-
-  .service-description {
-    font-size: 20px;
-    line-height: 1.6;
-    padding: 0 4rem;
-  }
-
-  .service-gallery {
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1.5rem;
-  }
-
-  .gallery-item {
-    height: 20rem;
-  }
-
-  .btn-primary {
-    font-size: 20px;
-    min-height: 4rem;
-    padding: 0.8rem 2rem;
+    height: 12rem; 
+    width: 100%; 
   }
 }
