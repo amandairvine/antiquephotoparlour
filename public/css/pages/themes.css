@@ -209,7 +209,7 @@ body {
 /* WebKit browsers: Chrome, Safari, Edge */
 .themes-list::-webkit-scrollbar,
 .modal::-webkit-scrollbar {
-  width: 16px;
+  width: 1rem;
 }
 
 .themes-list::-webkit-scrollbar-track,
@@ -222,7 +222,7 @@ body {
 .modal::-webkit-scrollbar-thumb {
   background-color: #e8c775;
   border-radius: 6px;
-  border: 3px solid #480204;
+  border: 6px solid #480204;
 }
 
 .themes-list::-webkit-scrollbar-thumb:hover,
