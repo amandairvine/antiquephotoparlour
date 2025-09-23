@@ -621,7 +621,7 @@ header {
   .header-nav {
     max-width: 48rem;
     justify-content: flex-end;
-    align-items: flex-end;
+    align-items: center;
     top: -0.4rem;
     left: -2rem;
   }

@@ -2,18 +2,17 @@
 
 <div class="services-container">
     <nav class="sidebar">
-        <div class="dropdown-header" onclick="toggleDropdown()">
-            <div class="dropdown-title">
-                <img src="../../img/headers/services-headers/services.png" alt="Services" />
-            </div>
-            <div class="dropdown-arrow">▼</div>
-        </div>
-
         <div class="sidebar-header">
             <img src="../../img/headers/services-headers/services.png" alt="Services" />
             <h1 class="sr-only">Services</h1>
         </div>
-
+        <div class="dropdown-header" onclick="toggleDropdown()">
+            <div class="dropdown-title">
+                <img src="../../img/headers/services-headers/services.png" alt="Services" />
+                <h1 class="sr-only">Services</h1>
+            </div>
+            <div class="dropdown-arrow">▼</div>
+        </div>
         <div class="dropdown-menu" id="navMenu">
             <div class="nav-item active" data-service="themes" onclick="showService('themes')">Themes</div>
             <div class="nav-item" data-service="pet-photos" onclick="showService('pet-photos')">Pet Photography</div>
@@ -70,6 +69,9 @@
                     <img src="../../img/themes/pets/pets-main.jpg" alt="Fancy Dog in a Top Hat" />
                     <h1 class="sr-only">Dog in a Top Hat Photo</h1>
                 </div>
+            </div>
+            <div class="action-buttons">
+                <a href="#contact" class="btn btn-primary">Contact Us</a>
             </div>
         </div>
         <div class="service-content" id="historical-pet">
