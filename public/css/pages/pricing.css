@@ -83,7 +83,7 @@ body {
 }
 
 .additional-options {
-  padding: 1rem 0.6rem
+  padding: 1rem 0.6rem;
 }
 
 .pricing-header,
@@ -183,8 +183,10 @@ body {
 }
 
 .sitting-fee-list {
-  padding: 0.2rem 2rem;
+  padding: 1rem 2rem;
   height: auto;
+  border: 2px solid #e8c775;
+  border-radius: 0.8rem;
 }
 
 .options-header img {
@@ -263,8 +265,6 @@ body {
   padding-top: 0.5rem;
 }
 
-
-
 .options-prices p {
   font-size: 10px;
   line-height: 1.4;
@@ -279,6 +279,16 @@ body {
   display: flex;
   flex-direction: column;
   align-items: flex-end;
+}
+
+#enlargements .print-sizes {
+  align-items: center;
+}
+
+.print-prices {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
 }
 
 .btn-primary {
@@ -329,98 +339,208 @@ body {
     padding: 0.2rem 0;
   }
 }
-/* 
+
+@media (min-width: 660px) {
+  .content-area {
+    padding-top: 1.8rem;
+  }
+
+  .pricing-header-container .pricing-header img {
+    max-width: 6rem;
+  }
+
+  .sitting-header img {
+    max-width: 8rem;
+    transition: max-width 0.3s ease;
+  }
+
+  .options-header img {
+    max-width: 14rem;
+    padding-bottom: 1rem;
+  }
+
+  .sitting-prices,
+  .options-grid-item h2 {
+    font-size: 18px;
+    transition: font-size 0.3s ease;
+  }
+
+  .options-grid-item h3 {
+    font-size: 16px;
+    transition: font-size 0.3s ease;
+  }
+
+  .sitting-description,
+  .additional-person,
+  .options-grid-item h4,
+  .options-prices p {
+    font-size: 14px;
+    transition: font-size 0.3s ease;
+  }
+
+  .price-list {
+    margin: 0 8rem;
+    transition: margin 0.3s ease;
+  }
+
+  .price-list img {
+    max-width: 5.6rem;
+    transition: max-width 0.3s ease;
+  }
+
+  .price-list #one-person img {
+    max-width: 6rem;
+    margin-bottom: 0.4rem;
+  }
+
+  .additional-options {
+    margin-bottom: 0.6rem;
+  }
+
+  .options {
+    gap: 0.6rem;
+  }
+
+  .options-grid-item {
+    min-height: 8rem;
+    padding: 1rem;
+  }
+
+  .options-grid-item img {
+    max-width: 8rem;
+    margin-bottom: 0.4rem;
+  }
+
+  #christmas .options-prices,
+  #package h3 {
+    padding: 0;
+  }
+
+  #christmas {
+    padding-bottom: 0.2rem;
+  }
+
+  #certificates h3 {
+    padding-bottom: 0;
+    line-height: 1.6;
+  }
+
+  #certificates h4 {
+    padding-top: 0.2rem;
+  }
+}
+
 @media (min-width: 1024px) {
   .pricing-container {
     max-width: 140rem;
-    height: calc(100vh - 4rem);
-    width: calc(100% - 4rem);
+    width: calc(100% - 2rem);
     margin: 2rem;
   }
 
+  .pricing-header-container {
+    margin-bottom: 0.8rem;
+  }
+
   .content-area {
-    padding: 1rem 2rem;
-    width: 100%;
-    min-width: 0;
-    height: 100%;
-    border: 4px solid #e8c775;
+    padding: 0.6rem 2rem;
+    max-height: none;
+    overflow-y: auto;
+    width: auto;
+    margin: 0;
+  }
+
+  .pricing-header-container .pricing-header img {
+    max-width: 7rem;
+    transition: max-width 0.3s ease;
+  }
+
+  .sitting-header img {
+    max-width: 9rem;
+    padding-bottom: 0.7rem;
+    transition: max-width 0.3s ease;
+  }
+
+  .options-header img {
+    max-width: 16rem;
+    padding-bottom: 0.6rem;
   }
 
   .prices {
     flex-direction: row;
     justify-content: space-between;
-    align-items: flex-start;
-    gap: 2rem;
+    align-items: stretch;
+    gap: 0.8rem;
+    height: 100%;
   }
 
   .sitting-pricing {
     width: 30%;
   }
 
+  .sitting-fees {
+    height: 100%;
+    justify-content: flex-start;
+  }
+
   .additional-options {
     width: 70%;
-    margin-right: 0;
+    margin: 0;
   }
 
-  .pricing-header img {
-    max-width: 14rem;
-  }
-
-  .sitting-header img {
-    max-width: 20rem;
-    padding-bottom: 0.9rem;
+  .sitting-prices,
+  .options-grid-item h2 {
+    font-size: 20px;
+    transition: font-size 0.3s ease;
   }
 
   .sitting-description,
-  .additional-person {
-    font-size: 20px;
+  .additional-person,
+  .options-grid-item h4,
+  .options-prices p,
+  .options-grid-item h3 {
+    font-size: 18px;
+    transition: font-size 0.3s ease;
   }
 
   .price-list {
     gap: 1rem;
-    margin-top: 1rem;
-    padding-bottom: 1rem;
+    margin: 0;
   }
 
   .price-list img {
-    max-width: 12rem;
-    height: 3.4rem;
+    max-width: 7rem;
+    transition: max-width 0.3s ease;
   }
 
   .price-list #one-person img {
-    max-width: 11.6rem;
-    height: 2.7rem;
-    margin-bottom: 8px;
+    max-width: 7.8rem;
+    margin-bottom: 0.5rem;
+    padding-left: 0.6rem;
   }
 
+  .people,
   .sitting-prices {
-    font-size: 22px;
+    width: auto;
   }
 
   .sitting-fee-list {
-    padding: 2rem;
+    padding: 1rem;
     border: 4px solid #e8c775;
-  }
-
-  .options-header img {
-    max-width: 36rem;
-    padding-bottom: 0.6rem;
   }
 
   .options-list .options {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
-    gap: 1.8rem;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.6rem;
   }
 
   .options-grid-item {
-    padding: 1rem;
     border: 4px solid #e8c775;
-    min-width: 20rem;
-    min-height: 18rem;
+    max-height: 9rem;
+    padding: 0;
   }
 
-  .options-grid-item h2 {
+  /* .options-grid-item h2 {
     font-size: 26px;
   }
 
@@ -434,11 +554,11 @@ body {
 
   .options-prices p {
     font-size: 18px;
-  }
+  } */
 
   .btn-primary {
     width: 30rem;
     height: 4rem;
     font-size: 20px;
   }
-} */
+}
