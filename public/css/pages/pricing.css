@@ -338,7 +338,7 @@ body {
 }
 
 /* Firefox */
-.pricing-container {
+.content-area {
   scrollbar-width: thin;
   scrollbar-color: #e8c775 #480204;
 }
