@@ -1,41 +1,48 @@
 export function initializeFaqPage() {
     console.log('Initializing faq page functionality...');
 
+    const questionItems = document.querySelectorAll('.question-item')
     const navItems = document.querySelectorAll('.nav-item');
     const faqContents = document.querySelectorAll('.faq-content');
 
-    const initialFaq = document.querySelector('.faq-content.active');
-    if (initialFaq) {
-        const initialFaqName = initialFaq.id;
-        const initialNavItem = document.querySelector(`.nav-item[data-faq="${initialFaqName}"]`);
-        if (initialNavItem) {
-            navItems.forEach(nav => nav.classList.remove('active'));
-            initialNavItem.classList.add('active');
-        }
-    } else {
-        if (navItems.length > 0) {
-            navItems[0].classList.add('active');
-            const firstFaqContent = document.getElementById(navItems[0].getAttribute('data-faq'));
-            if (firstFaqContent) {
-                firstFaqContent.classList.add('active');
-            }
-        }
-    }
+    // Initial setup: Ensure only the first item is active on page load
+    // This initial logic remains the same for desktop/first-load experience
+    questionItems.forEach(item => item.classList.remove('active'));
+    faqContents.forEach(content => content.classList.remove('active'));
+    navItems.forEach(nav => nav.classList.remove('active'));
 
     navItems.forEach(item => {
         item.addEventListener('click', function () {
-            const faqName = this.getAttribute('data-faq');
+            // Find the parent .question-item and the sibling .faq-content
+            const currentQuestionItem = this.closest('.question-item');
+            const targetContent = currentQuestionItem ? currentQuestionItem.querySelector('.faq-content') : null;
 
-            navItems.forEach(nav => nav.classList.remove('active'));
-            this.classList.add('active');
+            // Check if the current question is already active
+            const isActive = currentQuestionItem ? currentQuestionItem.classList.contains('active') : false;
 
-            faqContents.forEach(content => {
-                content.classList.remove('active');
-            });
+            if (isActive) {
+                // 1. If it's active, deactivate both the parent item, nav item, and content (to close the accordion)
+                if (currentQuestionItem) {
+                    currentQuestionItem.classList.remove('active');
+                }
+                this.classList.remove('active');
+                if (targetContent) {
+                    targetContent.classList.remove('active');
+                }
+            } else {
+                // 2. If it's NOT active, close ALL other items (reset)
+                questionItems.forEach(item => item.classList.remove('active'));
+                navItems.forEach(nav => nav.classList.remove('active'));
+                faqContents.forEach(content => content.classList.remove('active'));
 
-            const targetContent = document.getElementById(faqName);
-            if (targetContent) {
-                targetContent.classList.add('active');
+                // 3. Activate the clicked item and its content
+                if (currentQuestionItem) {
+                    currentQuestionItem.classList.add('active');
+                }
+                this.classList.add('active');
+                if (targetContent) {
+                    targetContent.classList.add('active');
+                }
             }
         });
     });
