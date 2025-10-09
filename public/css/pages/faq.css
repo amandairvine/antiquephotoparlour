@@ -23,8 +23,7 @@ body {
 }
 
 .faq-container {
-  max-width: 140rem;
-  gap: 1.2rem;
+  /* max-width: 140rem; */
   flex: 1;
   position: relative;
   overflow: hidden;
@@ -33,18 +32,19 @@ body {
   height: calc(100% - 4rem);
   box-sizing: border-box;
   display: flex;
+  flex-direction: column;
   background: linear-gradient(90deg, #480204 0%, #800407 50%, #480204 100%);
   box-shadow: 0px 6px 4px rgba(34, 0, 1, 0.8);
-  margin: 2rem;
+  padding: 0.6rem;
 }
 
 .sidebar {
-  padding: 2rem 0;
+  padding: 1rem 0;
   box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
   flex-shrink: 0;
-  width: min(52rem, 40vw);
-  min-width: 200px;
-  border: 4px solid #e8c775;
+  /* width: min(52rem, 40vw);
+  min-width: 200px; */
+  border: 2px solid #e8c775;
   border-radius: 1rem;
 }
 
@@ -55,17 +55,17 @@ body {
 }
 
 .faq-header img {
-  max-width: 14rem;
+  max-width: 16rem;
   height: auto;
-  padding-bottom: 1.2rem;
+  padding-bottom: 0.6rem;
 }
 
 .nav-item {
-  padding: 1.5rem 2rem;
+  padding: 1rem;
   cursor: pointer;
   border-left: 4px solid transparent;
   color: #fff;
-  font-size: 20px;
+  font-size: 10px;
   font-family: var(--font-brygada);
   font-weight: var(--weight-bold);
   font-style: normal;
@@ -86,12 +86,10 @@ body {
 
 .content-area {
   flex: 1;
-  padding: 2rem;
+  padding: 1rem;
   overflow-y: auto;
-  width: min(60rem, 40vw);
-  min-width: 0;
   height: 100%;
-  border: 4px solid #e8c775;
+  border: 2px solid #e8c775;
   border-radius: 1rem;
 }
 
@@ -101,10 +99,6 @@ body {
   justify-content: center;
   align-items: center;
   width: 100%;
-}
-
-.faq-header img {
-  max-width: 48rem;
 }
 
 .faq-content {
@@ -128,7 +122,7 @@ body {
 }
 
 .faq-content-header img {
-  max-width: 50rem;
+  max-width: 16rem;
 }
 
 #own-outfits .faq-content-header img {
@@ -155,7 +149,7 @@ body {
 
 .faq-content h1 {
   color: #fff;
-  font-size: 20px;
+  font-size: 10px;
   font-family: var(--font-brygada);
   font-weight: var(--weight-bold);
   font-style: normal;
@@ -163,34 +157,33 @@ body {
     1px 1px 0 #a20003;
   transition: transform 0.3s ease, font-size 0.5s ease-in-out;
   line-height: 1.2;
-  padding: 0 16rem;
   text-align: center;
 }
 
 .faq-content h2 {
   color: #fff;
-  font-size: 20px;
+  font-size: 11px;
   font-family: var(--font-brygada);
   font-weight: var(--weight-bold);
   font-style: normal;
   text-shadow: -1px -1px 0 #a20003, 1px -1px 0 #a20003, -1px 1px 0 #a20003,
     1px 1px 0 #a20003;
   transition: transform 0.3s ease, font-size 0.5s ease-in-out;
-  line-height: 1.6;
-  padding: 1rem;
+  line-height: 1.2;
+  padding: 0.4rem;
 }
 
 .faq-content p {
   color: #fff;
-  font-size: 18px;
+  font-size: 10px;
   font-family: var(--font-brygada);
   font-weight: var(--weight-bold);
   font-style: normal;
   text-shadow: -1px -1px 0 #a20003, 1px -1px 0 #a20003, -1px 1px 0 #a20003,
     1px 1px 0 #a20003;
   transition: transform 0.3s ease, font-size 0.5s ease-in-out;
-  line-height: 1.6;
-  padding: 0.6rem 0;
+  line-height: 1.2;
+  padding: 0.2rem 0;
 }
 
 .faq-content ul:first-of-type {
@@ -236,7 +229,7 @@ body {
 }
 
 .item-note {
-  padding: 1rem;
+  padding: 0.2rem;
 }
 
 .item-note .note {
@@ -245,20 +238,20 @@ body {
 }
 
 .item-note .note-section span {
-  font-size: 20px;
+  font-size: 10px;
 }
 
 .item-note p span {
-  font-size: 20px;
+  font-size: 10px;
 }
 
 .item-note > p:nth-child(2),
 .item-note > p:nth-child(3) {
-  padding-left: 1rem;
+  padding: 0.2rem 0 0.2rem 0.2rem;
 }
 
 p:nth-child(18) > span {
-  font-size: 20px;
+  font-size: 10px;
   font-style: italic;
 }
 
@@ -270,13 +263,12 @@ p:nth-child(18) > span {
   display: flex;
   justify-content: center;
   gap: 1rem;
-  margin-top: 1rem;
-  padding-bottom: 2rem;
+  margin-top: 0.8rem;
+  padding-bottom: 1rem;
   flex-wrap: wrap;
 }
 
 .btn {
-  padding: 12px 24px;
   border: none;
   border-radius: 25px;
   cursor: pointer;
@@ -290,15 +282,15 @@ p:nth-child(18) > span {
 }
 
 .btn-primary {
-  width: 30rem;
-  height: 4rem;
+  display: flex;
+  justify-content: center;
   border-radius: clamp(0.6rem, 1.5vw, 1.2rem);
   border: 2px solid #e8c775;
   background: linear-gradient(90deg, #480204 0%, #800407 50%, #480204 100%);
   box-shadow: 0px 6px 4px rgba(34, 0, 1, 0.8);
   z-index: 1;
-  font-size: 20px;
-  padding: 0.8rem 2rem;
+  font-size: 10px;
+  padding: 0.8rem;
   color: #fff;
   font-family: var(--font-brygada);
   font-weight: var(--weight-bold);
@@ -482,7 +474,7 @@ p:nth-child(18) > span {
   }
 }
 
-@media (max-width: 768px) {
+/* @media (max-width: 768px) {
   .faq-container {
     max-height: 50rem;
   }
@@ -507,4 +499,4 @@ p:nth-child(18) > span {
     flex: 1;
     overflow-y: auto;
   }
-}
+} */

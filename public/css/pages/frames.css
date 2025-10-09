@@ -1,0 +1,88 @@
+/* Frames CSS */
+
+body {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  transition: none;
+  background: linear-gradient(90deg, #480204 0%, #800407 50%, #480204 100%);
+}
+
+/* Screen reader only content */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.frames-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin-top: 1rem;
+}
+
+.content-area {
+  position: relative;
+  top: 0.4rem;
+  padding: 0 1rem 1rem;
+  max-height: 96%;
+  overflow-y: auto;
+  width: auto;
+  margin: 0 auto;
+}
+
+.frames {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  align-items: center;
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.frames-header-container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  border: 2px solid #e8c775;
+  border-radius: 0.8rem;
+  width: 100%;
+  max-width: 19rem;
+  margin: 0 auto;
+}
+
+.frames-header {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: linear-gradient(90deg, #480204 0%, #800407 50%, #480204 100%);
+  padding: 0.4rem 2rem;
+  border-radius: 0.8rem;
+  width: 100%;
+}
+
+.frames-header-container .frames-header img {
+  max-width: 4.8rem;
+}
