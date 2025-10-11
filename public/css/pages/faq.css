@@ -280,7 +280,7 @@ p {
   width: 100%;
 }
 
-.faq-content .content-section > .first-button {
+.first-button {
   margin: 0.4rem 0 0.8rem;
 }
 
@@ -288,7 +288,9 @@ p {
   padding-bottom: 0;
 }
 
-.content-section {
+.content-section,
+.image-section,
+.outfits-images {
   display: flex;
   flex-direction: column;
   gap: 0.4rem;
@@ -376,6 +378,11 @@ p {
     max-width: 40rem;
   }
 
+  .faq-header img {
+    max-width: 18rem;
+    height: auto;
+  }
+
   .faq-content.active .faq-content-header {
     display: flex;
   }
@@ -387,6 +394,10 @@ p {
 
   .questions {
     padding: 0.6rem 1.4rem;
+  }
+
+  .photo-caption {
+    padding-top: 0.4rem;
   }
 
   .nav-item.active h1 {
@@ -425,46 +436,114 @@ p {
   .nav-item.active {
     border: 2px solid #e8c775;
     border-radius: 0.6rem;
-    padding: 1rem;
+    padding: 1.2rem 1rem 1rem;
     margin: 0.6rem;
     background: linear-gradient(90deg, #480204 0%, #800407 50%, #480204 100%);
     box-shadow: 0px 2px 4px rgba(34, 0, 1, 0.8);
   }
 
   .faq-content-header img {
-    max-width: 16rem;
+    max-width: 20rem;
+  }
+
+  .faq-image {
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+  }
+
+  #outfits .faq-content.active .image-section .section-right {
+    justify-content: space-evenly;
+    margin-top: 1rem;
+  }
+
+  #pets .faq-content.active .image-section .faq-image {
+    width: 80%;
+  }
+
+  #pets .faq-content.active .image-section .section-right {
+    margin-top: 0.4rem;
+    margin-right: 0;
+  }
+
+  .image-section {
+    flex-direction: row;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    padding: 0rem 2.4rem;
+  }
+
+  .section-right {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin: 2rem 0.4rem;
+  }
+
+  .outfits-images {
+    display: flex;
+    flex-direction: row;
+    padding: 0rem 2.4rem;
+  }
+
+  .first-image {
+    padding: 0;
+  }
+
+  #outfits .faq-content.active > div > div.outfits-images > div:nth-child(2) {
+    width: 51%;
+  }
+
+  #accessibility
+    .faq-content.active
+    .content-section
+    .accessibility-section
+    > p {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    height: 100%;
   }
 
   #length .faq-content-header img {
-    max-width: 11rem;
+    max-width: 13rem;
   }
 
   #appointment .faq-content-header img {
-    max-width: 14.8rem;
-  }
-
-  #people .faq-content-header img {
-    max-width: 22rem;
-  }
-
-  #accessibility .faq-content-header img {
     max-width: 18rem;
   }
 
-  #sizing .faq-content-header img {
-    max-width: 14rem;
+  #people .faq-content-header img {
+    max-width: 26rem;
   }
 
-  #babies .faq-content-header img {
-    max-width: 14.6rem;
+  #accessibility .faq-content-header img {
+    max-width: 21rem;
+  }
+
+  #sizing .faq-content-header img {
+    max-width: 17rem;
   }
 
   #outfits .faq-content-header img {
-    max-width: 16rem;
+    max-width: 20rem;
+  }
+
+  #babies .faq-content-header img {
+    max-width: 18rem;
   }
 
   #hair-and-makeup .faq-content-header img {
-    max-width: 20rem;
+    max-width: 24rem;
+  }
+
+  #accessibility .nav-item.active {
+    padding-top: 1rem;
+  }
+
+  #pets .nav-item.active {
+    padding-top: 0.8rem;
   }
 
   #pets .faq-content.active p:nth-child(2) {
@@ -488,14 +567,16 @@ p {
   #length h1 br,
   #appointment .faq-content.active .item-note .note br:nth-child(2),
   #accessibility h1 br:first-of-type,
-  .photo-caption br,
+  #outfits .outfits-images .faq-image:nth-child(2) .photo-caption br,
   #babies h1:first-of-type br,
   #babies h1:nth-of-type(2) br:first-of-type,
   #babies h1:nth-of-type(2) br:last-of-type,
+  #babies h2 br:first-of-type,
+  #babies h2 br:last-of-type,
   #babies p br,
   #hair-and-makeup h1 br,
   #hair-and-makeup .faq-content.active p:nth-child(3) br,
-  #pets > div.faq-content.active > div > div.faq-image.first-image > p > br {
+  #pets .faq-content.active p:nth-child(2) br {
     display: none;
   }
 
@@ -512,6 +593,10 @@ p {
   .up-to-7,
   .over-8 {
     padding-bottom: 0.4rem;
+  }
+
+  #babies .faq-content.active h2 {
+    text-align: center;
   }
 
   .btn {
