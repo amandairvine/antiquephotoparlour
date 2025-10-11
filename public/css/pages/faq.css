@@ -26,8 +26,7 @@ body {
   flex: 1;
   position: relative;
   z-index: 1;
-  width: calc(100% - 4rem);
-  height: 100%;
+  height: 100vh;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
@@ -36,6 +35,7 @@ body {
   box-shadow: 0px 6px 4px rgba(34, 0, 1, 0.8);
   padding: 0.6rem;
   gap: 0.4rem;
+  animation: fadeIn 0.5s ease-in-out;
 }
 
 .content-area {
@@ -60,10 +60,11 @@ body {
   -webkit-overflow-scrolling: touch;
   border: 2px solid #e8c775;
   border-radius: 1rem;
-  max-height: calc(100vh - 24.4rem);
+  max-height: calc(100vh - 26.6rem);
   width: 100%;
   min-width: 17rem;
   max-width: 17rem;
+  margin-bottom: 5rem;
   background: linear-gradient(90deg, #480204 0%, #800407 50%, #480204 100%);
 }
 
@@ -73,6 +74,7 @@ body {
   align-items: flex-start;
   border: 2px solid #e8c775;
   border-radius: 0.8rem;
+  background: linear-gradient(90deg, #480204 0%, #800407 50%, #480204 100%);
   width: 100%;
   max-width: 17rem;
 }
@@ -92,8 +94,9 @@ body {
 .questions {
   display: flex;
   flex-direction: column;
-  padding: 1rem;
+  padding: 0.6rem 1rem;
   gap: 0.6rem;
+  animation: fadeIn 0.5s ease-in-out;
 }
 
 .question-item {
@@ -165,26 +168,14 @@ body {
 }
 
 .nav-item.active .faq-content-header {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-}
-
-.nav-item.active h2 {
   display: none;
-}
-
-.faq-content-header img {
-  max-width: 16rem;
 }
 
 .nav-item.active h2 {
   font-size: 11px;
 }
 
-.faq-content h1 {
+h1 {
   color: #fff;
   font-size: 11px;
   font-family: var(--font-brygada);
@@ -193,10 +184,9 @@ body {
     1px 1px 0 #a20003;
   line-height: 1.2;
   text-align: center;
-  /* margin-bottom: 0.6rem; */
 }
 
-.faq-content h2 {
+h2 {
   color: #fff;
   font-size: 11px;
   font-family: var(--font-brygada);
@@ -207,7 +197,7 @@ body {
   padding: 0.4rem 0;
 }
 
-.faq-content p {
+p {
   color: #fff;
   font-size: 10px;
   font-family: var(--font-brygada);
@@ -230,7 +220,8 @@ body {
   line-height: 1.6;
 }
 
-.faq-content ul li p {
+.faq-content ul li p,
+.item-note p span {
   font-size: 11px;
 }
 
@@ -238,6 +229,7 @@ body {
   font-size: 10px;
   font-style: italic;
   line-height: 1.2;
+  padding-left: 0.4rem;
 }
 
 .item-note .note {
@@ -245,8 +237,13 @@ body {
   padding-left: 0.4rem;
 }
 
-.item-note p span {
-  font-size: 11px;
+#sitting-fee .content-section ul li {
+  list-style-type: disc;
+  margin-left: 1rem;
+}
+
+#sitting-fee .content-section ul ul li {
+  margin-left: 2rem;
 }
 
 .btn {
@@ -291,17 +288,6 @@ body {
   padding-bottom: 0;
 }
 
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
 .content-section {
   display: flex;
   flex-direction: column;
@@ -325,28 +311,6 @@ body {
   text-align: center;
 }
 
-#own-outfits .faq-content-header img {
-  max-width: 72rem;
-}
-
-#people .faq-content-header img,
-#appointments .faq-content-header img {
-  max-width: 70rem;
-}
-
-#hair-makeup .faq-content-header img {
-  max-width: 60rem;
-}
-
-#sitting-time .faq-content-header img,
-#appointments .faq-content-header:nth-child(3) img {
-  max-width: 30rem;
-}
-
-#sizes .faq-content-header img {
-  max-width: 20rem;
-}
-
 .people-number {
   display: flex;
   flex-direction: column;
@@ -365,6 +329,14 @@ body {
   border-radius: clamp(0.6rem, 1.5vw, 1.2rem);
   border: 2px solid #e8c775;
   padding-bottom: 0.2rem;
+}
+
+#sitting-fee .faq-content.active ul ul li br,
+#sizing h1 br,
+#babies h1:nth-of-type(2) br:nth-of-type(2),
+#hair-and-makeup .faq-content.active p:nth-child(2) br,
+#pets .faq-content.active p:nth-child(2) br {
+  display: none;
 }
 
 /* WebKit browsers: Chrome, Safari, Edge */
@@ -388,344 +360,6 @@ body {
   scrollbar-color: #e8c775 #480204;
 }
 
-/* #own-outfits .faq-content-header img {
-  max-width: 72rem;
-}
-
-#people .faq-content-header img,
-#appointments .faq-content-header img {
-  max-width: 70rem;
-}
-
-#hair-makeup .faq-content-header img {
-  max-width: 60rem;
-}
-
-#sitting-time .faq-content-header img,
-#appointments .faq-content-header:nth-child(3) img {
-  max-width: 30rem;
-}
-
-#sizes .faq-content-header img {
-  max-width: 20rem;
-}
-
-.faq-content h1 {
-  color: #fff;
-  font-size: 10px;
-  font-family: var(--font-brygada);
-  font-weight: var(--weight-bold);
-  font-style: normal;
-  text-shadow: -1px -1px 0 #a20003, 1px -1px 0 #a20003, -1px 1px 0 #a20003,
-    1px 1px 0 #a20003;
-  transition: transform 0.3s ease, font-size 0.5s ease-in-out;
-  line-height: 1.2;
-  text-align: center;
-}
-
-.faq-content h2 {
-  color: #fff;
-  font-size: 11px;
-  font-family: var(--font-brygada);
-  font-weight: var(--weight-bold);
-  font-style: normal;
-  text-shadow: -1px -1px 0 #a20003, 1px -1px 0 #a20003, -1px 1px 0 #a20003,
-    1px 1px 0 #a20003;
-  transition: transform 0.3s ease, font-size 0.5s ease-in-out;
-  line-height: 1.2;
-  padding: 0.4rem;
-}
-
-.faq-content p {
-  color: #fff;
-  font-size: 10px;
-  font-family: var(--font-brygada);
-  font-weight: var(--weight-bold);
-  font-style: normal;
-  text-shadow: -1px -1px 0 #a20003, 1px -1px 0 #a20003, -1px 1px 0 #a20003,
-    1px 1px 0 #a20003;
-  transition: transform 0.3s ease, font-size 0.5s ease-in-out;
-  line-height: 1.2;
-  padding: 0.2rem 0;
-}
-
-.faq-content ul:first-of-type {
-  list-style-type: disc;
-}
-
-.content-section > ul {
-  padding: 0.4rem 0;
-}
-
-.faq-content ul li,
-.faq-content ul p {
-  color: #fff;
-  font-size: 20px;
-  font-family: var(--font-brygada);
-  font-weight: var(--weight-bold);
-  text-shadow: -1px -1px 0 #a20003, 1px -1px 0 #a20003, -1px 1px 0 #a20003,
-    1px 1px 0 #a20003;
-  transition: transform 0.3s ease, font-size 0.5s ease-in-out;
-  line-height: 1.6;
-}
-
-.faq-content ul li {
-  margin: 0 4rem;
-}
-
-.faq-content ul li p {
-  font-size: 18px;
-}
-
-.faq-content ul li ul li {
-  font-size: 18px;
-  font-style: italic;
-  margin: 0 2rem;
-  line-height: 1.2;
-}
-
-.faq-content .content-section {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-evenly;
-  height: 100%;
-}
-
-.item-note {
-  padding: 0.2rem;
-}
-
-.item-note .note {
-  font-style: italic;
-  padding: 0;
-}
-
-.item-note .note-section span {
-  font-size: 10px;
-}
-
-.item-note p span {
-  font-size: 10px;
-}
-
-.item-note > p:nth-child(2),
-.item-note > p:nth-child(3) {
-  padding: 0.2rem 0 0.2rem 0.2rem;
-}
-
-p:nth-child(18) > span {
-  font-size: 10px;
-  font-style: italic;
-}
-
-#sitting-look p:nth-child(18) {
-  text-align: center;
-}
-
-.action-buttons {
-  display: flex;
-  justify-content: center;
-  gap: 1rem;
-  margin-top: 0.8rem;
-  padding-bottom: 1rem;
-  flex-wrap: wrap;
-}
-
-.btn {
-  border: none;
-  border-radius: 25px;
-  cursor: pointer;
-  font-size: 1rem;
-  font-weight: bold;
-  text-decoration: none;
-  display: inline-block;
-  text-align: center;
-  transition: transform 0.3s ease, width 0.5s ease-in-out,
-    height 0.5s ease-in-out;
-}
-
-.btn-primary {
-  display: flex;
-  justify-content: center;
-  border-radius: clamp(0.6rem, 1.5vw, 1.2rem);
-  border: 2px solid #e8c775;
-  background: linear-gradient(90deg, #480204 0%, #800407 50%, #480204 100%);
-  box-shadow: 0px 6px 4px rgba(34, 0, 1, 0.8);
-  z-index: 1;
-  font-size: 10px;
-  padding: 0.8rem;
-  color: #fff;
-  font-family: var(--font-brygada);
-  font-weight: var(--weight-bold);
-  font-style: normal;
-  text-shadow: -1px -1px 0 #a20003, 1px -1px 0 #a20003, -1px 1px 0 #a20003,
-    1px 1px 0 #a20003;
-  transition: transform 0.3s ease, width 0.5s ease-in-out,
-    height 0.5s ease-in-out;
-}
-
-.btn-primary:hover {
-  transform: scale(1.05);
-}
-
-#appointments .btn-primary,
-#people .btn-primary,
-#faq-content .btn-primary,
-#sizes .btn-primary {
-  width: 20rem;
-}
-
-#sitting-time .btn-primary,
-#hair-makeup .btn-primary {
-  width: 44rem;
-}
-
-#own-outfits .btn-primary {
-  width: 62rem;
-}
-
-#own-outfits .no-theme img {
-  border-radius: clamp(0.6rem, 1.5vw, 1.2rem);
-  border: 2px solid #e8c775;
-}
-
-.no-theme {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  width: 100%;
-  height: 100%;
-  gap: 2rem;
-  padding: 1rem 2rem;
-}
-
-#family {
-  width: 60%;
-}
-
-#hippies {
-  width: 40%;
-}
-
-#accessibility .wheelchair {
-  display: flex;
-  flex-direction: row;
-  gap: 4rem;
-  padding: 1rem 0 0;
-}
-
-#accessibility .wheelchair img {
-  width: 20rem;
-  border-radius: clamp(0.6rem, 1.5vw, 1.2rem);
-  border: 2px solid #e8c775;
-}
-
-#accessibility .wheelchair-photo .photo-caption {
-  font-size: 16px;
-  padding: 0;
-  line-height: 1.2;
-  text-align: center;
-  width: 20rem;
-}
-
-#accessibility h1 {
-  padding: 0;
-}
-
-#accessibility .accessibility-section p {
-  padding: 0.4rem;
-}
-
-#own-outfits p:nth-child(4) {
-  text-align: center;
-}
-
-#own-outfits p:nth-child(4) span {
-  font-size: 20px;
-  font-style: italic;
-}
-
-#appointments .item-note {
-  padding: 1rem 4rem;
-}
-
-#appointments > div.item-note > p {
-  padding: 0;
-  font-size: 18px;
-  line-height: 1.4;
-  text-align: center;
-}
-
-.people-number {
-  display: flex;
-  justify-content: center;
-  align-items: stretch;
-  margin: 1rem 2rem 0;
-  padding: 2rem 0 1rem;
-  gap: 2rem;
-}
-
-.up-to-7,
-.over-8 {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  border-radius: clamp(0.6rem, 1.5vw, 1.2rem);
-  border: 2px solid #e8c775;
-}
-
-.people-number h2 {
-  margin-bottom: 0.6rem;
-}
-
-.people-number .up-to-7 p:first-of-type {
-  padding: 0 0 0.29rem;
-}
-
-.people-number .up-to-7 h2,
-.people-number .over-8 h2,
-.people-number .over-8 p {
-  padding: 0;
-}
-
-#appointments > p {
-  text-align: center;
-}
-
-#babies h1 {
-  padding-top: 1rem;
-}
-
-#babies ul li p {
-  font-size: 20px;
-}
-
-#babies .buttons {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-evenly;
-}
-
-#babies .content-section > p {
-  text-align: center;
-  line-height: 1.2;
-  padding-bottom: 0;
-}
-
-#pets h1 {
-  padding: 2rem 0 1rem;
-}
-
-#hair-makeup h1 {
-  padding: 1rem 12rem;
-}
-
-#hair-makeup p:nth-child(3) {
-  padding-top: 2rem;
-} */
-
 @keyframes fadeIn {
   from {
     opacity: 0;
@@ -734,5 +368,154 @@ p:nth-child(18) > span {
   to {
     opacity: 1;
     transform: translateY(0);
+  }
+}
+
+@media (min-width: 660px) {
+  .faq-header-container {
+    max-width: 40rem;
+  }
+
+  .faq-content.active .faq-content-header {
+    display: flex;
+  }
+
+  .sidebar {
+    min-width: 40rem;
+    max-height: calc(100vh - 32.2rem);
+  }
+
+  .questions {
+    padding: 0.6rem 1.4rem;
+  }
+
+  .nav-item.active h1 {
+    display: none;
+  }
+
+  h1 {
+    font-size: 14px;
+  }
+
+  .faq-content ul li p {
+    font-size: 14px;
+  }
+
+  .item-note p span {
+    font-size: 13px;
+  }
+
+  h2,
+  p,
+  ul li,
+  .faq-content ul li ul li p,
+  .faq-content ul li,
+  .photo-caption {
+    font-size: 12px;
+  }
+
+  .nav-item.active .faq-content-header {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+  }
+
+  .nav-item.active {
+    border: 2px solid #e8c775;
+    border-radius: 0.6rem;
+    padding: 1rem;
+    margin: 0.6rem;
+    background: linear-gradient(90deg, #480204 0%, #800407 50%, #480204 100%);
+    box-shadow: 0px 2px 4px rgba(34, 0, 1, 0.8);
+  }
+
+  .faq-content-header img {
+    max-width: 16rem;
+  }
+
+  #length .faq-content-header img {
+    max-width: 11rem;
+  }
+
+  #appointment .faq-content-header img {
+    max-width: 14.8rem;
+  }
+
+  #people .faq-content-header img {
+    max-width: 22rem;
+  }
+
+  #accessibility .faq-content-header img {
+    max-width: 18rem;
+  }
+
+  #sizing .faq-content-header img {
+    max-width: 14rem;
+  }
+
+  #babies .faq-content-header img {
+    max-width: 14.6rem;
+  }
+
+  #outfits .faq-content-header img {
+    max-width: 16rem;
+  }
+
+  #hair-and-makeup .faq-content-header img {
+    max-width: 20rem;
+  }
+
+  #pets .faq-content.active p:nth-child(2) {
+    display: flex;
+    align-items: center;
+    text-align: center;
+  }
+
+  #pets .faq-content.active .faq-image.first-image p {
+    display: block;
+  }
+
+  #sitting-fee .faq-content.active ul ul li br,
+  #sizing h1 br,
+  #babies h1:nth-of-type(2) br:nth-of-type(2),
+  #hair-and-makeup .faq-content.active p:nth-child(2) br,
+  #pets .faq-content.active p:nth-child(2) br {
+    display: block;
+  }
+
+  #length h1 br,
+  #appointment .faq-content.active .item-note .note br:nth-child(2),
+  #accessibility h1 br:first-of-type,
+  .photo-caption br,
+  #babies h1:first-of-type br,
+  #babies h1:nth-of-type(2) br:first-of-type,
+  #babies h1:nth-of-type(2) br:last-of-type,
+  #babies p br,
+  #hair-and-makeup h1 br,
+  #hair-and-makeup .faq-content.active p:nth-child(3) br,
+  #pets > div.faq-content.active > div > div.faq-image.first-image > p > br {
+    display: none;
+  }
+
+  #pets .content-section .pets-content-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .people-number {
+    flex-direction: row;
+  }
+
+  .up-to-7,
+  .over-8 {
+    padding-bottom: 0.4rem;
+  }
+
+  .btn {
+    font-size: 14px;
+    width: 10rem;
   }
 }
