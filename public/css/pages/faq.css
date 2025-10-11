@@ -337,7 +337,8 @@ p {
 #sizing h1 br,
 #babies h1:nth-of-type(2) br:nth-of-type(2),
 #hair-and-makeup .faq-content.active p:nth-child(2) br,
-#pets .faq-content.active p:nth-child(2) br {
+#pets .faq-content.active p:nth-child(2) br,
+.answers {
   display: none;
 }
 
@@ -602,5 +603,48 @@ p {
   .btn {
     font-size: 14px;
     width: 10rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .content-area {
+    display: flex;
+    flex-direction: row;
+  }
+
+  .sidebar {
+    min-width: 0;
+  }
+
+  .faq-answers {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .faq-answers .sidebar {
+    margin: 0;
+    height: calc(100vh - 32.2rem);
+  }
+
+  .faq-answers .question-item {
+    display: none;
+  }
+
+  .faq-answers .question-item.show {
+    display: block;
+  }
+
+  .faq-answers .question-item.active {
+    border: 0;
+  }
+
+  .faq-answers .nav-item {
+    display: block;
+    border: none;
+    box-shadow: none;
+  }
+
+  .faq-answers .nav-item.hover {
+    background: none;
   }
 }
