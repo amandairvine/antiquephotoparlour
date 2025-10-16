@@ -360,6 +360,10 @@ h2 {
   display: none;
 }
 
+.faq-image-large {
+  display: none;
+}
+
 /* WebKit browsers: Chrome, Safari, Edge */
 .content-area::-webkit-scrollbar {
   width: 0.2rem;
@@ -436,8 +440,7 @@ h2 {
     font-size: 14px;
   }
 
-  ul li,
-  .faq-content ul li,
+  .faq-container ul li,
   .faq-content ul li p,
   .item-note p span,
   .faq-container p,
@@ -747,11 +750,14 @@ h2 {
 
   h2,
   .faq-container p,
-  ul li,
+  .faq-container ul li,
   .faq-content ul li ul li p,
-  .item-note .note,
-  .photo-caption {
+  .item-note .note {
     font-size: 14px;
+  }
+
+  .faq-container .photo-caption {
+    font-size: 13px;
   }
 
   .content-section {
@@ -870,26 +876,81 @@ h2 {
   }
 
   .outfits-images {
-    flex-direction: column;
-    gap: 0.8rem;
-    padding-bottom: 0.8rem;
+    flex-direction: row;
+    gap: 1rem;
+    padding: 0 0 0.2rem;
+    max-height: 12rem;
   }
 
   .faq-image {
     width: 100%;
-    padding: 0rem 2.8rem;
+    /* padding: 0rem 1rem; */
   }
 
-  #outfits-answer .nav-item .content-section .outfits-images .faq-image {
+  .image-section {
+    flex-direction: row;
+  }
+
+  #outfits-answer .first-image {
+    width: 120%;
+  }
+
+  #outfits-answer
+    > div
+    > div
+    > div.faq-answer-content
+    > div.outfits-images
+    > div:nth-child(2),
+  #outfits-answer
+    > div
+    > div
+    > div.faq-answer-content
+    > div.image-section
+    > .faq-image {
     padding: 0;
+  }
+
+  #outfits-answer
+    > div
+    > div
+    > div.faq-answer-content
+    > div.outfits-images
+    > div:nth-child(2) {
+    position: relative;
+    top: 4rem;
+    width: 120%;
+  }
+
+  #outfits-answer > div > div > div.faq-answer-content > div.image-section {
+    width: 209px;
+    position: relative;
+    top: 0rem;
   }
 
   .large-br {
     display: inline;
   }
 
-  .xl-br {
+  .xl-br,
+  .xxl-br {
     display: none;
+  }
+
+  .accessibility-text {
+    width: 50%;
+  }
+
+  #accessibility-answer .image-section {
+    width: 100%;
+    gap: 1rem;
+  }
+
+  #accessibility-answer .image-section .faq-image {
+    width: 209px;
+  }
+
+  #pets-answer .image-section {
+    gap: 1rem;
   }
 }
 
@@ -1012,12 +1073,15 @@ h2 {
 
   h2,
   .faq-container p,
-  ul li,
+  .faq-container ul li,
   .faq-content ul li ul li p,
-  .item-note .note,
-  .photo-caption {
+  .item-note .note {
     font-size: 16px;
     line-height: 1.6;
+  }
+
+  .faq-container .photo-caption {
+    font-size: 15px;
   }
 
   .btn {
@@ -1027,7 +1091,8 @@ h2 {
     border-radius: 0.8rem;
   }
 
-  .large-br {
+  .large-br,
+  .xxl-br {
     display: none;
   }
 
@@ -1038,8 +1103,154 @@ h2 {
   .people-number {
     flex-direction: row;
   }
+
+  .accessibility-text {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    padding-top: 2rem;
+  }
+
+  #accessibility-answer .image-section {
+    gap: 2rem;
+  }
+
+  #accessibility-answer .image-section .faq-image {
+    width: 16rem;
+  }
+
+  #outfits-answer
+    > div
+    > div
+    > div.faq-answer-content
+    > div:nth-child(2)
+    > div.outfits-images
+    > div.faq-image.first-image {
+    display: none;
+  }
+
+  .faq-image-large {
+    display: block;
+    width: 40%;
+  }
+
+  .faq-image-large img {
+    width: 100%;
+    border-radius: clamp(0.6rem, 1.5vw, 1.2rem);
+    border: 2px solid #e8c775;
+  }
+
+  .outfits-images {
+    max-height: none;
+    width: 30%;
+  }
+
+  #outfits-answer > div > div > div.faq-answer-content > div.image-section,
+  #outfits-answer
+    > div
+    > div
+    > div.faq-answer-content
+    > div.outfits-images
+    > div:nth-child(2) {
+    width: 100%;
+    position: static;
+  }
+
+  #outfits-answer .image-section {
+    width: 30%;
+  }
+
+  #outfits-answer .outfits-images .faq-image {
+    width: 100%;
+  }
+
+  #outfits-answer > div > div > div.faq-answer-content > div:nth-child(2) {
+    display: flex;
+    gap: 1rem;
+    width: 100%;
+  }
+
+  #outfits-answer .faq-image img {
+    min-height: 21rem;
+  }
+
+  #pets-answer .faq-answer-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  #pets-answer .image-section {
+    width: 64%;
+    gap: 2rem;
+  }
+
+  /* #pets-answer .faq-image {
+    width: 40%;
+  } */
 }
 
 @media (min-width: 1920px) {
-  
+  .content-area {
+    max-width: 116rem;
+  }
+
+  .faq-header-large {
+    padding: 0.6rem 5.3rem;
+  }
+
+  .faq-header-large img {
+    max-width: 29rem;
+  }
+
+  .faq-questions .questions {
+    padding: 6rem 0.6rem 1rem;
+  }
+
+  .faq-questions {
+    max-height: calc(100vh - 29rem);
+  }
+
+  .faq-questions .sidebar {
+    max-height: calc(100vh - 29.6rem);
+  }
+
+  .faq-answers {
+    max-height: calc(100vh - 29rem);
+  }
+
+  .item-note p span {
+    font-size: 20px;
+    line-height: 1.6;
+    padding: 0;
+  }
+
+  .item-note .note {
+    font-size: 19px;
+  }
+
+  h2,
+  .faq-container p,
+  .faq-container ul li,
+  .faq-content ul li ul li p,
+  .photo-caption {
+    font-size: 18px;
+    line-height: 1.6;
+  }
+
+  .btn {
+    font-size: 20px;
+    width: 16rem;
+    height: 3rem;
+    border-radius: 0.8rem;
+  }
+
+  .large-br,
+  .xl-br {
+    display: none;
+  }
+
+  .xxl-br {
+    display: inline;
+  }
 }
