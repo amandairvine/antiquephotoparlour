@@ -470,6 +470,10 @@ h2 {
     box-shadow: 0px 2px 4px rgba(34, 0, 1, 0.8);
   }
 
+  .faq-answers .sidebar {
+    border: 5px solid #e8c775;
+  }
+
   .faq-content-header img {
     max-width: 20rem;
   }
@@ -478,6 +482,12 @@ h2 {
     display: flex;
     flex-direction: column;
     width: 90%;
+    height: 100%;
+  }
+
+  #accessibility .faq-content.active .image-section .section-right {
+    margin-top: 2.2rem;
+    gap: 1.2rem;
   }
 
   #outfits .faq-content.active .image-section .section-right {
@@ -489,7 +499,6 @@ h2 {
   }
 
   #pets .faq-content.active .image-section .section-right {
-    margin-top: 0.4rem;
     margin-right: 0;
   }
 
@@ -498,7 +507,6 @@ h2 {
     justify-content: center;
     width: 100%;
     height: 100%;
-    padding: 0rem 2.4rem;
   }
 
   .section-right {
@@ -518,19 +526,56 @@ h2 {
     padding: 0;
   }
 
-  #outfits .faq-content.active > div > div.outfits-images > div:nth-child(2) {
-    width: 51%;
+  .faq-questions .faq-answer-header {
+    margin: 0.2rem 0;
   }
 
-  #accessibility
-    .faq-content.active
-    .content-section
-    .accessibility-section
-    > p {
+  .faq-content.active .content-section > ul {
     display: flex;
     flex-direction: column;
-    width: 50%;
+    gap: 0.6rem;
+  }
+
+  #accessibility .faq-content.active .image-section {
+    gap: 1.6rem;
+    padding: 0 0 0 1.8rem;
     height: 100%;
+  }
+
+  #accessibility .faq-content.active .image-section .faq-image {
+    width: 38%;
+  }
+
+  #accessibility .faq-content.active .image-section .section-right {
+    width: 50%;
+    margin: 2.2rem 0 0;
+  }
+
+  #outfits .faq-content.active .section-right {
+    margin: 0.6rem 0.4rem 0;
+  }
+
+  #outfits .image-section {
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+  }
+
+  #outfits .faq-image:first-of-type,
+  #outfits .faq-image:last-of-type {
+    width: 70%;
+    height: auto;
+  }
+
+  #outfits .faq-image:nth-of-type(2) {
+    margin: auto 0;
+  }
+
+  #outfits .faq-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
   }
 
   #length .faq-content-header img {
@@ -632,6 +677,7 @@ h2 {
 
   .faq-header img {
     max-width: 22rem;
+    transition: max-width 0.3s ease;
   }
 
   .content-area {
@@ -642,6 +688,7 @@ h2 {
     height: 100%;
     width: 100%;
     max-width: 56rem;
+    transition: max-width 0.3s ease;
   }
 
   .faq-answers {
@@ -649,6 +696,7 @@ h2 {
     flex-direction: column;
     height: 100%;
     max-height: calc(100vh - 26rem);
+    transition: max-height 0.3s ease;
     width: 54%;
   }
 
@@ -656,6 +704,7 @@ h2 {
     height: 100%;
     width: 46%;
     max-height: calc(100vh - 26rem);
+    transition: max-height 0.3s ease;
   }
 
   .sidebar {
@@ -668,12 +717,14 @@ h2 {
   .faq-answers .sidebar {
     min-height: 100%;
     min-width: 100%;
+    transition: min-height 0.3s ease, min-width 0.3s ease;
   }
 
   .faq-questions .sidebar {
     min-height: 100%;
     max-height: calc(100vh - 29rem);
     min-width: 100%;
+    transition: max-height 0.3s ease;
   }
 
   .faq-answers .question-item {
@@ -702,6 +753,7 @@ h2 {
   .faq-header-container {
     max-width: 56rem;
     border: 4px solid #e8c775;
+    transition: max-width 0.3s ease;
   }
 
   .nav-item {
@@ -714,6 +766,7 @@ h2 {
 
   .questions {
     padding: 0.6rem;
+    transition: padding 0.3s ease;
   }
 
   .faq-answers .question-item.active .nav-item,
@@ -724,6 +777,7 @@ h2 {
   .faq-answer-content {
     height: auto;
     max-height: none;
+    transition: height 0.3s ease;
   }
 
   .faq-answer-content {
@@ -733,6 +787,12 @@ h2 {
     height: 100%;
     max-height: none;
     gap: 0.6rem;
+  }
+
+  .faq-answer-content > ul {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
   }
 
   #length-answer ul li ul li,
@@ -782,6 +842,7 @@ h2 {
 
   .faq-content-header img {
     max-width: 23rem;
+    transition: max-width 0.3s ease;
   }
 
   .faq-answer-header {
@@ -835,6 +896,7 @@ h2 {
   #sitting-fee-answer ul {
     list-style: disc;
     padding-left: 2rem;
+    gap: 0.6rem;
   }
 
   #sitting-fee-answer ul ul {
@@ -856,8 +918,8 @@ h2 {
 
   .btn {
     font-size: 16px;
-    width: 12rem;
-    height: 3rem;
+    width: 11rem;
+    height: 2.6rem;
   }
 
   .people-number {
@@ -870,61 +932,13 @@ h2 {
     justify-content: space-evenly;
   }
 
-  .image-section {
-    flex-direction: column;
-    padding: 0;
+  #pets-answer .image-section {
+    gap: 0.4rem;
   }
 
-  .outfits-images {
-    flex-direction: row;
+  #pets-answer .section-right {
+    margin: 1rem 0.4rem;
     gap: 1rem;
-    padding: 0 0 0.2rem;
-    max-height: 12rem;
-  }
-
-  .faq-image {
-    width: 100%;
-    /* padding: 0rem 1rem; */
-  }
-
-  .image-section {
-    flex-direction: row;
-  }
-
-  #outfits-answer .first-image {
-    width: 120%;
-  }
-
-  #outfits-answer
-    > div
-    > div
-    > div.faq-answer-content
-    > div.outfits-images
-    > div:nth-child(2),
-  #outfits-answer
-    > div
-    > div
-    > div.faq-answer-content
-    > div.image-section
-    > .faq-image {
-    padding: 0;
-  }
-
-  #outfits-answer
-    > div
-    > div
-    > div.faq-answer-content
-    > div.outfits-images
-    > div:nth-child(2) {
-    position: relative;
-    top: 4rem;
-    width: 120%;
-  }
-
-  #outfits-answer > div > div > div.faq-answer-content > div.image-section {
-    width: 209px;
-    position: relative;
-    top: 0rem;
   }
 
   .large-br {
@@ -937,7 +951,11 @@ h2 {
   }
 
   .accessibility-text {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
     width: 50%;
+    margin-top: 1.4rem;
   }
 
   #accessibility-answer .image-section {
@@ -946,11 +964,44 @@ h2 {
   }
 
   #accessibility-answer .image-section .faq-image {
-    width: 209px;
+    width: 11.2rem;
   }
 
-  #pets-answer .image-section {
-    gap: 1rem;
+  #outfits-answer .image-section {
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+  }
+
+  #outfits-answer .image-section .faq-image:first-of-type,
+  #outfits-answer .image-section .faq-image:last-of-type {
+    width: 70%;
+    height: auto;
+  }
+
+  #outfits-answer .faq-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
+
+  #outfits-answer .large-image {
+    width: 100%;
+  }
+
+  #outfits-answer .large-image .faq-image {
+    display: flex;
+    align-items: center;
+    width: 100%;
+  }
+
+  #outfits-answer .large-image .faq-image img {
+    width: 60%;
+  }
+
+  #outfits-answer .image-section .faq-image:nth-child(2) {
+    display: none;
   }
 }
 
@@ -971,6 +1022,7 @@ h2 {
     border: none;
     position: relative;
     z-index: 1;
+    transition: max-height 0.3s ease;
   }
 
   .faq-header-large {
@@ -984,15 +1036,22 @@ h2 {
     left: 0;
     top: 0;
     z-index: 100;
+    transition: padding 0.1s ease;
   }
 
   .faq-header-large img {
     max-width: 24rem;
+    transition: max-width 0.3s ease;
+  }
+
+  .faq-answer-header {
+    margin: 0;
   }
 
   .faq-answers {
     width: 65%;
     max-height: calc(100vh - 27rem);
+    transition: max-height 0.3s ease, width 0.3s ease;
   }
 
   .faq-questions {
@@ -1000,6 +1059,7 @@ h2 {
     max-height: calc(100vh - 27rem);
     border: 5px solid #e8c775;
     border-radius: 1rem;
+    transition: max-height 0.3s ease, width 0.3s ease;
   }
 
   .faq-questions .nav-item {
@@ -1009,10 +1069,16 @@ h2 {
 
   .faq-questions .questions {
     padding: 5.4rem 0.6rem 1rem;
+    transition: padding 0.3s ease;
   }
 
   .questions {
     gap: 1rem;
+  }
+
+  .faq-answers .nav-item {
+    padding: 0.4rem 2rem;
+    transition: padding 0.3s ease;
   }
 
   .faq-content-header img {
@@ -1065,15 +1131,15 @@ h2 {
     padding: 0;
   }
 
+  h2,
+  .faq-container ul li,
   .item-note p span {
     font-size: 18px;
     line-height: 1.6;
     padding: 0;
   }
 
-  h2,
   .faq-container p,
-  .faq-container ul li,
   .faq-content ul li ul li p,
   .item-note .note {
     font-size: 16px;
@@ -1082,6 +1148,7 @@ h2 {
 
   .faq-container .photo-caption {
     font-size: 15px;
+    line-height: 1.4;
   }
 
   .btn {
@@ -1102,76 +1169,47 @@ h2 {
 
   .people-number {
     flex-direction: row;
+    padding: 1rem 0;
   }
 
   .accessibility-text {
     display: flex;
     flex-direction: column;
     gap: 2rem;
-    padding-top: 2rem;
+    width: 40%;
   }
 
   #accessibility-answer .image-section {
     gap: 2rem;
+    padding-left: 2rem;
   }
 
   #accessibility-answer .image-section .faq-image {
     width: 16rem;
   }
 
-  #outfits-answer
-    > div
-    > div
-    > div.faq-answer-content
-    > div:nth-child(2)
-    > div.outfits-images
-    > div.faq-image.first-image {
+  #sitting-fee-answer ul li {
+    padding: 0;
+  }
+
+  .large-image {
     display: none;
   }
 
-  .faq-image-large {
+  #outfits-answer .image-section .faq-image:first-of-type,
+  #outfits-answer .image-section .faq-image:last-of-type {
+    width: 70%;
+  }
+
+  #outfits-answer .image-section .faq-image:nth-child(2) {
     display: block;
-    width: 40%;
+    margin: auto 0;
   }
 
-  .faq-image-large img {
-    width: 100%;
-    border-radius: clamp(0.6rem, 1.5vw, 1.2rem);
-    border: 2px solid #e8c775;
-  }
-
-  .outfits-images {
-    max-height: none;
-    width: 30%;
-  }
-
-  #outfits-answer > div > div > div.faq-answer-content > div.image-section,
-  #outfits-answer
-    > div
-    > div
-    > div.faq-answer-content
-    > div.outfits-images
-    > div:nth-child(2) {
-    width: 100%;
-    position: static;
-  }
-
-  #outfits-answer .image-section {
-    width: 30%;
-  }
-
-  #outfits-answer .outfits-images .faq-image {
-    width: 100%;
-  }
-
-  #outfits-answer > div > div > div.faq-answer-content > div:nth-child(2) {
+  .faq-answer-content > ul {
     display: flex;
+    flex-direction: column;
     gap: 1rem;
-    width: 100%;
-  }
-
-  #outfits-answer .faq-image img {
-    min-height: 21rem;
   }
 
   #pets-answer .faq-answer-content {
@@ -1181,69 +1219,164 @@ h2 {
   }
 
   #pets-answer .image-section {
-    width: 64%;
     gap: 2rem;
   }
 
-  /* #pets-answer .faq-image {
-    width: 40%;
-  } */
+  #pets-answer .image-section .faq-image {
+    width: 28%;
+  }
+
+  #pets-answer .section-right {
+    margin: 1.4rem 0.4rem;
+    gap: 2rem;
+  }
+}
+
+@media (min-width: 1536px) {
+  .faq-header-large {
+    padding: 0.8rem 0.6rem 0.6rem;
+    margin-left: 0;
+    transition: padding 0.3s ease;
+  }
+
+  .faq-header-large img {
+    max-width: 28rem;
+    transition: max-width 0.3s ease;
+  }
+
+  .faq-questions .questions {
+    padding-top: 5.8rem;
+  }
 }
 
 @media (min-width: 1920px) {
   .content-area {
-    max-width: 116rem;
+    max-width: 112rem;
+    position: relative;
+    transition: max-width 0.3s ease;
+  }
+
+  .faq-header-container {
+    display: flex;
+    min-width: 112rem;
+    border: 5px solid #e8c775;
+    border-radius: 1rem;
+    transition: min-width 0.6s ease;
+  }
+
+  .faq-header img {
+    max-width: 34rem;
+    transition: max-width 0.3s ease;
   }
 
   .faq-header-large {
-    padding: 0.6rem 5.3rem;
+    display: none;
   }
 
-  .faq-header-large img {
-    max-width: 29rem;
+  .faq-answer-header {
+    margin: 0.6rem 0;
+  }
+
+  .content-section h1 {
+    padding: 0;
   }
 
   .faq-questions .questions {
-    padding: 6rem 0.6rem 1rem;
+    padding: 1rem 2rem;
+    gap: 0.9rem;
   }
 
   .faq-questions {
-    max-height: calc(100vh - 29rem);
+    max-height: calc(100vh - 34rem);
+    transition: max-height 0.3s ease;
   }
 
   .faq-questions .sidebar {
-    max-height: calc(100vh - 29.6rem);
+    max-height: calc(100vh - 34.6rem);
+    transition: max-height 0.3s ease;
+  }
+
+  .faq-questions .nav-item {
+    height: 5rem;
   }
 
   .faq-answers {
-    max-height: calc(100vh - 29rem);
+    max-height: calc(100vh - 34rem);
   }
 
+  .faq-answers .questions {
+    padding-top: 1rem;
+  }
+
+  h1 {
+    font-size: 24px;
+  }
+
+  #sitting-fee-answer ul li,
+  h2,
   .item-note p span {
+    font-size: 22px;
+  }
+
+  .faq-container p,
+  .faq-container ul li,
+  .faq-content ul li ul li p,
+  .item-note .note {
     font-size: 20px;
     line-height: 1.6;
     padding: 0;
   }
 
-  .item-note .note {
-    font-size: 19px;
-  }
-
-  h2,
-  .faq-container p,
-  .faq-container ul li,
-  .faq-content ul li ul li p,
-  .photo-caption {
+  .faq-container .photo-caption {
     font-size: 18px;
-    line-height: 1.6;
   }
 
   .btn {
-    font-size: 20px;
+    font-size: 24px;
     width: 16rem;
     height: 3rem;
     border-radius: 0.8rem;
   }
+
+  .faq-content-header img {
+    max-width: 38rem;
+  }
+
+  #sitting-fee-answer .faq-content-header img {
+    max-width: 38.6rem;
+  }
+
+  #length-answer .faq-content-header img {
+    max-width: 26rem;
+  }
+
+  #appointment-answer .faq-content-header img {
+    max-width: 34rem;
+  }
+
+  /* #people-answer .faq-content-header img {
+    max-width: 40rem;
+  } */
+
+  #accessibility-answer .faq-content-header img {
+    max-width: 41rem;
+  }
+
+  #sizing-answer .faq-content-header img {
+    max-width: 34rem;
+  }
+
+  #outfits-answer .faq-content-header img {
+    max-width: 38rem;
+  }
+
+  #babies-answer .faq-content-header img {
+    max-width: 37rem;
+  }
+
+  /* #hair-and-makeup-answer .faq-content-header img {
+    max-width: 24rem;
+  } */
 
   .large-br,
   .xl-br {
@@ -1252,5 +1385,98 @@ h2 {
 
   .xxl-br {
     display: inline;
+  }
+
+  .faq-answer-content,
+  .faq-answer-content > ul,
+  #sitting-fee-answer ul {
+    gap: 1.6rem;
+  }
+
+  /* #sitting-fee-answer ul {
+    gap: 1.6rem;
+  } */
+
+  .accessibility-text {
+    margin-top: 4rem;
+    gap: 4rem;
+  }
+
+  #accessibility-answer .image-section {
+    padding-top: 1rem;
+  }
+
+  #accessibility-answer .image-section .faq-image {
+    width: 24rem;
+  }
+}
+
+@media (min-width: 1920px) and (max-height: 1040px) {
+  .faq-container {
+    align-items: flex-start;
+    position: absolute;
+    width: 100%;
+  }
+
+  .faq-header-container {
+    min-width: 0;
+    max-width: 39rem;
+    margin: 0 3rem;
+    transition: max-width 0.3s ease;
+  }
+
+  .faq-answers {
+    position: relative;
+    top: -6.6rem;
+    max-height: calc(100vh - 27.4rem);
+    transition: top 0.3s ease;
+  }
+
+  .faq-answer-content {
+    gap: 0.6rem;
+  }
+
+  #appointment-answer .faq-answer-content {
+    gap: 0.2rem;
+  }
+
+  #accessibility-answer .image-section .faq-image {
+    width: 16.2rem;
+  }
+
+  #accessibility-answer .accessibility-text {
+    margin-top: 2rem;
+  }
+
+  .photo-caption .xxl-br {
+    display: none;
+  }
+
+  #outfits-answer .image-section,
+  #pets-answer .image-section {
+    padding: 0 4rem;
+  }
+
+  #outfits-answer
+    > div
+    > div
+    > div.faq-answer-content
+    > div:nth-child(1)
+    > div
+    > div {
+    margin: 0;
+  }
+
+  #outfits-answer .button-section {
+    margin-top: 1rem;
+  }
+
+  #pets-answer .image-section .section-right {
+    width: 40%;
+    margin-bottom: 0;
+  }
+
+  #pets-answer .image-section .faq-image {
+    width: 24%;
   }
 }
