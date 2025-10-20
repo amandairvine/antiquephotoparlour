@@ -48,8 +48,8 @@ body {
   flex-grow: 1;
   min-height: 0;
   overflow-y: auto;
-  padding-right: 0.2rem;
   height: 100%;
+  cursor: pointer;
 }
 
 .sidebar {
@@ -94,7 +94,8 @@ body {
 .questions {
   display: flex;
   flex-direction: column;
-  padding: 0.6rem 1rem;
+  padding: 0.6rem;
+  cursor: default;
   gap: 0.6rem;
   animation: fadeIn 0.5s ease-in-out;
 }
@@ -119,6 +120,7 @@ body {
   box-shadow: 0px 2px 2px rgba(34, 0, 1, 0.8);
   border-radius: 0.8rem;
   text-align: center;
+  width: 100%;
   height: 2.8rem;
   color: #fff;
   font-size: 10px;
@@ -131,16 +133,37 @@ body {
   transition: transform 0.3s ease, font-size 0.5s ease-in-out;
 }
 
+.nav-item h1 {
+  margin: 0 auto;
+  flex-shrink: 0;
+  flex-grow: 0;
+}
+
 .nav-item:hover {
   background: rgba(212, 175, 55, 0.1);
 }
 
 .nav-item.active {
-  display: none;
+  display: flex;
   border: none;
   box-shadow: none;
   background: none;
   padding: 0.4rem 0.5rem 0;
+}
+
+.dropdown-arrow {
+  font-size: 0.8em;
+  margin-left: 0.2rem;
+  line-height: 1;
+  color: #e8c775;
+  text-shadow: none;
+  font-size: 14px;
+  transition: transform 0.3s ease;
+}
+
+.faq-questions .nav-item.active .dropdown-arrow,
+.faq-questions .nav-item.selected .dropdown-arrow {
+  transform: rotate(180deg) translate(0, 0.4rem);
 }
 
 .faq-header {
@@ -161,8 +184,7 @@ body {
   padding: 0 0.8rem 0.8rem;
 }
 
-.faq-content.active,
-.nav-item.active {
+.faq-content.active {
   display: flex;
   flex-direction: column;
 }
@@ -372,6 +394,7 @@ h2 {
   background-color: #e8c775;
   border-radius: 6px;
   border: 6px solid #e8c775;
+  cursor: pointer;
 }
 
 .content-area::-webkit-scrollbar-thumb:hover {
@@ -424,6 +447,7 @@ h2 {
 
   .questions {
     padding: 0.6rem 1.4rem;
+    cursor: default;
   }
 
   .photo-caption {
@@ -465,8 +489,14 @@ h2 {
     border-radius: 0.6rem;
     padding: 1.2rem 1rem 1rem;
     margin: 0.6rem;
+    width: 97%;
     background: linear-gradient(90deg, #480204 0%, #800407 50%, #480204 100%);
     box-shadow: 0px 2px 4px rgba(34, 0, 1, 0.8);
+  }
+
+  .faq-questions .nav-item.active .dropdown-arrow,
+  .faq-questions .nav-item.selected .dropdown-arrow {
+    transform: rotate(180deg) translate(-0.6rem, 0.2rem);
   }
 
   .faq-answers .sidebar {
@@ -758,14 +788,19 @@ h2 {
     border: 0;
   }
 
+  .dropdown-arrow {
+    display: none;
+  }
+
   .faq-answers .nav-item {
     display: block;
     border: none;
     box-shadow: none;
     width: 100%;
+    cursor: default;
   }
 
-  .faq-answers .nav-item.hover {
+  .faq-answers .nav-item:hover {
     background: none;
   }
 
@@ -781,6 +816,11 @@ h2 {
 
   .faq-questions .nav-item:hover {
     transform: scale(102%);
+  }
+
+  .faq-questions .nav-item.selected {
+    transform: scale(102%);
+    background: rgba(212, 175, 55, 0.1);
   }
 
   .questions {
