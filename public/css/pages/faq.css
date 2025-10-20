@@ -133,7 +133,6 @@ body {
 
 .nav-item:hover {
   background: rgba(212, 175, 55, 0.1);
-  /* transform: translateX(5px); */
 }
 
 .nav-item.active {
@@ -665,6 +664,26 @@ h2 {
   }
 }
 
+@media (min-width: 660px) and (min-height: 1095px) {
+  .faq-questions {
+    display: flex;
+    height: calc(100vh - 30.8rem);
+  }
+
+  .faq-questions .sidebar {
+    max-height: none;
+    min-height: 100%;
+    height: 100%;
+  }
+
+  .questions {
+    padding: 1rem 1.4rem;
+    height: 100%;
+    justify-content: space-between;
+    transition: padding 0.3s ease-in-out;
+  }
+}
+
 @media (min-width: 1024px) {
   .faq-container {
     gap: 0.6rem;
@@ -861,9 +880,13 @@ h2 {
     max-width: 21rem;
   }
 
-  /* #people-answer .faq-content-header img {
-    max-width: 26rem;
-  } */
+  #people-answer .people-header-full img {
+    display: none;
+  }
+
+  #people-answer .people-header-short img {
+    max-width: 20rem;
+  }
 
   #accessibility-answer .faq-content-header img {
     max-width: 25rem;
@@ -881,9 +904,13 @@ h2 {
     max-width: 22rem;
   }
 
-  /* #hair-and-makeup-answer .faq-content-header img {
-    max-width: 28rem;
-  } */
+  #hair-and-makeup-answer .hair-and-makeup-header-full img {
+    display: none;
+  }
+
+  #hair-and-makeup-answer .hair-and-makeup-header-short img {
+    max-width: 17rem;
+  }
 
   #accessibility-answer .nav-item.active {
     padding-top: 1rem;
@@ -1005,6 +1032,21 @@ h2 {
   }
 }
 
+@media (min-width: 1024px) and (min-height: 1040px) {
+  .faq-questions .sidebar {
+    max-height: none;
+    min-height: 100%;
+    height: 100%;
+  }
+
+  .faq-questions .questions {
+    padding: 1rem 0.6rem;
+    height: 100%;
+    justify-content: space-between;
+    transition: padding 0.3s ease-in-out;
+  }
+}
+
 @media (min-width: 1440px) {
   .content-area {
     gap: 0.6rem;
@@ -1101,8 +1143,13 @@ h2 {
     max-width: 28rem;
   }
 
-  #people-answer .faq-content-header img {
+  #people-answer .people-header-full img {
+    display: block;
     max-width: 42rem;
+  }
+
+  #people-answer .people-header-short img {
+    display: none;
   }
 
   #accessibility-answer .faq-content-header img {
@@ -1121,7 +1168,12 @@ h2 {
     max-width: 28rem;
   }
 
-  #hair-and-makeup-answer .faq-content-header img {
+  #hair-and-makeup-answer .hair-and-makeup-header-short img {
+    display: none;
+  }
+
+  #hair-and-makeup-answer .hair-and-makeup-header-full img {
+    display: block;
     max-width: 38rem;
   }
 
@@ -1232,6 +1284,21 @@ h2 {
   }
 }
 
+@media (min-width: 1440px) and (min-height: 1410px) {
+  .faq-questions .sidebar {
+    max-height: none;
+    min-height: 100%;
+    height: 100%;
+  }
+
+  .faq-questions .questions {
+    padding: 5.8rem 0.6rem 1.4rem;
+    height: 100%;
+    justify-content: space-between;
+    transition: padding 0.3s ease-in-out;
+  }
+}
+
 @media (min-width: 1536px) {
   .faq-header-large {
     padding: 0.8rem 0.6rem 0.6rem;
@@ -1246,6 +1313,21 @@ h2 {
 
   .faq-questions .questions {
     padding-top: 5.8rem;
+  }
+}
+
+@media (min-width: 1536px) and (min-height: 1420px) {
+  .faq-questions .sidebar {
+    max-height: none;
+    min-height: 100%;
+    height: 100%;
+  }
+
+  .faq-questions .questions {
+    padding: 6.2rem 0.6rem 1rem;
+    height: 100%;
+    justify-content: space-between;
+    transition: padding 0.3s ease-in-out;
   }
 }
 
@@ -1354,9 +1436,9 @@ h2 {
     max-width: 34rem;
   }
 
-  /* #people-answer .faq-content-header img {
-    max-width: 40rem;
-  } */
+  #people-answer .people-header-full img {
+    max-width: 52rem;
+  }
 
   #accessibility-answer .faq-content-header img {
     max-width: 41rem;
@@ -1374,9 +1456,9 @@ h2 {
     max-width: 37rem;
   }
 
-  /* #hair-and-makeup-answer .faq-content-header img {
-    max-width: 24rem;
-  } */
+  #hair-and-makeup-answer .hair-and-makeup-header-full img {
+    max-width: 48rem;
+  }
 
   .large-br,
   .xl-br {
@@ -1419,9 +1501,11 @@ h2 {
   }
 
   .faq-header-container {
+    position: relative;
+    left: -36.5rem;
     min-width: 0;
     max-width: 39rem;
-    margin: 0 3rem;
+    margin: 0 auto;
     transition: max-width 0.3s ease;
   }
 
@@ -1478,5 +1562,23 @@ h2 {
 
   #pets-answer .image-section .faq-image {
     width: 24%;
+  }
+}
+
+@media (min-width: 1920px) and (min-height: 1610px) {
+  .faq-questions {
+    display: flex;
+  }
+
+  .faq-questions .sidebar {
+    max-height: none;
+    min-height: 100%;
+    height: 100%;
+  }
+
+  .faq-questions .questions {
+    padding: 1.4rem 2rem;
+    height: 100%;
+    justify-content: space-between;
   }
 }
