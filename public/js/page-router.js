@@ -141,6 +141,13 @@ export async function loadPage(pageName, updateHistory = true) {
                     console.error('Failed to load faq.js:', error);
                 });
             }
+            if (pageName === 'frames') {
+                import('./frames.js').then(({ initializeFramesPage }) => {
+                    initializeFramesPage();
+                }).catch(error => {
+                    console.error('Failed to load frames.js:', error);
+                });
+            }
         } else {
             console.error(`No identifiable content container (${pageName}-container) found...`);
             if (doc.body) {
