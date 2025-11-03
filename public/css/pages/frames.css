@@ -56,7 +56,7 @@ body {
   justify-content: space-evenly;
   position: relative;
   height: 100%;
-  max-height: calc(100vh - 32rem);
+  max-height: calc(100vh - 30rem);
   width: 100%;
   margin: 0 auto;
   padding-bottom: 0.6rem;
@@ -66,6 +66,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+  height: 100%;
   overflow-x: hidden;
   overflow-y: hidden;
   animation: fadeIn 0.5s ease-in-out;
@@ -107,7 +108,8 @@ body {
   flex-direction: column;
   align-items: center;
   gap: 0.4rem;
-  padding: 0.6rem 0.4rem 0.4rem;
+  padding: 0.6rem 0.4rem;
+  width: 100%;
   transition: all 0.3s ease-in-out;
 }
 
@@ -115,15 +117,18 @@ body {
   max-width: 4.8rem;
 }
 
-.frames-description {
-  display: none;
+.frames-header-description {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 0.4rem;
 }
 
-.frames-description-small {
+.frames-description {
   display: flex;
   flex-direction: column;
   text-align: center;
-  padding: 0.2rem 0 0;
+  gap: 0.2rem;
   transition: all 0.3s ease-in-out;
 }
 
@@ -146,7 +151,10 @@ body {
   text-shadow: -1px -1px 0 #a20003, 1px -1px 0 #a20003, -1px 1px 0 #a20003,
     1px 1px 0 #a20003;
   line-height: 1.2;
-  padding: 0.2rem 0;
+}
+
+.frames-description span {
+  line-height: 200%;
 }
 
 .medium-br {
@@ -155,51 +163,50 @@ body {
 
 /* Overlay Frames */
 
-.main-photo img {
-  height: auto;
-  max-height: 100%;
+.photo-stack {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+  height: 20vh;
+}
+
+.frame-overlay-image {
+  display: block;
+  width: 100%;
+  height: 100%;
 }
 
 .framed-photo {
-  display: flex;
-  justify-content: center;
+  position: absolute;
+  top: 0.2rem;
+  left: 0;
   width: 100%;
-  height: auto;
-  position: relative;
-  flex-grow: 1;
-  max-width: 11rem;
+  height: 98%;
+  z-index: 1;
 }
 
 .main-photo {
-  display: block;
-  width: 100%;
-  max-width: 11rem;
-  min-width: 11rem;
-  height: auto;
-  z-index: 8;
-  transition: min-width 0.3s ease-in-out;
-}
-
-.framed-photo-viewer {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
   width: 100%;
   height: 100%;
-  position: relative;
-  max-width: none;
-  max-height: 18rem;
+  object-fit: contain;
 }
 
-.framed-photo-viewer .frame-overlay-image {
-  position: absolute;
-  top: -5px;
-  left: -5px;
-  width: calc(100% + 10px);
-  height: calc(100% + 10px);
-  z-index: 10;
-  pointer-events: none;
-  transition: opacity 0.3s ease-in-out;
+#current-frame-overlay {
+  position: relative;
+  z-index: 2;
+}
+
+.side-frame {
+  max-width: 4rem;
+  position: static;
+  object-fit: contain;
+  opacity: 0.5;
+  filter: brightness(10%);
+  transition: opacity 0.3s;
+  margin: 0;
+  cursor: pointer;
+  z-index: 0;
+  flex-shrink: 0;
 }
 
 .frame-control-small {
@@ -210,20 +217,6 @@ body {
   width: 100%;
   padding: 0 0.2rem;
   z-index: 20;
-}
-
-.side-frame {
-  position: static;
-  width: 8rem;
-  height: auto;
-  object-fit: contain;
-  opacity: 0.5;
-  filter: brightness(10%);
-  transition: opacity 0.3s;
-  margin: 0;
-  cursor: pointer;
-  z-index: 0;
-  flex-shrink: 0;
 }
 
 .next-btn,
@@ -306,384 +299,98 @@ body {
   scrollbar-color: #e8c775 #480204;
 }
 
-/* #region Mobile View (660px) */
+/* #region Height Adjustments */
 
-@media (max-height: 470px) {
-  .content-area,
-  .frames-header-description {
-    display: none;
-  }
-
+/* #region .content-area removal: */
+@media (max-width: 660px) and (max-height: 680px),
+  (min-width: 660px) and (max-width: 1023px) and (max-height: 815px),
+  (min-width: 1024px) and (max-width: 1439px) and (max-height: 760px),
+  (min-width: 1440px) and (max-width: 1989px) and (max-height: 725px) {
   .frames-content {
-    padding-top: 0;
-  }
-
-  .action-buttons-short {
-    display: block;
-    margin: 0.2rem 0;
-  }
-
-  .frames-header-container {
-    border: none;
-  }
-}
-
-@media (max-width: 1023px) and (max-height: 490px) {
-  .frames-header-description {
-    display: none;
-    transition: all 0.3s ease-in-out;
-  }
-}
-
-@media (max-height: 1023px) and (max-height: 615px) {
-  .frames,
-  .content-area,
-  .action-buttons {
-    display: none;
-  }
-
-  .action-buttons-short {
-    display: block;
-    margin: 0.2rem 0;
-  }
-
-  .frames-content {
-    height: 100%;
-    min-height: auto;
     padding-bottom: 0.6rem;
   }
 
   .frames-header {
-    width: 100%;
-    height: 100%;
     justify-content: space-evenly;
   }
 
   .frames-header-wrapper,
-  .frames-header-container {
+  .frames-header-container,
+  .frames-header {
     height: 100%;
-    min-height: 100%;
   }
 
-  .frames-header-container {
-    border-bottom: 2px solid #e8c775;
-    border: 3px solid #e8c775;
-    border-radius: 0.8rem;
-  }
-}
-
-@media (max-width: 1023px) and (max-height: 724px) {
-  .frames-description-small {
+  .content-area,
+  .action-buttons {
     display: none;
-    transition: all 0.3s ease-in-out;
   }
 
+  .frames-header-description {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .action-buttons-short {
+    display: flex;
+    justify-content: center;
+  }
+}
+/* #endregion */
+
+/* #region .frames-description removal: */
+@media (max-width: 660px) and (max-height: 580px),
+  (min-width: 660px) and (max-width: 1023px) and (max-height: 660px),
+  (min-width: 1024px) and (max-width: 1439px) and (max-height: 590px) {
   .content-area {
-    height: 100%;
-    max-height: calc(100vh - 26rem);
+    max-height: calc(100vh - 27rem);
+  }
+
+  .frames-header {
+    gap: 0;
+  }
+
+  .frames-header .frames-description {
+    display: none;
   }
 }
+/* #endregion */
 
-@media (max-width: 1023px) and (max-height: 835px) {
-  .framed-photo-viewer {
-    max-width: 6rem;
-    max-height: 18rem;
+/* #region .frames-header-description and .frames-header-container border removal: */
+@media (max-width: 660px) and (max-height: 500px),
+  (min-width: 660px) and (max-width: 1023px) and (max-height: 610px),
+  (min-width: 1024px) and (max-width: 1439px) and (max-height: 510px) {
+  .frames-header-description h1 {
+    display: none;
   }
 
-  .side-frame {
-    width: 4rem;
+  .frames-header-container {
+    border: none;
   }
 
-  .main-photo {
-    max-width: 6rem;
-    min-width: 6rem;
-    transition: min-width 0.3s ease-in-out;
+  .frames-header {
+    gap: 1rem;
   }
 }
+/* #endregion */
 
-@media (min-width: 660px) {
-  .frames {
-    padding: 0;
+/* #endregion */
+
+/* #region Mobile View (660px) */
+
+@media (min-width: 660px) and (max-width: 1023px) {
+  .frames-header-container .frames-header img {
+    max-width: 6.4rem;
   }
 
   .frames-content {
     max-width: 40rem;
-    height: 100%;
-  }
-
-  .content-area {
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-    max-height: calc(100vh - 36rem);
-    padding-top: 0.6rem;
-  }
-
-  .small-br {
-    display: none;
-  }
-
-  .framed-photo-viewer {
-    align-items: flex-start;
-    max-height: none;
-    height: auto;
-  }
-
-  .framed-photo-viewer .frame-overlay-image {
-    left: 0;
-    width: 100%;
-  }
-
-  .frames-description-small {
-    gap: 0.2rem;
-  }
-
-  .frames-container h1 {
-    font-size: 14px;
-  }
-
-  .frames-container p {
-    font-size: 13px;
-    padding: 0;
-  }
-
-  .frames-container .btn {
-    font-size: 13px;
-    width: 12rem;
-  }
-
-  .side-frame {
-    margin: 0 1.4rem;
-  }
-
-  .frames-header-container .frames-header img {
-    max-width: 6rem;
-  }
-}
-
-@media (max-width: 1023px) and (max-height: 555px) {
-  .frames,
-  .action-buttons,
-  .content-area,
-  .frames-container h1,
-  .frames-description-small,
-  .action-buttons-short {
-    display: none;
-  }
-
-  .frames-header {
-    padding: 0;
-    height: 100%;
-    justify-content: center;
-  }
-
-  .frames-header-wrapper,
-  .frames-header-container {
-    height: 100%;
-  }
-
-  .frames-content {
-    padding: 0.6rem 0;
-  }
-
-  .frames-header-container {
-    border: none;
-  }
-}
-
-@media (max-width: 1023px) and (min-height: 555px) and (max-height: 575px) {
-  .frames-header-description {
-    display: none;
-  }
-
-  .frames-header-container {
-    border: none;
-  }
-}
-
-@media (max-width: 1023px) and (min-height: 550px) and (max-height: 754px) {
-  .frames,
-  .action-buttons,
-  .content-area,
-  .frames-description-small {
-    display: none;
-  }
-
-  .action-buttons-short {
-    display: block;
-  }
-
-  .frames-header {
-    justify-content: space-between;
-    padding-bottom: 1rem;
-    height: 100%;
-  }
-
-  .frames-header-wrapper,
-  .frames-header-container {
-    height: 100%;
-  }
-
-  .frames-content {
-    padding: 0.6rem 0;
-  }
-}
-
-@media (max-width: 1023px) and (min-height: 656px) and (max-height: 754px) {
-  .frames-description-small {
-    padding-top: 1rem;
-  }
-}
-
-@media (max-width: 1023px) and (min-height: 755px) and (max-height: 819px) {
-  .frames-description-small {
-    display: none;
-  }
-
-  .content-area {
-    height: 100%;
-    max-height: calc(100vh - 32rem);
-  }
-
-  .framed-photo-viewer,
-  .framed-photo {
-    max-width: 8rem;
-  }
-
-  .main-photo {
-    min-width: 7rem;
-  }
-
-  .framed-photo-viewer .frame-overlay-image {
-    left: -5px;
-    width: calc(100% + 10px);
-  }
-
-  .side-frame {
-    margin: 0 1.6rem;
-    width: 6rem;
-  }
-
-  .frame-control-small {
-    padding: 0 1rem;
-  }
-
-  .action-buttons {
-    padding: 0.4rem 0;
-  }
-}
-
-@media (max-width: 1023px) and (min-height: 820px) and (max-height: 895px) {
-  .content-area {
-    padding: 0;
-  }
-
-  .framed-photo-viewer,
-  .framed-photo {
-    max-width: 8rem;
-  }
-
-  .main-photo {
-    min-width: 7rem;
-  }
-
-  .framed-photo-viewer .frame-overlay-image {
-    left: -5px;
-    width: calc(100% + 10px);
-  }
-
-  .side-frame {
-    margin: 0 1.6rem;
-    width: 6rem;
-  }
-
-  .frame-control-small {
-    padding: 0 1rem;
-  }
-}
-
-@media (max-width: 1023px) and (min-height: 896px) and (max-height: 949px) {
-  .framed-photo-viewer,
-  .framed-photo {
-    max-width: 10rem;
-  }
-
-  .main-photo {
-    min-width: 9rem;
-  }
-
-  .framed-photo-viewer .frame-overlay-image {
-    left: -5px;
-    width: calc(100% + 10px);
-  }
-
-  .side-frame {
-    margin: 0 1.6rem;
-    width: 6rem;
-  }
-}
-
-@media (max-width: 1023px) and (min-height: 950px) {
-  .framed-photo-viewer {
-    max-width: 18rem;
-    width: auto;
-  }
-
-  .main-photo,
-  .framed-photo {
-    max-width: none;
-  }
-
-  .framed-photo-viewer .frame-overlay-image {
-    left: -10px;
-    width: calc(100% + 20px);
-  }
-
-  .side-frame {
-    width: 10rem;
-    margin: 0 1.4rem;
-  }
-
-  #next-frame-viewer {
-    padding: 0 1.6rem 0 0.4rem;
-  }
-
-  #prev-frame-viewer {
-    padding: 0 0.4rem 0 1.6rem;
-  }
-}
-
-/* #endregion */
-
-/* #region Tablet View (1024px) */
-@media (min-width: 1024px) {
-  .frames-content {
-    max-width: 56rem;
-    border: 4px solid #e8c775;
-  }
-
-  .frames-header-container {
-    border: 4px solid #e8c775;
+    padding-bottom: 0.6rem;
   }
 
   .frames-header-description h1 {
     font-size: 18px;
     line-height: 1.4;
-  }
-
-  .frames-description-small {
-    display: none;
-  }
-
-  .medium-br {
-    display: inline;
-  }
-
-  .frames-description {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
   }
 
   .frames-description p {
@@ -692,322 +399,126 @@ body {
   }
 
   .content-area {
-    max-height: calc(100vh - 29rem);
-    transition: max-height 0.3s ease-in-out;
-  }
-
-  .side-frame {
-    width: 12rem;
-    transition: width 0.3s ease-in-out;
-  }
-
-  #next-frame-viewer,
-  #prev-frame-viewer {
-    position: relative;
-    padding: 0;
-    margin: 0;
-  }
-
-  .frame-control-small {
-    padding: 0 1rem;
-  }
-
-  .frame-nav-btn img {
-    width: 4rem;
-  }
-
-  #next-frame-viewer #prev-frame-viewer {
-    padding: 0;
+    max-height: calc(100vh - 36.8rem);
   }
 
   .frames-container .btn {
-    font-size: 16px;
-    width: 16rem;
-    height: 3rem;
-    transition: width 0.3s ease-in-out, height 0.3s ease-in-out;
+    width: 14rem;
+    font-size: 18px;
+    line-height: 1.4;
   }
 
-  .framed-photo-viewer,
-  .framed-photo {
-    max-width: 14rem;
-    transition: min-width 0.3s ease-in-out;
-  }
-
-  .main-photo {
-    min-width: 12rem;
-    min-height: 17rem;
-    transition: min-width 0.3s ease-in-out;
-  }
-}
-
-@media (min-width: 1024px) and (max-height: 450px) {
-  .content-area,
-  .action-buttons-short {
+  .small-br {
     display: none;
   }
 
-  .frames-header-container {
-    border: none;
+  .medium-br {
+    display: block;
   }
 }
 
-@media (min-width: 1024px) and (min-height: 450px) and (max-height: 510px) {
-  .content-area,
-  .frames-description,
+/* #endregion */
+
+/* #region Tablet View (1024px) */
+
+@media (min-width: 1024px) and (max-width: 1439px) {
+  .frames-header-container {
+    border: 4px solid #e8c775;
+  }
+
+  .frames-header-container .frames-header img {
+    max-width: 6.4rem;
+  }
+
+  .frames-header {
+    gap: 0.8rem;
+  }
+
+  .frames-content {
+    max-width: 56rem;
+    padding-bottom: 0.6rem;
+    border: 4px solid #e8c775;
+  }
+
+  .frames-header-description {
+    gap: 0;
+  }
+
   .frames-header-description h1 {
-    display: none;
+    font-size: 18px;
+    line-height: 1.4;
   }
 
-  .action-buttons-short {
-    display: block;
+  .frames-description p {
+    font-size: 16px;
+    line-height: 1.4;
+  }
+
+  .content-area {
+    max-height: calc(100vh - 33rem);
+  }
+
+  .frames-container .btn {
+    width: 14rem;
+    font-size: 18px;
+    line-height: 1.4;
+  }
+
+  .small-br,
+  .medium-br {
+    display: none;
+  }
+}
+
+/* #endregion */
+
+/* #region Small Desktop View (1440px) */
+
+@media (min-width: 1440px) and (max-width: 1989px) {
+  .frames-header {
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 0 2rem;
+  }
+
+  .frames-header-container .frames-header img {
+    min-width: 14rem;
+    max-width: none;
+    padding: 0.8rem 2rem;
   }
 
   .frames-content {
-    padding: 0.6rem;
+    max-width: 86rem;
+    padding-bottom: 0.6rem;
   }
 
-  .frames-header-container {
-    border: none;
+  .frames-header-description {
+    width: auto;
   }
 
-  .frames-header-wrapper,
-  .frames-header-container {
-    height: 100%;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  .frames-header-description h1 {
+    font-size: 20px;
+    line-height: 1.4;
   }
 
-  .frames-header {
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
+  .frames-description p {
+    font-size: 18px;
+    line-height: 1.4;
   }
-}
 
-@media (min-width: 1024px) and (min-height: 510px) and (max-height: 685px) {
-  .content-area,
-  .frames-description {
+  .content-area {
+    max-height: calc(100vh - 32rem);
+  }
+
+  .frames-container .btn {
+    width: 14rem;
+    font-size: 18px;
+    line-height: 1.4;
+  }
+
+  .small-br {
     display: none;
   }
-
-  .action-buttons-short {
-    display: block;
-  }
-
-  .frames-content {
-    padding: 0.6rem;
-  }
-
-  .frames-header-wrapper,
-  .frames-header-container {
-    height: 100%;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .frames-header {
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
-  }
 }
-
-@media (min-width: 1024px) and (min-height: 685px) and (max-height: 699px) {
-  .content-area {
-    height: auto;
-    max-height: none;
-  }
-
-  .frames-description {
-    display: none;
-  }
-
-  .framed-photo-viewer,
-  .framed-photo {
-    max-width: 10rem;
-    transition: min-width 0.3s ease-in-out;
-  }
-
-  .main-photo {
-    min-width: 4rem;
-    max-width: 8rem;
-    max-height: 13rem;
-    min-height: 2rem;
-    transition: min-width 0.3s ease-in-out;
-  }
-
-  .frames .side-frame {
-    width: 6rem;
-  }
-
-  #next-frame-viewer {
-    left: 2rem;
-  }
-
-  #prev-frame-viewer {
-    right: 2rem;
-  }
-}
-
-@media (min-width: 1024px) and (min-height: 700px) and (max-height: 775px) {
-  .content-area {
-    max-height: calc(100vh - 26rem);
-  }
-
-  .frames-description {
-    display: none;
-  }
-
-  .framed-photo-viewer,
-  .framed-photo {
-    max-width: 10rem;
-    transition: min-width 0.3s ease-in-out;
-  }
-
-  .main-photo {
-    min-width: 4rem;
-    max-width: 8rem;
-    max-height: 13rem;
-    min-height: 2rem;
-    transition: min-width 0.3s ease-in-out;
-  }
-
-  .frames .side-frame {
-    width: 6rem;
-  }
-
-  #next-frame-viewer {
-    left: 2rem;
-  }
-
-  #prev-frame-viewer {
-    right: 2rem;
-  }
-
-  .action-buttons {
-    padding: 0.6rem 0;
-  }
-}
-
-@media (min-width: 1024px) and (min-height: 775px) and (max-height: 825px) {
-  .content-area {
-    max-height: calc(100vh - 26rem);
-  }
-
-  .frames-description {
-    display: none;
-  }
-
-  .side-frame {
-    width: 10rem;
-  }
-
-  #next-frame-viewer {
-    left: 1rem;
-  }
-
-  #prev-frame-viewer {
-    right: 1rem;
-  }
-}
-
-@media (min-width: 1024px) and (min-height: 825px) and (max-height: 899px) {
-  .framed-photo-viewer,
-  .framed-photo {
-    max-width: 14rem;
-    transition: min-width 0.3s ease-in-out;
-  }
-
-  .main-photo {
-    min-width: 12rem;
-    min-height: 12rem;
-    transition: min-width 0.3s ease-in-out;
-  }
-
-  /* .side-frame {
-    width: 10rem;
-  } */
-
-  #next-frame-viewer {
-    left: 2rem;
-  }
-
-  #prev-frame-viewer {
-    right: 2rem;
-  }
-}
-
-@media (min-width: 1024px) and (min-height: 900px) {
-  .framed-photo-viewer,
-  .framed-photo {
-    max-width: 18rem;
-    transition: min-width 0.3s ease-in-out;
-  }
-
-  .main-photo {
-    min-width: 16rem;
-    min-height: 20rem;
-    transition: min-width 0.3s ease-in-out;
-  }
-
-  #next-frame-viewer {
-    left: -1rem;
-  }
-
-  #prev-frame-viewer {
-    right: -1rem;
-  }
-}
-
-/* @media (min-width: 1024px) and (min-height: 550px) and (max-height: 754px) {
-  .frames,
-  .action-buttons,
-  .content-area {
-    display: flex;
-  }
-
-  .frames-header-wrapper,
-  .frames-header-container {
-    height: auto;
-  }
-}
-
-@media (min-width: 1024px) and (max-height: 790px) {
-  .framed-photo-viewer,
-  .framed-photo {
-    max-width: 10rem;
-  }
-
-  .main-photo {
-    min-width: 8rem;
-    min-height: 12rem;
-  }
-
-  .side-frame {
-    width: 6rem;
-  }
-}
-
-@media (min-width: 1024px) and (min-height: 820px) {
-  .framed-photo-viewer,
-  .framed-photo {
-    max-width: 12rem;
-  }
-
-  .main-photo {
-    min-width: 10rem;
-    min-height: 14rem;
-  }
-
-  .side-frame {
-    width: 8rem;
-  }
-} */
 
 /* #endregion */
