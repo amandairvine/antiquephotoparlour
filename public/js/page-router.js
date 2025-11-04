@@ -9,7 +9,8 @@ const routes = {
     'themes': '/pages/themes/themes.html',
     'frames': '/pages/frames/frames.html',
     'faq': '/pages/frequently-asked-questions/frequently-asked-questions.html',
-    'contact': '/pages/contact/contact.html'
+    'contact': '/pages/contact/contact.html',
+    'awards': '/pages/awards/awards.html'
 };
 
 let originalHomeContent = null;
@@ -148,6 +149,13 @@ export async function loadPage(pageName, updateHistory = true) {
                     console.error('Failed to load frames.js:', error);
                 });
             }
+            if (pageName === 'awards') {
+                import('./awards.js').then(({ initializeAwardsPage }) => {
+                    initializeAwardsPage();
+                }).catch(error => {
+                    console.error('Failed to load awards.js:', error);
+                });
+            }
         } else {
             console.error(`No identifiable content container (${pageName}-container) found...`);
             if (doc.body) {
@@ -175,6 +183,7 @@ function extractPageName(href) {
     if (href.includes('frequently-asked-questions')) return 'faq';
     if (href.includes('contact')) return 'contact';
     if (href.includes('home')) return 'home';
+    if (href.includes('awards')) return 'awards';
     return null;
 }
 
@@ -205,7 +214,8 @@ function getPageTitle(pageName) {
         'themes': 'Themes - Antique Photo Parlour',
         'frames': 'Frames - Antique Photo Parlour',
         'faq': 'FAQ - Antique Photo Parlour',
-        'contact': 'Contact - Antique Photo Parlour'
+        'contact': 'Contact - Antique Photo Parlour',
+        'awards': 'Awards - Antique Photo Parlour'
     };
     return titles[pageName] || 'Antique Photo Parlour';
 }
