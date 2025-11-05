@@ -63,6 +63,8 @@ document.addEventListener('DOMContentLoaded', function () {
     if (footerContainer) {
       footerContainer.innerHTML = html;
       console.log('Footer loaded.');
+
+      setupFooterCollapse();
     }
   });
 
@@ -86,3 +88,141 @@ document.addEventListener('DOMContentLoaded', function () {
     document.querySelector(`.mobile-nav-link[href="#${pageName}"]`).classList.add('active');
   });
 });
+
+function setupFooterCollapse() {
+  const buttons = document.querySelectorAll('.footer-collapse-btn');
+
+  // Create overlay element once:
+  let overlay = document.querySelector('.modal-overlay');
+  if (!overlay) {
+    overlay = document.createElement('div');
+    overlay.classList.add('modal-overlay');
+    document.body.appendChild(overlay);
+  }
+
+  const closeModal = () => {
+    // Find all active footer content elements and remove the 'active' class:
+    document.querySelectorAll('.footer-content.active').forEach(content => {
+      content.classList.remove('active');
+    });
+
+    overlay.style.display = 'none';
+    document.body.classList.remove('modal-open');
+    console.log('[Footer Collapse] Modal closed.');
+
+    // Remove old document click listener to prevent multiple bindings:
+    document.removeEventListener('click', handleOutsideClick);
+  }
+
+  // Outside click handler function:
+  const handleOutsideClick = (event) => {
+    // If the click is not on a button and not inside an active content area, close the modal:
+    const isButtonClick = Array.from(buttons).some(button => button.contains(event.target));
+    const isInsideContent = document.querySelector('.footer-content.active')?.contains(event.target);
+
+    if (!isButtonClick && !isInsideContent) {
+      closeModal();
+    }
+  }
+
+  // Click handler for the overlay itself (closes the modal when clicking outside):
+  overlay.addEventListener('click', (event) => {
+    // Prevent closing if the click was directly on the modal itself:
+    if (event.target === overlay) {
+      closeModal();
+    }
+  })
+
+  buttons.forEach(button => {
+    button.addEventListener('click', (event) => {
+
+      // Prevent button click from immediately propagating to the document or overlay:
+      event.stopPropagation();
+
+      // Click confirmation message:
+      const buttonText = button.textContent.trim();
+      console.log(`[Footer Collapse] Button clicked: ${buttonText}`);
+
+      const targetClass = button.getAttribute('data-target');
+      const targetElement = document.querySelector(`.${targetClass}`);
+
+      if (!targetElement) {
+        console.error(`Error: Collapse target element with class "${targetClass}" not found.`);
+        return;
+      }
+
+      // Check current status before making changes:
+      const isAlreadyActive = targetElement.classList.contains('active');
+
+      // Close modal first to ensure single modal behaviour:
+      closeModal();
+
+      if (!isAlreadyActive) {
+        targetElement.classList.add('active');
+        overlay.style.display = 'block';
+        document.body.classList.add('modal-open');
+        console.log(`[Footer Collapse] Opening: ${buttonText} modal.`);
+
+        // Add the outside click listener after a delay:
+        setTimeout(() => {
+          document.addEventListener('click', handleOutsideClick);
+        }, 50);
+      } else {
+        // If it was already active, closeModal() handled the closing. Log it.
+        console.log(`[Footer Collapse] Closing: ${buttonText} content (via button click).`);
+      }
+
+      // let isAlreadyActive = false;
+
+      // if (targetElement) {
+      //   // Check if already active/open:
+      //   isAlreadyActive = targetElement.classList.contains('active');
+
+      //   // Close any currently active content:
+      //   document.querySelectorAll('.footer-content.active').forEach(content => {
+      //     content.classList.remove('active');
+      //   });
+
+      //   // Message if content is closing:
+      //   if (isAlreadyActive) {
+      //     console.log(`[Footer Collapse] Closing: ${buttonText} content`);
+      //   }
+
+      //   // Check if the target is already open:
+      //   // const isAlreadyActive = targetElement.classList.contains('active');
+
+      //   closeModal();
+
+      //   // Toggle the 'active' class on the target content:
+      //   if (!isAlreadyActive) {
+      //     targetElement.classList.add('active');
+      //     overlay.style.display = 'block';
+      //     document.body.classList.add('modal-open');
+      //     console.log(`[Footer Collapse] Opening: ${buttonText} modal.`);
+      //   }
+
+
+      // } else {
+      //   // Exit if the target element doesn't exist
+      //   console.error(`Error: Collapse target element with class "${targetClass}" not found.`);
+      //   return
+      // }
+
+      // Add an event listener to close the overlay if user clicks outside of it:
+      // if (targetElement.classList.contains('active')) {
+      //   const closeOverlay = (event) => {
+      //     if (!targetElement.contains(event.target) && event.target !== button) {
+      //       targetElement.classList.remove('active');
+      //       console.log(`[Footer Collapse] Closed via outside click: ${buttonText} content.`);
+      //       document.removeEventListener('click', closeOverlay);
+      //     }
+      //   };
+
+      //   // Listen for clicks on the document to close the overlay:
+      //   setTimeout(() => {
+      //     document.addEventListener('click', closeOverlay);
+      //   }, 50);
+      // }
+    });
+  })
+}
