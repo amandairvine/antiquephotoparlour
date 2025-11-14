@@ -553,12 +553,12 @@ header {
     gap: 0;
     padding: 0 2rem;
     max-width: 1440px;
-    max-height: 10.8rem;
+    max-height: 6.8rem;
     height: 100%;
   }
 
   .header-top-background {
-    height: 6.4rem;
+    height: 6.5rem;
   }
 
   .logo-container img {
@@ -596,8 +596,10 @@ header {
   }
 
   .header-bottom {
-    min-height: auto;
-    top: 2.4rem;
+    position: absolute;
+    /* height: 100%;
+    min-height: auto; */
+    /* top: 2.4rem; */
   }
 
   .header-bottom-background {
@@ -621,10 +623,11 @@ header {
   }
 
   .header-nav {
+    position: relative;
     max-width: 46rem;
     justify-content: flex-end;
     align-items: center;
-    top: -4.8rem;
+    /* top: -4.8rem; */
     left: -2rem;
   }
 
