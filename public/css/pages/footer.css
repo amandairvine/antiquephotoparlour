@@ -1189,6 +1189,347 @@ footer {
     gap: 1rem;
     padding: 0.6rem 0;
     width: 100%;
+    min-width: auto;
+    max-width: 86rem;
+  }
+
+  .footer-content.active {
+    min-height: calc(100vh - 12rem);
+  }
+
+  .hours-container,
+  .location-container {
+    display: flex;
+    justify-content: space-evenly;
+    max-width: 86rem;
+    min-height: 8rem;
+    height: 100%;
+    padding: 0.4rem 1.6rem;
+    border-radius: 1rem;
+    border: 4px solid #e8c775;
+  }
+
+  .hours-container .hours-info .hours-content,
+  .hours-container .hours-grid,
+  .footer-content.active .location-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+  }
+
+  .hours-container .hours-info .header-text img,
+  .footer-collapse-btn.hours-btn img,
+  .hours-info .footer-content.active .header-text img {
+    max-width: 6.2rem;
+  }
+
+  .location-container .location-detail .header-text img,
+  .footer-collapse-btn.location-btn img,
+  .location-container .footer-content.active .header-text img {
+    max-width: 8.6rem;
+  }
+
+  .days,
+  .times,
+  .address,
+  .mini-map-button a {
+    font-size: 20px;
+  }
+
+  .hours-grid {
+    gap: 0;
+  }
+
+  .hours-container .quick-hours {
+    gap: 2rem;
+    padding: 0;
+  }
+
+  .hours-note {
+    padding-top: 0;
+  }
+
+  .days,
+  .times {
+    gap: 0.6rem;
+  }
+
+  .hours-note .holiday-hours,
+  .address-description,
+  .contact-button p,
+  .footer-content.active .action-buttons a {
+    font-size: 18px;
+  }
+
+  .last-group {
+    font-size: 18px;
+    padding-top: 0.4rem;
+  }
+
+  .location-description {
+    max-height: 4rem;
+  }
+
+  .map-wrapper-small {
+    width: 54%;
+    height: 5.8rem;
+  }
+
+  .mini-map-iframe {
+    border-radius: 1rem;
+    border: 4px solid #e8c775;
+  }
+}
+
+@media (min-width: 1440px) and (max-width: 1919px) and (max-height: 550px) {
+  .hours-container .hours-info .footer-content.active,
+  .location-container .footer-content.location-detail.active {
+    min-height: calc(100vh - 30rem);
+  }
+
+  .footer-content.active .map-wrapper .mini-map-button {
+    display: flex;
+    flex-direction: column;
+    height: 5rem;
+    border-radius: 1rem;
+    border: 5px solid #e8c775;
+  }
+
+  .footer-content.active .location-description {
+    margin: 0;
+  }
+
+  .footer-content.active .location-content .map-wrapper {
+    height: auto;
+    margin-top: 1.5rem;
+  }
+
+  .footer-content.active .map-wrapper .mini-map-button {
+    width: 20rem;
+  }
+
+  .footer-content.active .contact-button,
+  .footer-content.active .map-wrapper .mini-map-iframe {
+    display: none;
+  }
+
+  .location-container .footer-content.active .location-content,
+  .footer-content.active .map-wrapper,
+  .hours-info .footer-content.active .hours-content {
+    height: auto;
+    justify-content: center;
+  }
+
+  .footer-content.active .location-content {
+    gap: 1rem;
+  }
+}
+
+@media (min-width: 1440px) and (max-width: 1919px) and (max-height: 700px) {
+  .hours-info .footer-content.active,
+  .location-container .footer-content.active {
+    min-height: 24rem;
+  }
+
+  .footer-content.active .location-content {
+    justify-content: center;
+  }
+
+  .contact-button {
+    gap: 0;
+  }
+
+  .footer-content.location-detail.active
+    .location-description
+    .address-section {
+    padding-bottom: 0;
+  }
+
+  .footer-content.active .map-wrapper .mini-map-iframe {
+    height: 12rem;
+  }
+
+  .footer-content.active .location-description {
+    margin-bottom: 0;
+  }
+}
+
+@media (min-width: 1440px) and (max-width: 1919px) and (max-height: 800px) {
+  .footer-containers {
+    border-radius: 1rem;
+    border: 4px solid #e8c775;
+    margin: 0.6rem 0 0;
+    background: linear-gradient(90deg, #480204 0%, #800407 50%, #480204 100%);
+  }
+
+  .footer-content.active {
+    width: min(72rem, calc(100vw - 1rem));
+    height: 100%;
+    justify-content: center;
+    min-height: calc(100vh - 20rem);
+    gap: 1rem;
+    border-radius: 1rem;
+    border: 4px solid #e8c775;
+    padding: 2rem 7.2rem;
+  }
+
+  .hours-container,
+  .location-container {
+    min-height: 5rem;
+    border: none;
+    width: 100%;
+    padding: 0 1.6rem;
+  }
+
+  .footer-containers .footer-collapse-btn {
+    height: 100%;
+    min-height: 5rem;
+    width: 100%;
+    border-radius: 1rem;
+    border: 4px solid #e8c775;
+    background: linear-gradient(90deg, #480204 0%, #800407 50%, #480204 100%);
+  }
+
+  .footer-content.active .hours-content .quick-hours {
+    padding: 0 4.2rem 0 0;
+  }
+
+  .footer-content.active .hours-content,
+  .footer-content.active .location-content,
+  .footer-content.active .location-description {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+  }
+
+  .footer-content.active .hours-content .hours-grid {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 1rem;
+    border: 4px solid #e8c775;
+    height: auto;
+    justify-content: center;
+    gap: 1rem;
+    padding: 1rem 0;
+  }
+
+  .contact-button {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .contact-button .action-buttons .btn {
+    width: 20rem;
+    min-height: 5rem;
+    border-radius: 1rem;
+    border: 4px solid #e8c775;
+  }
+
+  .footer-content.active .address-section {
+    padding-bottom: 1rem;
+  }
+
+  .footer-content.active .map-wrapper,
+  .footer-content.active .mini-map-iframe {
+    display: flex;
+  }
+
+  .footer-content.active .mini-map-button {
+    display: none;
+  }
+
+  .days,
+  .times,
+  .address,
+  .mini-map-button a {
+    font-size: 24px;
+  }
+
+  .hours-note .holiday-hours,
+  .address-description,
+  .contact-button p,
+  .footer-content.active .action-buttons a {
+    font-size: 20px;
+  }
+
+  .last-group {
+    font-size: 20px;
+  }
+
+  .footer-content.active .map-wrapper {
+    min-height: calc(100vh - 40rem);
+    margin-top: 3rem;
+    width: 100%;
+  }
+
+  .footer-content.active .map-wrapper .mini-map-iframe {
+    height: 100%;
+    width: 100%;
+  }
+}
+
+@media (min-width: 1920px) {
+  .footer-containers {
+    max-width: 1920px;
+    gap: 3.8rem;
+  }
+
+  .secondary-nav ul.flex-container {
+    gap: 3.6rem;
+  }
+
+  .hours-container,
+  .location-container {
+    width: 100%;
+    min-width: auto;
+    min-height: 8.8rem;
+    border-radius: 1rem;
+    border: 5px solid #e8c775;
+  }
+
+  .hours-container .hours-info {
+    width: 100%;
+  }
+
+  .hours-container .hours-grid {
+    gap: 0.4rem;
+  }
+
+  .map-wrapper-small .mini-map-iframe {
+    border-radius: 1rem;
+    border: 5px solid #e8c775;
+  }
+
+  .days,
+  .times,
+  .address {
+    font-size: 24px;
+  }
+
+  .hours-note .holiday-hours,
+  .address-description,
+  .contact-button p,
+  .footer-content.active .action-buttons a,
+  .last-group {
+    font-size: 20px;
+  }
+  /* .info-panel {
+    align-items: center;
+    padding: 0 2rem;
+  }
+
+  .footer-containers {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 1rem;
+    padding: 0.6rem 0;
+    width: 100%;
     max-width: none;
   }
 
@@ -1278,10 +1619,10 @@ footer {
   .mini-map-iframe {
     border-radius: 1rem;
     border: 5px solid #e8c775;
-  }
+  } */
 }
 
-@media (min-width: 1440px) and (max-width: 1919px) and (max-height: 550px) {
+@media (min-width: 1920px) and (max-height: 550px) {
   .hours-container .hours-info .footer-content.active,
   .location-container .footer-content.location-detail.active {
     min-height: calc(100vh - 30rem);
@@ -1303,7 +1644,7 @@ footer {
     height: auto;
     margin-top: 1.5rem;
   }
-  
+
   .footer-content.active .map-wrapper .mini-map-button {
     width: 20rem;
   }
@@ -1325,7 +1666,7 @@ footer {
   }
 }
 
-@media (min-width: 1440px) and (max-width: 1919px) and (max-height: 700px) {
+@media (min-width: 1920px) and (max-height: 700px) {
   .hours-info .footer-content.active,
   .location-container .footer-content.active {
     min-height: 24rem;
@@ -1354,7 +1695,7 @@ footer {
   }
 }
 
-@media (min-width: 1440px) and (max-width: 1919px) and (max-height: 800px) {
+@media (min-width: 1920px) and (max-height: 800px) {
   .footer-containers {
     border-radius: 1rem;
     border: 5px solid #e8c775;
@@ -1767,4 +2108,3 @@ footer {
     width: 100%;
   }
 } */
-

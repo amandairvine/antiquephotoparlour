@@ -570,7 +570,7 @@ header {
   }
 
   .primary-nav .flex-container {
-    gap: 4rem;
+    gap: 2rem;
     padding: 0;
   }
 
@@ -580,26 +580,19 @@ header {
 
   .header-background-bar {
     border: 4px solid #e8c775;
-    border-radius: 0.8rem;
-    padding: 0.4rem 5.8rem;
+    border-radius: 1rem;
+    padding: 0.4rem 5.4rem;
     margin-bottom: 0.1rem;
   }
 
   .buttons {
-    gap: 2.7rem;
+    gap: 2rem;
   }
 
   .flex-container .facebook-icon a img,
   .flex-container .instagram-icon a img {
     width: 4.2rem;
     height: 4.2rem;
-  }
-
-  .header-bottom {
-    position: absolute;
-    /* height: 100%;
-    min-height: auto; */
-    /* top: 2.4rem; */
   }
 
   .header-bottom-background {
@@ -624,10 +617,9 @@ header {
 
   .header-nav {
     position: relative;
-    max-width: 46rem;
+    max-width: 42.4rem;
     justify-content: flex-end;
     align-items: center;
-    /* top: -4.8rem; */
     left: -2rem;
   }
 
@@ -638,7 +630,7 @@ header {
 
   .secondary-nav ul.flex-container {
     position: relative;
-    gap: 2.2rem;
+    gap: 1.6rem;
     margin: 0;
   }
 
@@ -648,8 +640,62 @@ header {
 }
 
 @media (min-width: 1920px) {
+  .header-top,
+  .header-bottom {
+    max-width: 1920px;
+  }
+
+  .header-bottom {
+    min-height: 5.8rem;
+  }
+
+  .header-top-background {
+    height: 6.8rem;
+  }
+
+  .header-background-bar {
+    padding: 0.4rem 9.1rem;
+    margin-bottom: 0.1rem;
+  }
+
+  .header-background-bar,
+  .nav-bar {
+    border: 5px solid #e8c775;
+    border-radius: 1rem;
+  }
+
+  .nav-background-bar {
+    height: 4.5rem;
+  }
+
+  .header-bar .view-your-photos-text img {
+    max-height: 2.8rem;
+  }
+
+  .header-nav {
+    max-width: 60rem;
+    left: 0;
+  }
+
+  .primary-nav .flex-container {
+    gap: 5rem;
+  }
+
+  .buttons {
+    gap: 3rem;
+  }
+
+  .flex-container .facebook-icon a img,
+  .flex-container .instagram-icon a img {
+    width: 4.6rem;
+    height: 4.6rem;
+  }
+}
+
+/* @media (min-width: 1920px) {
   .header-top {
     max-width: 1920px;
+    max-height: 8rem;
   }
 
   .header-nav {
@@ -658,19 +704,56 @@ header {
     max-width: 926px;
   }
 
+  .header-top-background {
+    height: 8rem;
+  }
+
   .header-bottom {
-    max-width: 1860px;
+    max-width: 1920px;
+    min-height: 7rem;
+    left: 0;
+    padding: 0 2rem;
+    margin-top: 0.2rem;
+  }
+
+  .header-bottom-background {
+    height: 10rem;
   }
 
   .nav-background-bar {
     max-width: 1000px;
+    height: 5rem;
   }
 
   .secondary-nav ul.flex-container {
-    gap: 2.2rem;
+    gap: 3.6rem;
   }
 
   .secondary-nav a {
     font-size: 26px;
   }
-}
+
+  .header-bar .view-your-photos-text img {
+    max-height: 3rem;
+  }
+
+  .header-background-bar {
+    height: 5rem;
+  }
+
+  .header-background-bar,
+  .nav-bar {
+    border: 5px solid #e8c775;
+    border-radius: 1rem;
+  }
+
+  .flex-container .facebook-icon a img,
+  .flex-container .instagram-icon a img {
+    height: 5rem;
+    width: 5rem;
+  }
+
+  .logo-container img {
+    max-height: 14rem;
+  }
+} */
