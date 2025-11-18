@@ -294,8 +294,6 @@ header {
   }
 } */
 
-
-
 @media (max-width: 320px) {
   .header-background-bar {
     border-radius: 0.6rem;
@@ -650,7 +648,7 @@ header {
 
   .header-bottom-background {
     top: 6rem;
-    height: 6.6rem;
+    height: 6.2rem;
   }
 
   .parchment-border {
@@ -704,6 +702,10 @@ header {
 
   .header-top-background {
     height: 6.8rem;
+  }
+
+  .header-bottom-background {
+    height: 6.6rem;
   }
 
   .header-background-bar {
