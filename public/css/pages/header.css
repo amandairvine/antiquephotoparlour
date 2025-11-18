@@ -280,6 +280,59 @@ header {
   height: 2.4rem;
 }
 
+/* @media (max-width: 270px) {
+  .primary-nav {
+    display: none;
+  }
+
+  .header-containers {
+    margin: 0 0.2rem;
+  }
+
+  .header-nav-top {
+    width: 100%;
+  }
+} */
+
+
+
+@media (max-width: 320px) {
+  .header-background-bar {
+    border-radius: 0.6rem;
+  }
+
+  .header-containers {
+    margin: 0 0.2rem;
+  }
+
+  .header-nav-top,
+  .header-menu,
+  .logo-container a img,
+  .view-your-photos-text,
+  .header-bar .view-your-photos-text img {
+    width: 100%;
+  }
+
+  .hamburger-menu {
+    min-width: 1rem;
+  }
+
+  .hamburger-menu img {
+    width: calc(100vw - 8rem);
+    min-width: 2rem;
+    max-width: 2.4rem;
+    height: auto;
+  }
+
+  .header-nav-top .primary-nav .flex-container {
+    gap: 0;
+  }
+
+  .buttons {
+    display: none;
+  }
+}
+
 @media (min-width: 660px) {
   .hours-container .hours-info,
   .last-group {

@@ -279,13 +279,13 @@ footer {
   cursor: pointer;
   background: linear-gradient(90deg, #480204 0%, #a20003 50%, #480204 100%);
   border: 2px solid #e8c775;
+  border-radius: 0.8rem;
   color: #fff;
   font-family: var(--font-brygada);
   font-weight: var(--weight-bold);
   text-shadow: -1px -1px 0 #a20003, 1px -1px 0 #a20003, -1px 1px 0 #a20003,
     1px 1px 0 #a20003;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-  border-radius: 0.8rem;
   font-size: 12px;
   width: 10rem;
   height: 2rem;
@@ -366,6 +366,18 @@ footer {
 /* Media Queries */
 
 @media (max-width: 320px) {
+  /* .info-panel {
+    padding: 0;
+  } */
+  .footer-containers {
+    border-radius: 0.8rem;
+    border: 2px solid #e8c775;
+  }
+
+  .footer-collapse-btn {
+    border-radius: 0.6rem;
+  }
+
   .hours-container .hours-info .footer-content.active {
     width: 94%;
   }
@@ -458,6 +470,14 @@ footer {
   .btn,
   .mini-map-button {
     width: 80%;
+  }
+
+  footer .info-panel {
+    padding: 0.4rem 0 0.2rem;
+  }
+
+  .copyright-container .copyright {
+    margin-top: 0.4rem;
   }
 }
 
@@ -584,8 +604,6 @@ footer {
     flex-direction: row;
     justify-content: space-evenly;
     background: linear-gradient(90deg, #480204 0%, #800407 50%, #480204 100%);
-    border-radius: 1rem;
-    border: 4px solid #e8c775;
     margin: 0 1rem;
   }
 
@@ -612,7 +630,6 @@ footer {
 
   .footer-content.active .hours-grid .quick-hours {
     justify-content: space-between;
-    /* margin: 0.6rem 0 0.4rem 0; */
   }
 
   .hours-grid,
@@ -1661,8 +1678,8 @@ footer {
     justify-content: center;
   }
 
-  .footer-content.active .location-content {
-    gap: 1rem;
+  .location-container .footer-content.active .location-content {
+    gap: 0;
   }
 }
 
@@ -1704,11 +1721,13 @@ footer {
   }
 
   .footer-content.active {
-    width: min(72rem, calc(100vw - 1rem));
-    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     justify-content: center;
+    width: min(72rem, calc(100vw - 1rem));
     min-height: calc(100vh - 20rem);
-    gap: 1rem;
+    gap: 1.4rem;
     border-radius: 1rem;
     border: 4px solid #e8c775;
     padding: 2rem 7.2rem;
@@ -1718,313 +1737,29 @@ footer {
   .location-container {
     min-height: 5rem;
     border: none;
+    background: none;
+    box-shadow: none;
     width: 100%;
-    padding: 0 1.6rem;
   }
 
   .footer-containers .footer-collapse-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     height: 100%;
     min-height: 5rem;
     width: 100%;
-    border-radius: 1rem;
-    border: 5px solid #e8c775;
-    background: linear-gradient(90deg, #480204 0%, #800407 50%, #480204 100%);
-  }
-
-  .footer-content.active .hours-content .quick-hours {
-    padding: 0 4.2rem 0 0;
-  }
-
-  .footer-content.active .hours-content,
-  .footer-content.active .location-content,
-  .footer-content.active .location-description {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    height: 100%;
-  }
-
-  .footer-content.active .hours-content .hours-grid {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    border-radius: 1rem;
-    border: 5px solid #e8c775;
-    height: auto;
-    justify-content: center;
-    gap: 1rem;
-    padding: 1rem 0;
-  }
-
-  .contact-button {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 1rem;
-  }
-
-  .contact-button .action-buttons .btn {
-    width: 20rem;
-    min-height: 5rem;
-    border-radius: 1rem;
-    border: 5px solid #e8c775;
-  }
-
-  .footer-content.active .address-section {
-    padding-bottom: 1rem;
-  }
-
-  .footer-content.active .map-wrapper,
-  .footer-content.active .mini-map-iframe {
-    display: flex;
-  }
-
-  .footer-content.active .mini-map-button {
-    display: none;
-  }
-
-  .days,
-  .times,
-  .address,
-  .mini-map-button a {
-    font-size: 24px;
-  }
-
-  .hours-note .holiday-hours,
-  .address-description,
-  .contact-button p,
-  .footer-content.active .action-buttons a {
-    font-size: 20px;
-  }
-
-  .last-group {
-    font-size: 20px;
-  }
-
-  .footer-content.active .map-wrapper {
-    min-height: calc(100vh - 40rem);
-    margin-top: 3rem;
-    width: 100%;
-  }
-
-  .footer-content.active .map-wrapper .mini-map-iframe {
-    height: 100%;
-    width: 100%;
-  }
-}
-
-/* @media (min-width: 1920px) {
-  .info-panel {
-    align-items: center;
-    padding: 0 2rem;
-  }
-
-  .footer-containers {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    gap: 1rem;
-    padding: 0.6rem 0;
-    width: 100%;
+    min-width: auto;
     max-width: none;
-  }
-
-  .footer-content.active {
-    min-height: calc(100vh - 12rem);
-  }
-
-  .hours-container,
-  .location-container {
-    display: flex;
-    justify-content: space-evenly;
-    max-width: 86rem;
-    min-height: 8rem;
-    height: 100%;
-    padding: 0.4rem 1.6rem;
-    border-radius: 1rem;
-    border: 5px solid #e8c775;
-  }
-
-  .hours-container .hours-info .hours-content,
-  .hours-container .hours-grid,
-  .footer-content.active .location-content {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    height: 100%;
-  }
-
-  .hours-container .hours-info .header-text img,
-  .footer-collapse-btn.hours-btn img,
-  .hours-info .footer-content.active .header-text img {
-    max-width: 6.2rem;
-  }
-
-  .location-container .location-detail .header-text img,
-  .footer-collapse-btn.location-btn img,
-  .location-container .footer-content.active .header-text img {
-    max-width: 8.6rem;
-  }
-
-  .days,
-  .times,
-  .address,
-  .mini-map-button a {
-    font-size: 20px;
-  }
-
-  .hours-grid {
-    gap: 0;
-  }
-
-  .hours-container .quick-hours {
-    gap: 2rem;
-    padding: 0;
-  }
-
-  .hours-note {
-    padding-top: 0;
-  }
-
-  .days,
-  .times {
-    gap: 0.6rem;
-  }
-
-  .hours-note .holiday-hours,
-  .address-description,
-  .contact-button p,
-  .footer-content.active .action-buttons a {
-    font-size: 18px;
-  }
-
-  .last-group {
-    font-size: 18px;
-    padding-top: 0.4rem;
-  }
-
-  .location-description {
-    max-height: 4rem;
-  }
-
-  .map-wrapper-small {
-    width: 54%;
-    height: 5.8rem;
-  }
-
-  .mini-map-iframe {
-    border-radius: 1rem;
-    border: 5px solid #e8c775;
-  }
-}
-
-@media (min-width: 1920px) and (max-height: 550px) {
-  .hours-container .hours-info .footer-content.active,
-  .location-container .footer-content.location-detail.active {
-    min-height: calc(100vh - 30rem);
-  }
-
-  .footer-content.active .map-wrapper .mini-map-button {
-    display: flex;
-    flex-direction: column;
-    height: 5rem;
-    border-radius: 1rem;
-    border: 5px solid #e8c775;
-  }
-
-  .footer-content.active .location-description {
-    margin: 0;
-  }
-
-  .footer-content.active .location-content .map-wrapper {
-    height: auto;
-    margin-top: 1.5rem;
-  }
-  
-  .footer-content.active .map-wrapper .mini-map-button {
-    width: 20rem;
-  }
-
-  .footer-content.active .contact-button,
-  .footer-content.active .map-wrapper .mini-map-iframe {
-    display: none;
-  }
-
-  .location-container .footer-content.active .location-content,
-  .footer-content.active .map-wrapper,
-  .hours-info .footer-content.active .hours-content {
-    height: auto;
-    justify-content: center;
-  }
-
-  .footer-content.active .location-content {
-    gap: 1rem;
-  }
-}
-
-@media (min-width: 1920px) and (max-height: 700px) {
-  .hours-info .footer-content.active,
-  .location-container .footer-content.active {
-    min-height: 24rem;
-  }
-
-  .footer-content.active .location-content {
-    justify-content: center;
-  }
-
-  .contact-button {
-    gap: 0;
-  }
-
-  .footer-content.location-detail.active
-    .location-description
-    .address-section {
-    padding-bottom: 0;
-  }
-
-  .footer-content.active .map-wrapper .mini-map-iframe {
-    height: 12rem;
-  }
-
-  .footer-content.active .location-description {
-    margin-bottom: 0;
-  }
-}
-
-@media (min-width: 1920px) and (max-height: 800px) {
-  .footer-containers {
-    border-radius: 1rem;
-    border: 5px solid #e8c775;
-    margin: 0.6rem 0 0;
-    background: linear-gradient(90deg, #480204 0%, #800407 50%, #480204 100%);
-  }
-
-  .footer-content.active {
-    width: min(72rem, calc(100vw - 1rem));
-    height: 100%;
-    justify-content: center;
-    min-height: calc(100vh - 20rem);
-    gap: 1rem;
-    border-radius: 1rem;
-    border: 4px solid #e8c775;
-    padding: 2rem 7.2rem;
-  }
-
-  .hours-container,
-  .location-container {
-    min-height: 5rem;
-    border: none;
-    width: 100%;
-    padding: 0 1.6rem;
-  }
-
-  .footer-containers .footer-collapse-btn {
-    height: 100%;
-    min-height: 5rem;
-    width: 100%;
     border-radius: 1rem;
     border: 5px solid #e8c775;
     background: linear-gradient(90deg, #480204 0%, #800407 50%, #480204 100%);
+    padding-bottom: 0.4rem;
+  }
+
+  .hours-container .hours-info {
+    width: auto;
   }
 
   .footer-content.active .hours-content .quick-hours {
@@ -2040,6 +1775,10 @@ footer {
     height: 100%;
   }
 
+  .footer-content.active .location-content {
+    gap: 1.4rem;
+  }
+
   .footer-content.active .hours-content .hours-grid {
     display: flex;
     flex-direction: column;
@@ -2052,11 +1791,28 @@ footer {
     padding: 1rem 0;
   }
 
+  .footer-content.active .last-group {
+    text-align: center;
+    margin: 1.4rem 0;
+  }
+
+  .footer-content.active .location-description {
+    max-height: none;
+  }
+
+  .hours-container .footer-collapse-btn.hours-btn img {
+    max-width: 7rem;
+  }
+
+  .location-container .footer-collapse-btn.location-btn img {
+    max-width: 9.8rem;
+  }
+
   .contact-button {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 1rem;
+    gap: 1.4rem;
   }
 
   .contact-button .action-buttons .btn {
@@ -2067,7 +1823,9 @@ footer {
   }
 
   .footer-content.active .address-section {
-    padding-bottom: 1rem;
+    padding-bottom: 0;
+    text-align: center;
+    gap: 1.4rem;
   }
 
   .footer-content.active .map-wrapper,
@@ -2082,24 +1840,20 @@ footer {
   .days,
   .times,
   .address,
-  .mini-map-button a {
+  .mini-map-button a,
+  .footer-content.active .action-buttons a {
     font-size: 24px;
   }
 
   .hours-note .holiday-hours,
   .address-description,
   .contact-button p,
-  .footer-content.active .action-buttons a {
-    font-size: 20px;
-  }
-
   .last-group {
     font-size: 20px;
   }
 
   .footer-content.active .map-wrapper {
     min-height: calc(100vh - 40rem);
-    margin-top: 3rem;
     width: 100%;
   }
 
@@ -2107,4 +1861,4 @@ footer {
     height: 100%;
     width: 100%;
   }
-} */
+}
