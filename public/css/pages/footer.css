@@ -218,7 +218,7 @@ footer {
   width: 100%;
 }
 
-.btn,
+.footer-btn,
 .mini-map-button {
   width: 70%;
   transition: width 0.3s ease-in-out;
@@ -226,11 +226,11 @@ footer {
 
 .mini-map-button {
   position: relative;
-  z-index: 100;
+  z-index: 10;
   display: flex;
   justify-content: center;
   align-items: center;
-  border-radius: 0.8rem;
+  border-radius: 0.6rem;
   border: 2px solid #e8c775;
   background: linear-gradient(90deg, #480204 0%, #800407 50%, #480204 100%);
   box-shadow: 0px 6px 4px rgba(34, 0, 1, 0.8);
@@ -293,6 +293,27 @@ footer {
   height: 2rem;
   text-align: center;
   transition: transform 0.2s ease;
+}
+
+.footer-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 8rem;
+  height: 2.2rem;
+  border-radius: clamp(0.6rem, 1.5vw, 1.2rem);
+  border: 2px solid #e8c775;
+  background: linear-gradient(90deg, #480204 0%, #800407 50%, #480204 100%);
+  box-shadow: 0px 6px 4px rgba(34, 0, 1, 0.8);
+  z-index: 1;
+  font-size: 12px;
+  color: #fff;
+  font-family: var(--font-brygada);
+  font-weight: var(--weight-bold);
+  font-style: normal;
+  text-shadow: -1px -1px 0 #a20003, 1px -1px 0 #a20003, -1px 1px 0 #a20003,
+    1px 1px 0 #a20003;
+  transition: transform 0.3s ease, height 0.5s ease-in-out;
 }
 
 .footer-collapse-btn:hover {
@@ -368,22 +389,59 @@ footer {
 /* Media Queries */
 
 @media (max-width: 320px) {
-  .footer-containers {
-    border-radius: 0.8rem;
-    border: 2px solid #e8c775;
+  .info-panel .footer-containers {
+    border: none;
+  }
+
+  .hours-container,
+  .location-container {
+    display: flex;
+    border: none;
+    background: none;
+    box-shadow: none;
+    width: 100%;
+    padding: 0;
   }
 
   .footer-collapse-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     border-radius: 0.6rem;
+    width: 100%;
   }
 
-  .hours-container .hours-info .footer-content.active {
-    width: 94%;
+  .footer-content.active {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.6rem;
+    padding: 1rem 0.2rem;
+    min-height: calc(100vh - 18rem);
+    max-height: 20rem;
+    transition: min-height 0.2s ease-in-out, max-height 0.2s ease-in-out;
   }
 
-  .location-container .footer-content.active {
-    width: 94%;
-    gap: 2rem;
+  .hours-container .hours-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .hours-container .hours-info {
+    padding: 0;
+  }
+
+  .hours-info .footer-content.active .hours-content .hours-grid .quick-hours {
+    margin: 0;
+  }
+
+  .footer-content.active .holiday-hours,
+  .footer-content.active .last-group,
+  .footer-content.active .address-section {
+    text-align: center;
   }
 
   .footer-content.active .quick-hours .days,
@@ -391,11 +449,15 @@ footer {
   .footer-content.active .holiday-hours,
   .footer-content.active .last-group,
   .footer-content.active .contact-button p,
-  .footer-content.active .contact-button .btn,
+  .footer-content.active .contact-button .footer-btn,
   .footer-content.active .address p,
   .footer-content.active .address-description p,
   .footer-content.active .mini-map-button a {
     font-size: 4vw;
+  }
+
+  .last-group .small-br {
+    display: none;
   }
 
   .footer-content.active .header-text img {
@@ -416,10 +478,6 @@ footer {
 
   .location-container .footer-content.active .header-text img {
     width: 34vw;
-  }
-
-  .footer-content.active .location-description .address-section {
-    gap: 2rem;
   }
 
   .footer-content.active .hours-content,
@@ -466,13 +524,8 @@ footer {
     width: 100%;
   }
 
-  .btn,
-  .mini-map-button {
-    width: 80%;
-  }
-
   footer .info-panel {
-    padding: 0.4rem 0 0.2rem;
+    padding: 0.4rem 0.2rem 0.2rem;
   }
 
   .copyright-container .copyright {
@@ -484,9 +537,40 @@ footer {
   .footer-containers {
     border: none;
   }
+
+  .footer-content .hours-info .header-text {
+    width: 100%;
+  }
+
+  .hours-info .header-text img {
+    width: 100%;
+  }
 }
 
-@media (max-width: 1023px) and (max-height: 449px) {
+@media (max-width: 320px) and (min-height: 450px) {
+  #collapsible-footer-content
+    > div.hours-container
+    > div.hours-info
+    > div
+    > div.hours-content
+    > div.contact-button {
+    display: block;
+  }
+
+  .contact-button {
+    text-align: center;
+  }
+
+  .contact-button .action-buttons {
+    margin-top: 1rem;
+  }
+
+  .footer-content.active .location-content .location-description {
+    margin-bottom: 0;
+  }
+}
+
+@media (min-width: 320px) and (max-width: 1023px) and (max-height: 449px) {
   #collapsible-footer-content .footer-content.active {
     margin: 0;
     padding: 1rem;
@@ -575,7 +659,7 @@ footer {
     font-size: 12px;
   }
 
-  .contact-button .btn {
+  .contact-button .footer-btn {
     font-size: 14px;
   }
 
@@ -607,7 +691,7 @@ footer {
   }
 }
 
-@media (max-width: 1023px) and (max-height: 700px),
+@media (min-width: 320px) and (max-width: 1023px) and (max-height: 700px),
   (min-width: 1024px) and (max-width: 1439px) and (max-height: 800px),
   (min-width: 1440px) and (max-width: 1919px) and (max-height: 800px) {
   .footer-containers {
@@ -717,7 +801,7 @@ footer {
   }
 }
 
-@media (min-height: 701px) and (max-width: 1023px),
+@media (min-height: 701px) and (min-width: 320px) and (max-width: 1023px),
   (min-height: 801px) and (min-width: 1024px) {
   .hours-container .footer-content,
   .location-container .footer-content {
@@ -777,7 +861,6 @@ footer {
     height: 2rem;
     width: 6rem;
     padding: 0;
-    border-radius: 1rem;
   }
 
   .footer-collapse-btn {
@@ -844,7 +927,7 @@ footer {
   .times,
   .last-group,
   .address,
-  .contact-button .btn,
+  .contact-button .footer-btn,
   .contact-button p,
   .address-description {
     font-size: 16px;
@@ -860,7 +943,7 @@ footer {
     display: none;
   }
 
-  .footer-content.active .btn {
+  .footer-content.active .footer-btn {
     width: 12rem;
     height: 3rem;
   }
@@ -959,7 +1042,7 @@ footer {
   .holiday-hours,
   .last-group,
   .address-description,
-  .contact-button .btn,
+  .contact-button .footer-btn,
   .contact-button p {
     font-size: 14px;
   }
@@ -1153,7 +1236,7 @@ footer {
   .holiday-hours,
   .last-group,
   .address-description,
-  .contact-button .btn,
+  .contact-button .footer-btn,
   .contact-button p {
     font-size: 16px;
   }
@@ -1464,7 +1547,7 @@ footer {
     gap: 1rem;
   }
 
-  .contact-button .action-buttons .btn {
+  .contact-button .action-buttons .footer-btn {
     width: 20rem;
     min-height: 5rem;
     border-radius: 1rem;
@@ -1839,7 +1922,7 @@ footer {
     gap: 1.4rem;
   }
 
-  .contact-button .action-buttons .btn {
+  .contact-button .action-buttons .footer-btn {
     width: 20rem;
     min-height: 5rem;
     border-radius: 1rem;

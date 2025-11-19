@@ -168,61 +168,8 @@ function setupFooterCollapse() {
           document.addEventListener('click', handleOutsideClick);
         }, 50);
       } else {
-        // If it was already active, closeModal() handled the closing. Log it.
         console.log(`[Footer Collapse] Closing: ${buttonText} content (via button click).`);
       }
-
-      // let isAlreadyActive = false;
-
-      // if (targetElement) {
-      //   // Check if already active/open:
-      //   isAlreadyActive = targetElement.classList.contains('active');
-
-      //   // Close any currently active content:
-      //   document.querySelectorAll('.footer-content.active').forEach(content => {
-      //     content.classList.remove('active');
-      //   });
-
-      //   // Message if content is closing:
-      //   if (isAlreadyActive) {
-      //     console.log(`[Footer Collapse] Closing: ${buttonText} content`);
-      //   }
-
-      //   // Check if the target is already open:
-      //   // const isAlreadyActive = targetElement.classList.contains('active');
-
-      //   closeModal();
-
-      //   // Toggle the 'active' class on the target content:
-      //   if (!isAlreadyActive) {
-      //     targetElement.classList.add('active');
-      //     overlay.style.display = 'block';
-      //     document.body.classList.add('modal-open');
-      //     console.log(`[Footer Collapse] Opening: ${buttonText} modal.`);
-      //   }
-
-
-      // } else {
-      //   // Exit if the target element doesn't exist
-      //   console.error(`Error: Collapse target element with class "${targetClass}" not found.`);
-      //   return
-      // }
-
-      // Add an event listener to close the overlay if user clicks outside of it:
-      // if (targetElement.classList.contains('active')) {
-      //   const closeOverlay = (event) => {
-      //     if (!targetElement.contains(event.target) && event.target !== button) {
-      //       targetElement.classList.remove('active');
-      //       console.log(`[Footer Collapse] Closed via outside click: ${buttonText} content.`);
-      //       document.removeEventListener('click', closeOverlay);
-      //     }
-      //   };
-
-      //   // Listen for clicks on the document to close the overlay:
-      //   setTimeout(() => {
-      //     document.addEventListener('click', closeOverlay);
-      //   }, 50);
-      // }
     });
   })
 }
