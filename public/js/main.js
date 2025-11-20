@@ -6,6 +6,8 @@ import("./modal-gallery.js").then(({ handleUrlHash }) => {
   }
 });
 
+let closeModalHandler;
+
 document.addEventListener('DOMContentLoaded', function () {
   console.log('Main script loaded');
 
@@ -54,6 +56,25 @@ document.addEventListener('DOMContentLoaded', function () {
 
       // Call the function on initial page load
       setActiveMobileLink();
+
+      const menuMediaQuery = window.matchMedia('(min-width: 660px)');
+
+      const handleMobileMenuCleanup = (e) => {
+        if (e.matches) {
+          // Screen width is 660px or larger
+          if (mobileMenu && mobileMenu.classList.contains('show')) {
+            mobileMenu.classList.remove('show');
+            document.body.classList.remove('menu-open');
+            console.log('[Resize Listener] Mobile menu state cleared due to screen width > 660px.');
+          }
+        }
+      };
+
+      // Add listener for changes to the media query
+      menuMediaQuery.addEventListener('change', handleMobileMenuCleanup);
+
+      // Run the check once on load 
+      handleMobileMenuCleanup(menuMediaQuery);
 
     }
   });

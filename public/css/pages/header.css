@@ -475,6 +475,10 @@ header {
     height: 2.4rem;
   }
 
+  .modal-overlay {
+    display: none;
+  }
+
   /* Header Bottom Section */
   .header-bottom {
     position: relative;
