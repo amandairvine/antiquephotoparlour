@@ -150,6 +150,13 @@ export async function loadPage(pageName, updateHistory = true) {
                     console.error('Failed to load frames.js:', error);
                 });
             }
+            if (pageName === 'historical-pet-portraits') {
+                import('./hpp.js').then(({ initializeHppPage }) => {
+                    initializeHppPage();
+                }).catch(error => {
+                    console.error('Failed to load hpp.js:', error);
+                });
+            }
             if (pageName === 'awards') {
                 import('./awards.js').then(({ initializeAwardsPage }) => {
                     initializeAwardsPage();

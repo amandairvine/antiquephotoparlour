@@ -23,7 +23,7 @@ body {
   border: 0;
 }
 
-.hpp-container {
+.historical-pet-portraits-container {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -40,26 +40,46 @@ body {
 }
 
 .hpp-content {
+  display: flex;
+  flex-direction: column;
   width: 100%;
   max-width: 17.4rem;
   height: 100%;
   overflow-y: auto;
   border: 2px solid #e8c775;
   border-radius: 0.8rem;
-  padding: 0.6rem;
+  padding: 0 0.6rem 0.6rem;
   background: linear-gradient(90deg, #480204 0%, #800407 50%, #480204 100%);
 }
 
-.hpp-content .content-dropdown {
+.hpp-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  position: relative;
+  top: -1rem;
+}
+
+.hpp-info .content-dropdown {
   display: flex;
   justify-content: center;
-  align-items: flex-start;
+  align-items: center;
+  width: 100%;
+  height: 2.2rem;
+  border-radius: clamp(0.6rem, 1.5vw, 1.2rem);
+  border: 2px solid #e8c775;
   background: linear-gradient(90deg, #480204 0%, #800407 50%, #480204 100%);
-  border-bottom: 2px solid #e8c775;
-  border: 3px solid #e8c775;
-  border-radius: 0.8rem 0.8rem 0.8rem 0.8rem;
-  padding: 0.6rem;
-  transition: all 0.3s ease-in-out;
+  box-shadow: 0px 6px 4px rgba(34, 0, 1, 0.8);
+  z-index: 1;
+  font-size: 12px;
+  color: #fff;
+  font-family: var(--font-brygada);
+  font-weight: var(--weight-bold);
+  font-style: normal;
+  text-shadow: -1px -1px 0 #a20003, 1px -1px 0 #a20003, -1px 1px 0 #a20003,
+    1px 1px 0 #a20003;
+  transition: transform 0.3s ease, height 0.5s ease-in-out;
 }
 
 .hpp-list {
@@ -67,13 +87,14 @@ body {
   flex-direction: column;
   justify-content: space-between;
   height: 100%;
-  padding: 0.6rem 0;
 }
 
 .hpp-list ol {
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   gap: 0.6rem;
+  height: 100%;
 }
 
 .large-view-content {
@@ -83,13 +104,13 @@ body {
 .content-area {
   display: flex;
   flex-direction: column;
-  justify-content: space-evenly;
+  justify-content: center;
   position: relative;
   height: 100%;
-  max-height: calc(100vh - 30rem);
+  max-height: calc(100vh - 28.4rem);
   width: 100%;
   margin: 0 auto;
-  padding-bottom: 0.6rem;
+  gap: 0.6rem;
 }
 
 .hpp {
@@ -115,10 +136,14 @@ body {
 }
 
 .hpp-header-wrapper {
+  display: flex;
+  flex-direction: column;
   position: sticky;
   top: 0;
   background: linear-gradient(90deg, #480204 0%, #800407 50%, #480204 100%);
   z-index: 50;
+  gap: 0.6rem;
+  padding-top: 0.6rem;
 }
 
 .hpp-header-container {
@@ -127,9 +152,8 @@ body {
   align-items: flex-start;
   background: linear-gradient(90deg, #480204 0%, #800407 50%, #480204 100%);
   border-bottom: 2px solid #e8c775;
-  border: 3px solid #e8c775;
-  border-radius: 0.8rem 0.8rem 0.8rem 0.8rem;
-  margin: 0 0.6rem;
+  border: 2px solid #e8c775;
+  border-radius: 0.8rem;
   transition: all 0.3s ease-in-out;
 }
 
@@ -166,10 +190,9 @@ body {
 
 .hpp-header-description h1,
 .hpp-content h1,
-.hpp-content h2,
-.hpp-list thead th {
+.hpp-content h2 {
   color: #fff;
-  font-size: 11px;
+  font-size: 10px;
   font-family: var(--font-brygada);
   font-weight: var(--weight-bold);
   text-shadow: -1px -1px 0 #a20003, 1px -1px 0 #a20003, -1px 1px 0 #a20003,
@@ -182,7 +205,7 @@ body {
 .hpp-content p,
 .tips-and-tricks li {
   color: #fff;
-  font-size: 10px;
+  font-size: 9px;
   font-family: var(--font-brygada);
   font-weight: var(--weight-bold);
   text-shadow: -1px -1px 0 #a20003, 1px -1px 0 #a20003, -1px 1px 0 #a20003,
@@ -191,71 +214,10 @@ body {
   text-align: center;
 }
 
-.hpp-list td {
-  color: #fff;
-  font-size: 10px;
-  font-family: var(--font-brygada);
-  font-weight: var(--weight-bold);
-  text-shadow: -1px -1px 0 #a20003, 1px -1px 0 #a20003, -1px 1px 0 #a20003,
-    1px 1px 0 #a20003;
-  line-height: 1.2;
-}
-
-.hpp-prices {
+.hpp-list ol li {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 0.6rem;
-  margin: 0.6rem 0;
-  background: linear-gradient(90deg, #480204 0%, #800407 50%, #480204 100%);
-  border: 2px solid #e8c775;
-  border-radius: 0.8rem;
-  width: auto;
-  height: 100%;
-}
-
-.hpp-prices h2 {
-  font-size: 10px;
-  line-height: 1.4;
-  color: #fff;
-  font-weight: bold;
-  text-shadow: -1px -1px 0 #a20003, 1px -1px 0 #a20003, -1px 1px 0 #a20003,
-    1px 1px 0 #a20003;
-  text-align: center;
-}
-
-.hpp-prices img {
-  max-width: 6rem;
-  max-height: 0.8rem;
-}
-
-.hpp-prices h3 {
-  font-size: 10px;
-  line-height: 1.4;
-  color: #fff;
-  font-weight: bold;
-  text-shadow: -1px -1px 0 #a20003, 1px -1px 0 #a20003, -1px 1px 0 #a20003,
-    1px 1px 0 #a20003;
-  text-align: center;
-}
-
-.hpp-list table {
-  width: 100%;
-}
-
-.hpp-list table {
-  width: 100%;
-  border-collapse: collapse;
-}
-
-.hpp-list table th.prices {
-  text-align: left;
-}
-
-.hpp-list table tbody tr td.print,
-.hpp-list table th.options {
-  text-align: center;
+  gap: 0.2rem;
 }
 
 .action-buttons {
@@ -263,17 +225,70 @@ body {
   justify-content: center;
   margin: 0 auto;
   padding: 0 0 0.6rem;
+  gap: 0.3rem;
   z-index: 2;
   transition: padding 0.3s ease-in-out;
+}
+
+.action-buttons p {
+  font-style: italic;
+}
+
+.hpp-list .action-buttons {
+  padding-top: 0;
 }
 
 .action-buttons-short {
   display: none;
 }
 
+.hpp-list li:nth-child(1) span {
+  font-size: 10px;
+  font-style: italic;
+}
+
 .hpp-container .btn {
   width: 10rem;
 }
+
+/* Dropdown Styling */
+
+#howItWorksToggle {
+  border-radius: clamp(0.6rem, 1.5vw, 1.2rem);
+  border: 2px solid #e8c775;
+  background: linear-gradient(90deg, #480204 0%, #800407 50%, #480204 100%);
+  box-shadow: 0px 6px 4px rgba(34, 0, 1, 0.8);
+  padding: 0.6rem;
+}
+
+#howItWorksToggle h1 {
+  font-size: 12px;
+}
+
+.accordion-header {
+  cursor: pointer;
+  user-select: none;
+}
+
+.accordion-content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease-out, padding 0.3s ease-out;
+  padding: 0 1rem;
+}
+
+.accordion-content.open {
+  position: relative;
+  top: -1rem;
+  max-height: 100rem;
+  padding: 2rem 1rem 1rem;
+}
+
+.accordion-item {
+  width: 100%;
+}
+
+/* Video Styling */
 
 .hpp-video {
   display: flex;
@@ -282,8 +297,23 @@ body {
   width: 99%;
 }
 
-.hpp-video iframe {
+.hpp-video iframe,
+.hpp-video video {
   width: 100%;
+  height: 100%;
+  border: 2px solid #e8c775;
+  border-radius: 0.8rem;
+}
+
+#youtube-button-fallback {
+  padding: 0.6rem;
+  border: 2px solid #e8c775;
+  border-radius: 0.8rem;
+  gap: 0.6rem;
+}
+
+#youtube-button-fallback a {
+  text-align: center;
 }
 
 /* WebKit browsers: Chrome, Safari, Edge */
