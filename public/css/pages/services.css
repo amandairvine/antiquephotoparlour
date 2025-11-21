@@ -225,6 +225,35 @@
   object-fit: cover;
 }
 
+#historical-pet .gallery-item {
+  position: relative; 
+  overflow: hidden; 
+  width: 100%;
+  height: 100%;
+}
+
+#historical-pet .gallery-item img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: opacity 0.5s ease-in-out;
+}
+
+#historical-pet .gallery-item .hover-img {
+  opacity: 0;
+}
+
+#historical-pet .gallery-item:hover .default-img {
+  opacity: 0;
+}
+
+#historical-pet .gallery-item:hover .hover-img {
+  opacity: 1;
+}
+
 .action-buttons {
   display: flex;
   justify-content: center;

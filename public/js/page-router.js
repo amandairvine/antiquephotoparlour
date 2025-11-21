@@ -10,6 +10,7 @@ const routes = {
     'frames': '/pages/frames/frames.html',
     'faq': '/pages/frequently-asked-questions/frequently-asked-questions.html',
     'contact': '/pages/contact/contact.html',
+    'historical-pet-portraits': '/pages/historical-pet-portraits/historical-pet-portraits.html',
     'awards': '/pages/awards/awards.html'
 };
 
@@ -183,6 +184,7 @@ function extractPageName(href) {
     if (href.includes('frequently-asked-questions')) return 'faq';
     if (href.includes('contact')) return 'contact';
     if (href.includes('home')) return 'home';
+    if (href.includes('historical-pet-portraits')) return 'historical-pet-portraits';
     if (href.includes('awards')) return 'awards';
     return null;
 }
@@ -215,6 +217,7 @@ function getPageTitle(pageName) {
         'frames': 'Frames - Antique Photo Parlour',
         'faq': 'FAQ - Antique Photo Parlour',
         'contact': 'Contact - Antique Photo Parlour',
+        'historical-pet-portraits': 'Historical Pet Portraits - Antique Photo Parlour',
         'awards': 'Awards - Antique Photo Parlour'
     };
     return titles[pageName] || 'Antique Photo Parlour';
