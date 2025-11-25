@@ -39,7 +39,16 @@ export function initializeHppPage() {
     if (localVideoElement) {
         console.log("Attempting to load and play local video first...");
 
-        let playbackSuccess = false; // New flag to track successful playback
+        // Remove the playbackSuccess flag and the E205 setTimeout check.
+        // Instead, rely on the video events for confirmation.
+
+        let isPlaying = false; // New flag to confirm playback started
+
+        // Listen for the 'playing' event for successful start
+        localVideoElement.addEventListener('playing', function () {
+            isPlaying = true; // Playback has successfully begun
+            console.log("Local video confirmed playing.");
+        });
 
         // E202: Standard Error Listener
         localVideoElement.addEventListener('error', function () {
@@ -52,27 +61,27 @@ export function initializeHppPage() {
         // Start Playback Attempt
         localVideoElement.play()
             .then(() => {
-                playbackSuccess = true; // Set flag to true only on success
-                console.log("Local video started successfully (Autoplay success).");
+                // Note: The 'playing' event will fire a moment after this if successful
+                console.log("Local video play() promise resolved (Autoplay was permitted).");
                 if (localVideoContainer) localVideoContainer.style.display = 'block';
             })
             .catch(error => {
-                // W203: Autoplay restriction. We still rely on the manual check below to handle the text/html case.
+                // W203: Autoplay restriction. This is OK, as the 'playing' event will not fire until user interaction.
                 console.warn("Video Warning (W203): Playback promise rejected (Autoplay blocked).", error);
                 if (localVideoContainer) localVideoContainer.style.display = 'block';
             });
 
-        // E205: Manual Playback Check (The definitive check for text/html failure)
+        // E205: Manual Playback Check (Modified)
+        // Give it a bit more time, and check the 'isPlaying' flag
         setTimeout(() => {
             console.log("DEBUG: setTimeout check executing.");
 
-            // If playback was NOT successful after 500ms, force the fallback.
-            // This captures both the autoplay block (W203) AND the silent server error.
-            if (!playbackSuccess) {
-                console.error("Video Error (E205): Video did not start successfully within 500ms. Triggering YouTube fallback.");
+            // If 'playing' event never fired after 2 seconds, assume failure/unrecoverable block.
+            if (!isPlaying) {
+                console.error("Video Error (E205): Video did not successfully fire 'playing' event. Triggering YouTube fallback.");
                 loadYouTubePlayer("Manual check failed: Video playback was not confirmed.");
             }
-        }, 500);
+        }, 2000); // Increased time to 2 seconds for a safer check
 
         console.log("DEBUG: Finished video setup block.");
 
@@ -82,23 +91,84 @@ export function initializeHppPage() {
         loadYouTubePlayer("Local video element missing from HTML.");
     }
 
-    // --- Dropdown Toggle ---
-    const toggle = document.getElementById('howItWorksToggle');
-    const content = document.getElementById('howItWorksContent');
+    // --- How It Works Dropdown Toggle ---
 
-    console.log('--- Dropdown Initialization Check ---');
-    console.log('Toggle Element found:', toggle);
-    console.log('Content Element found:', content);
+    let isDropdownOpen = false;
 
-    if (toggle && content) {
-        console.log('Dropdown elements successfully found. Attaching listener...');
+    function toggleHppDropdown() {
+        const menu = document.getElementById('howItWorksMenu');
+        const arrow = document.querySelector('#howItWorksToggle .dropdown-arrow');
+        const header = document.getElementById('howItWorksToggle');
 
-        toggle.addEventListener('click', function () {
-            content.classList.toggle('open');
-            console.log('Dropdown Clicked! Content classes:', content.classList);
-        });
+        if (!menu || !arrow || !header) {
+            console.error('HPP Dropdown Error: One or more elements not found for toggle logic.');
+            return;
+        }
 
-    } else {
-        console.error('Dropdown Error: One or both elements not found. Check HTML IDs.');
+        isDropdownOpen = !isDropdownOpen;
+
+        if (isDropdownOpen) {
+            menu.classList.add('open');
+            arrow.classList.add('open');
+            header.classList.add('open');
+        } else {
+            menu.classList.remove('open');
+            arrow.classList.remove('open');
+            header.classList.remove('open');
+        }
     }
+
+    const toggle = document.getElementById('howItWorksToggle');
+    if (toggle) {
+        toggle.addEventListener('click', toggleHppDropdown);
+    }
+
+    // Close dropdown when clicking outside
+    document.addEventListener('click', function (event) {
+        const toggleContainer = document.getElementById('howItWorksToggle');
+        const menu = document.getElementById('howItWorksMenu');
+        if (isDropdownOpen && toggleContainer && menu && !toggleContainer.contains(event.target) && !menu.contains(event.target)) {
+            toggleHppDropdown(); // Toggle to close
+        }
+    });
+
+    let isTipsDropdownOpen = false;
+
+    function toggleTipsDropdown() {
+        const menu = document.getElementById('tipsMenu');
+        // Select the arrow within the tipsToggle header
+        const arrow = document.querySelector('#tipsToggle .dropdown-arrow');
+        const header = document.getElementById('tipsToggle');
+
+        if (!menu || !arrow || !header) {
+            console.error('Tips Dropdown Error: One or more elements not found for toggle logic.');
+            return;
+        }
+
+        isTipsDropdownOpen = !isTipsDropdownOpen;
+
+        if (isTipsDropdownOpen) {
+            menu.classList.add('open');
+            arrow.classList.add('open');
+            header.classList.add('open');
+        } else {
+            menu.classList.remove('open');
+            arrow.classList.remove('open');
+            header.classList.remove('open');
+        }
+    }
+
+    const tipsToggle = document.getElementById('tipsToggle');
+    if (tipsToggle) {
+        tipsToggle.addEventListener('click', toggleTipsDropdown);
+    }
+
+    // Close dropdown when clicking outside
+    document.addEventListener('click', function (event) {
+        const header = document.getElementById('tipsToggle');
+        const menu = document.getElementById('tipsMenu');
+        if (isTipsDropdownOpen && header && menu && !header.contains(event.target) && !menu.contains(event.target)) {
+            toggleTipsDropdown();
+        }
+    });
 }
