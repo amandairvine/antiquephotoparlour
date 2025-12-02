@@ -91,9 +91,34 @@ export function initializeHppPage() {
         loadYouTubePlayer("Local video element missing from HTML.");
     }
 
-    // --- How It Works Dropdown Toggle ---
+    const hppHeaderWrapper = document.querySelector('.hpp-header-wrapper');
 
+    // --- State Variables for all dropdowns ---
     let isDropdownOpen = false;
+    let isTipsDropdownOpen = false;
+    let isContentDropdownOpen = false;
+    let isTipsContentDropdownOpen = false;
+
+    // --- Helper Function for Dropdown ---
+    function updateHeaderWrapperClass(isHPPDropdownOpen) {
+        if (!hppHeaderWrapper) {
+            console.error('HPP Dropdown Error: .hpp-header-wrapper element not found.');
+            return;
+        }
+
+        if (isHPPDropdownOpen) {
+            hppHeaderWrapper.classList.add('dropdown-open');
+        } else {
+            // Check all three dropdown states before removing the class
+            if (!isDropdownOpen && !isTipsDropdownOpen && !isContentDropdownOpen) {
+                hppHeaderWrapper.classList.remove('dropdown-open');
+            }
+        }
+    }
+
+    // ------------------------------------------------------------------
+    // --- 1. How It Works Dropdown Toggle (#howItWorksToggle) ---
+    // ------------------------------------------------------------------
 
     function toggleHppDropdown() {
         const menu = document.getElementById('howItWorksMenu');
@@ -116,6 +141,9 @@ export function initializeHppPage() {
             arrow.classList.remove('open');
             header.classList.remove('open');
         }
+
+        // Update the wrapper class state
+        updateHeaderWrapperClass(isDropdownOpen || isTipsDropdownOpen || isContentDropdownOpen);
     }
 
     const toggle = document.getElementById('howItWorksToggle');
@@ -132,7 +160,9 @@ export function initializeHppPage() {
         }
     });
 
-    let isTipsDropdownOpen = false;
+    // ------------------------------------------------------------------
+    // --- 2. Tips & Tricks Dropdown Toggle (#tipsToggle) ---
+    // ------------------------------------------------------------------
 
     function toggleTipsDropdown() {
         const menu = document.getElementById('tipsMenu');
@@ -156,6 +186,9 @@ export function initializeHppPage() {
             arrow.classList.remove('open');
             header.classList.remove('open');
         }
+
+        // Update the wrapper class state
+        updateHeaderWrapperClass(isDropdownOpen || isTipsDropdownOpen || isContentDropdownOpen);
     }
 
     const tipsToggle = document.getElementById('tipsToggle');
@@ -169,6 +202,99 @@ export function initializeHppPage() {
         const menu = document.getElementById('tipsMenu');
         if (isTipsDropdownOpen && header && menu && !header.contains(event.target) && !menu.contains(event.target)) {
             toggleTipsDropdown();
+        }
+    });
+
+    // ------------------------------------------------------------------
+    // --- 3. Content Area Dropdown Toggle (#howItWorksToggleContent) ---
+    // ------------------------------------------------------------------
+
+    function toggleContentDropdown() {
+        const menu = document.getElementById('howItWorksMenuContent');
+        // Select the arrow within the new content dropdown header
+        const arrow = document.querySelector('#howItWorksToggleContent .dropdown-arrow');
+        const header = document.getElementById('howItWorksToggleContent');
+
+        if (!menu || !arrow || !header) {
+            console.error('Content Dropdown Error: One or more elements not found for toggle logic.');
+            return;
+        }
+
+        isContentDropdownOpen = !isContentDropdownOpen;
+
+        if (isContentDropdownOpen) {
+            menu.classList.add('open');
+            arrow.classList.add('open');
+            header.classList.add('open');
+        } else {
+            menu.classList.remove('open');
+            arrow.classList.remove('open');
+            header.classList.remove('open');
+        }
+
+        // Update the wrapper class state with all three dropdown states
+        updateHeaderWrapperClass(isDropdownOpen || isTipsDropdownOpen || isContentDropdownOpen);
+    }
+
+    const contentToggle = document.getElementById('howItWorksToggleContent');
+    if (contentToggle) {
+        contentToggle.addEventListener('click', toggleContentDropdown);
+    }
+
+    // Close dropdown when clicking outside
+    document.addEventListener('click', function (event) {
+        const toggleContainer = document.getElementById('howItWorksToggleContent');
+        const menu = document.getElementById('howItWorksMenuContent');
+        if (isContentDropdownOpen && toggleContainer && menu && !toggleContainer.contains(event.target) && !menu.contains(event.target)) {
+            toggleContentDropdown(); // Toggle to close
+        }
+    });
+
+    // --------------------------------------------------------------------------
+    // --- 4. Content Area Tips & Tricks Dropdown Toggle (#tipsContentToggle) ---
+    // --------------------------------------------------------------------------
+
+    function toggleContentTipsDropdown(event) {
+
+        event.stopPropagation();
+
+        const menu = document.getElementById('tipsContentMenu');
+        // Select the arrow within the tipsToggle header
+        const arrow = document.querySelector('#tipsContentToggle .dropdown-arrow');
+        const header = document.getElementById('tipsContentToggle');
+
+        if (!menu || !arrow || !header) {
+            console.error('Tips Content Dropdown Error: One or more elements not found for toggle logic.');
+            return;
+        }
+
+        isTipsContentDropdownOpen = !isTipsContentDropdownOpen;
+
+        if (isTipsContentDropdownOpen) {
+            menu.classList.add('open');
+            arrow.classList.add('open');
+            header.classList.add('open');
+        } else {
+            menu.classList.remove('open');
+            arrow.classList.remove('open');
+            header.classList.remove('open');
+        }
+
+        // Update the wrapper class state
+        updateHeaderWrapperClass(isDropdownOpen || isTipsDropdownOpen || isContentDropdownOpen || isTipsContentDropdownOpen);
+    }
+
+    const tipsContentToggle = document.getElementById('tipsContentToggle');
+    if (tipsContentToggle) {
+        tipsContentToggle.addEventListener('click', toggleContentTipsDropdown);
+    }
+
+    // Close dropdown when clicking outside
+    document.addEventListener('click', function (event) {
+        const header = document.getElementById('tipsContentToggle');
+        const menu = document.getElementById('tipsContentMenu');
+        if (isTipsContentDropdownOpen && header && menu && !header.contains(event.target) && !menu.contains(event.target)) {
+            toggleContentTipsDropdown();
         }
     });
 }
