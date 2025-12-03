@@ -211,7 +211,6 @@ export function initializeHppPage() {
 
     function toggleContentDropdown() {
         const menu = document.getElementById('howItWorksMenuContent');
-        // Select the arrow within the new content dropdown header
         const arrow = document.querySelector('#howItWorksToggleContent .dropdown-arrow');
         const header = document.getElementById('howItWorksToggleContent');
 
@@ -297,4 +296,69 @@ export function initializeHppPage() {
             toggleContentTipsDropdown();
         }
     });
+
+    // ------------------------------------------------------------------
+    // --- 5. Screen Size Management Function for Dropdown ---
+    // ------------------------------------------------------------------
+
+    // *************** NEED TO WORK ON THIS SO THAT DROPDOWN OPENS AT CERTAIN WIDTH/HEIGHTS ********************
+    function manageLargeScreenDropdownState() {
+        const xlWidth = 1440;
+        const xlHeight = 1110;
+        const largeWidth = 1024;
+        const largeHeight = 1010;
+
+        const menu = document.getElementById('howItWorksMenuContent');
+        const arrow = document.querySelector('#howItWorksToggleContent .dropdown-arrow');
+        const header = document.getElementById('howItWorksToggleContent');
+
+        if (!menu || !arrow || !header) {
+            console.error("Screen Manager Error: Required DOM elements for 'How It Works' dropdown not found.");
+            return;
+        }
+
+        // NEW OPENING CONDITION:
+        // Width is >= 1024px AND Width is < 1440px AND Height is >= 1010px
+        const widthIsInRange = window.innerWidth >= largeWidth && window.innerWidth < xlWidth;
+        const heightIsSufficient = window.innerHeight >= largeHeight;
+
+        const shouldBeOpen = widthIsInRange && heightIsSufficient;
+
+        // CLOSING: Dropdown will automatically close if the Height drops below 1110px
+        const shouldBeClosed = window.innerHeight < xlHeight;
+
+        if (shouldBeOpen && !shouldBeClosed) {
+            // OPEN LOGIC: If dimensions are large enough (new range) AND the screen isn't too short
+            if (!isContentDropdownOpen) {
+                console.log(`PASS: Screen is within range [${largeWidth}px - ${xlWidth}px) and height >= ${largeHeight}px. Forcing dropdown OPEN.`);
+                isContentDropdownOpen = true;
+                menu.classList.add('open');
+                arrow.classList.add('open');
+                header.classList.add('open');
+                updateHeaderWrapperClass(isDropdownOpen || isTipsDropdownOpen || isContentDropdownOpen);
+            }
+
+        } else if (shouldBeClosed || !shouldBeOpen) { // Modified ELSE condition to handle large widths
+            // CLOSE LOGIC: If height condition fails OR if the dimensions are outside the opening range
+            if (isContentDropdownOpen) {
+
+                let reason = shouldBeClosed
+                    ? `Screen height (${window.innerHeight}px) is below ${xlHeight}px.`
+                    : `Screen dimensions (${window.innerWidth}x${window.innerHeight}) are outside the auto-open range.`;
+
+                console.log(`FAIL: ${reason} Forcing dropdown CLOSE.`);
+                isContentDropdownOpen = false;
+                menu.classList.remove('open');
+                arrow.classList.remove('open');
+                header.classList.remove('open');
+                updateHeaderWrapperClass(isDropdownOpen || isTipsDropdownOpen || isContentDropdownOpen);
+            }
+        }
+    }
+
+    // Initial Check on load
+    manageLargeScreenDropdownState();
+
+    // Add resize listener to handle dynamic resizing
+    window.addEventListener('resize', manageLargeScreenDropdownState);
 }
