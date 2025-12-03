@@ -11,7 +11,8 @@ const routes = {
     'faq': '/pages/frequently-asked-questions/frequently-asked-questions.html',
     'contact': '/pages/contact/contact.html',
     'historical-pet-portraits': '/pages/historical-pet-portraits/historical-pet-portraits.html',
-    'awards': '/pages/awards/awards.html'
+    'awards': '/pages/awards/awards.html',
+    'coming-soon': '/pages/coming-soon/coming-soon.html'
 };
 
 let originalHomeContent = null;
@@ -193,6 +194,7 @@ function extractPageName(href) {
     if (href.includes('home')) return 'home';
     if (href.includes('historical-pet-portraits')) return 'historical-pet-portraits';
     if (href.includes('awards')) return 'awards';
+    if (href.includes('coming-soon')) return 'coming-soon';
     return null;
 }
 
@@ -225,7 +227,8 @@ function getPageTitle(pageName) {
         'faq': 'FAQ - Antique Photo Parlour',
         'contact': 'Contact - Antique Photo Parlour',
         'historical-pet-portraits': 'Historical Pet Portraits - Antique Photo Parlour',
-        'awards': 'Awards - Antique Photo Parlour'
+        'awards': 'Awards - Antique Photo Parlour',
+        'coming-soon': 'Coming Soon - Antique Photo Parlour'
     };
     return titles[pageName] || 'Antique Photo Parlour';
 }

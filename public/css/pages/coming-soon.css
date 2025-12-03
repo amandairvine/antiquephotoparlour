@@ -1,0 +1,468 @@
+/* Coming Soon CSS */
+
+body {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  transition: none;
+  background: linear-gradient(90deg, #480204 0%, #800407 50%, #480204 100%);
+}
+
+/* Screen reader only content */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.coming-soon-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin: 1rem;
+  max-width: 18rem;
+  border: 2px solid #e8c775;
+  border-radius: 1rem;
+  background: linear-gradient(90deg, #480204 0%, #800407 50%, #480204 100%);
+  box-shadow: 0px 6px 4px rgba(34, 0, 1, 0.8);
+}
+
+.content-area {
+  margin-top: 2rem;
+  width: auto;
+  margin: 0 auto;
+}
+
+.coming-soon {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.coming-soon-header-container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  border: 2px solid #e8c775;
+  border-radius: 0.8rem;
+  width: 90%;
+}
+
+.coming-soon-header {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  padding: 1rem;
+  border-radius: 0.8rem;
+  width: 100%;
+}
+
+.coming-soon-header img {
+  max-width: 10rem;
+}
+
+h1 {
+  color: #fff;
+  font-size: 12px;
+  font-family: var(--font-brygada);
+  font-weight: var(--weight-bold);
+  font-style: normal;
+  text-shadow: -1px -1px 0 #a20003, 1px -1px 0 #a20003, -1px 1px 0 #a20003,
+    1px 1px 0 #a20003;
+  transition: transform 0.3s ease, font-size 0.5s ease-in-out;
+  line-height: 1.2;
+  text-align: center;
+}
+
+.coming-soon-us a {
+  color: #fff;
+  font-size: 12px;
+  font-family: var(--font-brygada);
+  font-weight: var(--weight-bold);
+  font-style: normal;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-shadow: -1px -1px 0 #a20003, 1px -1px 0 #a20003, -1px 1px 0 #a20003,
+    1px 1px 0 #a20003;
+  transition: transform 0.3s ease, font-size 0.5s ease-in-out;
+  line-height: 1.2;
+}
+
+.action-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.btn {
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: bold;
+  text-decoration: none;
+  display: inline-block;
+  text-align: center;
+  transition: transform 0.3s ease, width 0.5s ease-in-out,
+    height 0.5s ease-in-out;
+}
+
+.btn-primary {
+  display: flex;
+  justify-content: center;
+  border-radius: 0.6rem;
+  border: 2px solid #e8c775;
+  background: linear-gradient(90deg, #480204 0%, #800407 50%, #480204 100%);
+  box-shadow: 0px 6px 4px rgba(34, 0, 1, 0.8);
+  z-index: 1;
+  font-size: 12px;
+  padding: 0.8rem;
+  color: #fff;
+  font-family: var(--font-brygada);
+  font-weight: var(--weight-bold);
+  font-style: normal;
+  text-shadow: -1px -1px 0 #a20003, 1px -1px 0 #a20003, -1px 1px 0 #a20003,
+    1px 1px 0 #a20003;
+  transition: transform 0.3s ease, width 0.5s ease-in-out,
+    height 0.5s ease-in-out;
+}
+
+.btn-primary:hover {
+  transform: scale(1.05);
+}
+
+@media (min-width: 660px) {
+  .coming-soon-container {
+    max-width: 42rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+  }
+
+  .coming-soon-header-container {
+    width: 95%;
+  }
+
+  .content-area {
+    display: flex;
+    flex-direction: row;
+    gap: 0.4rem;
+    width: 100%;
+    overflow-y: hidden;
+    overflow-x: hidden;
+  }
+
+  .coming-soon-info > h2 {
+    display: none;
+  }
+
+  .coming-soon-methods {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto auto;
+    gap: 0.4rem;
+    margin-bottom: 0.4rem;
+  }
+
+  .faq-link {
+    height: fit-content;
+    padding: 0.2rem 0.2rem 0.8rem;
+  }
+
+  .coming-soon-info {
+    display: flex;
+    justify-content: space-around;
+    height: 15.6rem;
+    padding: 0.2rem 0.4rem 0.4rem;
+  }
+
+  .coming-soon-methods > :nth-child(2) {
+    grid-column-start: 2;
+
+    grid-row-start: 1;
+
+    grid-row-end: span 2;
+  }
+
+  .item-1,
+  .item-2,
+  .item-3 {
+    height: 100%;
+  }
+
+  .coming-soon {
+    width: 90%;
+  }
+
+  .coming-soon-form {
+    justify-content: space-between;
+    margin-top: 0;
+    width: 50%;
+    padding-bottom: 3rem;
+  }
+
+  h1,
+  h2 {
+    font-size: 14px;
+  }
+
+  .coming-soon-us a,
+  p {
+    font-size: 12px;
+  }
+
+  .coming-soon-us .store-phone > h2 {
+    padding-top: 0.2rem;
+  }
+
+  .coming-soon-mini-map-button {
+    padding: 0.6rem 1rem;
+    width: 8rem;
+  }
+
+  .coming-soon-us h2 {
+    line-height: 1;
+    padding: 0.2rem 0.1rem 0.1rem;
+  }
+
+  .store-phone,
+  .toll-free {
+    padding-bottom: 0.2rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .coming-soon-container {
+    max-width: 58rem;
+  }
+
+  .coming-soon-header-container {
+    width: 97%;
+    border: 4px solid #e8c775;
+    border-radius: 0.8rem;
+  }
+
+  .coming-soon-header {
+    justify-content: flex-start;
+    padding: 0.8rem 4rem;
+  }
+
+  .coming-soon-header-container .coming-soon-header img {
+    max-width: 8rem;
+  }
+
+  .content-area {
+    height: 26rem;
+  }
+
+  .faq-link,
+  .coming-soon-info,
+  .coming-soon-us {
+    border: 4px solid #e8c775;
+    border-radius: 0.8rem;
+  }
+
+  .coming-soon {
+    width: 90%;
+    border: 4px solid #e8c775;
+    border-radius: 0.8rem;
+    padding: 1rem 0.6rem;
+  }
+
+  .coming-soon-methods {
+    margin: 0;
+  }
+
+  .coming-soon-form {
+    border: 4px solid #e8c775;
+    border-radius: 0.8rem;
+  }
+
+  .coming-soon-info .visit-us h2 {
+    padding: 0.4rem 0;
+  }
+
+  h1,
+  h2 {
+    font-size: 16px;
+  }
+
+  p {
+    font-size: 14px;
+  }
+
+  .coming-soon-us a {
+    font-size: 14px;
+  }
+
+  .coming-soon-mini-map-button {
+    padding: 0.6rem 0.8rem;
+    width: 10rem;
+  }
+
+  .btn-primary,
+  .coming-soon-mini-map-button {
+    font-size: 14px;
+    border: 4px solid #e8c775;
+    border-radius: 0.6rem;
+  }
+
+  .coming-soon-mini-map-button a {
+    font-size: 14px;
+  }
+
+  .coming-soon-form .btn-primary {
+    width: 10rem;
+    height: 2.8rem;
+    padding: 0.6rem 0.8rem;
+  }
+}
+
+@media (min-width: 1440px) {
+  .coming-soon-container {
+    max-width: 88rem;
+  }
+
+  .coming-soon-header-container {
+    width: 98%;
+    border: 5px solid #e8c775;
+    margin-bottom: 0.4rem;
+  }
+
+  .coming-soon-header {
+    padding: 0.6rem 3.6rem;
+  }
+
+  .coming-soon-header-container .coming-soon-header img {
+    max-width: 10rem;
+  }
+
+  .content-area {
+    gap: 0.8rem;
+    padding-top: 1rem;
+  }
+
+  .coming-soon-methods {
+    width: 100%;
+    gap: 0.8rem;
+  }
+
+  .phone {
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+  }
+
+  .coming-soon-us,
+  .faq-link,
+  .coming-soon-info,
+  .coming-soon,
+  .coming-soon-form {
+    border: 5px solid #e8c775;
+    padding: 0.8rem;
+  }
+
+  h1,
+  h2 {
+    font-size: 20px;
+  }
+
+  p {
+    font-size: 18px;
+  }
+
+  .coming-soon-us a {
+    font-size: 18px;
+  }
+
+  .btn-primary,
+  .coming-soon-mini-map-button {
+    font-size: 18px;
+    border: 4px solid #e8c775;
+    border-radius: 0.6rem;
+    width: 14rem;
+    height: 2.8rem;
+  }
+
+  .coming-soon-mini-map-button a {
+    font-size: 18px;
+  }
+
+  .coming-soon-form .btn-primary {
+    width: 14rem;
+    height: 2.8rem;
+  }
+}
+
+@media (min-width: 1920px) {
+  .coming-soon-container {
+    max-width: 118rem;
+  }
+
+  .coming-soon-header-container {
+    width: 98.4%;
+    border: 5px solid #e8c775;
+    margin-bottom: 0.8rem;
+  }
+
+  .coming-soon-header {
+    padding: 1rem 3.6rem;
+  }
+
+  .content-area {
+    height: 100%;
+    gap: 1rem;
+  }
+
+  .coming-soon-methods {
+    max-height: none;
+    height: 100%;
+    grid-template-rows: 20rem 0;
+  }
+
+  .coming-soon-info {
+    height: 100%;
+  }
+
+  .coming-soon-us,
+  .faq-link,
+  .coming-soon-info {
+    border: 5px solid #e8c775;
+    padding: 0.8rem;
+  }
+
+  h1,
+  h2 {
+    font-size: 24px;
+  }
+
+  p,
+  .coming-soon-us a {
+    font-size: 22px;
+  }
+}
