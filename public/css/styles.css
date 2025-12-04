@@ -79,7 +79,7 @@ body .btn-primary:hover {
   transition: none;
 }
 
-.content {
+.content-container {
   display: flex;
   justify-content: center;
   flex: 1;
@@ -89,6 +89,19 @@ body .btn-primary:hover {
   width: 100%;
   box-sizing: border-box;
   background: linear-gradient(90deg, #480204 0%, #800407 50%, #480204 100%);
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin: 1rem;
+  border: 2px solid #e8c775;
+  border-radius: 1rem;
+  background: linear-gradient(90deg, #480204 0%, #800407 50%, #480204 100%);
+  box-shadow: 0px 6px 4px rgba(34, 0, 1, 0.8);
 }
 
 .slideshow-container {
@@ -365,6 +378,10 @@ body .btn-primary:hover {
 /* #region Media Queries */
 
 @media (max-width: 320px) {
+  .content {
+    max-width: 18rem;
+  }
+
   body h1,
   body a,
   body h2,
@@ -385,6 +402,10 @@ body .btn-primary:hover {
 }
 
 @media (min-width: 320px) and (max-width: 659px) {
+  .content {
+    max-width: 28rem;
+  }
+
   body h1,
   body a {
     font-size: 12px;

@@ -21,7 +21,7 @@ body {
   border: 0;
 }
 
-.coming-soon-container {
+/* .coming-soon-container {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -33,7 +33,7 @@ body {
   border-radius: 1rem;
   background: linear-gradient(90deg, #480204 0%, #800407 50%, #480204 100%);
   box-shadow: 0px 6px 4px rgba(34, 0, 1, 0.8);
-}
+} */
 
 .content-area {
   margin-top: 2rem;
@@ -160,13 +160,13 @@ h1 {
 }
 
 @media (min-width: 660px) {
-  .coming-soon-container {
-    width: 40rem;
-    max-width: none;
+  /* .coming-soon-container {
     display: flex;
     flex-direction: column;
     justify-content: center;
-  }
+    max-width: 60rem;
+    width: 100%;
+  } */
 
   .content-area {
     display: flex;
