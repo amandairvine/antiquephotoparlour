@@ -160,14 +160,6 @@ h1 {
 }
 
 @media (min-width: 660px) {
-  /* .coming-soon-container {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    max-width: 60rem;
-    width: 100%;
-  } */
-
   .content-area {
     display: flex;
     flex-direction: row;
@@ -181,8 +173,8 @@ h1 {
   }
 
   .coming-soon .action-buttons a {
-    width: 18rem;
-    height: 3rem;
+    width: 24rem;
+    height: 4rem;
     line-height: 1.4;
   }
 }
