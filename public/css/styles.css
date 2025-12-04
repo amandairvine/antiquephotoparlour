@@ -32,7 +32,7 @@ body {
   overflow: hidden;
   color: white;
   transition: none;
-  font-size: 100%;
+  /* font-size: 100%; */
 }
 
 .sr-only {
@@ -51,6 +51,24 @@ body {
   margin: 0 auto;
   width: 100%;
   max-width: 1200px;
+}
+
+body .btn-primary {
+  display: flex;
+  background: linear-gradient(90deg, #480204 0%, #800407 50%, #480204 100%);
+  box-shadow: 0px 6px 4px rgba(34, 0, 1, 0.8);
+  font-family: var(--font-brygada);
+  font-weight: var(--weight-bold);
+  font-style: normal;
+  text-shadow: -1px -1px 0 #a20003, 1px -1px 0 #a20003, -1px 1px 0 #a20003,
+    1px 1px 0 #a20003;
+  z-index: 1;
+  transition: transform 0.3s ease, width 0.5s ease-in-out,
+    height 0.5s ease-in-out;
+}
+
+body .btn-primary:hover {
+  transform: scale(1.05);
 }
 
 /* #region Slideshow Content */
@@ -186,7 +204,7 @@ body {
   text-align: center;
   text-shadow: 0px 4px 8px rgba(34, 0, 1, 0.8);
   font-family: "Brygada 1918";
-  font-size: 12px;
+  /* font-size: 12px; */
   font-style: italic;
   font-weight: 600;
   line-height: normal;
@@ -328,7 +346,7 @@ body {
   background: linear-gradient(90deg, #480204 0%, #800407 50%, #480204 100%);
   box-shadow: 0px 6px 4px rgba(34, 0, 1, 0.8);
   z-index: 1;
-  font-size: 12px;
+  /* font-size: 12px; */
   color: #fff;
   font-family: var(--font-brygada);
   font-weight: var(--weight-bold);
@@ -346,9 +364,73 @@ body {
 
 /* #region Media Queries */
 
+@media (max-width: 320px) {
+  body h1,
+  body a,
+  body h2,
+  body h3,
+  body p {
+    font-size: 4vw;
+  }
+
+  body .btn-primary {
+    border: 2px solid #e8c775;
+    border-radius: 0.6rem;
+    width: 80%;
+  }
+
+  body .btn-primary:hover {
+    transform: scale(1.05);
+  }
+}
+
+@media (min-width: 320px) and (max-width: 659px) {
+  body h1,
+  body a {
+    font-size: 12px;
+  }
+
+  body h2,
+  body h3,
+  body p {
+    font-size: 11px;
+  }
+
+  body .btn-primary {
+    border: 2px solid #e8c775;
+    border-radius: 0.6rem;
+  }
+
+  body .btn-primary:hover {
+    transform: scale(1.05);
+  }
+}
+
 @media (max-width: 320px) and (min-height: 915px) {
   .slide-caption {
     bottom: 20%;
+  }
+}
+
+@media (min-width: 660px) and (max-width: 1024px) {
+  body h1,
+  body a {
+    font-size: 14px;
+  }
+
+  body h2,
+  body h3,
+  body p {
+    font-size: 12px;
+  }
+
+  body .btn-primary {
+    border: 2px solid #e8c775;
+    border-radius: 0.8rem;
+  }
+
+  body .btn-primary:hover {
+    transform: scale(1.05);
   }
 }
 
@@ -359,9 +441,9 @@ body {
     max-height: 10rem;
   }
 
-  .slide-text p {
+  /* .slide-text p {
     font-size: 16px;
-  }
+  } */
 
   .slide.kids img,
   .slide.victorian img,
@@ -386,9 +468,9 @@ body {
     margin-bottom: 0.3rem;
   }
 
-  .slide-caption .btn {
+  /* .slide-caption .btn {
     font-size: 14px;
-  }
+  } */
 }
 
 @media (max-width: 660px) and (min-height: 1100px) {
@@ -412,9 +494,9 @@ body {
     min-width: 24rem;
   }
 
-  .slide-caption p {
+  /* .slide-caption p {
     font-size: 18px;
-  }
+  } */
 
   .slide.kids img,
   .slide.victorian img,
@@ -448,10 +530,32 @@ body {
   }
 
   .btn {
-    font-size: 16px;
+    /* font-size: 16px; */
     width: 10rem;
     border: 3px solid #e8c775;
     border-radius: 0.8rem;
+  }
+}
+
+@media (min-width: 1024px) and (max-width: 1439px) {
+  body h1,
+  body a {
+    font-size: 18px;
+  }
+
+  body h2,
+  body h3,
+  body p {
+    font-size: 16px;
+  }
+
+  body .btn-primary {
+    border: 4px solid #e8c775;
+    border-radius: 0.8rem;
+  }
+
+  body .btn-primary:hover {
+    transform: scale(1.05);
   }
 }
 
@@ -461,9 +565,9 @@ body {
     height: 8.8rem;
   }
 
-  .slide-caption p {
+  /* .slide-caption p {
     font-size: 18px;
-  }
+  } */
 
   .slide.kids img,
   .slide.victorian img,
@@ -505,8 +609,30 @@ body {
     height: 10rem;
   }
 
-  .slide-caption p {
+  /* .slide-caption p {
     font-size: 24px;
+  } */
+}
+
+@media (min-width: 1440px) and (max-width: 1919px) {
+  body h1,
+  body a {
+    font-size: 20px;
+  }
+
+  body h2,
+  body h3,
+  body p {
+    font-size: 18px;
+  }
+
+  body .btn-primary {
+    border: 5px solid #e8c775;
+    border-radius: 1rem;
+  }
+
+  body .btn-primary:hover {
+    transform: scale(1.05);
   }
 }
 
@@ -523,9 +649,9 @@ body {
     gap: 0.8rem;
   }
 
-  .slide-caption p {
+  /* .slide-caption p {
     font-size: 26px;
-  }
+  } */
 
   .slide.kids img,
   .slide.victorian img,
@@ -555,7 +681,7 @@ body {
   }
 
   .btn {
-    font-size: 24px;
+    /* font-size: 24px; */
     width: 14rem;
     height: 3.4rem;
     border: 5px solid #e8c775;
@@ -563,17 +689,61 @@ body {
   }
 }
 
-@media (min-width: 2560px) {
-  .slide-caption p {
-    font-size: 28px;
+@media (min-width: 1920px) and (max-width: 2560px) {
+  body h1,
+  body a {
+    font-size: 24px;
   }
 
+  body h2,
+  body h3,
+  body p {
+    font-size: 20px;
+  }
+
+  body .btn-primary {
+    border: 5px solid #e8c775;
+    border-radius: 1rem;
+  }
+
+  body .btn-primary:hover {
+    transform: scale(1.05);
+  }
+}
+
+@media (min-width: 2560px) {
+  /* .slide-caption p {
+    font-size: 28px;
+  } */
+
   .btn {
-    font-size: 26px;
+    /* font-size: 26px; */
     width: 16rem;
     height: 3.4rem;
     border: 5px solid #e8c775;
     border-radius: 1rem;
+  }
+}
+
+@media (min-width: 2560px) {
+  body h1,
+  body a {
+    font-size: 26px;
+  }
+
+  body h2,
+  body h3,
+  body p {
+    font-size: 24px;
+  }
+
+  body .btn-primary {
+    border: 5px solid #e8c775;
+    border-radius: 1rem;
+  }
+
+  body .btn-primary:hover {
+    transform: scale(1.05);
   }
 }
 
