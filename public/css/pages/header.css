@@ -191,9 +191,6 @@ header {
 
 .buttons {
   display: none;
-  /* display: flex;
-  flex-direction: row;
-  gap: 0.4rem; */
 }
 
 /* Social Media Icons */
@@ -219,7 +216,6 @@ header {
   background: none;
   border: none;
   height: 100%;
-  /* padding-top: 1.5rem; */
 }
 
 .hamburger-menu img {
@@ -355,11 +351,19 @@ header {
     margin: 0 0.2rem;
   }
 
+  .header-menu {
+    width: auto;
+    max-width: none;
+  }
+
   .header-nav-top,
-  .header-menu,
   .logo-container a img,
   .view-your-photos-text,
   .header-bar .view-your-photos-text img {
+    width: 100%;
+  }
+
+  .logo-container {
     width: 100%;
   }
 

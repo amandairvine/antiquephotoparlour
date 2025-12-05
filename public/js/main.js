@@ -127,7 +127,7 @@ function setupFooterCollapse() {
       content.classList.remove('active');
     });
 
-    overlay.style.display = 'none';
+    overlay.classList.remove('active');
     document.body.classList.remove('modal-open');
     console.log('[Footer Collapse] Modal closed.');
 
@@ -154,6 +154,43 @@ function setupFooterCollapse() {
     }
   })
 
+  const checkViewportDimensions = () => {
+    const windowWidth = window.innerWidth;
+    const windowHeight = window.innerHeight;
+    const isModalOpen = document.body.classList.contains('modal-open');
+
+    // Define the height threshold based on the current width
+    let heightThreshold = null;
+
+    if (windowWidth >= 320 && windowWidth <= 659) {
+      heightThreshold = 700;
+    } else if (windowWidth >= 660 && windowWidth <= 1023) {
+      heightThreshold = 700;
+    } else if (windowWidth >= 1024 && windowWidth <= 1439) {
+      heightThreshold = 800;
+    } else if (windowWidth >= 1440 && windowWidth <= 1919) {
+      heightThreshold = 800;
+    } else if (windowWidth >= 1920) {
+      heightThreshold = 800;
+    }
+
+    // Check if the current dimensions meet a "close" condition
+    const shouldCloseModal = heightThreshold !== null && windowHeight >= heightThreshold;
+
+    if (shouldCloseModal && isModalOpen) {
+      closeModal();
+      console.log(`[Resize Check] Modal and content state cleared. Current dimensions: ${windowWidth}x${windowHeight} (Close Threshold: ${heightThreshold}px).`);
+    }
+
+    return shouldCloseModal; // Return for use in the button click handler
+  }
+
+  // 1. Attach the listener for window resize events
+  window.addEventListener('resize', checkViewportDimensions);
+
+  // 2. Run the check once on initial setup/load
+  checkViewportDimensions();
+
   buttons.forEach(button => {
     button.addEventListener('click', (event) => {
 
@@ -178,9 +215,12 @@ function setupFooterCollapse() {
       // Close modal first to ensure single modal behaviour:
       closeModal();
 
-      if (!isAlreadyActive) {
+      // Check height before opening the modal
+      const shouldCloseModal = checkViewportDimensions();
+
+      if (!isAlreadyActive && !shouldCloseModal) {
         targetElement.classList.add('active');
-        overlay.style.display = 'block';
+        overlay.classList.add('active');
         document.body.classList.add('modal-open');
         console.log(`[Footer Collapse] Opening: ${buttonText} modal.`);
 
@@ -188,7 +228,10 @@ function setupFooterCollapse() {
         setTimeout(() => {
           document.addEventListener('click', handleOutsideClick);
         }, 50);
-      } else {
+      } else if (shouldCloseModal) {
+        console.log(`[Footer Collapse] Prevented opening: ${buttonText} modal due to screen dimensions.`);
+      }
+      else {
         console.log(`[Footer Collapse] Closing: ${buttonText} content (via button click).`);
       }
     });
