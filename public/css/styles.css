@@ -352,6 +352,23 @@ body {
   }
 }
 
+@media (max-width: 320px) {
+  .slideshow-container p,
+  .slideshow-container a {
+    font-size: 4vw;
+  }
+}
+
+@media (max-width: 660px) {
+  .slideshow-container p {
+    font-size: 16px;
+  }
+  
+  .slideshow-container a {
+    font-size: 14px;
+  }
+}
+
 @media (min-width: 660px) {
   .slide-caption {
     min-width: 20rem;

@@ -12,6 +12,11 @@ header {
   z-index: 100;
   box-shadow: 0px 4px 6px 0px rgba(34, 0, 1, 0.633);
 }
+
+.header-containers {
+  width: 100%;
+}
+
 /* Header Backgrounds */
 .header-top-background {
   position: absolute;
@@ -96,7 +101,7 @@ header {
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  max-width: 28rem;
+  max-width: 18rem;
 }
 
 /* Logo */
@@ -214,7 +219,7 @@ header {
   background: none;
   border: none;
   height: 100%;
-  padding-top: 1.5rem;
+  /* padding-top: 1.5rem; */
 }
 
 .hamburger-menu img {
@@ -302,7 +307,7 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1rem 2rem 1rem;
+  padding: 1rem 2rem 0;
 }
 
 .menu-header img {
@@ -454,7 +459,7 @@ header {
 
   .header-background-bar {
     border: 2px solid #e8c775;
-    border-radius: 0.6rem;
+    border-radius: 0.8rem;
   }
 
   .header-bar .view-your-photos-text img {
@@ -478,16 +483,9 @@ header {
     height: 100%;
   }
 
-  .social-media-links {
+  .buttons {
     display: flex;
-    flex-direction: row;
-    justify-content: space-evenly;
-    width: 100%;
-  }
-
-  .social-media-links li a img {
-    width: 2.4rem;
-    height: 2.4rem;
+    gap: 0.4rem;
   }
 
   .modal-overlay {
@@ -549,7 +547,7 @@ header {
     bottom: 0;
     left: 0;
     width: 100%;
-    height: 4px;
+    height: 0.4rem;
     opacity: 0.5;
     background: #220001;
     box-shadow: 0px 2px 6px 2px rgba(34, 0, 1, 0.37);
@@ -571,12 +569,12 @@ header {
 
   .secondary-nav ul.flex-container {
     display: flex;
-    gap: 2.6rem;
+    gap: 2.8rem;
   }
 
   .secondary-nav a {
     text-decoration: none;
-    font-size: 18px;
+    font-size: 16px;
     color: #fff;
     font-family: var(--font-brygada);
     font-weight: var(--weight-bold);
@@ -605,7 +603,7 @@ header {
   .nav-bar {
     width: 100%;
     height: 100%;
-    border-radius: 1rem;
+    border-radius: 0.8rem;
     border: 2px solid #e8c775;
     background: linear-gradient(90deg, #480204 0%, #800407 50%, #480204 100%);
     box-shadow: 0px 6px 4px rgba(34, 0, 1, 0.8);
@@ -620,7 +618,7 @@ header {
     justify-content: space-between;
     align-items: center;
     width: 100%;
-    max-width: 900px;
+    max-width: 56.2rem;
     margin: 0 auto;
   }
 
@@ -639,6 +637,10 @@ header {
     gap: 2rem;
   }
 
+  .header-menu {
+    max-width: none;
+  }
+
   .buttons {
     gap: 1.8rem;
   }
@@ -652,7 +654,7 @@ header {
   }
 
   .header-background-bar {
-    border: 3px solid #e8c775;
+    border: 4px solid #e8c775;
     border-radius: 0.8rem;
     padding: 0.5rem 1rem;
   }
@@ -668,7 +670,7 @@ header {
   }
 
   .header-bottom {
-    max-width: 1440px;
+    max-width: 56.2rem;
   }
 
   .header-bottom-background {
@@ -681,13 +683,13 @@ header {
   }
 
   .nav-background-bar {
-    max-width: 900px;
+    max-width: 56.2rem;
     height: 3rem;
     top: 1rem;
   }
 
   .nav-bar {
-    border-radius: 1rem;
+    border-radius: 0.8rem;
     border: 4px solid #e8c775;
   }
 
@@ -701,12 +703,16 @@ header {
 }
 
 @media (min-width: 1440px) {
+  .header-containers {
+    display: flex;
+    flex-direction: column;
+  }
+
   .header-top {
     display: flex;
     flex-direction: column;
     gap: 0;
-    padding: 0 2rem;
-    max-width: 1440px;
+    max-width: 86rem;
     max-height: 6.8rem;
     height: 100%;
   }
@@ -720,6 +726,7 @@ header {
   }
 
   .primary-nav {
+    position: relative;
     top: 1.4rem;
   }
 
@@ -733,7 +740,7 @@ header {
   }
 
   .header-background-bar {
-    border: 4px solid #e8c775;
+    border: 5px solid #e8c775;
     border-radius: 1rem;
     padding: 0.4rem 5.4rem;
     margin-bottom: 0.1rem;
@@ -762,19 +769,35 @@ header {
   .nav-background-bar {
     height: 4.4rem;
     padding: 0;
+    left: 0;
+    top: 0.1rem;
+    transform: none;
   }
 
   .nav-bar {
-    border: 4px solid #e8c775;
+    border: 5px solid #e8c775;
     border-radius: 1rem;
+  }
+
+  .header-bottom {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-end;
+    width: 100%;
+    gap: 0;
+    max-width: 86rem;
+    max-height: 6.8rem;
+    height: 100%;
+    margin: 0 auto;
   }
 
   .header-nav {
     position: relative;
-    max-width: 42.4rem;
+    max-width: 42.6rem;
     justify-content: flex-end;
     align-items: center;
-    left: -2rem;
+    min-height: 4.4rem;
   }
 
   .header-nav-top {
@@ -784,19 +807,19 @@ header {
 
   .secondary-nav ul.flex-container {
     position: relative;
-    gap: 1.6rem;
+    gap: 2.4rem;
     margin: 0;
   }
 
   .secondary-nav a {
-    font-size: 24px;
+    font-size: 20px;
   }
 }
 
 @media (min-width: 1920px) {
   .header-top,
   .header-bottom {
-    max-width: 1920px;
+    max-width: 116rem;
   }
 
   .header-bottom {
@@ -824,14 +847,32 @@ header {
 
   .nav-background-bar {
     height: 4.5rem;
+    left: auto;
+    top: auto;
+    max-width: 56.2rem;
+    min-width: 56.2rem;
   }
 
   .header-bar .view-your-photos-text img {
     max-height: 2.8rem;
   }
 
+  header .secondary-nav ul.flex-container {
+    gap: 3.6rem;
+  }
+
+  .secondary-nav {
+    width: 56.2rem;
+  }
+
+  .secondary-nav a {
+    font-size: 24px;
+  }
+
   .header-nav {
-    max-width: 60rem;
+    width: 100%;
+    min-width: auto;
+    max-width: none;
     left: 0;
   }
 
@@ -850,68 +891,17 @@ header {
   }
 }
 
-/* @media (min-width: 1920px) {
-  .header-top {
-    max-width: 1920px;
-    max-height: 8rem;
-  }
-
-  .header-nav {
-    top: 0;
-    left: 0;
-    max-width: 926px;
-  }
-
-  .header-top-background {
-    height: 8rem;
-  }
-
+@media (min-width: 2056px) {
+  .header-top,
   .header-bottom {
-    max-width: 1920px;
-    min-height: 7rem;
-    left: 0;
-    padding: 0 2rem;
-    margin-top: 0.2rem;
-  }
-
-  .header-bottom-background {
-    height: 10rem;
-  }
-
-  .nav-background-bar {
-    max-width: 1000px;
-    height: 5rem;
-  }
-
-  .secondary-nav ul.flex-container {
-    gap: 3.6rem;
+    max-width: 120rem;
   }
 
   .secondary-nav a {
     font-size: 26px;
   }
 
-  .header-bar .view-your-photos-text img {
-    max-height: 3rem;
+  header .secondary-nav ul.flex-container {
+    gap: 3.4rem;
   }
-
-  .header-background-bar {
-    height: 5rem;
-  }
-
-  .header-background-bar,
-  .nav-bar {
-    border: 5px solid #e8c775;
-    border-radius: 1rem;
-  }
-
-  .flex-container .facebook-icon a img,
-  .flex-container .instagram-icon a img {
-    height: 5rem;
-    width: 5rem;
-  }
-
-  .logo-container img {
-    max-height: 14rem;
-  }
-} */
+}
