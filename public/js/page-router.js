@@ -130,12 +130,11 @@ export async function loadPage(pageName, updateHistory = true) {
             }
 
             if (pageName === 'services') {
-                const oldScript = document.getElementById('services-script');
-                if (oldScript) oldScript.remove();
-                const script = document.createElement('script');
-                script.src = '../../js/services.js';
-                script.id = 'services-script';
-                document.body.appendChild(script);
+                import('./services.js').then(({ initializeServicesPage }) => {
+                    initializeServicesPage();
+                }).catch(error => {
+                    console.error('Failed to load services.js:', error);
+                });
             }
             if (pageName === 'faq') {
                 import('./faq.js').then(({ initializeFaqPage }) => {

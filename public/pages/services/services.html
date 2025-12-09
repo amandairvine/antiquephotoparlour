@@ -3,10 +3,12 @@
 <div class="services-container">
     <nav class="sidebar">
         <div class="sidebar-header">
-            <img src="../../img/headers/services-headers/services.png" alt="Services" />
-            <h1 class="sr-only">Services</h1>
+            <div class="sidebar-title">
+                <img src="../../img/headers/services-headers/services.png" alt="Services" />
+                <h1 class="sr-only">Services</h1>
+            </div>
         </div>
-        <div class="dropdown-header" onclick="toggleDropdown()">
+        <div class="dropdown-header">
             <div class="dropdown-title">
                 <img src="../../img/headers/services-headers/services.png" alt="Services" />
                 <h1 class="sr-only">Services</h1>
@@ -14,11 +16,11 @@
             <div class="dropdown-arrow">▼</div>
         </div>
         <div class="dropdown-menu" id="navMenu">
-            <div class="nav-item active" data-service="themes" onclick="showService('themes')">Themes</div>
-            <div class="nav-item" data-service="pet-photos" onclick="showService('pet-photos')">Pet Photography</div>
-            <div class="nav-item" data-service="historical-pet" onclick="showService('historical-pet')">Historical Pet
+            <div class="nav-item active" data-service="themes">Themes</div>
+            <div class="nav-item" data-service="pet-photos">Pet Photography</div>
+            <div class="nav-item" data-service="historical-pet">Historical Pet
                 Portraits</div>
-            <div class="nav-item" data-service="award-winning" onclick="showService('award-winning')">Award-Winning
+            <div class="nav-item" data-service="award-winning">Award-Winning
             </div>
         </div>
     </nav>
@@ -27,22 +29,38 @@
             <div class="service-header">
                 <img src="../../img/headers/services-headers/choose-a-theme.png" alt="Choose a Theme" />
                 <h1 class="sr-only">Choose a Theme</h1>
-                <h3 class="service-description">Create old-time photos today with <br class="small-br">memories that last a lifetime! <br class="small-br"><br class="medium-br">Time travel to your favorite era with our historical <br class="medium-br">outfits, accessories and props.
+                <h3 class="service-description">Create old-time photos today <br class="xs-br"><br class="small-br">with memories that
+                    last a lifetime! <span><br class="small-br"><br class="medium-br"><br class="large-br"><br class="xl-br">Time travel to your favorite era <br class="xs-br">with
+                        our historical <br class="medium-br"><br class="large-br">outfits, <br class="xs-br">accessories and props.</span>
                 </h3>
             </div>
-            <div class="service-gallery">
-                <div class="gallery-item">
-                    <img src="../../img/placeholders/western.jpg" alt="Western Family" />
-                    <h1 class="sr-only">Western Family Photo</h1>
+            <div class="services-slideshow-container">
+                <div class="service-gallery">
+                    <div class="service-slide fade">
+                        <img src="../../img/placeholders/western.jpg" alt="Western Family" />
+                        <h1 class="sr-only">Western Family Photo</h1>
+                    </div>
+                    <!-- CHANGE THIS PHOTO ************ -->
+                    <!-- <div class="service-slide fade">
+                        <img src="../../img/placeholders/victorian.jpg" alt="Victorian Family" />
+                        <h1 class="sr-only">Victorian Family Photo</h1>
+                    </div> -->
+                    <div class="service-slide fade">
+                        <img src="../../img/placeholders/wedding.png" alt="Wedding Couple" />
+                        <h1 class="sr-only">Wedding Couple Photo</h1>
+                    </div>
                 </div>
-                <div class="gallery-item">
-                    <img src="../../img/placeholders/victorian.jpg" alt="Victorian Family" />
-                    <h1 class="sr-only">Victorian Family Photo</h1>
-                </div>
-                <div class="gallery-item">
-                    <img src="../../img/placeholders/wedding.png" alt="Wedding Couple" />
-                    <h1 class="sr-only">Wedding Couple Photo</h1>
-                </div>
+
+                <button class="service-slideshow-nav service-slideshow-nav-prev">
+                    <img src="../../../img/assets/slideshow-arrows/gold-flourish.png"
+                        alt="Fancy gold arrow pointing left">
+                </button>
+                <button class="service-slideshow-nav service-slideshow-nav-next">
+                    <img src="../../../img/assets/slideshow-arrows/gold-flourish.png"
+                        alt="Fancy gold arrow pointing right">
+                </button>
+                <div class="service-slideshow-hover-zone service-slideshow-hover-left"></div>
+                <div class="service-slideshow-hover-zone service-slideshow-hover-right"></div>
             </div>
             <div class="action-buttons">
                 <a href="../themes/themes.html" class="btn btn-primary">View All Themes Here</a>
@@ -55,19 +73,32 @@
             </div>
             <h3 class="service-description">Our pet-friendly studio will give your furry friends the spotlight they
                 deserve!<br> Pets of all kinds are welcome!</h3>
-            <div class="service-gallery">
-                <div class="gallery-item">
-                    <img src="../../img/themes/pets/p6091489.jpg" alt="Western Puppy" />
-                    <h1 class="sr-only">Western Puppy Photo</h1>
+            <div class="services-slideshow-container">
+                <div class="service-gallery">
+                    <div class="service-slide fade">
+                        <img src="../../img/themes/pets/p6091489.jpg" alt="Western Puppy" />
+                        <h1 class="sr-only">Western Puppy Photo</h1>
+                    </div>
+                    <div class="service-slide fade">
+                        <img src="../../img/themes/pets/2-dogs-western.jpg" alt="Western Dogs" />
+                        <h1 class="sr-only">Western Dogs Photo</h1>
+                    </div>
+                    <div class="service-slide fade">
+                        <img src="../../img/themes/pets/pets-main.jpg" alt="Fancy Dog in a Top Hat" />
+                        <h1 class="sr-only">Dog in a Top Hat Photo</h1>
+                    </div>
                 </div>
-                <div class="gallery-item">
-                    <img src="../../img/themes/pets/2-dogs-western.jpg" alt="Western Dogs" />
-                    <h1 class="sr-only">Western Dogs Photo</h1>
-                </div>
-                <div class="gallery-item">
-                    <img src="../../img/themes/pets/pets-main.jpg" alt="Fancy Dog in a Top Hat" />
-                    <h1 class="sr-only">Dog in a Top Hat Photo</h1>
-                </div>
+
+                <button class="service-slideshow-nav service-slideshow-nav-prev">
+                    <img src="../../../img/assets/slideshow-arrows/gold-flourish.png"
+                        alt="Fancy gold arrow pointing left">
+                </button>
+                <button class="service-slideshow-nav service-slideshow-nav-next">
+                    <img src="../../../img/assets/slideshow-arrows/gold-flourish.png"
+                        alt="Fancy gold arrow pointing right">
+                </button>
+                <div class="service-slideshow-hover-zone service-slideshow-hover-left"></div>
+                <div class="service-slideshow-hover-zone service-slideshow-hover-right"></div>
             </div>
             <div class="action-buttons">
                 <a href="#contact" class="btn btn-primary">Contact Us</a>
@@ -81,30 +112,46 @@
             </div>
             <h3 class="service-description">Our historical pet portraits combine period styling with your pet's
                 personality for a keepsake that's equal parts charming and hilarious.</h3>
-            <div class="service-gallery">
-                <div class="gallery-item">
-                    <img class="default-img" src="../../img/historical-pet-portraits/sage/sage.jpg"
-                        alt="Sage the Cat on Template 21" />
+            <div class="service-slideshow-container">
+                <div class="service-gallery">
+                    <div class="service-slide fade">
+                        <img class="default-img" src="../../img/historical-pet-portraits/sage/sage.jpg"
+                            alt="Sage the Cat on Template 21" />
 
-                    <img class="hover-img" src="../../img/historical-pet-portraits/sage/original-sage.jpg"
-                        alt="Original Photo of Sage the Cat" />
+                        <img class="hover-img" src="../../img/historical-pet-portraits/sage/original-sage.jpg"
+                            alt="Original Photo of Sage the Cat" />
 
-                    <h1 class="sr-only">Cat in Historical Pet Portrait wearing fancy dress</h1>
+                        <h1 class="sr-only">Cat in Historical Pet Portrait wearing fancy dress</h1>
+                    </div>
+                    <div class="service-slide fade">
+                        <img src="../../img/historical-pet-portraits/abby/abby.jpg" alt="Abby the Dog on Template 13" />
+
+                        <img class="hover-img" src="../../img/historical-pet-portraits/abby/original-abby.JPG"
+                            alt="Original Photo of Abby the Dog" />
+
+                        <h1 class="sr-only">Dog in Historical Pet Portrait wearing fancy clothing</h1>
+                    </div>
+                    <div class="service-slide fade">
+                        <img src="../../img/historical-pet-portraits/connor/connor.jpg"
+                            alt="Connor the Bird on Template 4" />
+
+                        <img class="hover-img" src="../../img/historical-pet-portraits/connor/original-connor.jpg"
+                            alt="Original Photo of Connor the Bird" />
+
+                        <h1 class="sr-only">Bird in Historical Pet Portrait wearing fancy suit</h1>
+                    </div>
                 </div>
-                <div class="gallery-item">
-                    <img src="../../img/historical-pet-portraits/abby/abby.jpg" alt="Abby the Dog on Template 13" />
 
-                    <img class="hover-img" src="../../img/historical-pet-portraits/abby/original-abby.JPG" alt="Original Photo of Abby the Dog" />
-
-                    <h1 class="sr-only">Dog in Historical Pet Portrait wearing fancy clothing</h1>
-                </div>
-                <div class="gallery-item">
-                    <img src="../../img/historical-pet-portraits/connor/connor.jpg" alt="Connor the Bird on Template 4" />
-
-                    <img class="hover-img" src="../../img/historical-pet-portraits/connor/original-connor.jpg" alt="Original Photo of Connor the Bird" />
-
-                    <h1 class="sr-only">Bird in Historical Pet Portrait wearing fancy suit</h1>
-                </div>
+                <button class="service-slideshow-nav service-slideshow-nav-prev">
+                    <img src="../../../img/assets/slideshow-arrows/gold-flourish.png"
+                        alt="Fancy gold arrow pointing left">
+                </button>
+                <button class="service-slideshow-nav service-slideshow-nav-next">
+                    <img src="../../../img/assets/slideshow-arrows/gold-flourish.png"
+                        alt="Fancy gold arrow pointing right">
+                </button>
+                <div class="service-slideshow-hover-zone service-slideshow-hover-left"></div>
+                <div class="service-slideshow-hover-zone service-slideshow-hover-right"></div>
             </div>
             <div class="action-buttons">
                 <a href="#coming-soon" class="btn btn-primary">Learn More</a>
@@ -118,13 +165,13 @@
                     capture personality, connection, and history.</h3>
             </div>
             <div class="service-gallery">
-                <div class="gallery-item">
+                <div class="service-slide fade">
                     <div class="gallery-placeholder">Award-Winning<br>Family Portrait</div>
                 </div>
-                <div class="gallery-item">
+                <div class="service-slide fade">
                     <div class="gallery-placeholder">Award-Winning<br>Couple Portrait</div>
                 </div>
-                <div class="gallery-item">
+                <div class="service-slide fade">
                     <div class="gallery-placeholder">Award-Winning<br>Animal Portrait</div>
                 </div>
             </div>
