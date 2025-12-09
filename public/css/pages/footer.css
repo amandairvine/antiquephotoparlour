@@ -1687,6 +1687,13 @@ footer {
     border: 5px solid #e8c775;
   }
 
+  .location-container .footer-content {
+    height: 100%;
+    max-height: none;
+    position: relative;
+    top: -0.6rem;
+  }
+
   .hours-container .hours-info {
     width: 100%;
   }
@@ -1702,12 +1709,12 @@ footer {
 
   .days,
   .times,
-  .address {
+  .address p {
     font-size: 24px;
   }
 
   .hours-note .holiday-hours,
-  .address-description,
+  .address-description p,
   .contact-button p,
   .footer-content.active .action-buttons a,
   .last-group {

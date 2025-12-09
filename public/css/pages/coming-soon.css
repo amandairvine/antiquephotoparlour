@@ -83,7 +83,7 @@ body {
   max-width: 10rem;
 }
 
-h1 {
+.coming-soon-container h1 {
   color: #fff;
   font-family: var(--font-brygada);
   font-weight: var(--weight-bold);
