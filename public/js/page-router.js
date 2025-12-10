@@ -1,4 +1,4 @@
-import { preloadImages, getThemeImages, getHeaderImages } from './image-preloader.js';
+import { preloadImages, getThemeImages, getHeaderImagesFromManifest } from './image-preloader.js';
 import("./modal-gallery.js").then(({ handleUrlHash }) => {
     console.log("✅ modal-gallery.js loaded.");
 });
@@ -19,7 +19,7 @@ let originalHomeContent = null;
 
 // Preload general site images:
 async function preloadGeneralImages() {
-    const headerImages = getHeaderImages();
+    const headerImages = getHeaderImagesFromManifest();
     preloadImages(headerImages);
 }
 
@@ -30,11 +30,15 @@ export function setupPageNavigation() {
         const link = e.target.closest('a[href]');
         if (!link) return;
         const href = link.getAttribute('href');
+        // Only intercept links starting with '../' that aren't external social media links
         if (href && href.startsWith('../') && !href.includes('facebook') && !href.includes('instagram')) {
             e.preventDefault();
             const pageName = extractPageName(href);
-            if (pageName) {
+            if (pageName && typeof pageName === 'string' && pageName.trim() !== '') {
                 loadPage(pageName);
+            } else {
+                // Log a warning if the page name extraction fails, so you can trace the bad link
+                console.warn('Could not extract a valid page name from:', href);
             }
         }
     });
@@ -43,13 +47,18 @@ export function setupPageNavigation() {
         if (e.state && e.state.page) {
             loadPage(e.state.page, false);
         } else {
+            // Fallback for popstate when state is empty (e.g., initial load if no hash)
             loadPage('home', false);
         }
     });
 }
 
 export async function loadPage(pageName, updateHistory = true) {
-    console.log(`Loading page: ${pageName}`);
+    // 1. Double Log Fix: Only log 'Loading page' if we are actively updating history.
+    if (updateHistory) {
+        console.log(`Loading page: ${pageName}`);
+    }
+
     const contentContainer = document.querySelector('.content');
 
     if (!contentContainer) {
@@ -63,6 +72,7 @@ export async function loadPage(pageName, updateHistory = true) {
         if (originalHomeContent) {
             contentContainer.innerHTML = originalHomeContent;
         } else {
+            // Capture the initial HTML content of the home page
             originalHomeContent = contentContainer.innerHTML;
         }
 
@@ -75,6 +85,7 @@ export async function loadPage(pageName, updateHistory = true) {
 
         let slideshowContainer = document.getElementById('slideshow-container');
         if (!slideshowContainer) {
+            // Give the DOM a moment to update if the container was just injected
             await new Promise(resolve => setTimeout(resolve, 10));
             slideshowContainer = document.getElementById('slideshow-container');
         }
@@ -96,7 +107,8 @@ export async function loadPage(pageName, updateHistory = true) {
         }
 
         if (updateHistory) {
-            history.pushState({ page: 'home' }, 'Home - Antique Photo Parlour', '/');
+            // 2. Home Path Change: Pushing '#/home' to the URL
+            history.pushState({ page: 'home' }, 'Home - Antique Photo Parlour', '#/home');
         }
         return;
     }
@@ -104,6 +116,21 @@ export async function loadPage(pageName, updateHistory = true) {
     const route = routes[pageName];
     if (!route) {
         console.error('Route not found for page:', pageName);
+
+        console.warn(`Attempting to redirect from unknown page '${pageName}' to /#/home...`);
+
+        // Redirect the URL without pushing a new history state if we are already updating history
+        if (updateHistory) {
+            window.location.hash = '#/home';
+            // The hashchange listener in main.js will catch this and call loadPage('home', true)
+
+            console.log(`✅ Redirect initiated via hash change to #/home.`);
+        } else {
+            // If called internally with updateHistory=false, call loadPage('home', false)
+            loadPage('home', false);
+            console.log(`✅ Internal fallback complete. Loaded page: home`);
+        }
+
         return;
     }
 
@@ -175,11 +202,11 @@ export async function loadPage(pageName, updateHistory = true) {
     } catch (error) {
         console.error(`Error loading page ${pageName}:`, error);
         contentContainer.innerHTML = `
-      <div class="error-message">
-        <h2>Sorry, we couldn't load this page.</h2>
-        <p>Please try again or <a href="#" onclick="location.reload()">refresh the page</a>.</p>
-      </div>
-    `;
+        <div class="error-message">
+            <h2>Sorry, we couldn't load this page.</h2>
+            <p>Please try again or <a href="#" onclick="location.reload()">refresh the page</a>.</p>
+        </div>
+        `;
     }
 }
 

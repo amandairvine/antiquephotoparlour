@@ -8,6 +8,20 @@ import("./modal-gallery.js").then(({ handleUrlHash }) => {
 
 let closeModalHandler;
 
+function setActiveMobileLink() {
+  const mobileLinks = document.querySelectorAll('.mobile-nav-link');
+  const currentHash = window.location.hash || '#home';
+
+  mobileLinks.forEach(link => {
+    if (link.getAttribute('href') === currentHash) {
+      link.classList.add('active');
+    } else {
+      link.classList.remove('active');
+    }
+  });
+}
+
+
 document.addEventListener('DOMContentLoaded', function () {
   console.log('Main script loaded');
 
@@ -38,19 +52,6 @@ document.addEventListener('DOMContentLoaded', function () {
           console.log('Close button clicked!');
           mobileMenu.classList.remove('show');
           document.body.classList.remove('menu-open');
-        });
-      }
-
-      function setActiveMobileLink() {
-        const mobileLinks = document.querySelectorAll('.mobile-nav-link');
-        const currentHash = window.location.hash || '#home';
-
-        mobileLinks.forEach(link => {
-          if (link.getAttribute('href') === currentHash) {
-            link.classList.add('active');
-          } else {
-            link.classList.remove('active');
-          }
         });
       }
 
@@ -111,21 +112,23 @@ document.addEventListener('DOMContentLoaded', function () {
 
     loadPage(pageName);
 
-    // Remove 'active' from all links
-    document.querySelectorAll('.mobile-nav-link').forEach(link => {
-      link.classList.remove('active');
-    });
+    // // Remove 'active' from all links
+    // document.querySelectorAll('.mobile-nav-link').forEach(link => {
+    //   link.classList.remove('active');
+    // });
 
-    // Find the target link based on the pageName we are loading
-    const targetLink = document.querySelector(`.mobile-nav-link[href="#${pageName}"]`);
+    // // Find the target link based on the pageName we are loading
+    // const targetLink = document.querySelector(`.mobile-nav-link[href="#${pageName}"]`);
 
-    // Proceed if the link element exists
-    if (targetLink) {
-      targetLink.classList.add('active');
-    } else {
-      // Handle case where link is not found
-      console.warn(`Mobile navigation link not found for page: ${pageName}`);
-    }
+    // // Proceed if the link element exists
+    // if (targetLink) {
+    //   targetLink.classList.add('active');
+    // } else {
+    //   // Handle case where link is not found
+    //   console.warn(`Mobile navigation link not found for page: ${pageName}`);
+    // }
+
+    setActiveMobileLink();
   });
 });
 
