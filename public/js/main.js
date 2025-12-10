@@ -90,8 +90,9 @@ document.addEventListener('DOMContentLoaded', function () {
   });
 
   // Handle initial page load
-  if (location.hash) {
-    const hash = location.hash.substring(1);
+  const initialHash = location.hash;
+  if (initialHash) {
+    const hash = initialHash.substring(1);
     const [pageName] = hash.split("/");
     loadPage(pageName, false);
   } else {
@@ -101,12 +102,30 @@ document.addEventListener('DOMContentLoaded', function () {
   // Handle hash changes (when clicking nav links)
   window.addEventListener("hashchange", () => {
     const hash = location.hash.substring(1);
-    const [pageName] = hash.split("/");
+
+    // Check if the hash is empty or only contains the page separator
+    let pageName = 'home'; // Default to 'home'
+    if (hash && hash !== '/') {
+      [pageName] = hash.split("/");
+    }
+
     loadPage(pageName);
-    // Call the function again to update the active link
-    const mobileLinks = document.querySelectorAll('.mobile-nav-link');
-    mobileLinks.forEach(link => link.classList.remove('active'));
-    document.querySelector(`.mobile-nav-link[href="#${pageName}"]`).classList.add('active');
+
+    // Remove 'active' from all links
+    document.querySelectorAll('.mobile-nav-link').forEach(link => {
+      link.classList.remove('active');
+    });
+
+    // Find the target link based on the pageName we are loading
+    const targetLink = document.querySelector(`.mobile-nav-link[href="#${pageName}"]`);
+
+    // Proceed if the link element exists
+    if (targetLink) {
+      targetLink.classList.add('active');
+    } else {
+      // Handle case where link is not found
+      console.warn(`Mobile navigation link not found for page: ${pageName}`);
+    }
   });
 });
 
