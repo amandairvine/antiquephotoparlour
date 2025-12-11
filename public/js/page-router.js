@@ -53,8 +53,34 @@ export function setupPageNavigation() {
     });
 }
 
+export function initializeImageLoading() {
+    const images = document.querySelectorAll('.image-loading-container img');
+
+    images.forEach(img => {
+        if (img.complete) {
+            img.closest('.image-loading-container').classList.add('image-ready');
+            return;
+        }
+
+        // Listen for the image to finish loading
+        img.addEventListener('load', () => {
+            const container = img.closest('.image-loading-container');
+
+            // Add the class to switch from spinner to image
+            container.classList.add('image-ready');
+        });
+
+        // Add an optional error handler to hide the spinner even if the image fails
+        img.addEventListener('error', () => {
+            console.warn(`Failed to load image: ${img.src}. Hiding spinner.`);
+            // Add a class that might show a broken image icon instead
+            img.closest('.image-loading-container').classList.add('image-ready');
+        });
+    });
+}
+
 export async function loadPage(pageName, updateHistory = true) {
-    // 1. Double Log Fix: Only log 'Loading page' if we are actively updating history.
+    // Only log 'Loading page' if we are actively updating history.
     if (updateHistory) {
         console.log(`Loading page: ${pageName}`);
     }
@@ -112,7 +138,7 @@ export async function loadPage(pageName, updateHistory = true) {
         }
 
         if (updateHistory) {
-            // 2. Home Path Change: Pushing '#/home' to the URL
+            // Push '#/home' to the URL
             history.pushState({ page: 'home' }, 'Home - Antique Photo Parlour', '#/home');
         }
         return;
@@ -128,7 +154,6 @@ export async function loadPage(pageName, updateHistory = true) {
         if (updateHistory) {
             window.location.hash = '#/home';
             // The hashchange listener in main.js will catch this and call loadPage('home', true)
-
             console.log(`✅ Redirect initiated via hash change to #/home.`);
         } else {
             // If called internally with updateHistory=false, call loadPage('home', false)
@@ -159,6 +184,13 @@ export async function loadPage(pageName, updateHistory = true) {
                 const pageTitle = getPageTitle(pageName);
                 history.pushState({ page: pageName }, pageTitle, `#${pageName}`);
                 document.title = pageTitle;
+            }
+
+            // Call the new image loading logic after content is injected
+            if (pageName === 'themes' || pageName === 'frames') {
+                import('./image-loader-module.js').then(({ initializeImageLoading }) => {
+                    initializeImageLoading();
+                });
             }
 
             if (pageName === 'services') {

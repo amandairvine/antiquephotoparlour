@@ -23,6 +23,42 @@ body {
   border: 0;
 }
 
+.image-loading-container {
+  width: 30rem;
+  height: 30rem;
+  position: relative;
+}
+
+.image-spinner-placeholder {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    
+    /* Small, centered spinner */
+    width: 25px; 
+    height: 25px;
+    border-radius: 50%;
+    border: 3px solid #f3f3f3; 
+    border-top: 3px solid #3498db; 
+    animation: spin 1s linear infinite;
+}
+
+.image-loading-container img {
+    display: none; 
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.image-loading-container.image-ready img {
+    display: block; 
+}
+
+.image-loading-container.image-ready .image-spinner-placeholder {
+    display: none; 
+}
+
 .services-container {
   display: flex;
   flex-direction: column;
