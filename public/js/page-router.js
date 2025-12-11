@@ -140,7 +140,7 @@ export async function loadPage(pageName, updateHistory = true) {
     }
 
     try {
-        contentContainer.innerHTML = '<div class="loading">Loading...</div>';
+        contentContainer.innerHTML = '<div class="spinner"></div>';
 
         if (pageName === 'themes') {
             const themeImagesToPreload = await getThemeImages();

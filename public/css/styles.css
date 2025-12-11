@@ -47,6 +47,21 @@ body {
   border: 0;
 }
 
+.spinner {
+  margin: 50px auto;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 4px solid #e8c775;
+  border-top: 4px solid #480204;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
 .container {
   margin: 0 auto;
   width: 100%;
@@ -363,7 +378,7 @@ body {
   .slideshow-container p {
     font-size: 16px;
   }
-  
+
   .slideshow-container a {
     font-size: 14px;
   }
