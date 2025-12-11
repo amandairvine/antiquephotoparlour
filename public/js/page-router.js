@@ -75,35 +75,40 @@ export async function loadPage(pageName, updateHistory = true) {
             // Capture the initial HTML content of the home page
             originalHomeContent = contentContainer.innerHTML;
         }
+        try {
+            const slideshowResponse = await fetch('/pages/slideshow/slideshow.html');
 
-        const slideshowResponse = await fetch('/pages/slideshow/slideshow.html');
-        if (!slideshowResponse.ok) {
-            console.error('Failed to fetch slideshow HTML:', slideshowResponse.statusText);
-            return;
-        }
-        const slideshowHtml = await slideshowResponse.text();
+            if (!slideshowResponse.ok) {
+                console.error('Failed to fetch slideshow HTML:', slideshowResponse.statusText, 'Proceeding without slideshow.');
+            } else {
+                const slideshowHtml = await slideshowResponse.text();
 
-        let slideshowContainer = document.getElementById('slideshow-container');
-        if (!slideshowContainer) {
-            // Give the DOM a moment to update if the container was just injected
-            await new Promise(resolve => setTimeout(resolve, 10));
-            slideshowContainer = document.getElementById('slideshow-container');
-        }
-
-        if (slideshowContainer) {
-            slideshowContainer.innerHTML = slideshowHtml;
-            setTimeout(() => {
-                const slides = document.querySelectorAll('.slide');
-                if (slides.length > 0) {
-                    import('./slideshow.js').then(({ initializeSlideshowDirectly }) => {
-                        initializeSlideshowDirectly();
-                    });
-                } else {
-                    console.warn('No slides found - slideshow cannot be initialized');
+                let slideshowContainer = document.getElementById('slideshow-container');
+                if (!slideshowContainer) {
+                    // Give the DOM a moment to update if the container was just injected
+                    await new Promise(resolve => setTimeout(resolve, 10));
+                    slideshowContainer = document.getElementById('slideshow-container');
                 }
-            }, 100);
-        } else {
-            console.warn('Slideshow container not found - skipping slideshow initialization');
+
+                if (slideshowContainer) {
+                    slideshowContainer.innerHTML = slideshowHtml;
+                    setTimeout(() => {
+                        const slides = document.querySelectorAll('.slide');
+                        if (slides.length > 0) {
+                            import('./slideshow.js').then(({ initializeSlideshowDirectly }) => {
+                                initializeSlideshowDirectly();
+                            });
+                        } else {
+                            console.warn('No slides found - slideshow cannot be initialized');
+                        }
+                    }, 100);
+                } else {
+                    console.warn('Slideshow container not found - skipping slideshow initialization');
+                }
+            }
+        } catch (error) {
+            // Handle network errors (e.g., user is offline) gracefully
+            console.error('Network or I/O error during slideshow fetch:', error, 'Proceeding with home page load.');
         }
 
         if (updateHistory) {
