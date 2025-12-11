@@ -135,8 +135,8 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
-  max-height: 14rem;
-  min-height: calc(100vh - 15.8rem);
+  max-height: 6rem;
+  min-height: 12rem;
   height: 100%;
   width: 100%;
   max-width: 17rem;
@@ -203,14 +203,12 @@ body {
   position: relative;
   -webkit-overflow-scrolling: touch;
   height: 100%;
-  /* max-height: calc(100vh - 24.6rem); */
   width: 100%;
   max-width: 17rem;
   background: linear-gradient(90deg, #480204 0%, #800407 50%, #480204 100%);
   padding: 0.6rem;
   margin-top: 0.6rem;
   z-index: 1;
-  /* overflow-y: auto; */
 }
 
 @keyframes fadeIn {
