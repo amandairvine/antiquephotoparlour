@@ -208,8 +208,16 @@
   max-width: 7.8rem;
 }
 
+#pet-photos .service-header img {
+  max-width: 9rem;
+}
+
 #historical-pet .service-header img {
-  max-width: 10rem;
+  max-width: 11rem;
+}
+
+#award-winning .service-header img {
+  max-width: 8.6rem;
 }
 
 .service-description {
@@ -1228,7 +1236,7 @@
     padding: 2% 0;
   }
 
-  #themes .service-header h3 span {
+  .service-header h3 span {
     display: none;
   }
 }
@@ -1541,7 +1549,7 @@
   }
 
   #historical-pet .service-header img {
-    max-width: 16rem;
+    max-width: 18rem;
     transition: max-width 0.3s ease;
   }
 
@@ -1659,7 +1667,7 @@
     height: 3.8rem;
   }
 
-  .nav-item.active:first-of-type,
+  .nav-item:first-of-type,
   .nav-item.active {
     padding: 0;
   }
@@ -1704,6 +1712,21 @@
 
   #themes .service-header img {
     max-width: 14rem;
+    transition: max-width 0.3s ease;
+  }
+
+  #pet-photos .service-header img {
+    max-width: 16rem;
+    transition: max-width 0.3s ease;
+  }
+
+  #historical-pet .service-header img {
+    max-width: 20rem;
+    transition: max-width 0.3s ease;
+  }
+
+  #award-winning .service-header img {
+    max-width: 16rem;
     transition: max-width 0.3s ease;
   }
 
@@ -1826,7 +1849,7 @@
     height: 4.8rem;
   }
 
-  .nav-item.active:first-of-type,
+  .nav-item:first-of-type,
   .nav-item.active {
     padding: 0;
   }
@@ -1870,6 +1893,21 @@
 
   #themes .service-header img {
     max-width: 17rem;
+    transition: max-width 0.3s ease;
+  }
+
+  #pet-photos .service-header img {
+    max-width: 20rem;
+    transition: max-width 0.3s ease;
+  }
+
+  #historical-pet .service-header img {
+    max-width: 26rem;
+    transition: max-width 0.3s ease;
+  }
+
+  #award-winning .service-header img {
+    max-width: 19rem;
     transition: max-width 0.3s ease;
   }
 
@@ -1998,7 +2036,7 @@
     height: 6rem;
   }
 
-  .nav-item.active:first-of-type,
+  .nav-item:first-of-type,
   .nav-item.active {
     padding: 0;
   }
@@ -2042,6 +2080,21 @@
 
   #themes .service-header img {
     max-width: 17rem;
+    transition: max-width 0.3s ease;
+  }
+
+  #pet-photos .service-header img {
+    max-width: 20rem;
+    transition: max-width 0.3s ease;
+  }
+
+  #historical-pet .service-header img {
+    max-width: 26rem;
+    transition: max-width 0.3s ease;
+  }
+
+  #award-winning .service-header img {
+    max-width: 19rem;
     transition: max-width 0.3s ease;
   }
 
@@ -2171,7 +2224,7 @@
     height: 6rem;
   }
 
-  .nav-item.active:first-of-type,
+  .nav-item:first-of-type,
   .nav-item.active {
     padding: 0;
   }
@@ -2215,6 +2268,21 @@
 
   #themes .service-header img {
     max-width: 17rem;
+    transition: max-width 0.3s ease;
+  }
+
+  #pet-photos .service-header img {
+    max-width: 20rem;
+    transition: max-width 0.3s ease;
+  }
+
+  #historical-pet .service-header img {
+    max-width: 26rem;
+    transition: max-width 0.3s ease;
+  }
+
+  #award-winning .service-header img {
+    max-width: 19rem;
     transition: max-width 0.3s ease;
   }
 
