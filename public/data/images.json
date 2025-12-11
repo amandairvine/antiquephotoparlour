@@ -286,9 +286,7 @@
     "/img/assets/slideshow-arrows/gold-flourish.png",
     "/img/assets/view-your-photos-text.png"
   ],
-  "background": [
-    "/img/background/parchment-background.jpg"
-  ],
+  "background": ["/img/background/parchment-background.jpg"],
   "headers": [
     "/img/headers/services-headers/services.png",
     "/img/headers/services-headers/award-winning.png",
