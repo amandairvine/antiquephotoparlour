@@ -21,6 +21,24 @@ function setActiveMobileLink() {
   });
 }
 
+function closeMobileMenu(mobileMenu) {
+  if (mobileMenu && mobileMenu.classList.contains('show')) {
+    mobileMenu.classList.remove('show');
+    document.body.classList.remove('menu-open');
+  }
+}
+
+let mobileMenuRef;
+let hamburgerMenuRef;
+
+function handleOutsideMobileMenuClick(event) {
+  const isClickInsideMenu = mobileMenuRef && mobileMenuRef.contains(event.target);
+  const isClickOnHamburger = hamburgerMenuRef && hamburgerMenuRef.contains(event.target);
+
+  if (!isClickInsideMenu && !isClickOnHamburger) {
+    closeMobileMenu(mobileMenuRef);
+  }
+}
 
 document.addEventListener('DOMContentLoaded', function () {
   console.log('Main script loaded');
@@ -36,22 +54,34 @@ document.addEventListener('DOMContentLoaded', function () {
       const hamburgerMenu = document.querySelector('.hamburger-menu');
       const mobileMenu = document.querySelector('.mobile-menu');
       const closeBtn = document.querySelector('.close-btn');
+      const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
 
-      console.log('Hamburger Menu Element:', hamburgerMenu);
-      console.log('Mobile Menu Element:', mobileMenu);
-      console.log('Close Button Element:', closeBtn);
+      mobileMenuRef = mobileMenu;
+      hamburgerMenuRef = hamburgerMenu;
 
       if (hamburgerMenu && mobileMenu && closeBtn) {
         hamburgerMenu.addEventListener('click', function () {
-          console.log('Hamburger menu clicked!');
           mobileMenu.classList.toggle('show');
           document.body.classList.toggle('menu-open');
+
+          // If the menu is now open, add the outside click listener
+          if (mobileMenu.classList.contains('show')) {
+            setTimeout(() => {
+              document.addEventListener('click', handleOutsideMobileMenuClick);
+            }, 50);
+          } else {
+            document.removeEventListener('click', handleOutsideMobileMenuClick);
+          }
         });
 
         closeBtn.addEventListener('click', function () {
-          console.log('Close button clicked!');
-          mobileMenu.classList.remove('show');
-          document.body.classList.remove('menu-open');
+          closeMobileMenu(mobileMenu);
+        });
+
+        mobileNavLinks.forEach(link => {
+          link.addEventListener('click', function () {
+            closeMobileMenu(mobileMenu);
+          });
         });
       }
 
@@ -62,12 +92,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
       const handleMobileMenuCleanup = (e) => {
         if (e.matches) {
-          // Screen width is 660px or larger
-          if (mobileMenu && mobileMenu.classList.contains('show')) {
-            mobileMenu.classList.remove('show');
-            document.body.classList.remove('menu-open');
-            console.log('[Resize Listener] Mobile menu state cleared due to screen width > 660px.');
-          }
+          closeMobileMenu(mobileMenu);
         }
       };
 
@@ -111,22 +136,6 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     loadPage(pageName);
-
-    // // Remove 'active' from all links
-    // document.querySelectorAll('.mobile-nav-link').forEach(link => {
-    //   link.classList.remove('active');
-    // });
-
-    // // Find the target link based on the pageName we are loading
-    // const targetLink = document.querySelector(`.mobile-nav-link[href="#${pageName}"]`);
-
-    // // Proceed if the link element exists
-    // if (targetLink) {
-    //   targetLink.classList.add('active');
-    // } else {
-    //   // Handle case where link is not found
-    //   console.warn(`Mobile navigation link not found for page: ${pageName}`);
-    // }
 
     setActiveMobileLink();
   });
@@ -221,7 +230,6 @@ function setupFooterCollapse() {
 
       // Click confirmation message:
       const buttonText = button.textContent.trim();
-      console.log(`[Footer Collapse] Button clicked: ${buttonText}`);
 
       const targetClass = button.getAttribute('data-target');
       const targetElement = document.querySelector(`.${targetClass}`);
@@ -244,17 +252,11 @@ function setupFooterCollapse() {
         targetElement.classList.add('active');
         overlay.classList.add('active');
         document.body.classList.add('modal-open');
-        console.log(`[Footer Collapse] Opening: ${buttonText} modal.`);
 
         // Add the outside click listener after a delay:
         setTimeout(() => {
           document.addEventListener('click', handleOutsideClick);
         }, 50);
-      } else if (shouldCloseModal) {
-        console.log(`[Footer Collapse] Prevented opening: ${buttonText} modal due to screen dimensions.`);
-      }
-      else {
-        console.log(`[Footer Collapse] Closing: ${buttonText} content (via button click).`);
       }
     });
   })
