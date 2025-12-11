@@ -453,11 +453,7 @@
   scrollbar-color: #e8c775 #480204;
 }
 
-@media (max-width: 660px) and (max-height: 700px) {
-  .service-content.active {
-    max-height: calc(100vh - 17.4rem);
-  }
-
+@media (max-width: 660px) {
   .service-description {
     font-size: 12px;
   }
@@ -466,6 +462,17 @@
     font-size: 12px;
     width: 90%;
     height: 2.4rem;
+  }
+}
+
+@media (max-width: 660px) and (max-height: 700px) {
+  .service-content.active {
+    max-height: calc(100vh - 17.4rem);
+  }
+
+  .service-content-wrapper {
+    height: auto;
+    margin-bottom: 1rem;
   }
 
   .services-slideshow-container {
