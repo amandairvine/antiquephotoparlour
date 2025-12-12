@@ -42,7 +42,6 @@ body {
 .faq-content-wrapper {
   display: flex;
   flex-direction: column;
-  align-items: center;
   width: 100%;
   max-width: 17rem;
   height: 100%;
@@ -430,9 +429,52 @@ h2 {
   }
 }
 
+@media (max-width: 330px) {
+  h1,
+  h2,
+  .faq-container ul li,
+  .faq-content ul li p,
+  .item-note p span,
+  .faq-container p,
+  .faq-content ul li ul li p,
+  .item-note .note,
+  .photo-caption {
+    font-size: 4vw;
+  }
 
+  .sidebar {
+    width: 100%;
+    min-width: auto;
+    max-width: none;
+  }
+
+  .questions {
+    padding: 0.6rem 0;
+  }
+
+  .faq-container .btn,
+  .contact-mini-map-button {
+    width: 90%;
+  }
+
+  .faq-header img {
+    max-width: none;
+    width: 88%
+  }
+
+  .nav-item h1 {
+    flex-shrink: unset;
+  }
+
+  .br {
+    display: none;
+  }
+}
 
 @media (min-width: 660px) {
+  .faq-content-wrapper {
+    max-width: 40rem;
+  }
   .faq-questions .sidebar {
     min-height: 100%;
     max-height: calc(100vh - 30.2rem);
@@ -443,7 +485,7 @@ h2 {
   }
 
   .faq-header-container {
-    max-width: 40rem;
+    max-width: none;
   }
 
   .faq-header img {
@@ -460,7 +502,7 @@ h2 {
   }
 
   .questions {
-    padding: 0.6rem 1.4rem;
+    padding: 0.6rem;
     cursor: default;
   }
 
