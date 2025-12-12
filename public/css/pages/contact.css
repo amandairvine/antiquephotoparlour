@@ -373,23 +373,23 @@ body {
 }
 
 /* WebKit browsers: Chrome, Safari, Edge */
-.contact::-webkit-scrollbar {
+.contact-content::-webkit-scrollbar {
   width: 0.2rem;
 }
 
-.contact::-webkit-scrollbar-thumb {
+.contact-content::-webkit-scrollbar-thumb {
   background-color: #e8c775;
   border-radius: 6px;
   border: 6px solid #e8c775;
   cursor: pointer;
 }
 
-.contact::-webkit-scrollbar-thumb:hover {
+.contact-content::-webkit-scrollbar-thumb:hover {
   background-color: #d4a550;
 }
 
 /* Firefox */
-.contact {
+.contact-content {
   scrollbar-width: thin;
   scrollbar-color: #e8c775 #480204;
 }
@@ -435,8 +435,27 @@ body {
 /* #endregion */
 
 @media (max-width: 330px) {
+  /* .contact-container .content-area {
+    height: auto;
+  }
+
   .content-area .contact {
-    max-height: calc(100vh - 25rem);
+    height: auto;
+  } */
+
+  .contact-container .content-area {
+    max-height: calc(100vh - 26rem);
+  }
+
+  .contact-methods {
+    text-align: center;
+    height: 100%;
+  }
+
+  .faq-link,
+  .contact-info,
+  .contact-us {
+    justify-content: center;
   }
 
   .contact-container h1,
