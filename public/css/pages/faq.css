@@ -125,7 +125,6 @@ body {
   justify-content: center;
   align-items: center;
   padding: 0.4rem 0.5rem;
-  font-size: 16px;
   border: 2px solid #e8c775;
   border-bottom: 2px solid #e8c775;
   box-shadow: 0px 2px 2px rgba(34, 0, 1, 0.8);
@@ -134,7 +133,6 @@ body {
   width: 100%;
   height: 2.8rem;
   color: #fff;
-  font-size: 10px;
   font-family: var(--font-brygada);
   font-weight: var(--weight-bold);
   font-style: normal;
@@ -163,7 +161,6 @@ body {
 }
 
 .dropdown-arrow {
-  font-size: 0.8em;
   margin-left: 0.2rem;
   line-height: 1;
   color: #e8c775;
@@ -208,13 +205,8 @@ body {
   display: none;
 }
 
-.nav-item.active h2 {
-  font-size: 11px;
-}
-
-h1 {
+.faq-container h1 {
   color: #fff;
-  font-size: 11px;
   font-family: var(--font-brygada);
   font-weight: var(--weight-bold);
   text-shadow: -1px -1px 0 #a20003, 1px -1px 0 #a20003, -1px 1px 0 #a20003,
@@ -223,9 +215,8 @@ h1 {
   text-align: center;
 }
 
-h2 {
+.faq-container h2 {
   color: #fff;
-  font-size: 11px;
   font-family: var(--font-brygada);
   font-weight: var(--weight-bold);
   text-shadow: -1px -1px 0 #a20003, 1px -1px 0 #a20003, -1px 1px 0 #a20003,
@@ -236,7 +227,6 @@ h2 {
 
 .faq-container p {
   color: #fff;
-  font-size: 10px;
   font-family: var(--font-brygada);
   font-weight: var(--weight-bold);
   text-shadow: -1px -1px 0 #a20003, 1px -1px 0 #a20003, -1px 1px 0 #a20003,
@@ -248,7 +238,6 @@ h2 {
 .faq-content ul li,
 .faq-content ul p {
   color: #fff;
-  font-size: 10px;
   font-family: var(--font-brygada);
   font-weight: var(--weight-bold);
   text-shadow: -1px -1px 0 #a20003, 1px -1px 0 #a20003, -1px 1px 0 #a20003,
@@ -257,13 +246,7 @@ h2 {
   line-height: 1.6;
 }
 
-.faq-content ul li p,
-.item-note p span {
-  font-size: 11px;
-}
-
 .faq-content ul li ul li p {
-  font-size: 10px;
   font-style: italic;
   line-height: 1.2;
   padding-left: 0.4rem;
@@ -283,7 +266,7 @@ h2 {
   margin-left: 1.6rem;
 }
 
-.btn {
+.faq-container .btn {
   display: inline-flex;
   justify-content: center;
   align-items: center;
@@ -291,7 +274,6 @@ h2 {
   border: 2px solid #e8c775;
   background: linear-gradient(90deg, #480204 0%, #800407 50%, #480204 100%);
   box-shadow: 0px 6px 4px rgba(34, 0, 1, 0.8);
-  font-size: 10px;
   padding: 0.8rem;
   color: #fff;
   font-family: var(--font-brygada);
@@ -330,6 +312,7 @@ h2 {
 .outfits-images {
   display: flex;
   flex-direction: column;
+  align-items: center;
   gap: 0.4rem;
 }
 
@@ -344,7 +327,6 @@ h2 {
 }
 
 .photo-caption {
-  font-size: 9px;
   padding: 0;
   line-height: 1.2;
   text-align: center;
@@ -434,22 +416,37 @@ h2 {
 }
 
 @media (max-width: 330px) {
-  h1,
-  h2,
-  .faq-container ul li,
+  .nav-item,
+  .dropdown-arrow,
+  .nav-item.active h2,
+  .faq-container h1,
+  .faq-container h2,
+  .faq-container p,
+  .faq-content ul li,
+  .faq-content ul p,
   .faq-content ul li p,
   .item-note p span,
-  .faq-container p,
   .faq-content ul li ul li p,
-  .item-note .note,
+  .faq-container .btn,
   .photo-caption {
     font-size: 4vw;
+  }
+
+  .faq-questions,
+  .sidebar,
+  .faq-scroll-wrapper,
+  .questions {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
   }
 
   .sidebar {
     width: 100%;
     min-width: auto;
     max-width: none;
+    max-height: none;
   }
 
   .questions {
@@ -475,7 +472,29 @@ h2 {
   }
 }
 
+@media (min-width: 330px) and (max-width: 659px) {
+  .faq-container h1,
+  .faq-container .btn-primary,
+  .faq-container p {
+    font-size: 12px;
+  }
+
+  .faq-content ul li {
+    font-size: 11px;
+  }
+}
+
 @media (min-width: 660px) and (max-width: 1023px) {
+  .faq-container h1,
+  .faq-container .btn-primary {
+    font-size: 16px;
+  }
+
+  .faq-container p,
+  .faq-content ul li {
+    font-size: 14px;
+  }
+
   .faq-content-wrapper {
     max-width: 40rem;
   }
@@ -519,24 +538,6 @@ h2 {
     display: none;
   }
 
-  h1,
-  h2 {
-    font-size: 14px;
-  }
-
-  .faq-container ul li,
-  .faq-content ul li p,
-  .item-note p span,
-  .faq-container p,
-  .faq-content ul li ul li p {
-    font-size: 13px;
-  }
-
-  .item-note .note,
-  .photo-caption {
-    font-size: 12px;
-  }
-
   .nav-item.active .faq-content-header {
     display: flex;
     flex-direction: column;
@@ -576,7 +577,6 @@ h2 {
   }
 
   #accessibility .faq-content.active .image-section .section-right {
-    margin-top: 2.2rem;
     gap: 1.2rem;
   }
 
@@ -602,8 +602,8 @@ h2 {
   .section-right {
     display: flex;
     flex-direction: column;
+    text-align: center;
     gap: 1rem;
-    margin: 1rem 0.4rem;
   }
 
   .outfits-images {
@@ -638,7 +638,6 @@ h2 {
 
   #accessibility .faq-content.active .image-section .section-right {
     width: 50%;
-    margin: 2.2rem 0 0;
   }
 
   #outfits .faq-content.active .section-right {
@@ -738,7 +737,6 @@ h2 {
   }
 
   .btn {
-    font-size: 14px;
     width: 10rem;
   }
 
@@ -776,6 +774,16 @@ h2 {
 }
 
 @media (min-width: 1024px) and (max-width: 1439px) {
+  .faq-container h1,
+  .faq-container .btn-primary {
+    font-size: 18px;
+  }
+
+  .faq-container p,
+  .faq-content ul li {
+    font-size: 16px;
+  }
+
   .faq-content-wrapper {
     align-items: center;
     max-width: 56.2rem;
@@ -933,6 +941,7 @@ h2 {
     height: 100%;
     max-height: none;
     gap: 0.6rem;
+    overflow-y: visible;
   }
 
   .faq-answer-content > ul {
@@ -944,26 +953,6 @@ h2 {
   #length-answer ul li ul li,
   #babies-answer ul li ul li {
     padding-left: 1rem;
-  }
-
-  h1 {
-    font-size: 16px;
-  }
-
-  .item-note p span {
-    font-size: 15px;
-  }
-
-  h2,
-  .faq-container p,
-  .faq-container ul li,
-  .faq-content ul li ul li p,
-  .item-note .note {
-    font-size: 14px;
-  }
-
-  .faq-container .photo-caption {
-    font-size: 13px;
   }
 
   .content-section {
@@ -1071,7 +1060,6 @@ h2 {
   }
 
   .btn {
-    font-size: 16px;
     width: 11rem;
     height: 2.6rem;
   }
@@ -1107,14 +1095,15 @@ h2 {
   .accessibility-text {
     display: flex;
     flex-direction: column;
-    gap: 2rem;
+    gap: 1rem;
     width: 50%;
     margin-top: 1.4rem;
+    text-align: center;
   }
 
   #accessibility-answer .image-section {
     width: 100%;
-    gap: 1rem;
+    gap: 0;
   }
 
   #accessibility-answer .image-section .faq-image {
@@ -1175,6 +1164,16 @@ h2 {
 }
 
 @media (min-width: 1440px) and (max-width: 1920px) {
+  .faq-container h1,
+  .faq-container .btn-primary {
+    font-size: 20px;
+  }
+
+  .faq-container p,
+  .faq-content ul li {
+    font-size: 18px;
+  }
+
   .faq-content-wrapper {
     align-items: center;
     max-width: 86rem;
@@ -1207,7 +1206,7 @@ h2 {
     gap: 0.6rem;
     height: 100%;
     width: 100%;
-    max-width: 56rem;
+    max-width: none;
     overflow-y: auto;
     transition: max-width 0.3s ease;
   }
@@ -1217,19 +1216,21 @@ h2 {
     flex-direction: column;
     height: 100%;
     transition: max-height 0.3s ease;
-    width: 54%;
+    width: 60%;
     border: 4px solid #e8c775;
     border-radius: 0.8rem;
     background: linear-gradient(90deg, #480204 0%, #800407 50%, #480204 100%);
     position: sticky;
     top: 0;
+    margin-bottom: 1rem;
   }
 
   .faq-questions {
     height: 100%;
-    width: 46%;
+    width: 40%;
     transition: max-height 0.3s ease;
     flex-grow: 1;
+    margin-bottom: 1rem;
   }
 
   .sidebar {
@@ -1285,6 +1286,10 @@ h2 {
     background: none;
   }
 
+  .faq-questions .question-item .nav-item {
+    height: 4.8rem;
+  }
+
   .faq-header-container {
     max-width: none;
     border: 4px solid #e8c775;
@@ -1295,6 +1300,7 @@ h2 {
   .nav-item {
     border: 4px solid #e8c775;
     background: linear-gradient(90deg, #480204 0%, #800407 50%, #480204 100%);
+    padding: 0;
   }
 
   .faq-questions .nav-item:hover {
@@ -1310,7 +1316,7 @@ h2 {
     height: 100%;
     min-height: 100%;
     max-height: none;
-    padding: 0 0.6rem 0.6rem;
+    padding: 0 1 1;
     transition: padding 0.3s ease;
   }
 
@@ -1343,26 +1349,6 @@ h2 {
   #length-answer ul li ul li,
   #babies-answer ul li ul li {
     padding-left: 1rem;
-  }
-
-  h1 {
-    font-size: 16px;
-  }
-
-  .item-note p span {
-    font-size: 15px;
-  }
-
-  h2,
-  .faq-container p,
-  .faq-container ul li,
-  .faq-content ul li ul li p,
-  .item-note .note {
-    font-size: 14px;
-  }
-
-  .faq-container .photo-caption {
-    font-size: 13px;
   }
 
   .content-section {
@@ -1470,7 +1456,6 @@ h2 {
   }
 
   .btn {
-    font-size: 16px;
     width: 11rem;
     height: 2.6rem;
   }
@@ -1557,7 +1542,6 @@ h2 {
     display: none;
   }
 }
-
 
 /* @media (min-width: 1440px) {
   .content-area {
@@ -1902,31 +1886,15 @@ h2 {
     padding-top: 1rem;
   }
 
-  h1 {
-    font-size: 24px;
-  }
-
-  #sitting-fee-answer ul li,
-  h2,
-  .item-note p span {
-    font-size: 22px;
-  }
-
   .faq-container p,
   .faq-container ul li,
   .faq-content ul li ul li p,
   .item-note .note {
-    font-size: 20px;
     line-height: 1.6;
     padding: 0;
   }
 
-  .faq-container .photo-caption {
-    font-size: 18px;
-  }
-
   .btn {
-    font-size: 24px;
     width: 16rem;
     height: 3rem;
     border-radius: 0.8rem;
