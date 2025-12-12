@@ -400,18 +400,6 @@ body {
   }
 }
 
-@media (min-width: 330px) and (max-width: 660px) and (max-height: 700px) {
-  .contact-container .content-area .contact {
-    max-height: calc(100vh - 21rem);
-  }
-}
-
-/* @media (min-width: 660px) and (max-width: 1023px) and (max-height: 800px) {
-  .contact-container .content-area .contact {
-    max-height: calc(100vh - 23rem);
-  }
-} */
-
 @media (min-width: 1024px) and (max-width: 1439px) and (max-height: 800px) {
   .content .contact-container .content-area .contact {
     max-height: calc(100vh - 25.8rem);
@@ -439,21 +427,6 @@ body {
 /* #endregion */
 
 @media (max-width: 330px) {
-  .contact-container .content-area {
-    max-height: calc(100vh - 26rem);
-  }
-
-  /* .contact-methods {
-    text-align: center;
-    height: 100%;
-  }
-
-  .faq-link,
-  .contact-info,
-  .contact-us {
-    justify-content: center;
-  } */
-
   .contact-container h1,
   .contact-container h2,
   .contact-container h3,
@@ -479,13 +452,12 @@ body {
 }
 
 @media (min-width: 330px) and (max-width: 659px) {
-  .content-area .contact {
-    max-height: calc(100vh - 25rem);
-    padding: 0.6rem 0;
-  }
-
   .contact-methods {
     height: 100%;
+  }
+
+  .contact {
+    padding: 0.6rem 0;
   }
 
   .contact-container h1,
@@ -534,10 +506,6 @@ body {
   .help-header {
     display: none;
     border: none;
-  }
-
-  .content-area .contact {
-    max-height: calc(100vh - 30rem);
   }
 
   .contact-info > h2 {
@@ -835,7 +803,6 @@ body {
   }
 
   .contact {
-    max-height: calc(100vh - 31rem);
     gap: 1.6rem;
     padding: 0;
   }
@@ -954,10 +921,6 @@ body {
     padding: 2rem 3.5rem;
     border: 5px solid #e8c775;
     border-radius: 1rem;
-  }
-
-  .contact-container .contact {
-    max-height: calc(100vh - 35rem);
   }
 
   .contact-header {
