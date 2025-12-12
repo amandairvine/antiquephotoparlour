@@ -415,15 +415,6 @@ header {
 }
 
 @media (min-width: 660px) {
-  .hours-container .hours-info,
-  .last-group {
-    padding: 0;
-  }
-
-  .hours-container {
-    padding: 0.4rem 0.8rem;
-  }
-
   /* Header Top Section */
 
   .header-top {

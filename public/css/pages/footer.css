@@ -1053,10 +1053,6 @@ footer {
     border: none;
   }
 
-  .hours-container .quick-hours {
-    padding-top: 0.4rem;
-  }
-
   .footer-collapse-btn {
     width: 85%;
     height: 2.8rem;
@@ -1276,6 +1272,10 @@ footer {
     display: block;
   }
 
+  .footer-containers .hours-container {
+    padding-top: 0.2rem;
+  }
+
   .hours-container,
   .location-container {
     min-height: 7rem;
@@ -1288,6 +1288,7 @@ footer {
 
   .hours-info {
     height: 100%;
+    padding-top: 0;
   }
 
   .footer-content.active .hours-content {
@@ -1662,9 +1663,22 @@ footer {
   }
 }
 
-@media (min-width: 1440px) and (max-width: 1919px) and (min-height: 800px) {
+@media (min-width: 1440px) and (max-width: 1919px) and (min-height: 801px) {
   .modal-overlay.active {
     display: none !important;
+  }
+
+  .hours-info {
+    width: 100%;
+  }
+
+  .days,
+  .times {
+    gap: 0.2rem;
+  }
+
+  .last-group .small-br {
+    display: none;
   }
 }
 
