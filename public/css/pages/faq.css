@@ -1346,11 +1346,10 @@ body {
     min-width: 0;
     width: 100%;
     overflow-y: auto;
-    border: none;
     background: none;
     margin: 0;
-    border: 4px solid #e8c775;
-    border-radius: 0.8rem;
+    border: 5px solid #e8c775;
+    border-radius: 1rem;
   }
 
   .faq-answers .sidebar {
@@ -1366,9 +1365,11 @@ body {
 
   .faq-questions .sidebar {
     min-width: 100%;
-    transition: max-height 0.3s ease;
+    height: 100%;
+    min-height: 0;
     flex-grow: 1;
     padding: 1rem;
+    transition: max-height 0.3s ease;
   }
 
   .faq-answers .question-item {
@@ -1413,8 +1414,8 @@ body {
     width: 100%;
     padding: 0.8rem 0;
     background: linear-gradient(90deg, #480204 0%, #800407 50%, #480204 100%);
-    border: 4px solid #e8c775;
-    border-radius: 0.8rem;
+    border: 5px solid #e8c775;
+    border-radius: 1rem;
     position: sticky;
     top: 0;
     z-index: 10;
@@ -1425,7 +1426,8 @@ body {
   }
 
   .faq-questions .nav-item {
-    border: 4px solid #e8c775;
+    border: 5px solid #e8c775;
+    border-radius: 1rem;
     background: linear-gradient(90deg, #480204 0%, #800407 50%, #480204 100%);
   }
 
@@ -1626,8 +1628,8 @@ body {
   .faq-container .btn-primary {
     width: 24rem;
     height: 4.8rem;
-    border: 4px solid #e8c775;
-    border-radius: 0.8rem;
+    border: 5px solid #e8c775;
+    border-radius: 1rem;
   }
 
   .nav-item {
@@ -1817,11 +1819,10 @@ body {
     min-width: 0;
     width: 100%;
     overflow-y: auto;
-    border: none;
     background: none;
     margin: 0;
-    border: 4px solid #e8c775;
-    border-radius: 0.8rem;
+    border: 5px solid #e8c775;
+    border-radius: 1rem;
   }
 
   .faq-answers .sidebar {
@@ -1837,6 +1838,8 @@ body {
 
   .faq-questions .sidebar {
     min-width: 100%;
+    height: 100%;
+    min-height: 0;
     transition: max-height 0.3s ease;
     flex-grow: 1;
     padding: 1.4rem 2rem;
@@ -1884,8 +1887,8 @@ body {
     width: 100%;
     padding: 0.8rem 0;
     background: linear-gradient(90deg, #480204 0%, #800407 50%, #480204 100%);
-    border: 4px solid #e8c775;
-    border-radius: 0.8rem;
+    border: 5px solid #e8c775;
+    border-radius: 1rem;
     position: sticky;
     top: 0;
     z-index: 10;
@@ -1896,7 +1899,8 @@ body {
   }
 
   .faq-questions .nav-item {
-    border: 4px solid #e8c775;
+    border: 5px solid #e8c775;
+    border-radius: 1rem;
     background: linear-gradient(90deg, #480204 0%, #800407 50%, #480204 100%);
   }
 
@@ -2101,8 +2105,8 @@ body {
   .faq-container .btn-primary {
     width: 28rem;
     height: 6rem;
-    border: 4px solid #e8c775;
-    border-radius: 0.8rem;
+    border: 5px solid #e8c775;
+    border-radius: 1rem;
   }
 
   .nav-item {
@@ -2229,7 +2233,7 @@ body {
 
   #pets-answer .faq-image img {
     width: 20rem;
-  } 
+  }
 
   #pets-answer .section-right {
     display: flex;
@@ -2237,21 +2241,20 @@ body {
     justify-content: space-between;
     width: 50%;
   }
-
 }
 
-@media (min-width: 1920px) and (max-width: 2056px) {
+@media (min-width: 2056px) {
   .faq-container h1,
   .faq-container h2,
   .faq-container .btn-primary,
   .faq-container .button-section p {
-    font-size: 24px;
+    font-size: 26px;
   }
 
   .faq-container p,
   .faq-content ul li,
   .faq-container ul li {
-    font-size: 20px;
+    font-size: 24px;
   }
 
   .faq-answer-content ul li h2 {
@@ -2260,7 +2263,7 @@ body {
 
   .faq-content-wrapper {
     align-items: center;
-    max-width: 116rem;
+    max-width: 120rem;
     border: none;
     background: none;
     overflow-y: hidden;
@@ -2280,10 +2283,10 @@ body {
     flex-grow: 1;
     gap: 1rem;
     height: 100%;
-    max-height: calc(100vh - 26.5rem);
+    max-height: calc(100vh - 27rem);
     overflow-y: hidden;
     width: 100%;
-    max-width: 116rem;
+    max-width: 120rem;
     transition: max-width 0.3s ease;
   }
 
@@ -2292,7 +2295,7 @@ body {
     flex-direction: column;
     height: 100%;
     min-height: 0;
-    width: 54%;
+    width: 60%;
     position: sticky;
     top: 0;
     margin-right: 0;
@@ -2303,7 +2306,7 @@ body {
     display: flex;
     flex-direction: column;
     height: 100%;
-    width: 46%;
+    width: 40%;
     transition: max-height 0.3s ease;
     flex-grow: 1;
     gap: 1rem;
@@ -2313,11 +2316,10 @@ body {
     min-width: 0;
     width: 100%;
     overflow-y: auto;
-    border: none;
     background: none;
     margin: 0;
-    border: 4px solid #e8c775;
-    border-radius: 0.8rem;
+    border: 5px solid #e8c775;
+    border-radius: 1rem;
   }
 
   .faq-answers .sidebar {
@@ -2380,8 +2382,8 @@ body {
     width: 100%;
     padding: 0.8rem 0;
     background: linear-gradient(90deg, #480204 0%, #800407 50%, #480204 100%);
-    border: 4px solid #e8c775;
-    border-radius: 0.8rem;
+    border: 5px solid #e8c775;
+    border-radius: 1rem;
     position: sticky;
     top: 0;
     z-index: 10;
@@ -2392,7 +2394,8 @@ body {
   }
 
   .faq-questions .nav-item {
-    border: 4px solid #e8c775;
+    border: 5px solid #e8c775;
+    border-radius: 1rem;
     background: linear-gradient(90deg, #480204 0%, #800407 50%, #480204 100%);
   }
 
@@ -2449,6 +2452,13 @@ body {
     flex-grow: 1;
   }
 
+  #outfits-answer .faq-answer-content div:first-of-type,
+  #outfits-answer .button-section {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
   .faq-answer-content > ul {
     display: flex;
     flex-direction: column;
@@ -2457,6 +2467,9 @@ body {
 
   #length-answer ul li ul li,
   #babies-answer ul li ul li {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
     padding-left: 1rem;
   }
 
@@ -2522,7 +2535,7 @@ body {
   }
 
   #sizing-answer .faq-content-header img {
-    max-width: 33rem;
+    max-width: 34rem;
   }
 
   #outfits-answer .faq-content-header img {
@@ -2597,8 +2610,8 @@ body {
   .faq-container .btn-primary {
     width: 28rem;
     height: 6rem;
-    border: 4px solid #e8c775;
-    border-radius: 0.8rem;
+    border: 5px solid #e8c775;
+    border-radius: 1rem;
   }
 
   .nav-item {
@@ -2633,13 +2646,14 @@ body {
     padding-bottom: 1rem;
   }
 
-  .xxl-br {
+  .xxxl-br {
     display: inline;
   }
 
   .xs-br,
   .large-br,
-  .xl-br {
+  .xl-br,
+  .xxl-br {
     display: none;
   }
 
@@ -2649,7 +2663,7 @@ body {
     gap: 1rem;
     margin-bottom: 3rem;
     text-align: center;
-    width: 50%;
+    width: 60%;
   }
 
   #accessibility-answer .content-section {
@@ -2672,7 +2686,7 @@ body {
   }
 
   #accessibility-answer .image-section .faq-image img {
-    width: 19rem;
+    width: 21rem;
   }
 
   #outfits-answer .image-section {
@@ -2695,12 +2709,14 @@ body {
   }
 
   #outfits-answer .large-image {
+    display: flex;
     width: 100%;
   }
 
   #outfits-answer .large-image .faq-image {
     display: flex;
     justify-content: center;
+    align-items: center;
     width: 100%;
   }
 
@@ -2710,6 +2726,12 @@ body {
 
   #outfits-answer .image-section .faq-image:nth-child(2) {
     display: none;
+  }
+
+   #outfits-answer .faq-answer-content {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
   }
 
   #pets-answer .faq-answer-content .pets-content-section p {
@@ -2725,7 +2747,7 @@ body {
 
   #pets-answer .faq-image img {
     width: 20rem;
-  } 
+  }
 
   #pets-answer .section-right {
     display: flex;
@@ -2733,5 +2755,4 @@ body {
     justify-content: space-between;
     width: 50%;
   }
-
 }
