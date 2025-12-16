@@ -125,12 +125,7 @@ header {
 
 /* Primary Nav */
 .primary-nav {
-  /* position: relative; */
   width: 100%;
-  /* max-width: 28rem; */
-  /* display: flex; */
-  /* justify-content: center;
-  align-items: center; */
   flex: 1;
 }
 
@@ -223,6 +218,11 @@ header {
   border-radius: 0.6rem;
   width: 2.4rem;
   height: 2.4rem;
+  cursor: pointer;
+}
+
+.hamburger-menu:hover {
+  transform: scale(105%);
 }
 
 .mobile-menu {

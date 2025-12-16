@@ -9,46 +9,118 @@ function enlargeImage(imageSrc) {
     const overlay = document.createElement("div");
     overlay.id = "enlargedImageOverlay";
     overlay.style.cssText = `
+    display: flex;
+    justify-content: center;
+    align-items: center;
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
     background: rgba(60, 4, 4, 0.91);
+    cursor: pointer;
+    z-index: 999999;
+  `;
+
+    const overlayContent = document.createElement("div");
+    overlayContent.id = "overlayContent";
+    overlayContent.style.cssText = `
+    position: relative;
+    width: 100%;
+    height: 100%;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     z-index: 999999;
   `;
+
+    const closeContentContainer = document.createElement("div");
+    closeContentContainer.className = "close-content-container";
+    closeContentContainer.style.cssText = `
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%; 
+    height: 3.8rem;
+  `;
+
+    const closeBtnWrapper = document.createElement("div");
+    closeBtnWrapper.className = "close-btn-wrapper";
+    closeBtnWrapper.style.cssText = `
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    width: 100%;
+    min-width: 2.4rem;
+    height: auto;
+    min-height: 3.8rem;
+    cursor: pointer;
+    padding-right: 5%;
+    z-index: 1000000;
+  `;
+
+    const closeBtn = document.createElement("img");
+    closeBtn.src = "../../img/assets/x.png";
+    closeBtn.className = "close-enlarged-btn";
+    closeBtn.style.cssText = `
+    width: 2.4rem;
+    height: 2.4rem;
+    object-fit: contain;
+    cursor: pointer;
+    transition: opacity 0.2s ease;
+  `;
+
+    closeBtnWrapper.addEventListener("mouseenter", () => {
+        closeBtnWrapper.style.opacity = '1';
+        closeBtnWrapper.style.transform = 'scale(1.1)';
+    });
+    closeBtnWrapper.addEventListener("mouseleave", () => {
+        closeBtnWrapper.style.opacity = '0.9';
+        closeBtnWrapper.style.transform = 'scale(1.0)';
+    });
+
+    closeBtnWrapper.addEventListener("click", (e) => {
+        e.stopPropagation();
+        closeEnlargedView();
+    });
+
+    closeBtnWrapper.appendChild(closeBtn);
+
+    closeContentContainer.appendChild(closeBtnWrapper);
+
     const container = document.createElement("div");
+    container.className = "enlargedImage";
     container.style.cssText = `
     position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 100%;
+    width: 100%; /* Can take full width */
     height: 100%;
   `;
     const enlargedImg = document.createElement("img");
     enlargedImg.src = imageSrc;
     enlargedImg.style.cssText = `
-    max-width: 90%;
+    max-width: 70%;
     max-height: 90%;
     object-fit: contain;
-    border-radius: 8px;
+    border: 2px solid #e8c775;
+    border-radius: 0.8rem;
     box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
     cursor: default;
   `;
     let prevArrow, nextArrow;
     if (galleryImages.length > 1) {
         prevArrow = document.createElement("img");
-        prevArrow.src = "../../img/buttons/slideshow-arrows/gold-flourish.png";
+        prevArrow.src = "../../img/assets/slideshow-arrows/gold-flourish.png";
         prevArrow.style.cssText = `
       position: absolute;
-      left: 20px;
+      left: 1rem;
       top: 50%;
       transform: translateY(-50%) scaleX(-1);
-      width: 8rem;
+      width: 10%;
       height: auto;
       cursor: pointer;
       opacity: 0.8;
@@ -56,13 +128,13 @@ function enlargeImage(imageSrc) {
       z-index: 999999;
     `;
         nextArrow = document.createElement("img");
-        nextArrow.src = "../../img/buttons/slideshow-arrows/gold-flourish.png";
+        nextArrow.src = "../../img/assets/slideshow-arrows/gold-flourish.png";
         nextArrow.style.cssText = `
       position: absolute;
-      right: 20px;
+      right: 1rem;
       top: 50%;
       transform: translateY(-50%);
-      width: 8rem;
+      width: 10%;
       height: auto;
       cursor: pointer;
       opacity: 0.8;
@@ -110,9 +182,14 @@ function enlargeImage(imageSrc) {
         container.appendChild(prevArrow);
         container.appendChild(nextArrow);
     }
+
     container.appendChild(enlargedImg);
-    overlay.appendChild(container);
+    overlayContent.appendChild(container); 
+    overlayContent.appendChild(closeContentContainer);
+
+    overlay.appendChild(overlayContent);
     document.body.appendChild(overlay);
+
     let currentImageIndex = currentIndex;
     function updateImage() {
         enlargedImg.src = galleryImages[currentImageIndex].src;
@@ -145,7 +222,7 @@ function enlargeImage(imageSrc) {
         });
     }
     overlay.addEventListener("click", (e) => {
-        if (e.target === overlay || e.target === container) {
+        if (e.target === overlay || e.target === container || e.target === overlayContent) {
             e.stopPropagation();
             closeEnlargedView();
         }
