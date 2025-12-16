@@ -21,5 +21,8 @@
   "homepage": "https://github.com/amandairvine/antiquephotoparlour#readme",
   "devDependencies": {
     "vite": "^7.1.4"
+  },
+  "dependencies": {
+    "sharp": "^0.34.5"
   }
 }

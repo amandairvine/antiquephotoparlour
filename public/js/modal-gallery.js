@@ -62,7 +62,7 @@ function enlargeImage(imageSrc) {
   `;
 
     const closeBtn = document.createElement("img");
-    closeBtn.src = "../../img/assets/x.png";
+    closeBtn.src = "../../img/assets/x.webp";
     closeBtn.className = "close-enlarged-btn";
     closeBtn.style.cssText = `
     width: 2.4rem;
@@ -114,7 +114,7 @@ function enlargeImage(imageSrc) {
     let prevArrow, nextArrow;
     if (galleryImages.length > 1) {
         prevArrow = document.createElement("img");
-        prevArrow.src = "../../img/assets/slideshow-arrows/gold-flourish.png";
+        prevArrow.src = "../../img/assets/slideshow-arrows/gold-flourish.webp";
         prevArrow.style.cssText = `
       position: absolute;
       left: 2%;
@@ -129,7 +129,7 @@ function enlargeImage(imageSrc) {
       z-index: 999999;
     `;
         nextArrow = document.createElement("img");
-        nextArrow.src = "../../img/assets/slideshow-arrows/gold-flourish.png";
+        nextArrow.src = "../../img/assets/slideshow-arrows/gold-flourish.webp";
         nextArrow.style.cssText = `
       position: absolute;
       right: 2%;
