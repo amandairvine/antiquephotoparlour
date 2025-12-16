@@ -117,10 +117,11 @@ function enlargeImage(imageSrc) {
         prevArrow.src = "../../img/assets/slideshow-arrows/gold-flourish.png";
         prevArrow.style.cssText = `
       position: absolute;
-      left: 1rem;
+      left: 2%;
       top: 50%;
       transform: translateY(-50%) scaleX(-1);
       width: 10%;
+      max-width: 8rem;
       height: auto;
       cursor: pointer;
       opacity: 0.8;
@@ -131,10 +132,11 @@ function enlargeImage(imageSrc) {
         nextArrow.src = "../../img/assets/slideshow-arrows/gold-flourish.png";
         nextArrow.style.cssText = `
       position: absolute;
-      right: 1rem;
+      right: 2%;
       top: 50%;
       transform: translateY(-50%);
       width: 10%;
+      max-width: 8rem;
       height: auto;
       cursor: pointer;
       opacity: 0.8;
