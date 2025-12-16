@@ -6,99 +6,127 @@ const projectRoot = path.join(__dirname, '..');
 const themesDir = path.join(projectRoot, 'img', 'themes');
 const outputDir = path.join(projectRoot, 'data');
 const outputFilePath = path.join(outputDir, 'images.json');
-const TARGET_EXTENSION = '.webp'; // Define the new target extension
 
-async function runScript() {
-    // Ensure output directory exists (using fs/promises)
-    await fs.mkdir(outputDir, { recursive: true });
+const TARGET_EXTENSION = '.webp'; 
+const SOURCE_EXTENSIONS = new Set(['.jpg', '.jpeg', '.png', '.gif']);
+const EXCLUDE_DIRS = new Set(['node_modules', 'data', '.git', '.vscode', 'temp', 'backup']); 
 
-    let galleryData = {};
-    if (await fileExistsSync(outputFilePath)) { // Using a synchronous check for initial load
-        const existingData = await fs.readFile(outputFilePath, 'utf-8');
-        galleryData = JSON.parse(existingData);
+
+// --- Helper Functions ---
+
+async function fileExists(imagePath) {
+    const localPath = path.join(projectRoot, imagePath.replace(/\.\./g, ''));
+    try {
+        await fs.access(localPath);
+        return true;
+    } catch {
+        return false;
+    }
+}
+
+function fileExistsSync(filePath) {
+    try {
+        // Use sync version for initial file check outside the main async flow
+        require('fs').accessSync(filePath); 
+        return true;
+    } catch {
+        return false;
+    }
+}
+
+function normalizeThemeName(name) {
+    return name.toLowerCase().replace(/[\s\.\,\'\"]/g, '-').replace(/-+/g, '-').replace(/^-+|-+$/g, '');
+}
+
+async function findAndConvertImagesRecursively(currentDir) {
+    let entries;
+    try {
+        entries = await fs.readdir(currentDir, { withFileTypes: true });
+    } catch (e) {
+        // Handle cases where we don't have permission to read a directory
+        console.warn(`⚠️ Warning: Could not read directory ${path.relative(projectRoot, currentDir)}: ${e.message}`);
+        return;
     }
 
-    async function fileExists(imagePath) {
-        const localPath = path.join(projectRoot, imagePath.replace(/\.\./g, ''));
-        try {
-            await fs.access(localPath);
-            return true;
-        } catch {
-            return false;
-        }
-    }
 
-    function fileExistsSync(filePath) {
-        try {
-            require('fs').accessSync(filePath); // Use sync version for initial file check
-            return true;
-        } catch {
-            return false;
-        }
-    }
+    for (const entry of entries) {
+        const fullPath = path.join(currentDir, entry.name);
 
-    function normalizeThemeName(name) {
-        return name.toLowerCase().replace(/[\s\.\,\'\"]/g, '-').replace(/-+/g, '-').replace(/^-+|-+$/g, '');
-    }
-
-    // --- Step 1: Standardize all image file names and convert to .webp ---
-    console.log(`\n🔄 Standardizing image filenames and converting to ${TARGET_EXTENSION}...`);
-    const themeFolders = (await fs.readdir(themesDir, { withFileTypes: true }))
-        .filter(dirent => dirent.isDirectory())
-        .map(dirent => dirent.name);
-
-    for (const theme of themeFolders) {
-        const themePath = path.join(themesDir, theme);
-        const themeFiles = await fs.readdir(themePath);
-
-        for (const file of themeFiles) {
-            const oldFilePath = path.join(themePath, file);
-            const fileLower = file.toLowerCase();
+        // 1. Safety Guardrails: Skip critical and excluded directories
+        if (entry.isDirectory()) {
+            if (EXCLUDE_DIRS.has(entry.name) || entry.name.startsWith('.')) {
+                continue;
+            }
+            // Recursively process subfolders
+            await findAndConvertImagesRecursively(fullPath);
+        } else if (entry.isFile()) {
+            const fileLower = entry.name.toLowerCase();
             const extension = path.extname(fileLower);
             
-            // Skip files that are already the target format or should be ignored (like .json)
-            if (extension === TARGET_EXTENSION || !extension) continue;
-            
-            const baseName = path.basename(file, extension);
-            let newFileName = baseName + TARGET_EXTENSION;
-
-            // --- Conversion Logic ---
-            try {
-                // 1. Handle special case: correct double extension (e.g., image.jpg.jpg)
-                if (fileLower.endsWith('.jpg.jpg')) {
-                    // Use the corrected base name for the output
-                    newFileName = file.substring(0, file.length - 4 - extension.length) + TARGET_EXTENSION;
-                    console.log(`    ℹ️ Detected double extension on ${file}. Will use base: ${baseName}`);
-                }
+            // 2. Check if the file needs conversion
+            if (SOURCE_EXTENSIONS.has(extension)) {
                 
-                const newFilePath = path.join(themePath, newFileName.toLowerCase()); // Always output lowercase filename
+                const baseName = path.basename(entry.name, extension);
+                const newFileName = baseName.toLowerCase() + TARGET_EXTENSION;
+                const newFilePath = path.join(currentDir, newFileName);
 
-                // Use sharp to read the image, convert it to webp, and write the file
-                await sharp(oldFilePath)
-                    .webp({ quality: 80 })
-                    .toFile(newFilePath);
-                
-                // If conversion was successful, delete the old file
-                if (oldFilePath !== newFilePath) {
-                    await fs.unlink(oldFilePath);
+                try {
+                    // Conversion with EXIF rotation fix
+                    await sharp(fullPath)
+                        .rotate()
+                        .webp({ quality: 80 })
+                        .toFile(newFilePath);
+                    
+                    // Delete original file
+                    await fs.unlink(fullPath); 
+                    
+                    console.log(`✅ CONVERTED (Project-Wide): ${path.relative(projectRoot, fullPath)} -> ${newFileName}`);
+                    
+                } catch (error) {
+                    console.error(`❌ FAILED (Project-Wide): ${path.relative(projectRoot, fullPath)}: ${error.message}`);
                 }
-
-                console.log(`✅ Converted and Renamed: ${file} -> ${newFilePath} in theme ${theme}`);
-
-            } catch (error) {
-                console.error(`❌ Failed to process ${oldFilePath}: ${error.message}`);
             }
         }
     }
-    console.log('✅ All images converted and standardized.');
+}
+
+async function runScript() {
+    // Initial Setup
+    await fs.mkdir(outputDir, { recursive: true });
+
+    let galleryData = {};
+    if (fileExistsSync(outputFilePath)) { 
+        const existingData = await fs.readFile(outputFilePath, 'utf-8');
+        galleryData = JSON.parse(existingData);
+    }
+    
+    // --- CONVERT ALL IMAGES IN THE ENTIRE PROJECT ---
+    console.log(`\n🌎 Starting Project-Wide Image Conversion from ${path.relative(projectRoot, projectRoot)}/`);
+    await findAndConvertImagesRecursively(projectRoot);
+    console.log(`✅ Project-Wide Conversion complete. All source files deleted.`);
+    
+    // --- Step 1: Find Theme Folders (The conversion is done, this prepares the theme list) ---
+    console.log(`\n🔄 Scanning for theme folders in ${path.relative(projectRoot, themesDir)}...`);
+    
+    let themeFolders;
+    try {
+        themeFolders = (await fs.readdir(themesDir, { withFileTypes: true }))
+            .filter(dirent => dirent.isDirectory())
+            .map(dirent => dirent.name);
+    } catch (e) {
+        console.error(`❌ Error: Could not read themes directory ${themesDir}. Is the path correct?`);
+        return;
+    }
+    
+    console.log('✅ Theme folders list ready for data generation.');
 
     // --- Step 2: Clean up existing galleryData by removing missing images ---
     console.log('\n🧹 Cleaning up existing gallery data...');
     for (const theme in galleryData) {
         // Create an array of potential WebP paths to check against
         const webpPaths = galleryData[theme].map(imagePath => {
-             // Change the extension of the old path to the new target extension
-             return imagePath.substring(0, imagePath.lastIndexOf('.')) + TARGET_EXTENSION;
+            // Change the extension of the old path to the new target extension
+            return imagePath.substring(0, imagePath.lastIndexOf('.')) + TARGET_EXTENSION;
         });
 
         const newPaths = [];
@@ -124,9 +152,8 @@ async function runScript() {
 
         for (const file of themeFiles) {
             const fileLower = file.toLowerCase();
+            // ONLY PROCESS THE NEW TARGET EXTENSION (.webp)
             if (fileLower.endsWith(TARGET_EXTENSION)) { 
-                const filePath = path.join(themePath, file);
-                
                 const relativePath = path.join('..', 'img', 'themes', theme, file).replace(/\\/g, '/');
 
                 // Check if the filename matches the standardized 'main' image name
@@ -157,6 +184,6 @@ async function runScript() {
 }
 
 runScript().catch(err => {
-    console.error("An unexpected error occurred:", err);
+    console.error("\n❌ An unexpected error occurred during script execution:", err);
     process.exit(1);
 });
