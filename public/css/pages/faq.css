@@ -60,11 +60,6 @@ body {
   height: 100%;
 }
 
-/* .faq-answers .faq-scroll-wrapper {
-  min-height: auto;
-  height: auto;
-} */
-
 .sidebar {
   display: flex;
   flex-direction: column;

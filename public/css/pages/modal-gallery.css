@@ -1,6 +1,6 @@
 /* Themes - Modal Gallery CSS */
 
-#enlargedImageOverlay {
+#enlarged-img-overlay {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -15,7 +15,7 @@
   outline: none;
 }
 
-#overlayContent {
+#overlay-content {
   position: relative;
   width: 100%;
   height: 100%;
@@ -30,9 +30,8 @@
   width: 100%;
   background-color: #480204;
   box-shadow: 0 0 10px #000;
-  position: fixed;
-  top: 0;
-  left: 0;
+  position: relative;
+  flex-shrink: 0;
   z-index: 1000;
 }
 
@@ -43,9 +42,8 @@
   align-items: center;
   width: 100%;
   max-width: 18rem;
-  height: 4rem;
-  position: fixed;
-  top: 0;
+  height: 100%;
+  position: relative;
   gap: 20%;
   z-index: 10000;
 }
@@ -90,7 +88,7 @@
 }
 
 /* --- Image and Arrow Container --- */
-.enlargedImageContainer {
+.enlarged-image-container {
   flex-grow: 1;
   display: flex;
   justify-content: center;
@@ -106,7 +104,7 @@
   height: 100%;
 }
 
-.enlargedImg {
+.enlarged-img {
   width: auto;
   max-width: 70%;
   height: auto;
@@ -182,10 +180,6 @@
 }
 
 @media (min-width: 330px) and (max-width: 659px) {
-  /* .close-content-container {
-    padding: 0 2%;
-  } */
-
   .close-btn-wrapper {
     margin-top: 0;
   }
@@ -205,8 +199,13 @@
 }
 
 @media (min-width: 660px) and (max-width: 1023px) {
+  .enlarged-img-header {
+    height: 6rem;
+  }
+
   .close-content-container {
-    padding: 0 2%;
+    justify-content: space-between;
+    max-width: 38rem;
   }
 
   .close-btn-wrapper {
@@ -214,15 +213,71 @@
   }
 
   .close-enlarged-btn {
-    width: 2.4rem;
-    height: 2.4rem;
-  }
-
-  .gallery-logo-container {
-    padding: 3% 0 5%;
+    max-width: 2.8rem;
+    max-height: 2.8rem;
   }
 
   .gallery-logo {
-    max-height: 3.75rem;
+    max-height: 5.8rem;
+  }
+}
+
+@media (min-width: 1024px) and (max-width: 1439px) {
+  .enlarged-img-header {
+    height: 7rem;
+  }
+
+  .close-content-container {
+    justify-content: space-between;
+    max-width: 55rem;
+  }
+
+  .close-btn-wrapper {
+    margin-top: 0;
+  }
+
+  .close-enlarged-btn {
+    max-width: 3.8rem;
+    max-height: 3.6rem;
+  }
+
+  .gallery-logo {
+    max-height: 7.1rem;
+    max-width: 20rem;
+  }
+
+  .enlarged-img {
+    border: 4px solid #e8c775;
+    border-radius: 0.8rem;
+  }
+}
+
+@media (min-width: 1440px) and (max-width: 1920px) {
+  .enlarged-img-header {
+    height: 12rem;
+  }
+
+  .close-content-container {
+    justify-content: space-between;
+    max-width: 86rem;
+  }
+
+  .close-btn-wrapper {
+    margin-top: 0;
+  }
+
+  .close-enlarged-btn {
+    max-width: 4.5rem;
+    max-height: 4.2rem;
+  }
+
+  .gallery-logo {
+    max-height: 14rem;
+    max-width: 34rem;
+  }
+
+  .enlarged-img {
+    border: 4px solid #e8c775;
+    border-radius: 0.8rem;
   }
 }

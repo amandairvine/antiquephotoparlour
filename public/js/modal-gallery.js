@@ -2,21 +2,21 @@ console.log("✅ modal-gallery.js running");
 
 function enlargeImage(imageSrc) {
     console.log("Enlarging image:", imageSrc);
-    const galleryImages = Array.from(document.querySelectorAll("#modalGallery img"));
+    const galleryImages = Array.from(document.querySelectorAll("#modal-gallery img"));
     const currentIndex = galleryImages.findIndex(img => img.src.includes(imageSrc));
-    const galleryModal = document.getElementById("themeModal");
+    const galleryModal = document.getElementById("theme-modal");
 
     galleryModal.style.display = "none";
 
     const overlay = document.createElement("div");
-    overlay.id = "enlargedImageOverlay";
+    overlay.id = "enlarged-img-overlay";
 
     overlay.addEventListener("click", (e) => {
         e.stopPropagation();
     });
 
     const overlayContent = document.createElement("div");
-    overlayContent.id = "overlayContent";
+    overlayContent.id = "overlay-content";
 
     const enlargedImageWrapper = document.createElement("div");
     enlargedImageWrapper.className = "enlarged-img-wrapper";
@@ -60,11 +60,11 @@ function enlargeImage(imageSrc) {
     enlargedImageHeader.appendChild(closeContentContainer);
 
     const container = document.createElement("div");
-    container.className = "enlargedImageContainer";
+    container.className = "enlarged-image-container";
 
     const enlargedImg = document.createElement("img");
     enlargedImg.src = imageSrc;
-    enlargedImg.className = "enlargedImg";
+    enlargedImg.className = "enlarged-img";
 
     let prevArrow, nextArrow;
     if (galleryImages.length > 1) {
@@ -91,7 +91,7 @@ function enlargeImage(imageSrc) {
     overlayContent.appendChild(enlargedImageHeader);
     overlayContent.appendChild(container);
 
-    // .enlargedImageOverlay
+    // .enlarged-img-overlay
     overlay.appendChild(overlayContent);
     document.body.appendChild(overlay);
 
@@ -119,8 +119,8 @@ function enlargeImage(imageSrc) {
         if (document.body.contains(overlay)) {
             document.body.removeChild(overlay);
         }
-        document.removeEventListener("keydown", handleKeydown);
 
+        document.removeEventListener("keydown", handleKeydown);
         galleryModal.style.display = "block";
     }
 
@@ -129,6 +129,7 @@ function enlargeImage(imageSrc) {
             e.stopPropagation();
             goToPrevious();
         });
+
         nextArrow.addEventListener("click", (e) => {
             e.stopPropagation();
             goToNext();
@@ -136,7 +137,7 @@ function enlargeImage(imageSrc) {
     }
 
     overlay.addEventListener("click", (e) => {
-        const isImage = e.target.classList.contains("enlargedImg");
+        const isImage = e.target.classList.contains("enlarged-img");
         const isArrow = e.target.classList.contains("arrow-common");
         const isCloseBtn = e.target.closest(".close-btn-wrapper");
 
@@ -159,7 +160,8 @@ function enlargeImage(imageSrc) {
 }
 
 function closeThemeModal() {
-    const modal = document.getElementById("themeModal");
+    const modal = document.getElementById("theme-modal");
+
     if (modal && modal.style.display === "block") {
         modal.style.display = "none";
         history.pushState(null, '', '#themes');
@@ -167,20 +169,33 @@ function closeThemeModal() {
 }
 
 async function handleUrlHash() {
+
     const hash = window.location.hash;
+
     if (hash.startsWith("#themes/")) {
+
         const theme = hash.replace("#themes/", "");
         console.log("Opening theme from hash:", theme);
-        const modal = document.getElementById("themeModal");
-        const modalGallery = document.getElementById("modalGallery");
+        const modal = document.getElementById("theme-modal");
+        const modalGallery = document.getElementById("modal-gallery");
+
+        if (!modalGallery || !modal) {
+            console.warn("Gallery elements not found in the DOM.");
+            return;
+        }
+
         modalGallery.innerHTML = "";
+
         try {
             const response = await fetch("../data/images.json");
+
             if (!response.ok) {
                 throw new Error("Failed to fetch image data.");
             }
+
             const galleryData = await response.json();
             const imageUrls = galleryData[theme];
+
             if (imageUrls && imageUrls.length > 0) {
                 imageUrls.forEach((src) => {
                     const img = document.createElement("img");
@@ -195,41 +210,54 @@ async function handleUrlHash() {
             console.error("Error loading gallery images:", error);
             modalGallery.innerHTML = `<p>Error loading gallery. Please try again.</p>`;
         }
+
         document.body.appendChild(modal);
         modal.style.display = "block";
         modal.style.zIndex = "99999";
     }
 }
 document.addEventListener("click", async e => {
-    const modal = document.getElementById("themeModal");
+    const modal = document.getElementById("theme-modal");
     const item = e.target.closest(".themes-grid-item");
+
     if (item) {
+        if (!modal) return;
         const theme = item.dataset.theme;
         console.log("Clicked theme:", theme);
         history.pushState(null, '', `#themes/${theme}`);
         handleUrlHash();
         return;
     }
+
     if (e.target.matches(".close")) {
         closeThemeModal();
         return;
     }
-    if (e.target.matches("#modalGallery img")) {
+
+    if (e.target.matches("#modal-gallery img")) {
         e.stopPropagation();
         console.log("Gallery image clicked:", e.target.src);
         enlargeImage(e.target.src);
         return;
     }
+
     if (modal && modal.style.display === "block") {
         const clickedThemeItem = e.target.closest(".themes-grid-item");
+
         if (clickedThemeItem) return;
-        const clickedImage = e.target.closest("#modalGallery img");
+
+        const clickedImage = e.target.closest("#modal-gallery img");
+
         if (clickedImage) return;
+
         if (e.target.matches(".close")) return;
-        const enlargedOverlay = document.getElementById("enlargedImageOverlay");
+
+        const enlargedOverlay = document.getElementById("enlarged-img-overlay");
+
         if (enlargedOverlay && enlargedOverlay.style.display === "flex") {
             return;
         }
+
         console.log("Closing modal - clicked on:", e.target, "closest modal-content:", e.target.closest(".modal-content"));
         modal.style.display = "none";
         history.pushState(null, '', '#themes');
@@ -239,7 +267,7 @@ window.addEventListener('hashchange', handleUrlHash);
 
 document.addEventListener("keydown", (e) => {
     if (e.key === "Escape") {
-        const enlargedOverlay = document.getElementById("enlargedImageOverlay");
+        const enlargedOverlay = document.getElementById("enlarged-img-overlay");
 
         if (!enlargedOverlay) {
             closeThemeModal();
