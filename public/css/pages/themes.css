@@ -297,7 +297,7 @@ body {
 
 .modal-content {
   background: none;
-  margin: 5rem auto;
+  margin: 6.8rem auto 1rem;
   border-radius: 0.8rem;
 }
 
@@ -311,6 +311,7 @@ body {
 
 .close {
   display: flex;
+  align-items: center;
   justify-content: space-between;
   width: 100%;
   position: fixed;
@@ -319,11 +320,10 @@ body {
   z-index: 10000;
   background-color: #480204;
   box-shadow: 0 0 10px #000;
-  padding: 0 0.6rem 0.6rem;
+  padding: 0 2%;
 }
 
 .close-btn {
-  padding-top: 0.6rem;
   cursor: pointer;
   z-index: 10000;
 }
@@ -335,10 +335,19 @@ body {
   border-radius: 0;
 }
 
-.logo-container img {
+#themeModal .logo-container {
+  padding: 2% 0;
+}
+
+#themeModal .logo-container img {
+  padding: 2% 0 5%;
   border: 0;
   border-radius: 0;
   box-shadow: none;
+  max-height: 11rem;
+  width: auto;
+  filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.5));
+  transition: max-height 0.8s cubic-bezier(0, 1, 0, 1), width 0.8s ease-in-out;
 }
 
 #modalGallery {
@@ -611,6 +620,21 @@ body {
     width: 90%;
   }
 
+  .close {
+    height: 6rem;
+    padding: 0 5%;
+  }
+
+  #themeModal .logo-container {
+    padding: 0;
+  }
+
+  #themeModal .logo-container img {
+    width: 100%;
+    max-width: 11rem;
+    padding: 0;
+  }
+
   .close .close-btn img {
     width: calc(100vw - 8rem);
     min-width: 2rem;
@@ -637,8 +661,13 @@ body {
     text-align: right;
   }
 
-  .modal-content img {
+  #modalGallery img {
     max-width: 10rem;
+  }
+
+  #themeModal .logo-container img {
+    max-height: 11rem;
+    max-width: 10.6rem;
   }
 
   .themes-grid-item {
@@ -776,7 +805,7 @@ body {
     gap: 0.8rem;
   }
 
-  .modal-content img {
+  #modalGallery img {
     max-width: 12rem;
   }
 
@@ -982,7 +1011,7 @@ body {
     gap: 0.8rem;
   }
 
-  .modal-content img {
+  #modalGallery img {
     max-width: 14rem;
     border: 4px solid #e8c775;
     border-radius: 0.8rem;
@@ -1212,7 +1241,7 @@ body {
     gap: 1rem;
   }
 
-  .modal-content img {
+  #modalGallery img {
     max-width: 24rem;
     border: 5px solid #e8c775;
     border-radius: 1rem;
@@ -1455,7 +1484,7 @@ body {
     gap: 0.8rem;
   }
 
-  .modal-content img {
+  #modalGallery img {
     max-width: 28rem;
     border: 5px solid #e8c775;
     border-radius: 1rem;
@@ -1691,7 +1720,7 @@ body {
     gap: 0.8rem;
   }
 
-  .modal-content img {
+  #modalGallery img {
     max-width: 28rem;
     border: 5px solid #e8c775;
     border-radius: 1rem;

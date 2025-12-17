@@ -12,6 +12,9 @@ function enlargeImage(imageSrc) {
     const overlayContent = document.createElement("div");
     overlayContent.id = "overlayContent";
 
+    const enlargedImageWrapper = document.createElement("div");
+    enlargedImageWrapper.className = "enlarged-img-wrapper";
+
     const closeContentContainer = document.createElement("div");
     closeContentContainer.className = "close-content-container";
 
@@ -34,8 +37,13 @@ function enlargeImage(imageSrc) {
         closeEnlargedView();
     });
 
+    // close-btn-wrapper
     closeBtnWrapper.appendChild(closeBtn);
+
+    // gallery-logo-container
     galleryLogoContainer.appendChild(galleryLogo);
+
+    // .close-content-container
     closeContentContainer.appendChild(galleryLogoContainer);
     closeContentContainer.appendChild(closeBtnWrapper);
 
@@ -61,10 +69,17 @@ function enlargeImage(imageSrc) {
         container.appendChild(nextArrow);
     }
 
-    container.appendChild(enlargedImg);
+    // .enlarged-img-wrapper
+    enlargedImageWrapper.appendChild(enlargedImg);
+
+    // .enlargedImageContainer
+    container.appendChild(enlargedImageWrapper);
+    
+    // #overlayContent
     overlayContent.appendChild(closeContentContainer);
     overlayContent.appendChild(container);
 
+    // .enlargedImageOverlay
     overlay.appendChild(overlayContent);
     document.body.appendChild(overlay);
 
