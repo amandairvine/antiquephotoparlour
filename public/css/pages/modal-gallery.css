@@ -1,0 +1,162 @@
+/* Themes - Modal Gallery CSS */
+
+#enlargedImageOverlay {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(60, 4, 4, 0.91);
+  cursor: pointer;
+  z-index: 999999;
+  outline: none;
+}
+
+#overlayContent {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.close-content-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  flex-shrink: 0;
+  background-color: #480204;
+  box-shadow: 0 0 10px #000;
+  padding: 0 0.6rem 0.6rem;
+  z-index: 1000;
+}
+
+.close-btn-wrapper {
+  margin-top: 0.8rem;
+  cursor: pointer;
+  z-index: 1000000;
+  opacity: 0.9;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+  transform-origin: right center;
+}
+
+.close-btn-wrapper:hover {
+  opacity: 1;
+  transform: scale(1.02);
+}
+
+.close-enlarged-btn {
+  width: 2.4rem;
+  height: 2.4rem;
+  border: none;
+  border-radius: 0;
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+}
+
+.gallery-logo {
+  max-height: 6rem;
+  width: auto;
+  filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.5));
+  transition: max-height 0.8s cubic-bezier(0, 1, 0, 1), width 0.8s ease-in-out;
+}
+
+.gallery-logo-container {
+  flex: 1;
+  display: flex;
+  transition: transform 0.3s ease;
+  z-index: 1000;
+}
+
+.gallery-logo-container:hover {
+  transform: scale(1.05);
+}
+
+/* --- Image and Arrow Container --- */
+.enlargedImageContainer {
+  flex-grow: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.enlargedImg {
+  width: auto;
+  max-width: 70%;
+  height: auto;
+  max-height: 90%;
+  object-fit: contain;
+  border: 2px solid #e8c775;
+  border-radius: 0.8rem;
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+  cursor: default;
+  transition: filter 0.3s ease;
+}
+
+/* --- Navigation Arrows --- */
+.arrow-common {
+  position: absolute;
+  width: 10%;
+  max-width: 8rem;
+  height: auto;
+  cursor: pointer;
+  opacity: 0.8;
+  transition: opacity 0.2s ease, transform 0.3s ease, filter 0.2s ease;
+  z-index: 1;
+  outline: none !important;
+  user-select: none;
+}
+
+.prevArrow {
+  left: 2%;
+  transform: scaleX(-1);
+}
+
+.nextArrow {
+  right: 2%;
+}
+
+.arrow-common:hover {
+  opacity: 1;
+  filter: brightness(1.2);
+}
+
+.arrow-common:active {
+  filter: brightness(0.8);
+}
+
+.nextArrow:active {
+  transform: scale(0.95);
+}
+
+.prevArrow:active {
+  transform: scaleX(-1) scale(0.95);
+}
+
+/* Height Adjustments */
+
+@media (max-width: 330px) {
+  .close-content-container {
+    padding: 2% 2% 5%;
+  }
+
+  .close-enlarged-btn {
+    width: 20vw;
+    height: 20vw;
+    min-width: 0;
+    max-width: 2.4rem;
+    max-height: 2.4rem;
+  }
+
+  .gallery-logo {
+    width: 100%;
+  }
+}
+
+@media (max-width: 330px) {
+}

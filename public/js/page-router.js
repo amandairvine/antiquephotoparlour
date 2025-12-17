@@ -230,14 +230,23 @@ function extractPageName(href) {
 }
 
 function loadPageCSS(pageName) {
+    // Select and remove the previous main page CSS
     const existingPageCSS = document.querySelector('link[id^="page-css-"]');
     if (existingPageCSS) {
         existingPageCSS.remove();
     }
-    const cssPath = `/css/pages/${pageName}.css`;
+
+    // Select and remove the previous modal gallery CSS (if it exists)
+    const existingModalCSS = document.getElementById('page-css-modal-gallery');
+    if (existingModalCSS) {
+        existingModalCSS.remove();
+    }
+
     if (pageName === 'home') {
         return;
     }
+
+    const cssPath = `/css/pages/${pageName}.css`;
     const link = document.createElement('link');
     link.rel = 'stylesheet';
     link.href = cssPath;
@@ -246,6 +255,18 @@ function loadPageCSS(pageName) {
         console.warn(`⚠️ No CSS file found for ${pageName} page (${cssPath})`);
     };
     document.head.appendChild(link);
+
+    if (pageName === 'themes') {
+        const modalGalleryCSSPath = '/css/pages/modal-gallery.css';
+        const modalLink = document.createElement('link');
+        modalLink.rel = 'stylesheet';
+        modalLink.href = modalGalleryCSSPath;
+        modalLink.id = 'page-css-modal-gallery';
+        modalLink.onerror = () => {
+            console.error(`⚠️ Failed to load required CSS for modal gallery: ${modalGalleryCSSPath}`);
+        };
+        document.head.appendChild(modalLink);
+    }
 }
 
 function getPageTitle(pageName) {

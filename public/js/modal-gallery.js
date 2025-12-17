@@ -8,78 +8,26 @@ function enlargeImage(imageSrc) {
     galleryModal.style.display = "none";
     const overlay = document.createElement("div");
     overlay.id = "enlargedImageOverlay";
-    overlay.style.cssText = `
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(60, 4, 4, 0.91);
-    cursor: pointer;
-    z-index: 999999;
-  `;
 
     const overlayContent = document.createElement("div");
     overlayContent.id = "overlayContent";
-    overlayContent.style.cssText = `
-    position: relative;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    z-index: 999999;
-  `;
 
     const closeContentContainer = document.createElement("div");
     closeContentContainer.className = "close-content-container";
-    closeContentContainer.style.cssText = `
-    position: absolute;
-    top: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 100%; 
-    height: 3.8rem;
-  `;
+
+    const galleryLogoContainer = document.createElement("div");
+    galleryLogoContainer.className = "gallery-logo-container";
+
+    const galleryLogo = document.createElement("img");
+    galleryLogo.src = "../../img/logo/logo.webp";
+    galleryLogo.className = "gallery-logo";
 
     const closeBtnWrapper = document.createElement("div");
     closeBtnWrapper.className = "close-btn-wrapper";
-    closeBtnWrapper.style.cssText = `
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-    width: 100%;
-    min-width: 2.4rem;
-    height: auto;
-    min-height: 3.8rem;
-    cursor: pointer;
-    padding-right: 5%;
-    z-index: 1000000;
-  `;
 
     const closeBtn = document.createElement("img");
     closeBtn.src = "../../img/assets/x.webp";
     closeBtn.className = "close-enlarged-btn";
-    closeBtn.style.cssText = `
-    width: 2.4rem;
-    height: 2.4rem;
-    object-fit: contain;
-    cursor: pointer;
-    transition: opacity 0.2s ease;
-  `;
-
-    closeBtnWrapper.addEventListener("mouseenter", () => {
-        closeBtnWrapper.style.opacity = '1';
-        closeBtnWrapper.style.transform = 'scale(1.1)';
-    });
-    closeBtnWrapper.addEventListener("mouseleave", () => {
-        closeBtnWrapper.style.opacity = '0.9';
-        closeBtnWrapper.style.transform = 'scale(1.0)';
-    });
 
     closeBtnWrapper.addEventListener("click", (e) => {
         e.stopPropagation();
@@ -87,107 +35,35 @@ function enlargeImage(imageSrc) {
     });
 
     closeBtnWrapper.appendChild(closeBtn);
-
+    galleryLogoContainer.appendChild(galleryLogo);
+    closeContentContainer.appendChild(galleryLogoContainer);
     closeContentContainer.appendChild(closeBtnWrapper);
 
     const container = document.createElement("div");
-    container.className = "enlargedImage";
-    container.style.cssText = `
-    position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%; /* Can take full width */
-    height: 100%;
-  `;
+    container.className = "enlargedImageContainer";
+
     const enlargedImg = document.createElement("img");
     enlargedImg.src = imageSrc;
-    enlargedImg.style.cssText = `
-    max-width: 70%;
-    max-height: 90%;
-    object-fit: contain;
-    border: 2px solid #e8c775;
-    border-radius: 0.8rem;
-    box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
-    cursor: default;
-  `;
+    enlargedImg.className = "enlargedImg";
+
     let prevArrow, nextArrow;
     if (galleryImages.length > 1) {
         prevArrow = document.createElement("img");
         prevArrow.src = "../../img/assets/slideshow-arrows/gold-flourish.webp";
-        prevArrow.style.cssText = `
-      position: absolute;
-      left: 2%;
-      top: 50%;
-      transform: translateY(-50%) scaleX(-1);
-      width: 10%;
-      max-width: 8rem;
-      height: auto;
-      cursor: pointer;
-      opacity: 0.8;
-      transition: opacity 0.2s ease, transform 0.3s ease, filter 0.2s ease;
-      z-index: 999999;
-    `;
         nextArrow = document.createElement("img");
         nextArrow.src = "../../img/assets/slideshow-arrows/gold-flourish.webp";
-        nextArrow.style.cssText = `
-      position: absolute;
-      right: 2%;
-      top: 50%;
-      transform: translateY(-50%);
-      width: 10%;
-      max-width: 8rem;
-      height: auto;
-      cursor: pointer;
-      opacity: 0.8;
-      transition: opacity 0.2s ease, transform 0.3s ease, filter 0.2s ease;
-      z-index: 999999;
-    `;
-        [prevArrow, nextArrow].forEach(arrow => {
-            arrow.addEventListener("mouseenter", () => {
-                arrow.style.opacity = '1';
-                if (arrow === prevArrow) {
-                    arrow.style.transform = "translateY(-50%) scaleX(-1) scale(1.1)";
-                    arrow.style.filter = "brightness(1.2)";
-                } else {
-                    arrow.style.transform = "translateY(-50%) scale(1.1)";
-                    arrow.style.filter = "brightness(1.2)";
-                }
-            });
-            arrow.addEventListener("mouseleave", () => {
-                arrow.style.opacity = '0.8';
-                if (arrow === prevArrow) {
-                    arrow.style.transform = "translateY(-50%) scaleX(-1)";
-                    arrow.style.filter = "none";
-                } else {
-                    arrow.style.transform = "translateY(-50%)";
-                    arrow.style.filter = "none";
-                }
-            });
-            arrow.addEventListener("mousedown", () => {
-                if (arrow === prevArrow) {
-                    arrow.style.transform = "translateY(-50%) scaleX(-1) scale(0.95)";
-                } else {
-                    arrow.style.transform = "translateY(-50%) scale(0.95)";
-                }
-                arrow.style.filter = "brightness(0.8)";
-            });
-            arrow.addEventListener("mouseup", () => {
-                if (arrow === prevArrow) {
-                    arrow.style.transform = "translateY(-50%) scaleX(-1) scale(1.1)";
-                } else {
-                    arrow.style.transform = "translateY(-50%) scale(1.1)";
-                }
-                arrow.style.filter = "brightness(1.2)";
-            });
-        });
+        prevArrow.className = "arrow-common prevArrow";
+        nextArrow = document.createElement("img");
+        nextArrow.src = "../../img/assets/slideshow-arrows/gold-flourish.webp";
+        nextArrow.className = "arrow-common nextArrow";
+
         container.appendChild(prevArrow);
         container.appendChild(nextArrow);
     }
 
     container.appendChild(enlargedImg);
-    overlayContent.appendChild(container); 
     overlayContent.appendChild(closeContentContainer);
+    overlayContent.appendChild(container);
 
     overlay.appendChild(overlayContent);
     document.body.appendChild(overlay);
