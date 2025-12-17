@@ -5,15 +5,24 @@ function enlargeImage(imageSrc) {
     const galleryImages = Array.from(document.querySelectorAll("#modalGallery img"));
     const currentIndex = galleryImages.findIndex(img => img.src.includes(imageSrc));
     const galleryModal = document.getElementById("themeModal");
+
     galleryModal.style.display = "none";
+
     const overlay = document.createElement("div");
     overlay.id = "enlargedImageOverlay";
+
+    overlay.addEventListener("click", (e) => {
+        e.stopPropagation();
+    });
 
     const overlayContent = document.createElement("div");
     overlayContent.id = "overlayContent";
 
     const enlargedImageWrapper = document.createElement("div");
     enlargedImageWrapper.className = "enlarged-img-wrapper";
+
+    const enlargedImageHeader = document.createElement("div");
+    enlargedImageHeader.className = "enlarged-img-header";
 
     const closeContentContainer = document.createElement("div");
     closeContentContainer.className = "close-content-container";
@@ -47,6 +56,9 @@ function enlargeImage(imageSrc) {
     closeContentContainer.appendChild(galleryLogoContainer);
     closeContentContainer.appendChild(closeBtnWrapper);
 
+    // .enlarged-img-header
+    enlargedImageHeader.appendChild(closeContentContainer);
+
     const container = document.createElement("div");
     container.className = "enlargedImageContainer";
 
@@ -74,9 +86,9 @@ function enlargeImage(imageSrc) {
 
     // .enlargedImageContainer
     container.appendChild(enlargedImageWrapper);
-    
+
     // #overlayContent
-    overlayContent.appendChild(closeContentContainer);
+    overlayContent.appendChild(enlargedImageHeader);
     overlayContent.appendChild(container);
 
     // .enlargedImageOverlay
@@ -84,26 +96,34 @@ function enlargeImage(imageSrc) {
     document.body.appendChild(overlay);
 
     let currentImageIndex = currentIndex;
+
     function updateImage() {
         enlargedImg.src = galleryImages[currentImageIndex].src;
     }
+
     function goToPrevious() {
         if (galleryImages.length > 1) {
             currentImageIndex = (currentImageIndex - 1 + galleryImages.length) % galleryImages.length;
             updateImage();
         }
     }
+
     function goToNext() {
         if (galleryImages.length > 1) {
             currentImageIndex = (currentImageIndex + 1) % galleryImages.length;
             updateImage();
         }
     }
+
     function closeEnlargedView() {
-        document.body.removeChild(overlay);
+        if (document.body.contains(overlay)) {
+            document.body.removeChild(overlay);
+        }
         document.removeEventListener("keydown", handleKeydown);
+
         galleryModal.style.display = "block";
     }
+
     if (prevArrow && nextArrow) {
         prevArrow.addEventListener("click", (e) => {
             e.stopPropagation();
@@ -114,12 +134,18 @@ function enlargeImage(imageSrc) {
             goToNext();
         });
     }
+
     overlay.addEventListener("click", (e) => {
-        if (e.target === overlay || e.target === container || e.target === overlayContent) {
-            e.stopPropagation();
+        const isImage = e.target.classList.contains("enlargedImg");
+        const isArrow = e.target.classList.contains("arrow-common");
+        const isCloseBtn = e.target.closest(".close-btn-wrapper");
+
+        if (!isImage && !isArrow && !isCloseBtn) {
+            e.stopPropagation;
             closeEnlargedView();
         }
     });
+
     const handleKeydown = (e) => {
         if (e.key === "Escape") {
             closeEnlargedView();
@@ -131,6 +157,15 @@ function enlargeImage(imageSrc) {
     };
     document.addEventListener("keydown", handleKeydown);
 }
+
+function closeThemeModal() {
+    const modal = document.getElementById("themeModal");
+    if (modal && modal.style.display === "block") {
+        modal.style.display = "none";
+        history.pushState(null, '', '#themes');
+    }
+}
+
 async function handleUrlHash() {
     const hash = window.location.hash;
     if (hash.startsWith("#themes/")) {
@@ -176,8 +211,7 @@ document.addEventListener("click", async e => {
         return;
     }
     if (e.target.matches(".close")) {
-        modal.style.display = "none";
-        history.pushState(null, '', '#themes');
+        closeThemeModal();
         return;
     }
     if (e.target.matches("#modalGallery img")) {
@@ -202,3 +236,13 @@ document.addEventListener("click", async e => {
     }
 });
 window.addEventListener('hashchange', handleUrlHash);
+
+document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") {
+        const enlargedOverlay = document.getElementById("enlargedImageOverlay");
+
+        if (!enlargedOverlay) {
+            closeThemeModal();
+        }
+    }
+});

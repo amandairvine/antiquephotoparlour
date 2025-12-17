@@ -309,18 +309,28 @@ body {
   border-radius: 0.8rem;
 }
 
-.close {
+.modal-header {
   display: flex;
-  align-items: center;
-  justify-content: space-between;
+  justify-content: center;
+  height: 4rem;
   width: 100%;
+  background-color: #480204;
+  box-shadow: 0 0 10px #000;
   position: fixed;
   top: 0;
   left: 0;
+}
+
+.close {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  max-width: 18rem;
+  height: 4rem;
+  position: fixed;
+  top: 0;
   z-index: 10000;
-  background-color: #480204;
-  box-shadow: 0 0 10px #000;
-  padding: 0 2%;
 }
 
 .close-btn {
@@ -336,11 +346,10 @@ body {
 }
 
 #themeModal .logo-container {
-  padding: 2% 0;
+  padding: 0;
 }
 
 #themeModal .logo-container img {
-  padding: 2% 0 5%;
   border: 0;
   border-radius: 0;
   box-shadow: none;
@@ -620,7 +629,21 @@ body {
     width: 90%;
   }
 
-  .close {
+  #themeModal .logo-container img {
+    width: 100%;
+    max-width: 11rem;
+    padding: 0;
+  }
+
+  .close .close-btn img {
+    width: calc(100vw - 8rem);
+    min-width: 2rem;
+    max-width: 2.4rem;
+    height: auto;
+  } 
+
+  /* .close {
+    max-width: 17rem;
     height: 6rem;
     padding: 0 5%;
   }
@@ -640,7 +663,7 @@ body {
     min-width: 2rem;
     max-width: 2.4rem;
     height: auto;
-  }
+  } */
 }
 
 @media (min-width: 330px) and (max-width: 660px) {
@@ -801,12 +824,33 @@ body {
     margin-top: 0.2rem;
   }
 
+  .close {
+    padding: 0 5%;
+  }
+
+  #themeModal .logo-container {
+    padding: 0;
+  }
+
+  #themeModal .logo-container img {
+    max-height: 10rem;
+    max-width: 17rem;
+    padding: 0;
+  }
+
   #modalGallery {
     gap: 0.8rem;
   }
 
   #modalGallery img {
     max-width: 12rem;
+  }
+
+  .close-btn img {
+    width: 2.8rem;
+    height: 2.8rem;
+    border: none;
+    border-radius: 0;
   }
 
   .xs-br {

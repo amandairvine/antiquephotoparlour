@@ -56,7 +56,7 @@ async function getThemeImages() {
         }
     });
 
-    const uniqueUrls = [...new Set(allImageUrls)].filter(url => !url.toLowerCase().includes('-main.jpg'));
+    const uniqueUrls = [...new Set(allImageUrls)].filter(url => !url.toLowerCase().includes('-main.webp'));
     return uniqueUrls;
 }
 
