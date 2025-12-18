@@ -63,9 +63,8 @@ function enlargeImage(imageSrc) {
     if (galleryImages.length > 1) {
         prevArrow = document.createElement("img");
         prevArrow.src = "../../img/assets/slideshow-arrows/gold-flourish.webp";
-        nextArrow = document.createElement("img");
-        nextArrow.src = "../../img/assets/slideshow-arrows/gold-flourish.webp";
         prevArrow.className = "arrow-common prevArrow";
+        
         nextArrow = document.createElement("img");
         nextArrow.src = "../../img/assets/slideshow-arrows/gold-flourish.webp";
         nextArrow.className = "arrow-common nextArrow";
@@ -128,7 +127,7 @@ function enlargeImage(imageSrc) {
         const isCloseBtn = e.target.closest(".close-btn-wrapper");
 
         if (!isImage && !isArrow && !isCloseBtn) {
-            e.stopPropagation;
+            e.stopPropagation();
             closeEnlargedView();
         }
     });
@@ -154,12 +153,10 @@ function closeThemeModal() {
     }
 }
 
-async function handleUrlHash() {
-
+export async function handleUrlHash() {
     const hash = window.location.hash;
 
     if (hash.startsWith("#themes/")) {
-
         const theme = hash.replace("#themes/", "");
         console.log("Opening theme from hash:", theme);
         const modal = document.getElementById("theme-modal");
@@ -222,6 +219,7 @@ async function handleUrlHash() {
         modal.style.zIndex = "99999";
     }
 }
+
 document.addEventListener("click", async e => {
     const modal = document.getElementById("theme-modal");
     const item = e.target.closest(".themes-grid-item");
@@ -269,6 +267,7 @@ document.addEventListener("click", async e => {
         history.pushState(null, '', '#themes');
     }
 });
+
 window.addEventListener('hashchange', handleUrlHash);
 
 document.addEventListener("keydown", (e) => {
