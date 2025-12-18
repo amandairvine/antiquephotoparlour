@@ -29,14 +29,9 @@ export function initializeFaqPage() {
 
     answerItems.forEach(item => {
         item.addEventListener('click', function (event) {
-            // Check for desktop view
             if (isDesktop()) {
-                // If the click action is coming from an <a> tag, this prevents navigation
-                event.preventDefault(); 
-                
-                // This stops the event from bubbling up to any ancestor elements
-                // that might have a delegated click listener (e.g., on the body or document)
-                event.stopPropagation(); 
+                event.preventDefault();
+                event.stopPropagation();
             }
         });
     });
@@ -76,13 +71,12 @@ export function initializeFaqPage() {
                 }
 
                 this.classList.add('selected');
-                
+
             } else {
                 // MOBILE/TABLET BEHAVIOR (below 1024px)
                 const isActive = currentQuestionItem ? currentQuestionItem.classList.contains('active') : false;
 
                 if (isActive) {
-                    // Close the accordion
                     if (currentQuestionItem) {
                         currentQuestionItem.classList.remove('active');
                     }
@@ -98,6 +92,18 @@ export function initializeFaqPage() {
 
                     if (currentQuestionItem) {
                         currentQuestionItem.classList.add('active');
+
+                        this.classList.add('active');
+                        if (targetContent) {
+                            targetContent.classList.add('active');
+                        }
+
+                        setTimeout(() => {
+                            currentQuestionItem.scrollIntoView({
+                                behavior: 'smooth',
+                                block: 'start'
+                            });
+                        }, 50);
                     }
                     this.classList.add('active');
                     if (targetContent) {
@@ -123,7 +129,7 @@ export function initializeFaqPage() {
             faqContents.forEach(content => content.classList.remove('active'));
             navItems.forEach(nav => {
                 nav.classList.remove('active');
-                nav.classList.remove('selected'); 
+                nav.classList.remove('selected');
             });
             answerItems.forEach(answer => {
                 answer.classList.remove('show');

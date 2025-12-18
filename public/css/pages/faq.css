@@ -538,9 +538,17 @@ body {
   .br {
     display: none;
   }
+
+  .faq-questions .question-item {
+    scroll-margin-top: 0.4rem;
+  }
 }
 
 @media (min-width: 330px) and (max-width: 659px) {
+  .content-area {
+    height: auto;
+  }
+
   .faq-container h1,
   .faq-container h2,
   .faq-container .btn-primary,
@@ -575,6 +583,10 @@ body {
 
   .questions {
     padding: 0.6rem 0;
+  }
+
+  .faq-questions .question-item {
+    scroll-margin-top: 0.4rem;
   }
 }
 
@@ -867,6 +879,10 @@ body {
 
   #accessibility .small-br {
     display: none;
+  }
+
+  .faq-questions .question-item {
+    scroll-margin-top: 0.6rem;
   }
 }
 
