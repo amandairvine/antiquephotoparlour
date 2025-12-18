@@ -112,8 +112,8 @@ export async function loadPage(pageName, updateHistory = true) {
         }
 
         if (updateHistory) {
-            // Push '#/home' to the URL
-            history.pushState({ page: 'home' }, 'Home - Antique Photo Parlour', '#/home');
+            // Push '#home' to the URL
+            history.pushState({ page: 'home' }, 'Home - Antique Photo Parlour', '#home');
         }
         return;
     }
@@ -122,14 +122,14 @@ export async function loadPage(pageName, updateHistory = true) {
     if (!route) {
         console.error('Route not found for page:', pageName);
 
-        console.warn(`Attempting to redirect from unknown page '${pageName}' to /#/home...`);
+        console.warn(`Attempting to redirect from unknown page '${pageName}' to /#home...`);
 
         // Redirect the URL without pushing a new history state if we are already updating history
         if (updateHistory) {
-            window.location.hash = '#/home';
+            window.location.hash = '#home';
             // The hashchange listener in main.js will catch this and call loadPage('home', true)
 
-            console.log(`✅ Redirect initiated via hash change to #/home.`);
+            console.log(`✅ Redirect initiated via hash change to #home.`);
         } else {
             // If called internally with updateHistory=false, call loadPage('home', false)
             loadPage('home', false);
@@ -242,6 +242,7 @@ function loadPageCSS(pageName) {
         existingModalCSS.remove();
     }
 
+    // For home page, just clean up and return (no CSS to add)
     if (pageName === 'home') {
         return;
     }

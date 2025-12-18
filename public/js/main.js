@@ -143,6 +143,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 function setupFooterCollapse() {
   const buttons = document.querySelectorAll('.footer-collapse-btn');
+  const footerCloseButtons = document.querySelectorAll('.footer-close');
 
   // Create overlay element once:
   let overlay = document.querySelector('.modal-overlay');
@@ -165,6 +166,13 @@ function setupFooterCollapse() {
     // Remove old document click listener to prevent multiple bindings:
     document.removeEventListener('click', handleOutsideClick);
   }
+
+  footerCloseButtons.forEach(closeBtn => {
+    closeBtn.addEventListener('click', (event) => {
+      event.stopPropagation();
+      closeModal();
+    });
+  });
 
   // Outside click handler function:
   const handleOutsideClick = (event) => {
@@ -189,6 +197,11 @@ function setupFooterCollapse() {
     const windowWidth = window.innerWidth;
     const windowHeight = window.innerHeight;
     const isModalOpen = document.body.classList.contains('modal-open');
+
+    if (windowWidth >= 2056) {
+      if (isModalOpen) closeModal();
+      return true;
+    }
 
     // Define the height threshold based on the current width
     let heightThreshold = null;
@@ -225,11 +238,10 @@ function setupFooterCollapse() {
   buttons.forEach(button => {
     button.addEventListener('click', (event) => {
 
-      // Prevent button click from immediately propagating to the document or overlay:
       event.stopPropagation();
 
-      // Click confirmation message:
-      const buttonText = button.textContent.trim();
+      // // Click confirmation message:
+      // const buttonText = button.textContent.trim();
 
       const targetClass = button.getAttribute('data-target');
       const targetElement = document.querySelector(`.${targetClass}`);
