@@ -886,26 +886,29 @@ body {
     gap: 1.4rem;
   }
 
-  .slide.mix-and-match .slide-text,
-  .slide.historical-pet-portraits .slide-text {
-    gap: 1.2rem;
-  }
-
+  .slide.historical-pet-portraits .slide-text,
   .slide.steampunk .slide-text,
   .slide.civil-war .slide-text {
     gap: 1.4rem;
   }
 
-  .slide.pirates .slide-text,
-  .slide.mountie .slide-text,
-  .slide.native .slide-text {
+  .slide.mix-and-match .slide-text {
     gap: 1.6rem;
   }
 
+  .slide.native .slide-text,
+  .slide.mountie .slide-text {
+    gap: 2rem;
+  }
+
+  .slide.pirates .slide-text,
+  .slide.pets .slide-text,
+  .slide.frames .slide-text,
   .slide.victorian .slide-text {
     gap: 2rem;
   }
 
+  .slide.civil-war .slide-text,
   .slide.kids .slide-text {
     gap: 2.2rem;
   }
