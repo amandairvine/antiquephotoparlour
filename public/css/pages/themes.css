@@ -307,7 +307,7 @@ body {
   flex-direction: column;
   align-items: center;
   background: none;
-  margin: 6.8rem auto 1rem;
+  margin: 5rem auto 1rem;
   border-radius: 0.8rem;
 }
 
@@ -757,10 +757,6 @@ body {
     max-width: 2.4rem;
     height: auto;
   }
-  /* 
-  .themes-scroll-wrapper {
-    padding: 0.6rem 0 4rem;
-  } */
 }
 
 @media (min-width: 330px) and (max-width: 659px) {
@@ -778,6 +774,10 @@ body {
 
   .themes-caption {
     text-align: right;
+  }
+
+  .modal-content {
+    margin: 5rem auto 1rem;
   }
 
   #modal-gallery img {
