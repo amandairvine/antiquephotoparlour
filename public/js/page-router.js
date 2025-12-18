@@ -73,7 +73,7 @@ export function setupPageNavigation() {
     document.addEventListener('click', (e) => {
         const link = e.target.closest('a[href^="../"]');
         if (!link || link.href.includes('facebook') || link.href.includes('instagram')) return;
-        
+
         e.preventDefault();
         const pageName = extractPageName(link.getAttribute('href'));
         if (pageName) loadPage(pageName);
@@ -87,7 +87,7 @@ export function setupPageNavigation() {
 
 export async function loadPage(pageName, updateHistory = true) {
     const config = PAGE_CONFIG[pageName];
-    
+
     // Redirect invalid pages to home
     if (!config) {
         console.warn(`Unknown page '${pageName}', redirecting to home`);
@@ -101,7 +101,7 @@ export async function loadPage(pageName, updateHistory = true) {
 
     // Skip if already on this page
     if (currentPage === pageName && !updateHistory) return;
-    
+
     const contentContainer = document.querySelector('.content');
     if (!contentContainer) {
         console.error('Content container not found');
@@ -113,6 +113,13 @@ export async function loadPage(pageName, updateHistory = true) {
     if (updateHistory) {
         history.pushState({ page: pageName }, config.title, `#${pageName}`);
         document.title = config.title;
+    }
+
+    // Handle home page
+    if (pageName === 'home') {
+        loadCSS(null);
+        await loadHomePage(contentContainer);
+        return;
     }
 
     // Load CSS
@@ -137,20 +144,27 @@ export async function loadPage(pageName, updateHistory = true) {
         // Fetch and inject content
         const response = await fetch(config.route);
         if (!response.ok) throw new Error(`HTTP ${response.status}`);
-        
+
         const html = await response.text();
         const doc = new DOMParser().parseFromString(html, 'text/html');
         const pageContainer = doc.querySelector(`.${pageName}-container`);
-        
+
         if (!pageContainer) {
             throw new Error(`Container .${pageName}-container not found in loaded page`);
         }
-        
+
         contentContainer.innerHTML = pageContainer.outerHTML;
 
         // Initialize page-specific JS
         if (config.init) {
             await config.init().catch(err => console.error(`Failed to initialize ${pageName}:`, err));
+        }
+
+        // Handle theme modal if there's a hash with theme details
+        if (pageName === 'themes' && window.location.hash.startsWith('#themes/')) {
+            import('./modal-gallery.js')
+                .then(m => m.handleUrlHash())
+                .catch(err => console.error('Failed to handle theme URL hash:', err));
         }
 
     } catch (error) {
@@ -176,16 +190,16 @@ async function loadHomePage(container) {
     try {
         const response = await fetch('/pages/slideshow/slideshow.html');
         if (!response.ok) throw new Error('Slideshow fetch failed');
-        
+
         const slideshowHtml = await response.text();
         const slideshowContainer = document.getElementById('slideshow-container');
-        
+
         if (slideshowContainer) {
             slideshowContainer.innerHTML = slideshowHtml;
-            
+
             // Wait for DOM update before initializing
             await new Promise(resolve => setTimeout(resolve, 100));
-            
+
             if (document.querySelectorAll('.slide').length > 0) {
                 import('./slideshow.js')
                     .then(m => m.initializeSlideshowDirectly())
@@ -200,11 +214,11 @@ async function loadHomePage(container) {
 function loadCSS(css) {
     // Remove existing page CSS
     document.querySelectorAll('link[id^="page-css-"]').forEach(link => link.remove());
-    
+
     if (!css) return;
 
     const cssFiles = Array.isArray(css) ? css : [css];
-    
+
     cssFiles.forEach(path => {
         const link = document.createElement('link');
         link.rel = 'stylesheet';
