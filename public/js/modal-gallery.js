@@ -46,17 +46,10 @@ function enlargeImage(imageSrc) {
         closeEnlargedView();
     });
 
-    // close-btn-wrapper
     closeBtnWrapper.appendChild(closeBtn);
-
-    // gallery-logo-container
     galleryLogoContainer.appendChild(galleryLogo);
-
-    // .close-content-container
     closeContentContainer.appendChild(galleryLogoContainer);
     closeContentContainer.appendChild(closeBtnWrapper);
-
-    // .enlarged-img-header
     enlargedImageHeader.appendChild(closeContentContainer);
 
     const container = document.createElement("div");
@@ -81,17 +74,10 @@ function enlargeImage(imageSrc) {
         container.appendChild(nextArrow);
     }
 
-    // .enlarged-img-wrapper
     enlargedImageWrapper.appendChild(enlargedImg);
-
-    // .enlargedImageContainer
     container.appendChild(enlargedImageWrapper);
-
-    // #overlayContent
     overlayContent.appendChild(enlargedImageHeader);
     overlayContent.appendChild(container);
-
-    // .enlarged-img-overlay
     overlay.appendChild(overlayContent);
     document.body.appendChild(overlay);
 

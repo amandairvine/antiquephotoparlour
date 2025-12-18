@@ -71,7 +71,6 @@ header {
 .header-bottom {
   position: relative;
   z-index: 2;
-  /* max-width: 1140px; */
   margin: 0 auto;
   padding: 0;
 }

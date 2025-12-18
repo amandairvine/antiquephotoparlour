@@ -250,8 +250,6 @@ export function initializeServicesPage() {
     console.log('Services page functionality initialized.');
 }
 
-// ******* REMEMBER TO UNCOMMENT THIS *********
-
 function startAutoSlide(serviceId) {
     // Clear any existing timer for this service
     stopAutoSlide(serviceId);

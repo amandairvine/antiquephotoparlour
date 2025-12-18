@@ -75,7 +75,7 @@ export function initializeAwardsPage() {
         updateAward(currentIndex + 1);
     });
 
-    // 5. NEW: Add click listeners to the side awards for quick navigation
+    // 5. Add click listeners to the side awards for quick navigation
     prevAwardViewer.addEventListener('click', () => {
         updateAward(currentIndex - 1);
     });

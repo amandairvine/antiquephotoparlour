@@ -11,9 +11,6 @@ const TARGET_EXTENSION = '.webp';
 const SOURCE_EXTENSIONS = new Set(['.jpg', '.jpeg', '.png', '.gif']);
 const EXCLUDE_DIRS = new Set(['node_modules', 'data', '.git', '.vscode', 'temp', 'backup']); 
 
-
-// --- Helper Functions ---
-
 async function fileExists(imagePath) {
     const localPath = path.join(projectRoot, imagePath.replace(/\.\./g, ''));
     try {

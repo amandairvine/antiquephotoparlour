@@ -17,7 +17,7 @@ const routes = {
 
 let originalHomeContent = null;
 
-// Preload general site images:
+// Preload site images:
 async function preloadGeneralImages() {
     const headerImages = getHeaderImagesFromManifest();
     preloadImages(headerImages);
@@ -37,7 +37,6 @@ export function setupPageNavigation() {
             if (pageName && typeof pageName === 'string' && pageName.trim() !== '') {
                 loadPage(pageName);
             } else {
-                // Log a warning if the page name extraction fails, so you can trace the bad link
                 console.warn('Could not extract a valid page name from:', href);
             }
         }

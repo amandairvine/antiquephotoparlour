@@ -256,9 +256,6 @@ function setupFooterCollapse() {
 
       event.stopPropagation();
 
-      // // Click confirmation message:
-      // const buttonText = button.textContent.trim();
-
       const targetClass = button.getAttribute('data-target');
       const targetElement = document.querySelector(`.${targetClass}`);
 

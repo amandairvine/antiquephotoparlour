@@ -75,7 +75,7 @@ export function initializeFramesPage() {
         updateFrame(currentIndex + 1);
     });
 
-    // 5. NEW: Add click listeners to the side frames for quick navigation
+    // 5. Add click listeners to the side frames for quick navigation
     prevFrameViewer.addEventListener('click', () => {
         updateFrame(currentIndex - 1);
     });
