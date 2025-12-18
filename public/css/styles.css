@@ -779,15 +779,16 @@ body {
   }
 
   .slide-caption {
-    width: 40rem;
-    height: 16rem;
+    justify-content: flex-start;
+    width: 30rem;
+    height: 13rem;
     max-height: none;
     bottom: 0.8rem;
     left: 50%;
-    gap: 0.8rem;
+    gap: 0;
     border: 5px solid #e8c775;
     border-radius: 1rem;
-    padding: 2rem;
+    padding: 0.8rem;
   }
 
   .slide-caption p {
@@ -795,6 +796,8 @@ body {
   }
 
   .slide-text {
+    justify-content: space-evenly;
+    height: 100%;
     gap: 0.1rem;
   }
 
@@ -804,7 +807,7 @@ body {
   }
 
   .slide.mix-and-match .slide-text {
-    gap: 0.2rem;
+    gap: 0;
   }
 
   .slide.frames .slide-text,
@@ -863,9 +866,9 @@ body {
 
   .slideshow-container .btn {
     font-size: 24px;
-    width: 28rem;
-    height: 6rem;
-    min-height: 6rem;
+    width: 22rem;
+    height: 5rem;
+    min-height: 5rem;
     border: 5px solid #e8c775;
     border-radius: 1rem;
   }
@@ -873,53 +876,31 @@ body {
 
 @media (min-width: 2056px) {
   .slide-caption {
+    justify-content: flex-start;
     width: 40rem;
-    height: 20rem;
+    height: 14rem;
     max-height: none;
-    gap: 2rem;
+    bottom: 0.8rem;
+    left: 50%;
+    gap: 0;
     border: 5px solid #e8c775;
     border-radius: 1rem;
-    padding: 2rem;
+    padding: 0.8rem;
   }
 
   .slide-text {
-    gap: 1.4rem;
+    justify-content: space-evenly;
+    height: 100%;
+    gap: 0.1rem;
   }
-
-  .slide.historical-pet-portraits .slide-text,
-  .slide.steampunk .slide-text,
-  .slide.civil-war .slide-text {
-    gap: 1.4rem;
-  }
-
-  .slide.mix-and-match .slide-text {
-    gap: 1.6rem;
-  }
-
-  .slide.native .slide-text,
-  .slide.mountie .slide-text {
-    gap: 2rem;
-  }
-
-  .slide.pirates .slide-text,
-  .slide.pets .slide-text,
-  .slide.frames .slide-text,
-  .slide.victorian .slide-text {
-    gap: 2rem;
-  }
-
-  .slide.civil-war .slide-text,
-  .slide.kids .slide-text {
-    gap: 2.2rem;
-  }
-
+  
   .slide-caption p {
     font-size: 26px;
   }
 
   .slideshow-container .btn {
     font-size: 26px;
-    width: 30rem;
+    width: 24rem;
     height: 6.8rem;
     border: 5px solid #e8c775;
     border-radius: 1rem;

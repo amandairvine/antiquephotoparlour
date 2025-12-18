@@ -34,7 +34,7 @@ footer {
 .hours-container,
 .location-container {
   background: linear-gradient(90deg, #480204 0%, #800407 50%, #480204 100%);
-  border-radius: 1rem;
+  border-radius: 0.8rem;
   border: 2px solid #e8c775;
   color: #fff;
   font-family: var(--font-brygada);
@@ -218,7 +218,7 @@ footer {
   display: flex;
   justify-content: center;
   align-items: center;
-  border-radius: 0.6rem;
+  border-radius: 0.8rem;
   border: 2px solid #e8c775;
   background: linear-gradient(90deg, #480204 0%, #800407 50%, #480204 100%);
   box-shadow: 0px 6px 4px rgba(34, 0, 1, 0.8);
@@ -241,7 +241,7 @@ footer {
 .mini-map-iframe {
   display: none;
   background: linear-gradient(90deg, #e8c775 0%, #f3e2b7 50%, #e8c775 100%);
-  border-radius: 1rem;
+  border-radius: 0.8rem;
   border: 2px solid #e8c775;
   outline-offset: 0.2rem;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
@@ -332,7 +332,7 @@ footer {
   width: min(17.5rem, calc(100vw - 4.2rem));
   padding: 2rem;
   background: linear-gradient(90deg, #480204 0%, #800407 50%, #480204 100%);
-  border-radius: 1rem;
+  border-radius: 0.8rem;
   border: 2px solid #e8c775;
 }
 
@@ -412,7 +412,7 @@ footer {
     display: flex;
     justify-content: center;
     align-items: center;
-    border-radius: 0.6rem;
+    border-radius: 0.8rem;
     width: 100%;
   }
 
@@ -699,6 +699,12 @@ footer {
   }
 }
 
+@media (min-width: 320px) and (max-width: 1023px) and (min-height: 700px) {
+  .hours-content .last-group span .small-br {
+    display: block;
+  }
+}
+
 @media (min-height: 450px) and (max-height: 700px) {
   .footer-content.active .location-description {
     margin-bottom: 1rem;
@@ -898,7 +904,7 @@ footer {
   }
 
   .mini-map-button {
-    height: 2rem;
+    height: 100%;
     width: 6rem;
     padding: 0;
   }
@@ -944,7 +950,7 @@ footer {
 
   .footer-content.active .hours-grid {
     background: linear-gradient(90deg, #480204 0%, #800407 50%, #480204 100%);
-    border-radius: 1rem;
+    border-radius: 0.8rem;
     border: 2px solid #e8c775;
     padding: 1rem 6rem 1rem 5rem;
   }
@@ -989,7 +995,7 @@ footer {
 
   .footer-content.active .footer-btn,
   #collapsible-footer-content .map-wrapper-small .mini-map-button {
-    width: 12rem;
+    width: 18rem;
     height: 3rem;
     margin: 0;
   }
@@ -1119,12 +1125,12 @@ footer {
   }
 
   .location-content .map-wrapper .mini-map-iframe {
-    border-radius: 1rem;
+    border-radius: 0.8rem;
     border: 4px solid #e8c775;
   }
 
   .footer-collapse-btn {
-    border-radius: 1rem;
+    border-radius: 0.8rem;
     border: 4px solid #e8c775;
   }
 
@@ -1169,7 +1175,7 @@ footer {
     display: flex;
     flex-direction: column;
     height: 3rem;
-    border-radius: 1rem;
+    border-radius: 0.8rem;
     border: 4px solid #e8c775;
   }
 
@@ -1225,7 +1231,7 @@ footer {
 
 @media (min-width: 1024px) and (max-width: 1439px) and (max-height: 800px) {
   .footer-containers {
-    border-radius: 1rem;
+    border-radius: 0.8rem;
     border: 4px solid #e8c775;
   }
 
@@ -1234,7 +1240,7 @@ footer {
     justify-content: center;
     min-height: calc(100vh - 20rem);
     gap: 1rem;
-    border-radius: 1rem;
+    border-radius: 0.8rem;
     border: 4px solid #e8c775;
   }
 
@@ -1248,7 +1254,7 @@ footer {
   }
 
   .footer-content.active .hours-content .hours-grid {
-    border-radius: 1rem;
+    border-radius: 0.8rem;
     border: 4px solid #e8c775;
   }
 
@@ -1322,13 +1328,29 @@ footer {
     max-height: 7rem;
     padding: 0.4rem 4rem;
     align-items: center;
-    border-radius: 1rem;
+    border-radius: 0.8rem;
     border: 4px solid #e8c775;
+  }
+
+  .hours-container {
+    padding: 0 4rem;
   }
 
   .hours-info {
     height: 100%;
-    padding-top: 0;
+    min-height: 6.2rem;
+    padding: 0;
+  }
+
+  .footer-content {
+    min-height: 6.2rem;
+  }
+
+  .hours-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    min-height: 6.2rem;
   }
 
   .footer-content.active .hours-content {
@@ -1373,7 +1395,7 @@ footer {
   .footer-content.active .map-wrapper .mini-map-iframe {
     width: 100%;
     height: calc(100vh - 42rem);
-    border-radius: 1rem;
+    border-radius: 0.8rem;
     border: 4px solid #e8c775;
   }
 
@@ -1390,7 +1412,7 @@ footer {
     flex-direction: column;
     align-items: center;
     margin: 0 auto;
-    border-radius: 1rem;
+    border-radius: 0.8rem;
     border: 4px solid #e8c775;
   }
 
@@ -1445,7 +1467,7 @@ footer {
     min-height: 8rem;
     height: 100%;
     padding: 0.4rem 1.6rem;
-    border-radius: 1rem;
+    border-radius: 0.8rem;
     border: 4px solid #e8c775;
   }
 
@@ -1525,7 +1547,7 @@ footer {
   }
 
   .mini-map-iframe {
-    border-radius: 1rem;
+    border-radius: 0.8rem;
     border: 4px solid #e8c775;
   }
 
@@ -1617,7 +1639,7 @@ footer {
 @media (min-width: 1440px) and (max-width: 1919px) and (max-height: 800px) {
   .footer-containers {
     border-radius: 1rem;
-    border: 4px solid #e8c775;
+    border: 5px solid #e8c775;
     margin: 0.6rem 0 0;
     background: linear-gradient(90deg, #480204 0%, #800407 50%, #480204 100%);
   }
@@ -1629,7 +1651,7 @@ footer {
     min-height: calc(100vh - 20rem);
     gap: 1rem;
     border-radius: 1rem;
-    border: 4px solid #e8c775;
+    border: 5px solid #e8c775;
     padding: 2rem 7.2rem;
   }
 
@@ -1646,7 +1668,7 @@ footer {
     min-height: 5rem;
     width: 100%;
     border-radius: 1rem;
-    border: 4px solid #e8c775;
+    border: 5px solid #e8c775;
     background: linear-gradient(90deg, #480204 0%, #800407 50%, #480204 100%);
   }
 
@@ -1668,7 +1690,7 @@ footer {
     flex-direction: column;
     align-items: center;
     border-radius: 1rem;
-    border: 4px solid #e8c775;
+    border: 5px solid #e8c775;
     height: auto;
     justify-content: center;
     gap: 1rem;
@@ -1686,7 +1708,7 @@ footer {
     width: 20rem;
     min-height: 5rem;
     border-radius: 1rem;
-    border: 4px solid #e8c775;
+    border: 5px solid #e8c775;
   }
 
   .footer-content.active .address-section {
@@ -1889,7 +1911,7 @@ footer {
     min-height: calc(100vh - 20rem);
     gap: 1.4rem;
     border-radius: 1rem;
-    border: 4px solid #e8c775;
+    border: 5px solid #e8c775;
     padding: 2rem 7.2rem;
   }
 

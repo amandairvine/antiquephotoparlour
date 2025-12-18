@@ -186,6 +186,26 @@ async function handleUrlHash() {
 
         modalGallery.innerHTML = "";
 
+        if (theme === "pirates") {
+            const seasonalNoteContainer = document.createElement("div");
+            seasonalNoteContainer.className = "seasonal-container";
+            const seasonalNote = document.createElement("p");
+            seasonalNote.className = "seasonal-notice";
+            seasonalNote.innerHTML = "Please note: <br class='note-br'>Our pirates sail south for the winter.<br>Please contact us for availability.";
+            modalGallery.appendChild(seasonalNoteContainer);
+            seasonalNoteContainer.appendChild(seasonalNote);
+        }
+
+        if (theme === "winter-wonderland") {
+            const seasonalNoteContainer = document.createElement("div");
+            seasonalNoteContainer.className = "seasonal-container";
+            const seasonalNote = document.createElement("p");
+            seasonalNote.className = "seasonal-notice";
+            seasonalNote.innerHTML = "Please note: <br class='note-br'>This theme is only available <br class='mobile-br'>during the winter season.<br>Please contact us for details.";
+            modalGallery.appendChild(seasonalNoteContainer);
+            seasonalNoteContainer.appendChild(seasonalNote);
+        }
+
         try {
             const response = await fetch("../data/images.json");
 
