@@ -1,0 +1,944 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Brygada 1918", serif;
+  --font-montecarlo: "MonteCarlo", cursive;
+  --font-brygada: "Brygada 1918", serif;
+  --weight-regular: 400;
+  --weight-medium: 500;
+  --weight-semibold: 600;
+  --weight-bold: 700;
+  --Light-Shine: linear-gradient(
+    180deg,
+    #e8c775 0%,
+    #fae7aa 49.04%,
+    #e8c165 100%
+  );
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  color: white;
+  transition: none;
+  font-size: 100%;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.spinner {
+  margin: 50px auto;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 4px solid #e8c775;
+  border-top: 4px solid #480204;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.container {
+  margin: 0 auto;
+  width: 100%;
+  max-width: 1200px;
+}
+
+/* #region Slideshow Content */
+.homepage {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  transition: none;
+}
+
+.content {
+  display: flex;
+  justify-content: center;
+  flex: 1;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+  width: 100%;
+  box-sizing: border-box;
+  background: linear-gradient(90deg, #480204 0%, #800407 50%, #480204 100%);
+}
+
+.slideshow-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  object-fit: cover;
+  transition: none;
+}
+
+.slideshow {
+  height: 100%;
+  position: relative;
+  transition: none;
+}
+
+.slide {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 1s ease-in-out;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.slide.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.slide::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: var(--slide-bg-image);
+  background-size: cover;
+  background-position: center;
+  filter: blur(6px);
+  transform: scale(150%);
+  z-index: 1;
+}
+
+.slide::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-image: var(--slide-bg-image);
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  min-width: 28rem;
+}
+
+.slide.portrait::after {
+  width: 100%;
+  height: 100%;
+  min-height: 20rem;
+  padding: 0;
+  transition: transform 0.3s ease, min-height 0.5s ease;
+}
+
+.slide-caption {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.4rem 0.6rem;
+  text-align: center;
+  min-width: 14rem;
+  flex-shrink: 0;
+  border-radius: 1rem;
+  border: 2px solid #e8c775;
+  background: rgba(0, 0, 0, 0.8);
+  box-shadow: 0px 6px 4px 0px rgba(34, 0, 1, 0.8);
+  position: absolute;
+  bottom: 0.4rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 4;
+  transition: gap 0.5s ease-in-out, height 0.5s ease-in-out;
+}
+
+.slide-text {
+  display: flex;
+  flex-direction: column;
+  transition: gap 0.5s ease-in-out;
+}
+
+.slide-caption p {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  flex-shrink: 0;
+  position: inherit;
+  z-index: 1;
+  text-align: center;
+  text-shadow: 0px 4px 8px rgba(34, 0, 1, 0.8);
+  font-family: "Brygada 1918";
+  font-size: 12px;
+  font-style: italic;
+  font-weight: 600;
+  line-height: normal;
+  background: linear-gradient(180deg, #e8c775 0%, #fae7aa 49.04%, #e8c165 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  padding-bottom: 0.1rem;
+}
+
+/* #region Slide Caption Images */
+.slide-caption img {
+  width: 100%;
+  height: 1.4rem;
+  object-fit: contain;
+  transition: height 0.2s ease-in-out;
+}
+
+/* .slide.kids img,
+.slide.victorian img,
+.slide.historical-pet-portraits img,
+.slide.roaring-20s img,
+.slide.steampunk img,
+.slide.cowboys-and-cowgirls img,
+.slide.dressy-western img,
+.slide.showgirls-and-outlaws img,
+.slide.wedding img {
+  height: 1.4rem;
+}
+
+.slide.pirates img,
+.slide.civil-war img,
+.slide.native img,
+.slide.mountie img,
+.slide.mix-and-match img,
+.slide.pets img,
+.slide.frames img {
+  height: 1.2rem;
+  margin-bottom: 0.2rem;
+} */
+
+/* #endregion */
+
+.slideshow-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  padding: 1rem 0.6rem;
+  cursor: pointer;
+  border-radius: 50%;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: 10;
+  pointer-events: none;
+}
+
+.slideshow-nav-prev {
+  left: 0;
+  outline: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.slideshow-nav-next {
+  right: 0;
+  outline: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.slideshow-hover-zone {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  width: 40%;
+  z-index: 5;
+  cursor: pointer;
+  outline: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.slideshow-hover-zone:focus,
+.slideshow-hover-zone:active,
+.slideshow-nav-prev:hover,
+.slideshow-nav-next:hover {
+  outline: none;
+}
+
+.slideshow-hover-left {
+  left: 0;
+}
+
+.slideshow-hover-right {
+  right: 0;
+}
+
+.slideshow-nav img {
+  width: 2rem;
+  height: 100%;
+  transition: transform 0.3s ease, filter 0.2s ease;
+}
+
+.slideshow-nav-prev img {
+  transform: scaleX(-1);
+}
+
+.slideshow-nav-prev:hover img {
+  transform: scaleX(-1) scale(1.1);
+  filter: brightness(1.2);
+}
+
+.slideshow-nav-next:hover img {
+  transform: scale(1.1);
+  filter: brightness(1.2);
+}
+
+.slideshow-nav-prev:active img,
+.slideshow-nav-prev.clicking img {
+  transform: scaleX(-1) scale(0.95);
+  filter: brightness(0.8);
+  transition: transform 0.1s ease, filter 0.1s ease;
+}
+
+.slideshow-nav-next:active img,
+.slideshow-nav-next.clicking img {
+  transform: scale(0.95);
+  filter: brightness(0.8);
+  transition: transform 0.3s ease, filter 0.1s ease;
+}
+
+.btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 8rem;
+  height: 2.2rem;
+  border-radius: clamp(0.6rem, 1.5vw, 1.2rem);
+  border: 2px solid #e8c775;
+  background: linear-gradient(90deg, #480204 0%, #800407 50%, #480204 100%);
+  box-shadow: 0px 6px 4px rgba(34, 0, 1, 0.8);
+  z-index: 1;
+  font-size: 12px;
+  color: #fff;
+  font-family: var(--font-brygada);
+  font-weight: var(--weight-bold);
+  font-style: normal;
+  text-shadow: -1px -1px 0 #a20003, 1px -1px 0 #a20003, -1px 1px 0 #a20003,
+    1px 1px 0 #a20003;
+  transition: transform 0.3s ease, height 0.5s ease-in-out;
+}
+
+.btn:hover {
+  transform: scale(1.05);
+}
+
+/* #endregion */
+
+/* #region Media Queries */
+
+@media (max-width: 320px) and (min-height: 915px) {
+  .slide-caption {
+    bottom: 20%;
+  }
+}
+
+@media (max-width: 320px) {
+  .slideshow-container p,
+  .slideshow-container a {
+    font-size: 4vw;
+  }
+
+  .slide-caption {
+    min-width: 0;
+    width: 90%;
+    left: 5%;
+    transform: none;
+    margin: 0;
+    box-sizing: border-box;
+  }
+
+  .slide.victorian img {
+    max-height: 1.2rem;
+    margin-bottom: 0.2rem;
+  }
+
+  .slide.wedding img {
+    min-height: 1.4rem;
+  }
+
+  .slide.kids img,
+  .slide.historical-pet-portraits img,
+  .slide.roaring-20s img,
+  .slide.steampunk img,
+  .slide.cowboys-and-cowgirls img,
+  .slide.dressy-western img,
+  .slide.showgirls-and-outlaws img,
+  .slide.wedding img {
+    max-width: 100%;
+    max-height: 1.2rem;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+  }
+
+  .slide.pirates img,
+  .slide.civil-war img,
+  .slide.native img,
+  .slide.mountie img,
+  .slide.mix-and-match img,
+  .slide.kids img,
+  .slide.pets img,
+  .slide.frames img {
+    max-width: min(30rem, 100%);
+    width: 100%;
+    height: 1.2rem;
+    object-fit: contain;
+    margin-bottom: 0.2rem;
+  }
+
+  .slideshow-container .btn {
+    width: 90%;
+  }
+}
+
+@media (min-width: 330px) and (max-width: 660px) {
+  .slideshow-container p,
+  .slideshow-container a {
+    font-size: 12px;
+  }
+
+  .slide-caption .btn {
+    width: 11.4rem;
+    height: 2.2rem;
+    border-radius: 0.8rem;
+  }
+}
+
+@media (min-width: 660px) and (max-width: 1023px) {
+  .slide-caption {
+    min-width: 20rem;
+    height: 100%;
+    max-height: 10rem;
+    gap: 0.6rem;
+  }
+
+  .slide-text p {
+    font-size: 16px;
+  }
+
+  .slide-text {
+    gap: 0.2rem;
+  }
+
+  .slide.victorian .slide-text {
+    gap: 0.8rem;
+  }
+
+  .slide.historical-pet-portraits .slide-text {
+    gap: 0.5rem;
+  }
+
+  .slide.frames .slide-text,
+  .slide.pets .slide-text {
+    gap: 0.9rem;
+  }
+
+  .slide.pirates .slide-text {
+    gap: 0.6rem;
+  }
+
+  .slide.civil-war .slide-text {
+    gap: 0.8rem;
+  }
+
+  .slide.kids .slide-text {
+    gap: 0.8rem;
+  }
+
+  .slide.steampunk .slide-text {
+    gap: 0.2;
+  }
+
+  .slide.mountie .slide-text,
+  .slide.native .slide-text {
+    gap: 0.6rem;
+  }
+
+  .slide.mix-and-match .slide-text {
+    gap: 0.4rem;
+  }
+
+  .slide.victorian img {
+    height: 2rem;
+  }
+
+  .slide.historical-pet-portraits img {
+    height: 2.3rem;
+  }
+
+  .slide.roaring-20s img,
+  .slide.steampunk img,
+  .slide.cowboys-and-cowgirls img,
+  .slide.dressy-western img,
+  .slide.showgirls-and-outlaws img,
+  .slide.wedding img {
+    height: 2.6rem;
+  }
+
+  .slide.pirates img,
+  .slide.native img,
+  .slide.mountie img {
+    height: 2.2rem;
+  }
+
+  .slide.pets img,
+  .slide.frames img {
+    height: 1.9rem;
+  }
+
+  .slide.mix-and-match img {
+    height: 2.4rem;
+    margin: 0;
+  }
+
+  .slide.kids img {
+    height: 2rem;
+  }
+
+  .slide.civil-war img {
+    height: 2rem;
+  }
+
+  .slide-caption .btn {
+    font-size: 16px;
+    width: 18rem;
+    height: 3rem;
+  }
+}
+
+@media (max-width: 660px) and (min-height: 1100px) {
+  .slide-caption {
+    bottom: 10%;
+  }
+}
+
+@media (min-width: 1024px) and (max-width: 1439px) {
+  .slide.portrait::after {
+    width: 110%;
+    height: 110%;
+    min-height: 30rem;
+  }
+
+  .slideshow-nav img {
+    width: 4rem;
+  }
+
+  .slide-caption {
+    min-width: 24rem;
+    border: 4px solid #e8c775;
+    border-radius: 0.8rem;
+    gap: 0.6rem;
+  }
+
+  .slide-caption p {
+    font-size: 18px;
+  }
+
+  .slide-text {
+    gap: 0.1rem;
+  }
+
+  .slide.victorian .slide-text {
+    gap: 0.7rem;
+  }
+
+  .slide.historical-pet-portraits .slide-text {
+    gap: 0.4rem;
+  }
+
+  .slide.frames .slide-text,
+  .slide.pets .slide-text {
+    gap: 0.4rem;
+  }
+
+  .slide.pirates .slide-text {
+    gap: 0.2rem;
+  }
+
+  .slide.civil-war .slide-text {
+    gap: 0.4rem;
+  }
+
+  .slide.kids .slide-text {
+    gap: 0.8rem;
+  }
+
+  .slide.mountie .slide-text,
+  .slide.native .slide-text {
+    gap: 0.2rem;
+  }
+
+  .slide.mix-and-match .slide-text {
+    gap: 0.3rem;
+  }
+
+  .slide.victorian img {
+    height: 2rem;
+  }
+
+  .slide.historical-pet-portraits img {
+    height: 2.3rem;
+  }
+
+  .slide.roaring-20s img,
+  .slide.steampunk img,
+  .slide.cowboys-and-cowgirls img,
+  .slide.dressy-western img,
+  .slide.showgirls-and-outlaws img,
+  .slide.wedding img {
+    height: 2.6rem;
+  }
+
+  .slide.pirates img,
+  .slide.native img,
+  .slide.mountie img {
+    height: 2.2rem;
+  }
+
+  .slide.pets img,
+  .slide.frames img {
+    height: 1.9rem;
+  }
+
+  .slide.mix-and-match img {
+    height: 2.4rem;
+    margin: 0;
+  }
+
+  .slide.kids img {
+    height: 2rem;
+  }
+
+  .slide.civil-war img {
+    height: 2rem;
+  }
+
+  .slideshow-nav-prev {
+    left: 0rem;
+  }
+
+  .slideshow-nav-next {
+    right: 0rem;
+  }
+
+  .slideshow-container .btn {
+    font-size: 18px;
+    width: 20rem;
+    height: 3.8rem;
+    min-height: 3.8rem;
+    border: 4px solid #e8c775;
+    border-radius: 0.8rem;
+  }
+}
+
+@media (min-width: 1440px) and (max-width: 1919px) {
+  .slide.portrait::after {
+    width: 100%;
+    height: 100%;
+    min-height: auto;
+  }
+
+  .slideshow-nav img {
+    width: 6rem;
+  }
+
+  .slideshow-container .btn {
+    font-size: 20px;
+    width: 20rem;
+    height: 3.8rem;
+    min-height: 3.8rem;
+    border: 5px solid #e8c775;
+    border-radius: 1rem;
+  }
+
+  .slide-caption {
+    width: 30rem;
+    height: 12rem;
+    max-height: none;
+    border: 5px solid #e8c775;
+    border-radius: 1rem;
+    padding: 0.4rem;
+    gap: 0.8rem;
+    border: 5px solid #e8c775;
+    border-radius: 1rem;
+  }
+
+  .slide-caption p,
+  .slide-caption a {
+    font-size: 20px;
+  }
+
+  .slide-text {
+    gap: 0.2rem;
+  }
+
+  .slide.victorian .slide-text {
+    gap: 0.8rem;
+  }
+
+  .slide.frames .slide-text,
+  .slide.pets .slide-text,
+  .slide.pirates .slide-text {
+    gap: 0.4rem;
+  }
+
+  .slide.civil-war .slide-text {
+    gap: 0.4rem;
+  }
+
+  .slide.kids .slide-text {
+    gap: 0.6rem;
+  }
+
+  .slide.mountie .slide-text,
+  .slide.native .slide-text {
+    gap: 0.4rem;
+  }
+
+  .slide.mix-and-match .slide-text {
+    gap: 0.2rem;
+  }
+
+  .slide.victorian img {
+    height: 2.4rem;
+  }
+
+  .slide.historical-pet-portraits img,
+  .slide.roaring-20s img,
+  .slide.steampunk img,
+  .slide.cowboys-and-cowgirls img,
+  .slide.dressy-western img,
+  .slide.showgirls-and-outlaws img,
+  .slide.wedding img {
+    height: 3rem;
+  }
+
+  .slide.pirates img,
+  .slide.native img,
+  .slide.mountie img,
+  .slide.pets img,
+  .slide.frames img {
+    height: 2.6rem;
+  }
+
+  .slide.mix-and-match img {
+    height: 2.8rem;
+  }
+
+  .slide.kids img {
+    height: 2.6rem;
+  }
+
+  .slide.civil-war img {
+    height: 2.6rem;
+  }
+}
+
+@media (min-width: 1920px) and (max-width: 2056px) {
+  .slide::after {
+    top: 50%;
+  }
+
+  .slide-caption {
+    justify-content: flex-start;
+    width: 30rem;
+    height: 13rem;
+    max-height: none;
+    bottom: 0.8rem;
+    left: 50%;
+    gap: 0;
+    border: 5px solid #e8c775;
+    border-radius: 1rem;
+    padding: 0.8rem;
+  }
+
+  .slide-caption p {
+    font-size: 24px;
+  }
+
+  .slide-text {
+    justify-content: space-evenly;
+    height: 100%;
+    gap: 0.1rem;
+  }
+
+  .slide.steampunk .slide-text,
+  .slide.historical-pet-portraits .slide-text {
+    gap: 0.1rem;
+  }
+
+  .slide.mix-and-match .slide-text {
+    gap: 0;
+  }
+
+  .slide.frames .slide-text,
+  .slide.pets .slide-text,
+  .slide.pirates .slide-text {
+    gap: 0.4rem;
+  }
+
+  .slide.mountie .slide-text,
+  .slide.native .slide-text {
+    gap: 0.5rem;
+  }
+
+  .slide.victorian .slide-text {
+    gap: 0.6rem;
+  }
+
+  .slide.civil-war .slide-text,
+  .slide.kids .slide-text {
+    gap: 0.8rem;
+  }
+
+  .slide.victorian img {
+    height: 3rem;
+  }
+
+  .slide.historical-pet-portraits img,
+  .slide.roaring-20s img,
+  .slide.steampunk img,
+  .slide.cowboys-and-cowgirls img,
+  .slide.dressy-western img,
+  .slide.showgirls-and-outlaws img,
+  .slide.wedding img {
+    height: 3.6rem;
+  }
+
+  .slide.pirates img,
+  .slide.native img,
+  .slide.mountie img,
+  .slide.pets img,
+  .slide.frames img {
+    height: 3rem;
+  }
+
+  .slide.mix-and-match img {
+    height: 3.2rem;
+  }
+
+  .slide.kids img {
+    height: 2.8rem;
+  }
+
+  .slide.civil-war img {
+    height: 2.6rem;
+  }
+
+  .slideshow-container .btn {
+    font-size: 24px;
+    width: 22rem;
+    height: 5rem;
+    min-height: 5rem;
+    border: 5px solid #e8c775;
+    border-radius: 1rem;
+  }
+}
+
+@media (min-width: 2056px) {
+  .slide-caption {
+    justify-content: flex-start;
+    width: 40rem;
+    height: 14rem;
+    max-height: none;
+    bottom: 0.8rem;
+    left: 50%;
+    gap: 0;
+    border: 5px solid #e8c775;
+    border-radius: 1rem;
+    padding: 0.8rem;
+  }
+
+  .slide-text {
+    justify-content: space-evenly;
+    height: 100%;
+    gap: 0.1rem;
+  }
+  
+  .slide-caption p {
+    font-size: 26px;
+  }
+
+  .slideshow-container .btn {
+    font-size: 26px;
+    width: 24rem;
+    height: 6.8rem;
+    border: 5px solid #e8c775;
+    border-radius: 1rem;
+  }
+
+  .slide.victorian img {
+    height: 3.4rem;
+  }
+
+  .slide.historical-pet-portraits img,
+  .slide.roaring-20s img,
+  .slide.steampunk img,
+  .slide.cowboys-and-cowgirls img,
+  .slide.dressy-western img,
+  .slide.showgirls-and-outlaws img,
+  .slide.wedding img {
+    height: 4rem;
+  }
+
+  .slide.pirates img,
+  .slide.native img,
+  .slide.mountie img,
+  .slide.pets img,
+  .slide.frames img {
+    height: 3.4rem;
+  }
+
+  .slide.mix-and-match img {
+    height: 3.8rem;
+  }
+
+  .slide.kids img {
+    height: 3.2rem;
+  }
+
+  .slide.civil-war img {
+    height: 3.2rem;
+  }
+}
+
+/* #endregion */
