@@ -2112,7 +2112,7 @@ body {
     padding: 1.4rem 0 0;
     gap: 2rem;
     max-width: 120rem;
-    max-height: calc(100vh - 25.8rem);
+    max-height: calc(100vh - 25rem);
   }
 
   .services-slideshow-container {

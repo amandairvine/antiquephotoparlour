@@ -1,3 +1,19 @@
+(function() {
+  const originalAddEventListener = EventTarget.prototype.addEventListener;
+  EventTarget.prototype.addEventListener = function(type, listener, options) {
+    if (type === 'touchstart' || type === 'touchmove') {
+      if (typeof options === 'boolean') {
+        options = { capture: options, passive: true };
+      } else if (typeof options === 'undefined') {
+        options = { passive: true };
+      } else if (options && options.passive === undefined) {
+        options.passive = true;
+      }
+    }
+    return originalAddEventListener.call(this, type, listener, options);
+  };
+})();
+
 import { setupPageNavigation, loadPage } from './page-router.js';
 import("./modal-gallery.js").then(({ handleUrlHash }) => {
   console.log("✅ modal-gallery.js loaded and ready.");

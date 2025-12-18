@@ -1036,6 +1036,8 @@ body {
 @media (min-width: 2056px) {
   .contact-container {
     max-width: 120rem;
+    max-height: calc(100vh - 24.2rem);
+    padding: 1.4rem 0 0.6rem;
   }
 
   .contact-content {

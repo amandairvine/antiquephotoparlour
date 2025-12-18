@@ -881,7 +881,7 @@ body {
   }
 }
 
-@media (min-width: 1920px) {
+@media (min-width: 1920px) and (max-width: 2056px) {
   .content-area {
     margin: 0 2rem;
     max-width: 118rem;
@@ -948,5 +948,40 @@ body {
   .options-grid-item img {
     max-width: 16rem;
     margin: 1rem 0;
+  }
+}
+
+@media (min-width: 2056px) {
+  .pricing-header-container {
+    max-width: 120rem;
+  }
+
+  .content-area {
+    max-width: 120rem;
+    top: 1rem;
+    padding: 0;
+    margin: 0;
+  }
+
+  .content-area .prices {
+    gap: 1rem;
+  }
+
+  .sitting-prices p {
+    font-size: 28px;
+  }
+
+  .options-grid-item h4,
+  .options-prices p,
+  .sitting-description,
+  .additional-person {
+    font-size: 26px;
+  }
+}
+
+@media (min-width: 2056px) and (min-height: 1430px) {
+  .content-area .prices {
+    gap: 1rem;
+    max-height: calc(100vh - 33rem);
   }
 }

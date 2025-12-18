@@ -321,27 +321,6 @@ header {
   height: 2.4rem;
 }
 
-@media (max-height: 520px) {
-  .slide-caption {
-    gap: calc(100vh - 30rem);
-    width: 100%;
-    max-width: 14rem;
-    min-width: auto;
-  }
-
-  .slide.kids img,
-  .slide.victorian img,
-  .slide.historical-pet-portraits img,
-  .slide.roaring-20s img,
-  .slide.steampunk img,
-  .slide.cowboys-and-cowgirls img,
-  .slide.dressy-western img,
-  .slide.showgirls-and-outlaws img,
-  .slide.wedding img {
-    width: 100%;
-  }
-}
-
 @media (max-width: 320px) {
   .header-background-bar {
     border-radius: 0.6rem;

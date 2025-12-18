@@ -2347,7 +2347,7 @@ body {
     flex-grow: 1;
     gap: 1rem;
     height: 100%;
-    max-height: calc(100vh - 27rem);
+    max-height: calc(100vh - 26.18rem);
     overflow-y: hidden;
     width: 100%;
     max-width: 120rem;

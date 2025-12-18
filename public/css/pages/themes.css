@@ -665,7 +665,6 @@ body {
 }
 
 @media (min-width: 1920px) and (max-width: 2055px) and (max-height: 1040px) {
-
   .themes-scroll-wrapper {
     height: 100vh;
     overflow-y: auto;
@@ -678,7 +677,6 @@ body {
 }
 
 @media (min-width: 1920px) and (max-width: 2055px) and (min-height: 1040px) and (max-height: 1120px) {
-
   .themes-scroll-wrapper {
     height: 100vh;
     overflow-y: auto;
@@ -1835,7 +1833,7 @@ body {
     flex-direction: row;
     gap: 2rem;
     padding-top: 1.4rem;
-    max-height: calc(100vh - 26rem);
+    max-height: calc(100vh - 24.6rem);
   }
 
   .themes-header {

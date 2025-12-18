@@ -20,12 +20,12 @@ export function initializeSlideshowDirectly() {
   if (slideshow) {
     slideshow.addEventListener('touchstart', (e) => {
       touchStartX = e.changedTouches[0].screenX;
-    });
+    }, {passive: true});
 
     slideshow.addEventListener('touchend', (e) => {
       touchEndX = e.changedTouches[0].screenX;
       handleGesture();
-    });
+    }, {passive: true});
   }
 
   console.log(`🎬 Slideshow initialized with ${slides.length} slides`);
