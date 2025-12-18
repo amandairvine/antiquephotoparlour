@@ -70,7 +70,6 @@ async function getHeaderImagesFromManifest() {
         return imagesByTheme.headers; 
     }
     
-    // This fallback should no longer be hit once the JSON is updated
     console.warn('⚠️ Header images key missing from the manifest.');
     return []; 
 }

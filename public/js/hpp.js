@@ -301,7 +301,6 @@ export function initializeHppPage() {
     // --- 5. Screen Size Management Function for Dropdown ---
     // ------------------------------------------------------------------
 
-    // *************** NEED TO WORK ON THIS SO THAT DROPDOWN OPENS AT CERTAIN WIDTH/HEIGHTS ********************
     function manageLargeScreenDropdownState() {
         const xlWidth = 1440;
         const xlHeight = 1110;
@@ -317,7 +316,6 @@ export function initializeHppPage() {
             return;
         }
 
-        // NEW OPENING CONDITION:
         // Width is >= 1024px AND Width is < 1440px AND Height is >= 1010px
         const widthIsInRange = window.innerWidth >= largeWidth && window.innerWidth < xlWidth;
         const heightIsSufficient = window.innerHeight >= largeHeight;
@@ -328,7 +326,7 @@ export function initializeHppPage() {
         const shouldBeClosed = window.innerHeight < xlHeight;
 
         if (shouldBeOpen && !shouldBeClosed) {
-            // OPEN LOGIC: If dimensions are large enough (new range) AND the screen isn't too short
+            // OPEN LOGIC: If dimensions are large enough AND the screen isn't too short
             if (!isContentDropdownOpen) {
                 console.log(`PASS: Screen is within range [${largeWidth}px - ${xlWidth}px) and height >= ${largeHeight}px. Forcing dropdown OPEN.`);
                 isContentDropdownOpen = true;
@@ -338,7 +336,7 @@ export function initializeHppPage() {
                 updateHeaderWrapperClass(isDropdownOpen || isTipsDropdownOpen || isContentDropdownOpen);
             }
 
-        } else if (shouldBeClosed || !shouldBeOpen) { // Modified ELSE condition to handle large widths
+        } else if (shouldBeClosed || !shouldBeOpen) {
             // CLOSE LOGIC: If height condition fails OR if the dimensions are outside the opening range
             if (isContentDropdownOpen) {
 
@@ -356,9 +354,7 @@ export function initializeHppPage() {
         }
     }
 
-    // Initial Check on load
     manageLargeScreenDropdownState();
 
-    // Add resize listener to handle dynamic resizing
     window.addEventListener('resize', manageLargeScreenDropdownState);
 }

@@ -34,8 +34,6 @@ body {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-
-  /* Small, centered spinner */
   width: 25px;
   height: 25px;
   border-radius: 50%;
@@ -621,20 +619,6 @@ body {
 
 /* #region Add Padding */
 
-/* @media (min-width: 660px) and (max-width: 1023px) and (max-height: 440px) {
-  .content-area .service-content.active .service-content-wrapper {
-    gap: 10%;
-    padding: 2rem 0 0;
-  }
-}
-
-@media (min-width: 660px) and (max-width: 1023px) and (min-height: 440px) and (max-height: 490px) {
-  .content-area .service-content.active .service-content-wrapper {
-    gap: 10%;
-    padding-top: 1rem;
-  }
-} */
-
 @media (min-width: 1024px) and (max-width: 1439px) and (max-height: 440px) {
   .content-area .service-content.active .service-content-wrapper {
     gap: 10%;
@@ -706,11 +690,6 @@ body {
 /* #endregion */
 
 /* #region Adjust Max-Height */
-/* @media (min-width: 660px) and (max-width: 1023px) and (max-height: 700px) {
-  .services-container .content-area .service-content.active {
-    max-height: calc(100vh - 21.8rem);
-  }
-} */
 
 @media (min-width: 1024px) and (max-width: 1439px) and (max-height: 800px) {
   .content .services-container {
@@ -733,26 +712,6 @@ body {
 /* #endregion */
 
 /* #region Dropdown Height Adjustments */
-/* @media (min-width: 660px) and (max-width: 1023px) and (max-height: 465px) {
-  .dropdown-menu.open {
-    justify-content: unset;
-    max-height: 14rem;
-    min-height: calc(100vh - 18rem);
-    overflow-y: auto;
-    height: 100%;
-    padding-top: 1rem;
-  }
-
-  .nav-item {
-    padding: 0;
-    height: 2.4rem;
-    min-height: 2.4rem;
-  }
-
-  .nav-item:first-of-type {
-    padding: 2rem 0 1rem;
-  }
-} */
 
 @media (min-width: 660px) and (max-width: 1023px) and (max-height: 640px) {
   .dropdown-menu.open {
