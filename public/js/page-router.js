@@ -177,11 +177,6 @@ export async function loadPage(pageName, updateHistory = true) {
             await config.init().catch(err => console.error(`Failed to initialize ${pageName}:`, err));
         }
 
-        // 3. Initialize and then handle the sub-route modal
-        if (config.init) {
-            await config.init();
-        }
-
         if (pageName.includes('/')) {
             import('./modal-gallery.js').then(m => m.handleUrlHash());
         }
