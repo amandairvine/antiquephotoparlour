@@ -374,7 +374,7 @@
   }
 }
 
-@media (min-width: 1920px) and (max-width: 2056px) {
+@media (min-width: 1920px) {
   .enlarged-img-header {
     height: 12rem;
   }

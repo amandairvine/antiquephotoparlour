@@ -15,12 +15,12 @@
 })();
 
 import { setupPageNavigation, loadPage } from './page-router.js';
-import("./modal-gallery.js").then(({ handleUrlHash }) => {
-  console.log("✅ modal-gallery.js loaded and ready.");
-  if (window.location.hash.startsWith("#themes/")) {
-    handleUrlHash();
-  }
-});
+// import("./modal-gallery.js").then(({ handleUrlHash }) => {
+//   console.log("✅ modal-gallery.js loaded and ready.");
+//   if (window.location.hash.startsWith("#themes/")) {
+//     handleUrlHash();
+//   }
+// });
 
 let closeModalHandler;
 

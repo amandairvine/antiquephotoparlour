@@ -1,6 +1,7 @@
 export function initializeSlideshowDirectly() {
   const slides = document.querySelectorAll('.slide');
   const slideshow = document.querySelector('.slideshow');
+  const slideshowContainer = document.querySelector('.slideshow-container');
   const prevButton = document.querySelector('.slideshow-nav-prev');
   const nextButton = document.querySelector('.slideshow-nav-next');
   const leftHoverZone = document.querySelector('.slideshow-hover-left');
@@ -20,12 +21,12 @@ export function initializeSlideshowDirectly() {
   if (slideshow) {
     slideshow.addEventListener('touchstart', (e) => {
       touchStartX = e.changedTouches[0].screenX;
-    }, {passive: true});
+    }, { passive: true });
 
     slideshow.addEventListener('touchend', (e) => {
       touchEndX = e.changedTouches[0].screenX;
       handleGesture();
-    }, {passive: true});
+    }, { passive: true });
   }
 
   console.log(`🎬 Slideshow initialized with ${slides.length} slides`);
@@ -174,4 +175,9 @@ export function initializeSlideshowDirectly() {
   });
 
   startSlideshow();
+
+  // Show the slideshow after everything is ready
+  if (slideshowContainer) {
+    slideshowContainer.classList.add('ready');
+  }
 }

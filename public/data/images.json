@@ -7,7 +7,6 @@
     "../img/themes/civil-war/132518_015.webp",
     "../img/themes/civil-war/133634_005.webp",
     "../img/themes/civil-war/144612_008.webp",
-    "../img/themes/civil-war/154324_009.webp",
     "../img/themes/civil-war/160442_026.webp",
     "../img/themes/civil-war/173623_005.webp",
     "../img/themes/civil-war/182500_003.webp",
@@ -24,10 +23,7 @@
     "../img/themes/cowboys-and-cowgirls/162213_014.webp",
     "../img/themes/cowboys-and-cowgirls/174419_010.webp",
     "../img/themes/cowboys-and-cowgirls/192751_016.webp",
-    "../img/themes/cowboys-and-cowgirls/493825637_1234892485309438_4273851727839537206_n.webp",
-    "../img/themes/cowboys-and-cowgirls/6-people.webp",
-    "../img/themes/cowboys-and-cowgirls/family.webp",
-    "../img/themes/cowboys-and-cowgirls/march-1-2025.webp"
+    "../img/themes/cowboys-and-cowgirls/family.webp"
   ],
   "dressy-western": [
     "../img/themes/dressy-western/dressy-western-main.webp",
@@ -42,8 +38,7 @@
     "../img/themes/dressy-western/170652_012.webp",
     "../img/themes/dressy-western/171955_010.webp",
     "../img/themes/dressy-western/180349_004.webp",
-    "../img/themes/dressy-western/190805_002.webp",
-    "../img/themes/dressy-western/200945_004.webp"
+    "../img/themes/dressy-western/190805_002.webp"
   ],
   "kids": [
     "../img/themes/kids/kids-main.webp",
@@ -51,7 +46,6 @@
     "../img/themes/kids/104111_056.webp",
     "../img/themes/kids/111627_003.webp",
     "../img/themes/kids/122408_026.webp",
-    "../img/themes/kids/125934_015.webp",
     "../img/themes/kids/142121_016.webp",
     "../img/themes/kids/154606_010.webp",
     "../img/themes/kids/161647_018.webp",
@@ -59,8 +53,7 @@
     "../img/themes/kids/174704_012.webp",
     "../img/themes/kids/175220_018.webp",
     "../img/themes/kids/191653_018.webp",
-    "../img/themes/kids/192751_016.webp",
-    "../img/themes/kids/baby.webp"
+    "../img/themes/kids/192751_016.webp"
   ],
   "mix-and-match": [
     "../img/themes/mix-and-match/mix-and-match-main.webp",
@@ -93,7 +86,6 @@
     "../img/themes/mounties/180034_002.webp",
     "../img/themes/mounties/185330_007.webp",
     "../img/themes/mounties/185709_004.webp",
-    "../img/themes/mounties/august-4-2025.webp",
     "../img/themes/mounties/p6111519.webp"
   ],
   "native-american": [
@@ -109,9 +101,7 @@
     "../img/themes/native-american/180208_019.webp",
     "../img/themes/native-american/183720_014fx.webp",
     "../img/themes/native-american/194824_007.webp",
-    "../img/themes/native-american/194958_004.webp",
-    "../img/themes/native-american/april-2-2025.webp",
-    "../img/themes/native-american/january-12-2024.webp"
+    "../img/themes/native-american/194958_004.webp"
   ],
   "no-theme": [
     "../img/themes/no-theme/131406_003.webp",
@@ -165,8 +155,7 @@
     "../img/themes/roaring-20s/170812_015.webp",
     "../img/themes/roaring-20s/173029_003.webp",
     "../img/themes/roaring-20s/185319_002.webp",
-    "../img/themes/roaring-20s/200435_013.webp",
-    "../img/themes/roaring-20s/541456620_1345433724255313_6954888741767389988_n.webp"
+    "../img/themes/roaring-20s/200435_013.webp"
   ],
   "showgirls-and-outlaws": [
     "../img/themes/showgirls-and-outlaws/showgirls-and-outlaws-main.webp",
@@ -189,7 +178,6 @@
     "../img/themes/steampunk/115603_016.webp",
     "../img/themes/steampunk/120339_011.webp",
     "../img/themes/steampunk/120500_004.webp",
-    "../img/themes/steampunk/131035_010.webp",
     "../img/themes/steampunk/144900_015.webp",
     "../img/themes/steampunk/160146_004.webp",
     "../img/themes/steampunk/162212_023.webp",
@@ -197,7 +185,6 @@
     "../img/themes/steampunk/172200_006.webp",
     "../img/themes/steampunk/174335_003.webp",
     "../img/themes/steampunk/191146_005.webp",
-    "../img/themes/steampunk/december-1-2024.webp",
     "../img/themes/steampunk/steampunk-family.webp",
     "../img/themes/steampunk/steampunk-solo.webp"
   ],
@@ -213,9 +200,7 @@
     "../img/themes/victorian/161532_006.webp",
     "../img/themes/victorian/162612_010.webp",
     "../img/themes/victorian/184809_030.webp",
-    "../img/themes/victorian/205151_004.webp",
-    "../img/themes/victorian/january-1-2025.webp",
-    "../img/themes/victorian/september-15-2025.webp"
+    "../img/themes/victorian/205151_004.webp"
   ],
   "wedding": [
     "../img/themes/wedding/wedding-main.webp",
