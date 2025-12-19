@@ -29,8 +29,6 @@ export function initializeSlideshowDirectly() {
     }, { passive: true });
   }
 
-  console.log(`🎬 Slideshow initialized with ${slides.length} slides`);
-
   slides.forEach(slide => {
     const computedStyle = window.getComputedStyle(slide);
     const backgroundImage = computedStyle.backgroundImage;

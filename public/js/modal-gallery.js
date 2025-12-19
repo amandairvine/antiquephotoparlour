@@ -1,7 +1,4 @@
-console.log("✅ modal-gallery.js running");
-
 function enlargeImage(imageSrc) {
-    console.log("Enlarging image:", imageSrc);
     const galleryImages = Array.from(document.querySelectorAll("#modal-gallery img"));
     const currentIndex = galleryImages.findIndex(img => img.src.includes(imageSrc));
     const galleryModal = document.getElementById("theme-modal");
@@ -158,7 +155,6 @@ export async function handleUrlHash() {
 
     if (hash.startsWith("#themes/")) {
         const theme = hash.replace("#themes/", "");
-        console.log("Opening theme from hash:", theme);
         const modal = document.getElementById("theme-modal");
         const modalGallery = document.getElementById("modal-gallery");
 
@@ -227,7 +223,6 @@ document.addEventListener("click", async e => {
     if (item) {
         if (!modal) return;
         const theme = item.dataset.theme;
-        console.log("Clicked theme:", theme);
         history.pushState(null, '', `#themes/${theme}`);
         handleUrlHash();
         return;
@@ -240,7 +235,6 @@ document.addEventListener("click", async e => {
 
     if (e.target.matches("#modal-gallery img")) {
         e.stopPropagation();
-        console.log("Gallery image clicked:", e.target.src);
         enlargeImage(e.target.src);
         return;
     }
@@ -262,7 +256,6 @@ document.addEventListener("click", async e => {
             return;
         }
 
-        console.log("Closing modal - clicked on:", e.target, "closest modal-content:", e.target.closest(".modal-content"));
         modal.style.display = "none";
         history.pushState(null, '', '#themes');
     }

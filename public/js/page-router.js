@@ -1,7 +1,7 @@
 import { preloadImages, getThemeImages, getHeaderImagesFromManifest } from './image-preloader.js';
-import("./modal-gallery.js").then(({ handleUrlHash }) => {
-    console.log("✅ modal-gallery.js loaded.");
-});
+// import("./modal-gallery.js").then(({ handleUrlHash }) => {
+//     console.log("✅ modal-gallery.js loaded.");
+// });
 
 const PAGE_CONFIG = {
     'home': {
