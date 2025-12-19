@@ -63,7 +63,6 @@ const PAGE_CONFIG = {
 let currentPage = null;
 
 export function getCurrentPage() {
-    console.log("Current page:", currentPage);
     return currentPage;
 }
 
@@ -82,7 +81,6 @@ export function setupPageNavigation() {
             const targetHash = href.replace('#', '');
             if (PAGE_CONFIG[targetHash]) {
                 e.preventDefault();
-                console.log(`Hash trigger detected: ${targetHash}`);
                 loadPage(targetHash);
                 window.location.hash = `#${targetHash}`;
                 return;
@@ -94,7 +92,6 @@ export function setupPageNavigation() {
         const pageName = extractPageName(href);
         if (pageName) {
             e.preventDefault();
-            console.log(`Path link detected: ${pageName}`);
             window.location.hash = `#${pageName}`;
             loadPage(pageName);
         }
@@ -109,11 +106,14 @@ export function setupPageNavigation() {
 export async function loadPage(pageName, updateHistory = true) {
     const basePageName = pageName.split('/')[0];
 
-    console.log(`Attempting to loadPage: ${basePageName}`);
+    const contentContainer = document.querySelector('.content');
+    if (!contentContainer) {
+        console.error('Content container not found');
+        return;
+    }
 
     if (currentPage === basePageName && currentPage !== null) {
-        console.log('Already on this base page.');
-        if (basePageName === 'themes' && pageName.includes('/')) {
+        if (pageName.includes('/')) {
             import('./modal-gallery.js').then(m => m.handleUrlHash());
         }
         return;
@@ -128,14 +128,6 @@ export async function loadPage(pageName, updateHistory = true) {
         } else {
             loadPage('home', false);
         }
-        return;
-    }
-
-    console.log(`Config found for ${pageName}. Route: ${config.route}`);
-
-    const contentContainer = document.querySelector('.content');
-    if (!contentContainer) {
-        console.error('CRITICAL: .content container not found in DOM');
         return;
     }
 
@@ -172,10 +164,10 @@ export async function loadPage(pageName, updateHistory = true) {
 
         const html = await response.text();
         const doc = new DOMParser().parseFromString(html, 'text/html');
-        const pageContainer = doc.querySelector(`.${pageName}-container`);
+        const pageContainer = doc.querySelector(`.${basePageName}-container`);
 
         if (!pageContainer) {
-            throw new Error(`Container .${pageName}-container not found in loaded page`);
+            throw new Error(`Container .${basePageName}-container not found in loaded page`);
         }
 
         contentContainer.innerHTML = pageContainer.outerHTML;
@@ -185,11 +177,13 @@ export async function loadPage(pageName, updateHistory = true) {
             await config.init().catch(err => console.error(`Failed to initialize ${pageName}:`, err));
         }
 
-        // Handle theme modal if there's a hash with theme details
-        if (pageName === 'themes' && window.location.hash.startsWith('#themes/')) {
-            import('./modal-gallery.js')
-                .then(m => m.handleUrlHash())
-                .catch(err => console.error('Failed to handle theme URL hash:', err));
+        // 3. Initialize and then handle the sub-route modal
+        if (config.init) {
+            await config.init();
+        }
+
+        if (pageName.includes('/')) {
+            import('./modal-gallery.js').then(m => m.handleUrlHash());
         }
 
     } catch (error) {

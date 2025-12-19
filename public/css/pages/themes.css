@@ -48,6 +48,18 @@ body {
   background: linear-gradient(90deg, #480204 0%, #800407 50%, #480204 100%);
   overflow-y: hidden;
   overflow-x: hidden;
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .themes-header-content {

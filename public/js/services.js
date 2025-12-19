@@ -3,8 +3,6 @@ let slideTimers = {};
 let isTransitioning = {};
 
 export function initializeServicesPage() {
-    console.log('Initializing services page functionality...');
-
     const navItems = document.querySelectorAll('.nav-item');
     const serviceContents = document.querySelectorAll('.service-content');
     const dropdownTrigger = document.querySelector('.dropdown-header');
@@ -83,7 +81,6 @@ export function initializeServicesPage() {
         if (prevButton) {
             prevButton.addEventListener('click', () => {
                 plusSlides(-1, serviceId);
-                console.log("Previous Button Clicked!")
             });
         }
 
@@ -91,7 +88,6 @@ export function initializeServicesPage() {
         if (nextButton) {
             nextButton.addEventListener('click', () => {
                 plusSlides(1, serviceId);
-                console.log("Next Button Clicked!")
             });
         }
 
@@ -246,8 +242,6 @@ export function initializeServicesPage() {
             }
         }
     });
-
-    console.log('Services page functionality initialized.');
 }
 
 function startAutoSlide(serviceId) {
