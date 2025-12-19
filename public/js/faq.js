@@ -29,6 +29,10 @@ export function initializeFaqPage() {
 
     answerItems.forEach(item => {
         item.addEventListener('click', function (event) {
+            if (event.target.closest('a')) {
+                return;
+            }
+
             if (isDesktop()) {
                 event.preventDefault();
                 event.stopPropagation();

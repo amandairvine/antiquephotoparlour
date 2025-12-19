@@ -1,7 +1,4 @@
 import { preloadImages, getThemeImages, getHeaderImagesFromManifest } from './image-preloader.js';
-// import("./modal-gallery.js").then(({ handleUrlHash }) => {
-//     console.log("✅ modal-gallery.js loaded.");
-// });
 
 const PAGE_CONFIG = {
     'home': {
@@ -24,7 +21,8 @@ const PAGE_CONFIG = {
         title: 'Themes - Antique Photo Parlour',
         route: '/pages/themes/themes.html',
         css: ['/css/pages/themes.css', '/css/pages/modal-gallery.css'],
-        preload: getThemeImages
+        preload: getThemeImages,
+        init: () => import('./modal-gallery.js').then(m => m.initializeThemesGallery())
     },
     'frames': {
         title: 'Frames - Antique Photo Parlour',
@@ -65,6 +63,7 @@ const PAGE_CONFIG = {
 let currentPage = null;
 
 export function getCurrentPage() {
+    console.log("Current page:", currentPage);
     return currentPage;
 }
 
@@ -72,21 +71,35 @@ export function getCurrentPage() {
 preloadImages(getHeaderImagesFromManifest());
 
 export function setupPageNavigation() {
-    // Intercept internal navigation links
     document.addEventListener('click', (e) => {
-        const link = e.target.closest('a[href^="../"]');
+        const link = e.target.closest('a');
         if (!link || link.href.includes('facebook') || link.href.includes('instagram')) return;
 
-        e.preventDefault();
         const href = link.getAttribute('href');
-        const pageName = extractPageName(href);
 
+        // 1. Check if it's a hash link (ex. #pricing)
+        if (href.startsWith('#')) {
+            const targetHash = href.replace('#', '');
+            if (PAGE_CONFIG[targetHash]) {
+                e.preventDefault();
+                console.log(`Hash trigger detected: ${targetHash}`);
+                loadPage(targetHash);
+                window.location.hash = `#${targetHash}`;
+                return;
+            }
+            return;
+        }
+
+        // 2. Check if it's a path link (ex. ../contact/contact.html)
+        const pageName = extractPageName(href);
         if (pageName) {
+            e.preventDefault();
+            console.log(`Path link detected: ${pageName}`);
             window.location.hash = `#${pageName}`;
+            loadPage(pageName);
         }
     });
 
-    // Handle browser back/forward
     window.addEventListener('popstate', () => {
         const pageFromHash = window.location.hash.replace('#', '') || 'home';
         loadPage(pageFromHash, false);
@@ -94,16 +107,22 @@ export function setupPageNavigation() {
 }
 
 export async function loadPage(pageName, updateHistory = true) {
-    if (currentPage === pageName && currentPage !== null) {
+    const basePageName = pageName.split('/')[0];
+
+    console.log(`Attempting to loadPage: ${basePageName}`);
+
+    if (currentPage === basePageName && currentPage !== null) {
+        console.log('Already on this base page.');
+        if (basePageName === 'themes' && pageName.includes('/')) {
+            import('./modal-gallery.js').then(m => m.handleUrlHash());
+        }
         return;
     }
 
-    if (!pageName) return;
+    const config = PAGE_CONFIG[basePageName];
 
-    const config = PAGE_CONFIG[pageName];
-
-    // Redirect invalid pages to home
     if (!config) {
+        console.error(`No config found for: ${basePageName}`);
         if (updateHistory) {
             window.location.hash = '#home';
         } else {
@@ -112,13 +131,14 @@ export async function loadPage(pageName, updateHistory = true) {
         return;
     }
 
+    console.log(`Config found for ${pageName}. Route: ${config.route}`);
+
     const contentContainer = document.querySelector('.content');
     if (!contentContainer) {
-        console.error('Content container not found');
+        console.error('CRITICAL: .content container not found in DOM');
         return;
     }
 
-    // Update page state
     currentPage = pageName;
 
     if (updateHistory) {

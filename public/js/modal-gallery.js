@@ -1,3 +1,45 @@
+export function initializeThemesGallery() {
+    const gridItems = document.querySelectorAll('.themes-grid-item');
+    const modal = document.getElementById('theme-modal');
+    const closeBtn = document.querySelector('.close-btn');
+
+    if (!gridItems.length || !modal) return;
+
+    gridItems.forEach(item => {
+        item.addEventListener('click', () => {
+            const theme = item.getAttribute('data-theme');
+            openModal(theme);
+        });
+    });
+
+    closeBtn.addEventListener('click', () => {
+        modal.style.display = 'none';
+        window.location.hash = '#themes';
+    });
+
+    window.addEventListener('click', (event) => {
+        if (event.target === modal) {
+            modal.style.display = 'none';
+            window.location.hash = '#themes';
+        }
+    });
+}
+
+async function openModal(theme) {
+    const modal = document.getElementById('theme-modal');
+    const galleryContainer = document.getElementById('modal-gallery');
+
+    modal.style.display = 'block';
+    galleryContainer.innerHTML = '<div class="spinner"></div>';
+
+    try {
+        // Your logic to fetch images based on the 'theme' variable
+        window.location.hash = `#themes/${theme}`;
+    } catch (error) {
+        console.error('Gallery failed to load', error);
+    }
+}
+
 function enlargeImage(imageSrc) {
     const galleryImages = Array.from(document.querySelectorAll("#modal-gallery img"));
     const currentIndex = galleryImages.findIndex(img => img.src.includes(imageSrc));
@@ -61,7 +103,7 @@ function enlargeImage(imageSrc) {
         prevArrow = document.createElement("img");
         prevArrow.src = "../../img/assets/slideshow-arrows/gold-flourish.webp";
         prevArrow.className = "arrow-common prevArrow";
-        
+
         nextArrow = document.createElement("img");
         nextArrow.src = "../../img/assets/slideshow-arrows/gold-flourish.webp";
         nextArrow.className = "arrow-common nextArrow";
