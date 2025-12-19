@@ -1,6 +1,6 @@
-(function() {
+(function () {
   const originalAddEventListener = EventTarget.prototype.addEventListener;
-  EventTarget.prototype.addEventListener = function(type, listener, options) {
+  EventTarget.prototype.addEventListener = function (type, listener, options) {
     if (type === 'touchstart' || type === 'touchmove') {
       if (typeof options === 'boolean') {
         options = { capture: options, passive: true };
@@ -14,13 +14,7 @@
   };
 })();
 
-import { setupPageNavigation, loadPage } from './page-router.js';
-// import("./modal-gallery.js").then(({ handleUrlHash }) => {
-//   console.log("✅ modal-gallery.js loaded and ready.");
-//   if (window.location.hash.startsWith("#themes/")) {
-//     handleUrlHash();
-//   }
-// });
+import { setupPageNavigation, loadPage, getCurrentPage, handleInitialLoad, cacheInitialHomeContent } from './page-router.js';
 
 let closeModalHandler;
 
@@ -57,15 +51,15 @@ function handleOutsideMobileMenuClick(event) {
 }
 
 document.addEventListener('DOMContentLoaded', function () {
-  console.log('Main script loaded');
 
   // Load header and footer
   fetch('../../header/header.html').then(response => response.text()).then(html => {
     const headerContainer = document.getElementById('header-container');
     if (headerContainer) {
       headerContainer.innerHTML = html;
-      console.log("Header content loaded.");
+      cacheInitialHomeContent();
       setupPageNavigation();
+      handleInitialLoad();
 
       const hamburgerMenu = document.querySelector('.hamburger-menu');
       const mobileMenu = document.querySelector('.mobile-menu');
@@ -125,33 +119,25 @@ document.addEventListener('DOMContentLoaded', function () {
     const footerContainer = document.getElementById('footer-container');
     if (footerContainer) {
       footerContainer.innerHTML = html;
-      console.log('Footer loaded.');
 
       setupFooterCollapse();
     }
   });
 
-  // Handle initial page load
-  const initialHash = location.hash;
-  if (initialHash) {
-    const hash = initialHash.substring(1);
-    const [pageName] = hash.split("/");
-    loadPage(pageName, false);
-  } else {
-    loadPage("home", false);
-  }
-
   // Handle hash changes (when clicking nav links)
   window.addEventListener("hashchange", () => {
     const hash = location.hash.substring(1);
 
-    // Check if the hash is empty or only contains the page separator
-    let pageName = 'home'; // Default to 'home'
+    let pageName = 'home';
     if (hash && hash !== '/') {
       [pageName] = hash.split("/");
     }
 
-    loadPage(pageName);
+    // Only load if we're not already on this page
+    const current = getCurrentPage();
+    if (current !== pageName) {
+      loadPage(pageName);
+    }
 
     setActiveMobileLink();
   });
@@ -177,7 +163,6 @@ function setupFooterCollapse() {
 
     overlay.classList.remove('active');
     document.body.classList.remove('modal-open');
-    console.log('[Footer Collapse] Modal closed.');
 
     // Remove old document click listener to prevent multiple bindings:
     document.removeEventListener('click', handleOutsideClick);
@@ -239,7 +224,6 @@ function setupFooterCollapse() {
 
     if (shouldCloseModal && isModalOpen) {
       closeModal();
-      console.log(`[Resize Check] Modal and content state cleared. Current dimensions: ${windowWidth}x${windowHeight} (Close Threshold: ${heightThreshold}px).`);
     }
 
     return shouldCloseModal; // Return for use in the button click handler

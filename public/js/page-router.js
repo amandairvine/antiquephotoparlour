@@ -62,8 +62,11 @@ const PAGE_CONFIG = {
     }
 };
 
-let originalHomeContent = null;
 let currentPage = null;
+
+export function getCurrentPage() {
+    return currentPage;
+}
 
 // Preload header images on startup
 preloadImages(getHeaderImagesFromManifest());
@@ -75,22 +78,32 @@ export function setupPageNavigation() {
         if (!link || link.href.includes('facebook') || link.href.includes('instagram')) return;
 
         e.preventDefault();
-        const pageName = extractPageName(link.getAttribute('href'));
-        if (pageName) loadPage(pageName);
+        const href = link.getAttribute('href');
+        const pageName = extractPageName(href);
+
+        if (pageName) {
+            window.location.hash = `#${pageName}`;
+        }
     });
 
     // Handle browser back/forward
-    window.addEventListener('popstate', (e) => {
-        loadPage(e.state?.page || 'home', false);
+    window.addEventListener('popstate', () => {
+        const pageFromHash = window.location.hash.replace('#', '') || 'home';
+        loadPage(pageFromHash, false);
     });
 }
 
 export async function loadPage(pageName, updateHistory = true) {
+    if (currentPage === pageName && currentPage !== null) {
+        return;
+    }
+
+    if (!pageName) return;
+
     const config = PAGE_CONFIG[pageName];
 
     // Redirect invalid pages to home
     if (!config) {
-        console.warn(`Unknown page '${pageName}', redirecting to home`);
         if (updateHistory) {
             window.location.hash = '#home';
         } else {
@@ -98,9 +111,6 @@ export async function loadPage(pageName, updateHistory = true) {
         }
         return;
     }
-
-    // Skip if already on this page
-    if (currentPage === pageName && !updateHistory) return;
 
     const contentContainer = document.querySelector('.content');
     if (!contentContainer) {
@@ -110,26 +120,21 @@ export async function loadPage(pageName, updateHistory = true) {
 
     // Update page state
     currentPage = pageName;
+
     if (updateHistory) {
-        history.pushState({ page: pageName }, config.title, `#${pageName}`);
+        history.replaceState({ page: pageName }, config.title);
         document.title = config.title;
     }
 
     // Handle home page
     if (pageName === 'home') {
-        loadCSS(null);
+        loadCSS(null); // Clear all page CSS for home
         await loadHomePage(contentContainer);
         return;
     }
 
-    // Load CSS
+    // Load CSS for other pages
     loadCSS(config.css);
-
-    // Handle home page
-    if (pageName === 'home') {
-        await loadHomePage(contentContainer);
-        return;
-    }
 
     // Handle other pages
     try {
@@ -179,12 +184,7 @@ export async function loadPage(pageName, updateHistory = true) {
 }
 
 async function loadHomePage(container) {
-    // Restore cached home content
-    if (!originalHomeContent) {
-        originalHomeContent = container.innerHTML;
-    } else {
-        container.innerHTML = originalHomeContent;
-    }
+    container.innerHTML = originalHomeContent;
 
     // Load slideshow
     try {
@@ -197,7 +197,6 @@ async function loadHomePage(container) {
         if (slideshowContainer) {
             slideshowContainer.innerHTML = slideshowHtml;
 
-            // Wait for DOM update before initializing
             await new Promise(resolve => setTimeout(resolve, 100));
 
             if (document.querySelectorAll('.slide').length > 0) {
@@ -212,9 +211,10 @@ async function loadHomePage(container) {
 }
 
 function loadCSS(css) {
-    // Remove existing page CSS
+    // Always remove existing page CSS first
     document.querySelectorAll('link[id^="page-css-"]').forEach(link => link.remove());
 
+    // If no CSS needed (home page), we're done
     if (!css) return;
 
     const cssFiles = Array.isArray(css) ? css : [css];
@@ -237,4 +237,18 @@ function extractPageName(href) {
         }
     }
     return null;
+}
+
+export function handleInitialLoad() {
+    const pageFromHash = window.location.hash.replace('#', '') || 'home';
+    loadPage(pageFromHash, false);
+}
+
+let originalHomeContent = '';
+
+export function cacheInitialHomeContent() {
+    const content = document.querySelector('.content');
+    if (content) {
+        originalHomeContent = content.innerHTML;
+    }
 }
