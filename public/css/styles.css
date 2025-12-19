@@ -101,6 +101,12 @@ body {
   z-index: 1;
   object-fit: cover;
   transition: none;
+  opacity: 0;
+}
+
+.slideshow-container.ready {
+  opacity: 1;
+  transition: opacity 0.3s ease-in-out;
 }
 
 .slideshow {
@@ -110,6 +116,9 @@ body {
 }
 
 .slide {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   position: absolute;
   top: 0;
   left: 0;
@@ -118,9 +127,6 @@ body {
   opacity: 0;
   pointer-events: none;
   transition: opacity 1s ease-in-out;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
 
 .slide.active {
@@ -870,7 +876,7 @@ body {
     height: 100%;
     gap: 0.1rem;
   }
-  
+
   .slide-caption p {
     font-size: 26px;
   }
