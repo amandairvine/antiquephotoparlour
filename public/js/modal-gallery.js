@@ -1,7 +1,46 @@
-console.log("✅ modal-gallery.js running");
+export function initializeThemesGallery() {
+    const gridItems = document.querySelectorAll('.themes-grid-item');
+    const modal = document.getElementById('theme-modal');
+    const closeBtn = document.querySelector('.close-btn');
+
+    if (!gridItems.length || !modal) return;
+
+    gridItems.forEach(item => {
+        item.addEventListener('click', () => {
+            const theme = item.getAttribute('data-theme');
+            openModal(theme);
+        });
+    });
+
+    closeBtn.addEventListener('click', () => {
+        modal.style.display = 'none';
+        window.location.hash = '#themes';
+    });
+
+    window.addEventListener('click', (event) => {
+        if (event.target === modal) {
+            modal.style.display = 'none';
+            window.location.hash = '#themes';
+        }
+    });
+}
+
+async function openModal(theme) {
+    const modal = document.getElementById('theme-modal');
+    const galleryContainer = document.getElementById('modal-gallery');
+
+    modal.style.display = 'block';
+    galleryContainer.innerHTML = '<div class="spinner"></div>';
+
+    try {
+        // Your logic to fetch images based on the 'theme' variable
+        window.location.hash = `#themes/${theme}`;
+    } catch (error) {
+        console.error('Gallery failed to load', error);
+    }
+}
 
 function enlargeImage(imageSrc) {
-    console.log("Enlarging image:", imageSrc);
     const galleryImages = Array.from(document.querySelectorAll("#modal-gallery img"));
     const currentIndex = galleryImages.findIndex(img => img.src.includes(imageSrc));
     const galleryModal = document.getElementById("theme-modal");
@@ -64,7 +103,7 @@ function enlargeImage(imageSrc) {
         prevArrow = document.createElement("img");
         prevArrow.src = "../../img/assets/slideshow-arrows/gold-flourish.webp";
         prevArrow.className = "arrow-common prevArrow";
-        
+
         nextArrow = document.createElement("img");
         nextArrow.src = "../../img/assets/slideshow-arrows/gold-flourish.webp";
         nextArrow.className = "arrow-common nextArrow";
@@ -158,7 +197,6 @@ export async function handleUrlHash() {
 
     if (hash.startsWith("#themes/")) {
         const theme = hash.replace("#themes/", "");
-        console.log("Opening theme from hash:", theme);
         const modal = document.getElementById("theme-modal");
         const modalGallery = document.getElementById("modal-gallery");
 
@@ -227,7 +265,6 @@ document.addEventListener("click", async e => {
     if (item) {
         if (!modal) return;
         const theme = item.dataset.theme;
-        console.log("Clicked theme:", theme);
         history.pushState(null, '', `#themes/${theme}`);
         handleUrlHash();
         return;
@@ -240,7 +277,6 @@ document.addEventListener("click", async e => {
 
     if (e.target.matches("#modal-gallery img")) {
         e.stopPropagation();
-        console.log("Gallery image clicked:", e.target.src);
         enlargeImage(e.target.src);
         return;
     }
@@ -262,7 +298,6 @@ document.addEventListener("click", async e => {
             return;
         }
 
-        console.log("Closing modal - clicked on:", e.target, "closest modal-content:", e.target.closest(".modal-content"));
         modal.style.display = "none";
         history.pushState(null, '', '#themes');
     }

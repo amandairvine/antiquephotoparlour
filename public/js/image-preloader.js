@@ -7,7 +7,6 @@ async function fetchImageManifest() {
             throw new Error(`Failed to fetch images.json: ${response.statusText}`);
         }
         const data = await response.json();
-        console.log('✅ Image manifest loaded.');
         return data;
     } catch (error) {
         console.error('❌ Error fetching image manifest:', error);
@@ -32,7 +31,6 @@ function preloadImage(url) {
 
 async function preloadImages(imageUrls) {
     const allPromises = [];
-    console.log(`🚀 Starting to preload ${imageUrls.length} images...`);
 
     for (let i = 0; i < imageUrls.length; i += PRELOAD_BATCH_SIZE) {
         const batch = imageUrls.slice(i, i + PRELOAD_BATCH_SIZE);
@@ -42,7 +40,6 @@ async function preloadImages(imageUrls) {
     }
 
     await Promise.allSettled(allPromises);
-    console.log('✅ All images finished preloading.');
 }
 
 async function getThemeImages() {
@@ -65,7 +62,6 @@ async function getHeaderImagesFromManifest() {
     const imagesByTheme = await fetchImageManifest();
     
     if (imagesByTheme.headers && Array.isArray(imagesByTheme.headers)) {
-        console.log('✅ Found header images in manifest.');
         // This array should contain the complete, root-relative URLs
         return imagesByTheme.headers; 
     }

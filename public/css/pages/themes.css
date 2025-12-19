@@ -48,6 +48,18 @@ body {
   background: linear-gradient(90deg, #480204 0%, #800407 50%, #480204 100%);
   overflow-y: hidden;
   overflow-x: hidden;
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .themes-header-content {
@@ -367,7 +379,7 @@ body {
   max-height: 11rem;
   width: auto;
   filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.5));
-  transition: max-height 0.8s cubic-bezier(0, 1, 0, 1), width 0.8s ease-in-out;
+  transition: transform 0.3s ease, max-height 0.8s cubic-bezier(0, 1, 0, 1), width 0.8s ease-in-out;
 }
 
 #theme-modal .logo-container img:hover {
