@@ -185,16 +185,13 @@ body {
   padding: 0 0.8rem 0.8rem;
 }
 
-.faq-content.active {
+.question-item.active .faq-content {
   display: flex;
   flex-direction: column;
+  width: 100%;
 }
 
 .faq-content-header {
-  display: none;
-}
-
-.nav-item.active .faq-content-header {
   display: none;
 }
 
@@ -542,13 +539,13 @@ body {
   .faq-questions .question-item {
     scroll-margin-top: 0.4rem;
   }
+
+  .faq-questions .faq-content {
+    padding: 0.6rem;
+  }
 }
 
 @media (min-width: 330px) and (max-width: 659px) {
-  .content-area {
-    height: auto;
-  }
-
   .faq-container h1,
   .faq-container h2,
   .faq-container .btn-primary,
@@ -588,6 +585,10 @@ body {
   .faq-questions .question-item {
     scroll-margin-top: 0.4rem;
   }
+
+  .faq-questions .faq-content {
+    padding: 0.8rem;
+  }
 }
 
 @media (min-width: 660px) and (max-width: 1023px) {
@@ -625,8 +626,31 @@ body {
     height: auto;
   }
 
-  .faq-content.active .faq-content-header {
+  .faq-content {
+    padding: 0;
+  }
+
+  .question-item.active {
+    padding: 0.8rem;
+  }
+
+  .question-item.active .nav-item,
+  .question-item.active .faq-content-header {
+    width: 100%;
+  }
+
+  .question-item.active .faq-content-header {
     display: flex;
+    justify-content: center;
+  }
+
+  .question-item.active h1 {
+    display: none;
+  }
+
+  .dropdown-arrow {
+    position: relative;
+    right: 0;
   }
 
   .sidebar {
@@ -854,6 +878,10 @@ body {
 
   #babies > div.faq-content.active > div > h2 {
     text-align: center;
+  }
+
+  .people-number {
+    padding-top: 0.8rem;
   }
 
   .faq-container .action-buttons {
