@@ -1,18 +1,12 @@
 export function initializeFaqPage() {
-    console.log('Initializing faq page functionality...');
-
     const questionItems = document.querySelectorAll('.faq-questions .question-item');
     const answerItems = document.querySelectorAll('.faq-answers .question-item');
     const contentArea = document.querySelector('.content-area');
-    
-    console.log('Found question items:', questionItems.length);
-    console.log('Found answer items:', answerItems.length);
 
     function isDesktop() {
-        return window.innerWidth >= 1024;
+        return window.innerWidth >= 1440;
     }
 
-    // Initialize desktop on load
     function initDesktop() {
         if (isDesktop()) {
             // Hide all answer items
@@ -27,14 +21,12 @@ export function initializeFaqPage() {
                 answerItems[0].classList.add('active');
             }
         } else {
-            // Mobile: reset display
             answerItems.forEach(answer => {
                 answer.style.display = '';
             });
         }
     }
 
-    // Run on load
     initDesktop();
 
     questionItems.forEach((item, index) => {
@@ -43,7 +35,7 @@ export function initializeFaqPage() {
         if (navItem) {
             navItem.addEventListener('click', function () {
                 if (isDesktop()) {
-                    // DESKTOP: Show corresponding answer on right side
+                    // DESKTOP
                     answerItems.forEach(answer => {
                         answer.style.display = 'none';
                         answer.classList.remove('active');
@@ -72,11 +64,9 @@ export function initializeFaqPage() {
                     // Close all other questions first
                     questionItems.forEach(q => q.classList.remove('active'));
                     
-                    // If it wasn't active, open it
                     if (!wasActive) {
                         item.classList.add('active');
                         
-                        // Scroll to top after opening
                         setTimeout(() => {
                             item.scrollIntoView({
                                 behavior: 'smooth',
@@ -89,15 +79,12 @@ export function initializeFaqPage() {
         }
     });
 
-    // Handle resize
     let resizeTimer;
     window.addEventListener('resize', function () {
         clearTimeout(resizeTimer);
         resizeTimer = setTimeout(function () {
-            // Remove all active classes on mobile
             questionItems.forEach(item => item.classList.remove('active'));
             
-            // Reinitialize desktop layout
             initDesktop();
         }, 250);
     });
