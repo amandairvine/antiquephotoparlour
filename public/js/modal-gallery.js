@@ -192,6 +192,8 @@ function closeThemeModal() {
     }
 }
 
+let isLoadingGallery = false;
+
 export async function handleUrlHash() {
     const hash = window.location.hash;
 
@@ -200,8 +202,12 @@ export async function handleUrlHash() {
         const modal = document.getElementById("theme-modal");
         const modalGallery = document.getElementById("modal-gallery");
 
+        if (isLoadingGallery) return;
+        isLoadingGallery = true;
+
         if (!modalGallery || !modal) {
             console.warn("Gallery elements not found in the DOM.");
+            isLoadingGallery = false;
             return;
         }
 
@@ -250,6 +256,8 @@ export async function handleUrlHash() {
         } catch (error) {
             console.error("Error loading gallery images:", error);
             modalGallery.innerHTML = `<p>Error loading gallery. Please try again.</p>`;
+        } finally {
+            isLoadingGallery = false;
         }
 
         document.body.appendChild(modal);
@@ -265,6 +273,12 @@ document.addEventListener("click", async e => {
     if (item) {
         if (!modal) return;
         const theme = item.dataset.theme;
+
+        const modalGallery = document.getElementById("modal-gallery");
+        if (modalGallery) {
+            modalGallery.innerHTML = '<div class="spinner"></div>';
+        }
+
         history.pushState(null, '', `#themes/${theme}`);
         handleUrlHash();
         return;
