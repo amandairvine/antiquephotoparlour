@@ -294,16 +294,10 @@ body {
 
 /* Firefox */
 .content-area,
+.modal,
 .themes-header-content {
   scrollbar-width: thin;
   scrollbar-color: #e8c775 #480204;
-}
-
-/* TEST */
-
-.modal {
-  scrollbar-width: thin;
-  scrollbar-color: #e8c775 #ffffff;
 }
 
 /* Modal */
