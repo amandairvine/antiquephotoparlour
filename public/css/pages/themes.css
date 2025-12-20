@@ -294,10 +294,16 @@ body {
 
 /* Firefox */
 .content-area,
-.modal,
 .themes-header-content {
   scrollbar-width: thin;
   scrollbar-color: #e8c775 #480204;
+}
+
+/* TEST */
+
+.modal {
+  scrollbar-width: thin;
+  scrollbar-color: #e8c775 #ffffff;
 }
 
 /* Modal */
@@ -803,7 +809,7 @@ body {
 
   .themes {
     gap: 0.8rem;
-    padding-bottom: 0;
+    padding: 0 0.6rem;
   }
 
   .themes-list {
@@ -813,7 +819,6 @@ body {
   .themes-grid-item {
     background: linear-gradient(90deg, #480204 0%, #800407 50%, #480204 100%);
     width: 100%;
-    max-width: 14rem;
   }
 }
 
