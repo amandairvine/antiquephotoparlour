@@ -522,6 +522,10 @@ body {
     padding: 0.6rem 0;
   }
 
+  .content-area {
+    height: 100vh;
+  }
+
   .faq-container .btn,
   .contact-mini-map-button {
     width: 90%;
@@ -559,6 +563,10 @@ body {
 
   .faq-content ul li {
     font-size: 11px;
+  }
+
+  .content-area {
+    height: 100vh;
   }
 
   .faq-questions,
