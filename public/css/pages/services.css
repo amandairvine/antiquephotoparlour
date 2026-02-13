@@ -817,7 +817,7 @@ body {
   }
 }
 
-@media (min-width: 1440px) and (max-height: 1000px) {
+@media (min-width: 1440px) and (max-height: 1100px) {
   .content-area .service-content.active .service-header {
     gap: 1rem;
   }
@@ -1370,7 +1370,6 @@ body {
   }
 
   .services-slideshow-container {
-    padding: 0;
     min-height: auto;
   }
 
