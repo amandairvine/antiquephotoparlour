@@ -278,10 +278,6 @@ body {
   max-width: 9rem;
 }
 
-#historical-pet .service-header img {
-  max-width: 11rem;
-}
-
 #award-winning .service-header img {
   max-width: 8.6rem;
 }
@@ -584,11 +580,6 @@ body {
     max-height: 44vh;
     min-height: 44vh;
     transition: max-height 0.3s ease-in-out;
-  }
-
-  #historical-pet .service-gallery .service-slide img {
-    max-height: 40vh;
-    min-height: 40vh;
   }
 }
 
@@ -1112,15 +1103,6 @@ body {
     margin-bottom: 0.8rem;
   }
 
-  #historical-pet .service-header {
-    gap: 0;
-  }
-
-  #historical-pet .service-description {
-    line-height: 0.6;
-    margin-bottom: 0.8rem;
-  }
-
   #award-winning .service-header {
     gap: 0;
   }
@@ -1141,22 +1123,12 @@ body {
   }
 
   #pet-photos .service-header,
-  #historical-pet .service-content-wrapper .service-header,
   #award-winning .service-content-wrapper .service-header {
     gap: 1.2rem;
   }
 
   #pet-photos .service-description {
     line-height: 1;
-    margin-bottom: 0.8rem;
-  }
-
-  #historical-pet .service-header {
-    gap: 0;
-  }
-
-  #historical-pet .service-description {
-    line-height: 0.6;
     margin-bottom: 0.8rem;
   }
 
@@ -1184,7 +1156,6 @@ body {
   }
 
   #pet-photos .service-header,
-  #historical-pet .service-content-wrapper .service-header,
   #award-winning .service-content-wrapper .service-header {
     gap: 0.4rem;
   }
@@ -1195,15 +1166,6 @@ body {
 
   #pet-photos .service-description {
     line-height: 1;
-    margin-bottom: 0.4rem;
-  }
-
-  #historical-pet .service-header {
-    gap: 0;
-  }
-
-  #historical-pet .service-description {
-    line-height: 0.6;
     margin-bottom: 0.4rem;
   }
 
@@ -1400,10 +1362,6 @@ body {
     margin: 0;
   }
 
-  #historical-pet .service-slide img {
-    max-height: 28vh;
-  }
-
   .dropdown-header {
     max-width: none;
   }
@@ -1556,11 +1514,6 @@ body {
     transition: max-width 0.3s ease;
   }
 
-  #historical-pet .service-header img {
-    max-width: 18rem;
-    transition: max-width 0.3s ease;
-  }
-
   #award-winning .service-header img {
     max-width: 16rem;
     transition: max-width 0.3s ease;
@@ -1601,11 +1554,6 @@ body {
     background: none;
     max-width: none;
     margin: 0;
-  }
-
-  #historical-pet .service-slide img {
-    max-height: 37vh;
-    min-height: 37vh;
   }
 
   .dropdown-header {
@@ -1763,11 +1711,6 @@ body {
     transition: max-width 0.3s ease;
   }
 
-  #historical-pet .service-header img {
-    max-width: 26rem;
-    transition: max-width 0.3s ease;
-  }
-
   #award-winning .service-header img {
     max-width: 19rem;
     transition: max-width 0.3s ease;
@@ -1809,11 +1752,6 @@ body {
     background: none;
     max-width: none;
     margin: 0;
-  }
-
-  #historical-pet .service-slide img {
-    max-height: 44vh;
-    min-height: 40vh;
   }
 
   .service-content-wrapper {
@@ -1986,11 +1924,6 @@ body {
     transition: max-width 0.3s ease;
   }
 
-  #historical-pet .service-header img {
-    max-width: 26rem;
-    transition: max-width 0.3s ease;
-  }
-
   #award-winning .service-header img {
     max-width: 19rem;
     transition: max-width 0.3s ease;
@@ -2038,11 +1971,6 @@ body {
     background: none;
     max-width: none;
     margin: 0;
-  }
-
-  #historical-pet .service-slide img {
-    max-height: 44vh;
-    min-height: 40vh;
   }
 
   .service-content-wrapper {
@@ -2200,11 +2128,6 @@ body {
 
   #pet-photos .service-header img {
     max-width: 20rem;
-    transition: max-width 0.3s ease;
-  }
-
-  #historical-pet .service-header img {
-    max-width: 26rem;
     transition: max-width 0.3s ease;
   }
 

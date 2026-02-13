@@ -279,7 +279,6 @@ window.addEventListener('resize', function () {
 let slideIndex = {
     'themes': 1,
     'pet-photos': 1,
-    'historical-pet': 1,
     'award-winning': 1
 };
 

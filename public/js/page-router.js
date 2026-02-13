@@ -41,12 +41,6 @@ const PAGE_CONFIG = {
         route: '/pages/contact/contact.html',
         css: '/css/pages/contact.css'
     },
-    'historical-pet-portraits': {
-        title: 'Historical Pet Portraits - Antique Photo Parlour',
-        route: '/pages/historical-pet-portraits/historical-pet-portraits.html',
-        css: '/css/pages/historical-pet-portraits.css',
-        init: () => import('./hpp.js').then(m => m.initializeHppPage())
-    },
     'awards': {
         title: 'Awards - Antique Photo Parlour',
         route: '/pages/awards/awards.html',
