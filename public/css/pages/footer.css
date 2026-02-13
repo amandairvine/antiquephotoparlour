@@ -1755,7 +1755,7 @@ footer {
   }
 }
 
-@media (min-width: 1920px) {
+/* @media (min-width: 1920px) {
   .footer-containers {
     max-width: 1920px;
     gap: 3.8rem;
@@ -2184,4 +2184,4 @@ footer {
   .map-wrapper {
     display: none;
   }
-}
+} */

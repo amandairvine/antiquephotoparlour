@@ -789,7 +789,7 @@ header {
   }
 }
 
-@media (min-width: 1920px) {
+/* @media (min-width: 1920px) {
   .header-top,
   .header-bottom {
     max-width: 116rem;
@@ -877,4 +877,4 @@ header {
   header .secondary-nav ul.flex-container {
     gap: 3.4rem;
   }
-}
+} */
