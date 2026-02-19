@@ -523,7 +523,7 @@ body {
   }
 
   .content-area {
-    max-height: calc(100vh - 32.2rem);
+    max-height: calc(100vh - 46rem);
     padding: 0;
   }
 
@@ -585,7 +585,6 @@ body {
   }
 
   .frames {
-    height: auto;
     padding: 1.4rem 0;
   }
 
@@ -606,8 +605,7 @@ body {
   }
 
   .frames-header-container .frames-header img {
-    min-width: 14rem;
-    max-width: none;
+    max-width: 12rem;
     padding: 0.8rem 2rem;
   }
 
@@ -653,12 +651,12 @@ body {
   }
 
   .photo-stack {
-    height: 22rem;
+    height: 36rem;
   }
 
   .side-frame {
-    max-width: 14rem;
-    margin: 0 1rem;
+    max-width: 16rem;
+    margin: 0 1.4rem;
   }
 
   .frame-control-small {
@@ -667,6 +665,11 @@ body {
 
   .frame-nav-btn img {
     width: 6rem;
+  }
+
+  .framed-photo {
+    top: 0.6rem;
+    height: 96%;
   }
 }
 
