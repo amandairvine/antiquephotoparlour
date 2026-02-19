@@ -236,14 +236,6 @@
     "../img/themes/winter-wonderland/193748_040.webp",
     "../img/themes/winter-wonderland/201823_006.webp"
   ],
-  "historical-pet-portraits": [
-    "/img/historical-pet-portraits/abby/abby.webp",
-    "/img/historical-pet-portraits/abby/original-abby.webp",
-    "/img/historical-pet-portraits/connor/connor.webp",
-    "/img/historical-pet-portraits/connor/original-connor.webp",
-    "/img/historical-pet-portraits/sage/sage.webp",
-    "/img/historical-pet-portraits/sage/original-sage.webp"
-  ],
   "services-images": [
     "/img/services/awards/4_A_AntiquePhotoParlour_2025_AmandaIrvine.webp",
     "/img/services/awards/11_A_AntiquePhotoParlour_2025_TrinDibble.webp",
@@ -288,7 +280,6 @@
     "/img/headers/footer-headers/hours.webp",
     "/img/headers/footer-headers/location.webp",
     "/img/headers/frames-headers/frames.webp",
-    "/img/headers/historical-pet-portraits-header/historical-pet-portraits.webp",
     "/img/headers/menu-header/menu.webp",
     "/img/headers/prices-headers/pricing.webp",
     "/img/headers/prices-headers/sitting-fee.webp",

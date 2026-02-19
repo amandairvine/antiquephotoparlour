@@ -1,72 +1,80 @@
 <!DOCTYPE html>
 
 <div class="frames-container">
-    <div class="frames-content">
-        <div class="frames-header-wrapper">
-            <div class="frames-header-container">
-                <div class="frames-header">
-                    <img src="../../img/headers/frames-headers/frames.webp" alt="Frames" />
-                    <h1 class="sr-only">Frames</h1>
-                    <div class="frames-header-description">
-                        <h1>Old fashioned frames to display <br class="small-br">your photos at their best!</h1>
-                        <div class="frames-description">
-                            <p>Looking for a timeless way to show off <br class="small-br">your portraits? <br
-                                    class="small-br"><br class="medium-br"><span>Frame in
-                                    style with our antique-looking frames.</span>
-                            </p>
-                        </div>
-                        <div class="action-buttons-short">
-                            <a href="https://antiquephotoparlour.morephotos.net" class="btn btn-primary">Order Frames Today!</a>
+
+    <div class="frames-content-wrapper">
+        <div class="frames-content">
+            <div class="frames-header-wrapper">
+                <div class="frames-header-container">
+                    <div class="frames-header">
+                        <img src="../../img/headers/frames-headers/frames.webp" alt="Frames" />
+                        <h1 class="sr-only">Frames</h1>
+                        <div class="frames-header-description">
+                            <h1>Old fashioned frames to display <br class="small-br">your photos at their best!</h1>
+                            <div class="frames-description">
+                                <p class="large-frames-description">Looking for a timeless way to <br class="small-br">show off your portraits? <br
+                                        class="small-br"><br class="medium-br"><br class="large-br"><span>Frame in
+                                        style with our <br class="xs-br">antique-looking frames.</span>
+                                </p>
+                                <p class="xs-frames-description"><span>Frame in style with our antique-looking frames.</span>
+                                </p>
+                            </div>
+                            <div class="action-buttons-short">
+                                <a href="#coming-soon" class="btn btn-primary">Order
+                                    Frames Today!</a>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
+
+            <main class="content-area">
+                <div class="frames active" id="frames">
+
+                    <div class="frame-control-small">
+                        <button id="prev-frame-btn" class="frame-nav-btn prev-btn" aria-label="Previous Frame">
+                            <img src="../../../img/assets/slideshow-arrows/gold-flourish.webp"
+                                alt="Fancy gold arrow pointing left">
+                        </button>
+                        <button id="next-frame-btn" class="frame-nav-btn next-btn" aria-label="Next Frame">
+                            <img src="../../../img/assets/slideshow-arrows/gold-flourish.webp"
+                                alt="Fancy gold arrow pointing right">
+                        </button>
+                    </div>
+
+                    <img id="prev-frame-viewer" alt="Previous Frame" class="side-frame" />
+
+                    <div class="framed-photo-viewer">
+
+                        <div class="frame-data-list sr-only">
+                            <div class="gallery-item"
+                                data-frame-url="../../img/frames/frame-overlays/black-georgia.webp">
+                            </div>
+                            <div class="gallery-item" data-frame-url="../../img/frames/frame-overlays/13w.webp"></div>
+                            <div class="gallery-item" data-frame-url="../../img/frames/frame-overlays/m33.webp"></div>
+                        </div>
+
+                        <div class="photo-stack">
+                            <div class="framed-photo">
+                                <img src="../../img/frames/133738_005.webp" alt="Victorian Family Photo"
+                                    class="main-photo" />
+                            </div>
+
+                            <img id="current-frame-overlay" src="../../img/frames/frame-overlays/black-georgia.webp"
+                                alt="Current Frame Overlay" class="frame-overlay-image" />
+
+                            <h1 class="sr-only">Victorian Family Photo</h1>
+                        </div>
+                    </div>
+
+                    <img id="next-frame-viewer" alt="Next Frame" class="side-frame" />
+                </div>
+
+                <div class="action-buttons">
+                    <a href="#coming-soon" class="btn btn-primary">Order Frames Today!</a>
+                </div>
+            </main>
         </div>
-
-        <main class="content-area">
-            <div class="frames active" id="frames">
-
-                <div class="frame-control-small">
-                    <button id="prev-frame-btn" class="frame-nav-btn prev-btn" aria-label="Previous Frame">
-                        <img src="../../../img/assets/slideshow-arrows/gold-flourish.webp"
-                            alt="Fancy gold arrow pointing left">
-                    </button>
-                    <button id="next-frame-btn" class="frame-nav-btn next-btn" aria-label="Next Frame">
-                        <img src="../../../img/assets/slideshow-arrows/gold-flourish.webp"
-                            alt="Fancy gold arrow pointing right">
-                    </button>
-                </div>
-
-                <img id="prev-frame-viewer" alt="Previous Frame" class="side-frame" />
-
-                <div class="framed-photo-viewer">
-
-                    <div class="frame-data-list sr-only">
-                        <div class="gallery-item" data-frame-url="../../img/frames/frame-overlays/black-georgia.webp">
-                        </div>
-                        <div class="gallery-item" data-frame-url="../../img/frames/frame-overlays/13w.webp"></div>
-                        <div class="gallery-item" data-frame-url="../../img/frames/frame-overlays/m33.webp"></div>
-                    </div>
-
-                    <div class="photo-stack">
-                        <div class="framed-photo">
-                            <img src="../../img/frames/133738_005.webp" alt="Victorian Family Photo"
-                                class="main-photo" />
-                        </div>
-
-                        <img id="current-frame-overlay" src="../../img/frames/frame-overlays/black-georgia.webp"
-                            alt="Current Frame Overlay" class="frame-overlay-image" />
-
-                        <h1 class="sr-only">Victorian Family Photo</h1>
-                    </div>
-                </div>
-
-                <img id="next-frame-viewer" alt="Next Frame" class="side-frame" />
-            </div>
-
-            <div class="action-buttons">
-                <a href="../error-page/404.html" class="btn btn-primary">Order Frames Today!</a>
-            </div>
-        </main>
     </div>
+
 </div>

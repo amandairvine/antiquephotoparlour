@@ -792,7 +792,7 @@ body {
   }
 
   .pricing-header-container .pricing-header img {
-    max-width: 14rem;
+    max-width: 13rem;
     transition: max-width 0.3s ease;
     padding: 0.8rem 2rem 0.6rem;
   }
@@ -890,110 +890,5 @@ body {
   #christmas .print-prices,
   #christmas .print-sizes {
     gap: 0.4rem;
-  }
-}
-
-@media (min-width: 1920px) and (max-width: 2056px) {
-  .content-area {
-    margin: 0 2rem;
-    max-width: 118rem;
-  }
-
-  .prices {
-    gap: 2rem;
-  }
-
-  .pricing-header-container {
-    max-width: 116rem;
-    border: 6px solid #e8c775;
-  }
-
-  .sitting-pricing,
-  .additional-options {
-    padding: 2rem;
-  }
-
-  .sitting-pricing,
-  .additional-options,
-  .sitting-fee-list,
-  .options-grid-item {
-    border: 6px solid #e8c775;
-  }
-
-  .sitting-description,
-  .additional-person {
-    font-size: 26px;
-  }
-
-  .sitting-prices p {
-    font-size: 28px;
-  }
-
-  .price-list {
-    justify-content: space-evenly;
-  }
-
-  .price-list #one-person img {
-    max-width: 11.4rem;
-    margin-bottom: 0.5rem;
-    padding-left: 0.6rem;
-  }
-
-  .price-list img {
-    max-width: 11rem;
-    transition: max-width 0.3s ease;
-  }
-
-  .price-list .sitting-prices {
-    margin-right: 1rem;
-  }
-
-  .sitting-fee-list {
-    margin-top: 0.8rem;
-  }
-
-  .options-list .options {
-    gap: 2rem 4rem;
-    padding: 1rem 4rem 0;
-  }
-
-  .options-grid-item img {
-    max-width: 16rem;
-    margin: 1rem 0;
-  }
-}
-
-@media (min-width: 2056px) {
-  .pricing-header-container {
-    max-width: 120rem;
-  }
-
-  .content-area {
-    max-width: 120rem;
-    top: 1rem;
-    padding: 0;
-    margin: 0;
-  }
-
-  .content-area .prices {
-    gap: 1rem;
-  }
-
-  .sitting-prices p {
-    font-size: 28px;
-  }
-
-  .options-grid-item h4,
-  .options-prices p,
-  .sitting-description,
-  .additional-person {
-    font-size: 26px;
-  }
-}
-
-@media (min-width: 2056px) and (min-height: 1430px) {
-  .content-area .prices {
-    gap: 1rem;
-    max-height: calc(100vh - 33rem);
   }
 }

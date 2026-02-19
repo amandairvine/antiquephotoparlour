@@ -379,7 +379,6 @@ body {
   }
 
   .slide.kids img,
-  .slide.historical-pet-portraits img,
   .slide.roaring-20s img,
   .slide.steampunk img,
   .slide.cowboys-and-cowgirls img,
@@ -446,10 +445,6 @@ body {
     gap: 0.8rem;
   }
 
-  .slide.historical-pet-portraits .slide-text {
-    gap: 0.5rem;
-  }
-
   .slide.frames .slide-text,
   .slide.pets .slide-text {
     gap: 0.9rem;
@@ -482,10 +477,6 @@ body {
 
   .slide.victorian img {
     height: 2rem;
-  }
-
-  .slide.historical-pet-portraits img {
-    height: 2.3rem;
   }
 
   .slide.roaring-20s img,
@@ -564,10 +555,6 @@ body {
     gap: 0.7rem;
   }
 
-  .slide.historical-pet-portraits .slide-text {
-    gap: 0.4rem;
-  }
-
   .slide.frames .slide-text,
   .slide.pets .slide-text {
     gap: 0.4rem;
@@ -596,10 +583,6 @@ body {
 
   .slide.victorian img {
     height: 2rem;
-  }
-
-  .slide.historical-pet-portraits img {
-    height: 2.3rem;
   }
 
   .slide.roaring-20s img,
@@ -725,7 +708,6 @@ body {
     height: 2.4rem;
   }
 
-  .slide.historical-pet-portraits img,
   .slide.roaring-20s img,
   .slide.steampunk img,
   .slide.cowboys-and-cowgirls img,
@@ -784,8 +766,7 @@ body {
     gap: 0.1rem;
   }
 
-  .slide.steampunk .slide-text,
-  .slide.historical-pet-portraits .slide-text {
+  .slide.steampunk .slide-text {
     gap: 0.1rem;
   }
 
@@ -817,7 +798,6 @@ body {
     height: 3rem;
   }
 
-  .slide.historical-pet-portraits img,
   .slide.roaring-20s img,
   .slide.steampunk img,
   .slide.cowboys-and-cowgirls img,
@@ -893,7 +873,6 @@ body {
     height: 3.4rem;
   }
 
-  .slide.historical-pet-portraits img,
   .slide.roaring-20s img,
   .slide.steampunk img,
   .slide.cowboys-and-cowgirls img,
