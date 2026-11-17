@@ -15,7 +15,8 @@ const PAGE_CONFIG = {
     'pricing': {
         title: 'Pricing - Antique Photo Parlour',
         route: '/pages/pricing/pricing.html',
-        css: '/css/pages/pricing.css'
+        css: '/css/pages/pricing.css',
+        container: 'pricing-container'
     },
     'themes': {
         title: 'Themes - Antique Photo Parlour',
@@ -127,9 +128,11 @@ export async function loadPage(pageName, updateHistory = true) {
 
     currentPage = pageName;
 
+    // Always keep the tab title in sync with the page being shown, including initial loads and back/forward navigation.
+    document.title = config.title;
+
     if (updateHistory) {
         history.replaceState({ page: pageName }, config.title);
-        document.title = config.title;
     }
 
     // Handle home page
@@ -158,10 +161,11 @@ export async function loadPage(pageName, updateHistory = true) {
 
         const html = await response.text();
         const doc = new DOMParser().parseFromString(html, 'text/html');
-        const pageContainer = doc.querySelector(`.${basePageName}-container`);
+        const containerClass = config.container || `${basePageName}-container`;
+        const pageContainer = doc.querySelector(`.${containerClass}`);
 
         if (!pageContainer) {
-            throw new Error(`Container .${basePageName}-container not found in loaded page`);
+            throw new Error(`Container .${containerClass} not found in loaded page`);
         }
 
         contentContainer.innerHTML = pageContainer.outerHTML;
